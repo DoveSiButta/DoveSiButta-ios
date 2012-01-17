@@ -51,11 +51,11 @@
 @synthesize segmentedControlTopBar;
 @synthesize tmpCell, cellNib;
 @synthesize usingManualLocation, gpsLocation;
+@synthesize address, postCode, country;
 
 
 
-
-NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Services/OData.svc/";
+NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Services/OData.svc/";
 
 //query con parametri
 //http://nerddinner.com/Services/OData.svc/Dinners?$top=200&$skip=150&$orderby=EventDate%20desc
@@ -77,12 +77,12 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
 #endif
         NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:dinnerURI credential:nil];
         
-    //	DataServiceQuery *query = [proxy dinners];
+        DataServiceQuery *query = [proxy dinners];
     //	//[query top:1];
-    //	QueryOperationResponse *response = [query execute];
-    //	NSArray *resultArr =[[response getResult] retain];
+        QueryOperationResponse *response = [query execute];
+        NSArray *resultArr =[[response getResult] retain];
     //    NSArray *resultArr = [[proxy FindUpcomingDinners] retain]; //??? Returns no results as of 2012-01-12
-        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
+//        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
         [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
 #if DEBUG
         NSLog(@"resultarray...%d",[resultArr count]);
@@ -170,11 +170,42 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
 	locationManager = [[CLLocationManager alloc] init];
+    geocoder = [[CLGeocoder alloc] init];
 	locationManager.delegate = self;
 	[locationManager startUpdatingLocation];
     usingManualLocation = NO;
 
     
+    locationManager.delegate = self; 
+    locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    [locationManager startUpdatingLocation];
+    
+   
+    [geocoder reverseGeocodeLocation: locationManager.location completionHandler: 
+     ^(NSArray *placemarks, NSError *error) {
+         
+         CLPlacemark *placemark = [placemarks objectAtIndex:0];
+         self.country = placemark.country;
+         self.postCode = placemark.postalCode;
+         self.address = placemark.locality;
+         NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
+//         NerdDinnerEntities *proxy2=[[NerdDinnerEntities alloc]initWithUri:dinnerURI credential:nil];
+//         NSArray *arr = [proxy2 DinnersNearMeWithplaceorzip:[NSString stringWithFormat:@"%@, %@",self.address, self.country]];
+//         NSLog(@"Array %@", arr);
+//         isoCountryCode.text = placemark.ISOcountryCode;
+//         country.text = placemark.country;
+//         postalCode.text= placemark.postalCode;
+//         adminArea.text=placemark.administrativeArea;
+//         subAdminArea.text=placemark.subAdministrativeArea;
+//         locality.text=placemark.locality;
+//         subLocality.text=placemark.subLocality;
+//         thoroughfare.text=placemark.thoroughfare;
+//         subThoroughfare.text=placemark.subThoroughfare;
+         //region.text=placemark.region;
+         
+     }];
+    
+
     
     // Configure the table view.
     self.tableView.rowHeight = 73.0;
@@ -212,11 +243,26 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
 
     
     //Icons
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
+//    NSData* data = [NSData dataWithContentsOfFile:path];
+//    NSString *error;
+//    NSPropertyListFormat format;
+//    iconsDictionary = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
+    
+    // read property list into memory as an NSData object
     NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
-    NSString *error;
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+    NSString *errorDesc = nil;
     NSPropertyListFormat format;
-    iconsDictionary = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
+    
+    // convert static property list into dictionary object
+    NSDictionary *plistDictionary = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+    if (!plistDictionary) 
+    {
+        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+    }
+    iconsDictionary = plistDictionary;
+    [iconsDictionary retain];
 }
 
 - (void)viewDidUnload
@@ -315,7 +361,7 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1; //Todo: organizzare per tipo di cestino?
+    return 1; //TODO: organizzare per tipo di cestino?
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -422,8 +468,7 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
 //    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 //    [f setNumberStyle:NSNumberFormatterDecimalStyle];
-    
-    cell.icon = [UIImage imageNamed:[iconsDictionary objectForKey:[dinner getDinnerType]]];  // [UIImage imageNamed:@"Dinner"];
+    cell.icon = [UIImage imageNamed:[iconsDictionary objectForKey:[dinner getDinnerType]] ];  // [UIImage imageNamed:@"Dinner"];
     cell.dinnerTitle = [dinner getHostedBy];
     cell.name = [dinner getTitle];
     cell.numRSVPs = [[dinner getRSVPs] count]; //TODO: get RSVPs correctly
@@ -501,7 +546,7 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
         allresults = self.listContent;
     }
     self.mapViewController = [[[MapViewController alloc] initWithSelectedResult:dinner allResults:allresults] autorelease];
-    
+    self.mapViewController.iconsDictionary = iconsDictionary;
     [self.navigationController pushViewController:self.mapViewController animated:YES];
 }
 
@@ -606,6 +651,8 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
 //}
 
 # pragma mark - Location
+
+/*
 //
 // qualifiedAddressStringForResultDictionary:
 //
@@ -622,7 +669,7 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
             [result objectForKey:@"address"],
             [result objectForKey:@"location"]];
 }
-
+*/
 
 //
 // locationFailedWithCode:
@@ -745,6 +792,7 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
     
 }
 
+/*
 //
 // setGpsLocation:
 //
@@ -773,9 +821,9 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
 //    [[PostcodesController sharedPostcodesController]
 //     postcodeClosestToLocation:gpsLocation];
 }
+*/
 
-
-
+/*
 //
 // locationManager:didUpdateToLocation:fromLocation:
 //
@@ -790,30 +838,31 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net//Se
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-//	const double WA_BOUNDING_BOX_BOTTOM = -37;
-//	const double WA_BOUNDING_BOX_TOP = -12;
-//	const double WA_BOUNDING_BOX_LEFT = 110;
-//	const double WA_BOUNDING_BOX_RIGHT = 129;
-//    
-//#if TARGET_IPHONE_SIMULATOR
-//	// In simulator, set gpsLocation to WEST PERTH
-//	newLocation = [[[CLLocation alloc] initWithLatitude:-31.950555 longitude:115.843835] autorelease];
-//#endif
-//    
-//	if (newLocation.coordinate.latitude < WA_BOUNDING_BOX_BOTTOM ||
-//		newLocation.coordinate.latitude > WA_BOUNDING_BOX_TOP ||
-//		newLocation.coordinate.longitude < WA_BOUNDING_BOX_LEFT ||
-//		newLocation.coordinate.longitude > WA_BOUNDING_BOX_RIGHT ||
-//		signbit(newLocation.horizontalAccuracy))
-//	{
-//		[self locationFailedWithCode:FVLocationFailedOutsideWA];
-//	}
-//	else
-//	{
 		gpsLocationFailed = NO;
 		self.gpsLocation = newLocation.coordinate;
-//	}
-}
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        self.country = placemark.country;
+        self.postCode = placemark.postalCode;
+        self.address = placemark.locality;
+        NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
 
+      //  CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        
+//        isoCountryCode.text = placemark.ISOcountryCode;
+//        country.text = placemark.country;
+//        postalCode.text= placemark.postalCode;
+//        adminArea.text=placemark.administrativeArea;
+//        subAdminArea.text=placemark.subAdministrativeArea;
+//        locality.text=placemark.locality;
+//        subLocality.text=placemark.subLocality;
+//        thoroughfare.text=placemark.thoroughfare;
+//        subThoroughfare.text=placemark.subThoroughfare;
+//        //region.text=placemark.region;
+        
+    }];
+
+}
+*/
 
 @end

@@ -47,6 +47,7 @@
 @implementation MapViewController
 @synthesize mapView;
 @synthesize buttonLat, buttonLon;
+@synthesize iconsDictionary;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -85,13 +86,22 @@
     [super viewDidLoad];
     
     
-    //Icons
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
-    NSData* data = [NSData dataWithContentsOfFile:path];
-    NSString *error;
-    NSPropertyListFormat format;
-    iconsDictionary = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
-    
+    if([self.iconsDictionary count] < 1)
+    {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
+        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+        NSString *errorDesc = nil;
+        NSPropertyListFormat format;
+        
+        // convert static property list into dictionary object
+        NSDictionary *plistDictionary = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+        if (!plistDictionary) 
+        {
+            NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        }
+        self.iconsDictionary = plistDictionary;
+
+    }
     /*
     mapView.delegate = self;
     mapView.showsUserLocation = YES;
@@ -317,7 +327,7 @@
 //                    action:@selector(showDetails: forAnnotation:)
 //          forControlEvents:UIControlEventTouchUpInside];
 //    UIImageView *dinnerIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Dinner"]];
-    UIImageView *dinnerIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[iconsDictionary objectForKey:annotation.type]]];
+    UIImageView *dinnerIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[self.iconsDictionary objectForKey:annotation.type]]];
     [dinnerIconView setFrame:CGRectMake(0, 0, 30, 30)];
     newAnnotationPin.leftCalloutAccessoryView = dinnerIconView; 
     [dinnerIconView release];    

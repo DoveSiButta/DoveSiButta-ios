@@ -10,6 +10,7 @@
 #import "MapViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
+
 //ProgressHUD
 #import "MBProgressHUD.h"
 
@@ -49,6 +50,7 @@
 	CLLocationCoordinate2D gpsLocation;
 	BOOL gpsLocationFailed;
 	BOOL usingManualLocation;
+    CLGeocoder *geocoder; //!!!! iOS5.0
 }
 
 /* For LLVM 3.0
@@ -77,7 +79,11 @@
 //For location
 @property (nonatomic, assign) BOOL usingManualLocation;
 @property (nonatomic, assign) CLLocationCoordinate2D gpsLocation;
+@property (nonatomic, retain) NSString *address;
+@property (nonatomic, retain) NSString *postCode;
+@property (nonatomic, retain) NSString *country;
 
-+ (NSString *)qualifiedAddressStringForResultDictionary:(NSDictionary *)result;
+
+//+ (NSString *)qualifiedAddressStringForResultDictionary:(NSDictionary *)result;
 
 @end

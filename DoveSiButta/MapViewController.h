@@ -19,7 +19,7 @@
     CLLocationManager *locationManager;
 
     //Icons
-    NSDictionary *iconsDictionary;
+    
 
 }
 
@@ -30,5 +30,5 @@
 
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *buttonLat;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *buttonLon;
-
+@property (nonatomic,retain) NSDictionary *iconsDictionary;
 @end

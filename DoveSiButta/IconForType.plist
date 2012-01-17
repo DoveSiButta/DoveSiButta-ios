@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1</key>
+	<string>plastica_300px</string>
+	<key>2</key>
+	<string>vetro_300px</string>
+	<key>3</key>
+	<string>lattina_300px</string>
+	<key>4</key>
+	<string>indifferenziata_300px</string>
+	<key>5</key>
+	<string>organici_300px</string>
+	<key>6</key>
+	<string>batterie2_300px</string>
+	<key>7</key>
+	<string>farmaci_300</string>
+	<key>8</key>
+	<string>nettezzaurbana_300px</string>
+	<key>9</key>
+	<string>carta_300px</string>
+</dict>
+</plist>

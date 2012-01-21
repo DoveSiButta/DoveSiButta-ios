@@ -55,6 +55,7 @@
 {
     //TODO: work in progress
     NSLog(@"Work in progress to add RSVP");
+    //L'ho trovato utile
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -141,6 +142,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
+    /*
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Hosted By", @""),
@@ -185,6 +187,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
+     */
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Address", @""),
@@ -212,7 +215,7 @@
                                NSLocalizedString(@"View RSVPs",@""),
                                @"label",
                                @"", 
-                               @"action", //TODO: Show RSVPs
+                               @"action", //TODO: Mostra chi l'ha trovata interessante
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
 

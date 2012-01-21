@@ -38,8 +38,8 @@
 		AC66D01014C24B6C0098E1F1 /* MapAnnotationDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66D00C14C24B6C0098E1F1 /* MapAnnotationDefault.m */; };
 		AC66D01114C24B6C0098E1F1 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66D00E14C24B6C0098E1F1 /* MapViewController.m */; };
 		AC66D01214C24B6C0098E1F1 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66D00F14C24B6C0098E1F1 /* MapViewController.xib */; };
-		AC66D01414C24BAD0098E1F1 /* RifiutiTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D01314C24BAD0098E1F1 /* RifiutiTypes.plist */; };
-		AC66D01714C24BB70098E1F1 /* DinnerTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D01514C24BB70098E1F1 /* DinnerTypes.plist */; };
+		AC66D01414C24BAD0098E1F1 /* RifiutiSubTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D01314C24BAD0098E1F1 /* RifiutiSubTypes.plist */; };
+		AC66D01714C24BB70098E1F1 /* RifiutiTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D01514C24BB70098E1F1 /* RifiutiTypes.plist */; };
 		AC66D02814C24BD60098E1F1 /* ApplicationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66D01A14C24BD60098E1F1 /* ApplicationCell.m */; };
 		AC66D02914C24BD60098E1F1 /* CompositeSubviewBasedApplicationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66D01C14C24BD60098E1F1 /* CompositeSubviewBasedApplicationCell.m */; };
 		AC66D02A14C24BD60098E1F1 /* DarkBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AC66D01D14C24BD60098E1F1 /* DarkBackground.png */; };
@@ -67,6 +67,8 @@
 		AC66D08D14C37CA70098E1F1 /* vetro_300px.png in Resources */ = {isa = PBXBuildFile; fileRef = AC66D08114C37CA70098E1F1 /* vetro_300px.png */; };
 		AC66D09014C381B10098E1F1 /* LocationAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */; };
 		AC66D09214C3862E0098E1F1 /* IconForType.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D09114C3862D0098E1F1 /* IconForType.plist */; };
+		ACEE63D714CB707700B604C9 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEE63D614CB707700B604C9 /* Manager.m */; };
+		ACEE63DC14CB733900B604C9 /* RifiutoType.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEE63DB14CB733900B604C9 /* RifiutoType.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,8 +191,8 @@
 		AC66D00D14C24B6C0098E1F1 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		AC66D00E14C24B6C0098E1F1 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		AC66D00F14C24B6C0098E1F1 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
-		AC66D01314C24BAD0098E1F1 /* RifiutiTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RifiutiTypes.plist; sourceTree = "<group>"; };
-		AC66D01614C24BB70098E1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/DinnerTypes.plist; sourceTree = "<group>"; };
+		AC66D01314C24BAD0098E1F1 /* RifiutiSubTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RifiutiSubTypes.plist; sourceTree = "<group>"; };
+		AC66D01614C24BB70098E1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/RifiutiTypes.plist; sourceTree = "<group>"; };
 		AC66D01914C24BD60098E1F1 /* ApplicationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationCell.h; path = DoveSiButta/CustomTableViewCells/ApplicationCell.h; sourceTree = "<group>"; };
 		AC66D01A14C24BD60098E1F1 /* ApplicationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationCell.m; path = DoveSiButta/CustomTableViewCells/ApplicationCell.m; sourceTree = "<group>"; };
 		AC66D01B14C24BD60098E1F1 /* CompositeSubviewBasedApplicationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompositeSubviewBasedApplicationCell.h; path = DoveSiButta/CustomTableViewCells/CompositeSubviewBasedApplicationCell.h; sourceTree = "<group>"; };
@@ -225,6 +227,11 @@
 		AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAddViewController.h; sourceTree = "<group>"; };
 		AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAddViewController.m; sourceTree = "<group>"; };
 		AC66D09114C3862D0098E1F1 /* IconForType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IconForType.plist; sourceTree = "<group>"; };
+		ACEE63D514CB707700B604C9 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
+		ACEE63D614CB707700B604C9 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
+		ACEE63D814CB70B900B604C9 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		ACEE63DA14CB733900B604C9 /* RifiutoType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RifiutoType.h; path = DoveSiButta/Entities/RifiutoType.h; sourceTree = "<group>"; };
+		ACEE63DB14CB733900B604C9 /* RifiutoType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RifiutoType.m; path = DoveSiButta/Entities/RifiutoType.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +256,7 @@
 			children = (
 				AC66CF3814C247ED0098E1F1 /* MSODataLib.xcodeproj */,
 				AC66D01814C24BC70098E1F1 /* CustomTableViewCells */,
+				ACEE63D914CB72CE00B604C9 /* Entities */,
 				AC66CF4814C2482F0098E1F1 /* PageView */,
 				AC66CF4714C248230098E1F1 /* ProgressHUD */,
 				AC66CF4614C248180098E1F1 /* OData */,
@@ -281,6 +289,7 @@
 		AC66CEF714C246410098E1F1 /* DoveSiButta */ = {
 			isa = PBXGroup;
 			children = (
+				ACEE63D414CB703000B604C9 /* Singleton */,
 				AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */,
 				AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */,
 				AC66D04814C24CFA0098E1F1 /* LocationDetailViewController.h */,
@@ -488,8 +497,8 @@
 				AC66D07514C37CA70098E1F1 /* icone */,
 				AC66D06414C24E840098E1F1 /* License.rtf */,
 				AC66D03214C24BE70098E1F1 /* Dinner.png */,
-				AC66D01314C24BAD0098E1F1 /* RifiutiTypes.plist */,
-				AC66D01514C24BB70098E1F1 /* DinnerTypes.plist */,
+				AC66D01314C24BAD0098E1F1 /* RifiutiSubTypes.plist */,
+				AC66D01514C24BB70098E1F1 /* RifiutiTypes.plist */,
 				AC66D09114C3862D0098E1F1 /* IconForType.plist */,
 			);
 			name = Resources;
@@ -535,6 +544,25 @@
 			);
 			name = icone;
 			path = Images/icone;
+			sourceTree = "<group>";
+		};
+		ACEE63D414CB703000B604C9 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				ACEE63D814CB70B900B604C9 /* SynthesizeSingleton.h */,
+				ACEE63D514CB707700B604C9 /* Manager.h */,
+				ACEE63D614CB707700B604C9 /* Manager.m */,
+			);
+			name = Singleton;
+			sourceTree = "<group>";
+		};
+		ACEE63D914CB72CE00B604C9 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				ACEE63DA14CB733900B604C9 /* RifiutoType.h */,
+				ACEE63DB14CB733900B604C9 /* RifiutoType.m */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -610,8 +638,8 @@
 				AC66CFE014C2494F0098E1F1 /* ButtonCell.xib in Resources */,
 				AC66CFE414C2494F0098E1F1 /* NibCell.xib in Resources */,
 				AC66D01214C24B6C0098E1F1 /* MapViewController.xib in Resources */,
-				AC66D01414C24BAD0098E1F1 /* RifiutiTypes.plist in Resources */,
-				AC66D01714C24BB70098E1F1 /* DinnerTypes.plist in Resources */,
+				AC66D01414C24BAD0098E1F1 /* RifiutiSubTypes.plist in Resources */,
+				AC66D01714C24BB70098E1F1 /* RifiutiTypes.plist in Resources */,
 				AC66D02A14C24BD60098E1F1 /* DarkBackground.png in Resources */,
 				AC66D02D14C24BD60098E1F1 /* IndividualSubviewsBasedApplicationCell.xib in Resources */,
 				AC66D02E14C24BD60098E1F1 /* LightBackground.png in Resources */,
@@ -685,6 +713,8 @@
 				AC66D02F14C24BD60098E1F1 /* RatingView.m in Sources */,
 				AC66D04A14C24CFA0098E1F1 /* LocationDetailViewController.m in Sources */,
 				AC66D09014C381B10098E1F1 /* LocationAddViewController.m in Sources */,
+				ACEE63D714CB707700B604C9 /* Manager.m in Sources */,
+				ACEE63DC14CB733900B604C9 /* RifiutoType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,12 +737,12 @@
 			name = MasterViewController.xib;
 			sourceTree = "<group>";
 		};
-		AC66D01514C24BB70098E1F1 /* DinnerTypes.plist */ = {
+		AC66D01514C24BB70098E1F1 /* RifiutiTypes.plist */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AC66D01614C24BB70098E1F1 /* en */,
 			);
-			name = DinnerTypes.plist;
+			name = RifiutiTypes.plist;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -10,6 +10,8 @@
 #import "MapViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
+//Manager
+#import "Manager.h"
 
 //ProgressHUD
 #import "MBProgressHUD.h"
@@ -25,7 +27,13 @@
     
     UISegmentedControl *segmentedControlTopBar;
     
+    UIBarButtonItem *configButton;
+    UIBarButtonItem *addButton;
     
+    //For rifiuti types in first screen
+    NSMutableArray *rifiutiTypes;
+    
+    //Search 
     NSArray			*listContent;			// The master content.
 	NSMutableArray	*filteredListContent;	// The content filtered as a result of a search.
     
@@ -53,9 +61,7 @@
     CLGeocoder *geocoder; //!!!! iOS5.0
 }
 
-/* For LLVM 3.0
-@property (strong, nonatomic) DetailViewController *detailViewController;
-*/
+@property (nonatomic, retain) NSMutableArray *rifiutiTypes;
 
 //@property (nonatomic, retain) DetailViewController *detailViewController;
 @property (nonatomic, retain) MapViewController *mapViewController;

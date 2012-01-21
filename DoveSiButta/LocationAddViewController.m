@@ -43,14 +43,9 @@
     [super viewDidLoad];
     
     
-    UIBarButtonItem *addButton =
-    [[[UIBarButtonItem alloc]
-      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-      target:self
-      action:@selector(addRSVP:)]
-     autorelease];
-    self.navigationItem.rightBarButtonItem = addButton;
-
+    //TODO: fare in modo che le celle assomiglino a quelle di CoreDataBooks
+    //TODO: mettere un tasto per aggiornare la posizione corrente con CLGeocoder, fare il reverse geocoding e mostrare all'utente l'indirizzo chiedendo: è corretto?
+    //TODO: fare aggiungere la foto all'utente
     
 }
 

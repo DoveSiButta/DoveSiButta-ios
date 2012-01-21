@@ -52,10 +52,11 @@
 @synthesize tmpCell, cellNib;
 @synthesize usingManualLocation, gpsLocation;
 @synthesize address, postCode, country;
+@synthesize rifiutiTypes;
 
 
 
-NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Services/OData.svc/";
+NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Services/OData.svc/";
 
 //query con parametri
 //http://nerddinner.com/Services/OData.svc/Dinners?$top=200&$skip=150&$orderby=EventDate%20desc
@@ -75,7 +76,7 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 #if DEBUG
         NSLog(@"retriving dinners....");
 #endif
-        NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:dinnerURI credential:nil];
+        NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
         
         DataServiceQuery *query = [proxy dinners];
     //	//[query top:1];
@@ -160,6 +161,22 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    //Buttons
+    self.navigationItem.rightBarButtonItem = self.editButtonItem; //TODO: è un "add"
+    addButton= [[UIBarButtonItem alloc] 
+                      initWithTitle:@"Add"                                            
+                      style:UIBarButtonSystemItemAdd 
+                      target:self 
+                      action:@selector(addToProximity)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] 
+                                              initWithTitle:@"Add"                                            
+                                              style:UIBarButtonSystemItemAdd 
+                                              target:self 
+                                              action:@selector(addItem:)];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle: @"Config"                                                                               style: UIBarButtonItemStyleBordered                                                                              target: self        action: @selector(config:)]        autorelease];
+    //TODO: implementa i bottoni
+    
     
     //Location
 //    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
@@ -263,6 +280,27 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
     }
     iconsDictionary = plistDictionary;
     [iconsDictionary retain];
+    
+    path = [[NSBundle mainBundle] pathForResource:@"RifiutiTypes" ofType:@"plist"];
+    plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+    errorDesc = nil;
+    NSPropertyListFormat format;
+    
+    // convert static property list into dictionary object
+    NSDictionary *plistDictionary = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+    if (!plistDictionary) 
+    {
+        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+    }
+    for(NSDictionary in plistDictionary)
+    {
+        [rifiutiTypes addObject:plistDictionary];
+    }
+    NSLog(@"rifiutitypes: %@", rifiutiTypes);
+    iconsDictionary = plistDictionary;
+    [iconsDictionary retain];
+
+    
 }
 
 - (void)viewDidUnload
@@ -864,5 +902,18 @@ NSString *dinnerURI = @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 
 }
 */
+
+
+#pragma mark - Manage IBActions
+
+-(IBAction)addItem:(id)sender
+{
+    //TODO: show sheet to add item
+}
+
+-(IBAction)configuration:(id)sender
+{
+    //TODO: display config
+}
 
 @end

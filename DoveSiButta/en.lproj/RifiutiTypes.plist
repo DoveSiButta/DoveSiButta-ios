@@ -2,23 +2,68 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>1</key>
-	<string>Plastica</string>
-	<key>2</key>
-	<string>Vetro</string>
-	<key>3</key>
-	<string>Alluminio</string>
-	<key>4</key>
-	<string>Generico</string>
 	<key>5</key>
-	<string>Umido</string>
+	<dict>
+		<key>id</key>
+		<string>5</string>
+		<key>type</key>
+		<string>Umido</string>
+	</dict>
 	<key>6</key>
-	<string>Batterie</string>
+	<dict>
+		<key>id</key>
+		<string>6</string>
+		<key>type</key>
+		<string>Batterie</string>
+	</dict>
 	<key>7</key>
-	<string>Farmaci</string>
+	<dict>
+		<key>id</key>
+		<string>7</string>
+		<key>type</key>
+		<string>Farmaci</string>
+	</dict>
 	<key>8</key>
-	<string>Ingombranti</string>
+	<dict>
+		<key>id</key>
+		<string>8</string>
+		<key>type</key>
+		<string>Ingombranti</string>
+	</dict>
 	<key>9</key>
-	<string>Carta</string>
+	<dict>
+		<key>id</key>
+		<string>9</string>
+		<key>type</key>
+		<string>Carta</string>
+	</dict>
+	<key>2</key>
+	<dict>
+		<key>id</key>
+		<string>2</string>
+		<key>type</key>
+		<string>Vetro</string>
+	</dict>
+	<key>3</key>
+	<dict>
+		<key>id</key>
+		<string>3</string>
+		<key>type</key>
+		<string>Alluminio</string>
+	</dict>
+	<key>4</key>
+	<dict>
+		<key>id</key>
+		<string>4</string>
+		<key>type</key>
+		<string>Generico</string>
+	</dict>
+	<key>1</key>
+	<dict>
+		<key>id</key>
+		<string>1</string>
+		<key>type</key>
+		<string>Plastica</string>
+	</dict>
 </dict>
 </plist>

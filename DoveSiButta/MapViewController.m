@@ -11,6 +11,17 @@
 #import "LocationDetailViewController.h"
 
 
+//OData
+#import "WindowsCredential.h"
+#import "ACSCredential.h"
+#import "ACSUtil.h"
+#import "AzureTableCredential.h"
+#import "Tables.h"
+#import "ODataServiceException.h"
+#import "ODataXMlParser.h"
+//Service
+#import "NerdDinnerEntities.h"
+
 /*
 //
 // Adapter category on NSDictionary to make it obey the MKAnnotation protocol
@@ -48,6 +59,9 @@
 @synthesize mapView;
 @synthesize buttonLat, buttonLon;
 @synthesize iconsDictionary;
+@synthesize selectedType;
+@synthesize usingManualLocation, gpsLocation;
+@synthesize address, postCode, country;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -60,6 +74,7 @@
 }
 */
 
+/*
 - (id)initWithSelectedResult:(NerdDinnerModel_Dinner *)aResult
                   allResults:(NSArray *)allResults{
     self = [super initWithNibName:@"MapViewController" bundle:[NSBundle mainBundle]];
@@ -69,6 +84,7 @@
     }
     return self;
 }
+*/
 
 
 - (void)didReceiveMemoryWarning
@@ -79,13 +95,262 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+
+#pragma mark - Data
+
+
+
+//query con parametri
+//http://nerddinner.com/Services/OData.svc/Dinners?$top=200&$skip=150&$orderby=EventDate%20desc
+//http://www.odata.org/developers/protocols/uri-conventions
+
+- (void) onAfterReceive:(HttpResponse*)response
+{
+	NSLog(@"on after receive");
+	NSLog(@"http response = %@",[response getMessage]);
+}
+
+
+-(void) retrieveDinners
+{
+    @try{
+        
+#if DEBUG
+        NSLog(@"retriving dinners....");
+#endif
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
+        NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
+        
+        DataServiceQuery *query = [proxy dinners];
+        //	//[query top:1];
+        QueryOperationResponse *response = [query execute];
+        NSArray *resultArr =[[response getResult] retain];
+        //    NSArray *resultArr = [[proxy FindUpcomingDinners] retain]; //??? Returns no results as of 2012-01-12
+        //        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
+        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
+#if DEBUG
+        NSLog(@"resultarray...%d",[resultArr count]);
+#endif
+        for (int i =0;i<[resultArr count]; i++) {
+            
+            NerdDinnerModel_Dinner *p = [resultArr objectAtIndex:i];
+#if DEBUG
+            NSLog(@"=== Dinner %d  ===",i);
+            NSLog(@"dinner id...%@",[[p getDinnerID] stringValue]);
+            NSLog(@"dinner name...%@",[p getTitle]);
+            NSLog(@"dinner desc......%@",[p getDescription]);
+            NSLog(@"Date..%@",[p getEventDate]);
+            //		NSLog(@"Type..%@",[p getDinnerType]);
+            NSLog(@"Latitude..%@",[p getLatitude]);
+            NSLog(@"Longitude..%@",[p getLongitude]);
+            NSLog(@"==Fine Dinner==");
+#endif   
+        }
+        
+        results = [resultArr mutableCopy];
+    }
+    @catch (DataServiceRequestException * e) 
+    {
+        NSLog(@"exception = %@,  innerExceptiom= %@",[e name],[[e getResponse] getError]);
+    }	
+    @catch (ODataServiceException * e) 
+    {
+        NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
+        
+    }	
+    @catch (NSException * e) 
+    {
+        NSLog(@"exception = %@, %@",[e name],[e reason]);
+    }
+    
+    HUD.detailsLabelText = [NSString stringWithFormat: @"Loading Complete"];
+    [HUD hide:YES afterDelay:1];
+    
+    // Do any additional setup after loading the view from its nib.
+    for (NerdDinnerModel_Dinner *aResult in results)
+	{
+        
+		//NSDictionary *resultLocation = [NSDictionary dictionaryWithObjectsAndKeys:[aResult getLatitude],@"latitude",[aResult getLongitude],@"longitude",[aResult getTitle],@"title", [aResult getDescription], @"description",[aResult getDinnerID], @"annotationid", nil];//  [aResult objectForKey:@"stationLocation"];
+        //Per usare il Dictionary è necessario implementare 
+        
+        MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
+        resultAnnotation.dinner = aResult;
+        [resultAnnotation retain];
+        
+        [mapView addAnnotation:resultAnnotation];
+        
+	}
+    
+}
+
+-(void) retrieveDinnersForType:(NSString*)searchType
+{
+    @try{
+        
+#if DEBUG
+        NSLog(@"retriving dinners....");
+#endif
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
+        NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
+
+        DataServiceQuery *query = [proxy dinners];
+        QueryOperationResponse *response = [query execute];
+        results = [[NSMutableArray alloc] init ];
+        NSArray *resultArr =[[response getResult] retain];
+        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
+#if DEBUG
+        NSLog(@"resultarray...%d",[resultArr count]);
+#endif
+        for (int i =0;i<[resultArr count]; i++) {
+            
+            NerdDinnerModel_Dinner *p = [resultArr objectAtIndex:i];
+#if DEBUG
+            NSLog(@"=== Dinner %d  ===",i);
+            NSLog(@"dinner id...%@",[[p getDinnerID] stringValue]);
+            NSLog(@"dinner name...%@",[p getTitle]);
+            NSLog(@"dinner desc......%@",[p getDescription]);
+            NSLog(@"Date..%@",[p getEventDate]);
+NSLog(@"Type..%@",[p getDinnerType]);
+            NSLog(@"Latitude..%@",[p getLatitude]);
+            NSLog(@"Longitude..%@",[p getLongitude]);
+            NSLog(@"==Fine Dinner==");
+#endif   
+            if ([[p getDinnerType] isEqualToString:self.selectedType]) //TODO: andrebbe filtrato nella query
+            {
+                [results addObject:p];
+            }
+                
+        }
+        
+
+    }
+    @catch (DataServiceRequestException * e) 
+    {
+        NSLog(@"exception = %@,  innerExceptiom= %@",[e name],[[e getResponse] getError]);
+    }	
+    @catch (ODataServiceException * e) 
+    {
+        NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
+        
+    }	
+    @catch (NSException * e) 
+    {
+        NSLog(@"exception = %@, %@",[e name],[e reason]);
+    }
+    
+    HUD.detailsLabelText = [NSString stringWithFormat: @"Loading Complete"];
+    [HUD hide:YES afterDelay:1];
+    
+    // Do any additional setup after loading the view from its nib.
+    for (NerdDinnerModel_Dinner *aResult in results)
+	{
+        
+		//NSDictionary *resultLocation = [NSDictionary dictionaryWithObjectsAndKeys:[aResult getLatitude],@"latitude",[aResult getLongitude],@"longitude",[aResult getTitle],@"title", [aResult getDescription], @"description",[aResult getDinnerID], @"annotationid", nil];//  [aResult objectForKey:@"stationLocation"];
+        //Per usare il Dictionary è necessario implementare 
+        
+        MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
+        resultAnnotation.dinner = aResult;
+        [resultAnnotation retain];
+        
+        [mapView addAnnotation:resultAnnotation];
+    
+	}
+    
+}
+
+
+
+
+-(void) retrieveDinnersWithAddress:(NSString*)searchAddress
+{
+    @try{
+        
+#if DEBUG
+        NSLog(@"retriving dinners....");
+#endif
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
+        NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
+        
+//        DataServiceQuery *query = [proxy DinnersNearMeWithplaceorzip:searchAddress];
+        //	//[query top:1];
+        
+//        QueryOperationResponse *response = [query execute];
+//        NSArray *resultArr =[[response getResult] retain];
+        NSArray *resultArr = [[proxy DinnersNearMeWithplaceorzip:[searchAddress stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]] retain];
+        //        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
+        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
+#if DEBUG
+        NSLog(@"resultarray...%d",[resultArr count]);
+#endif
+        for (int i =0;i<[resultArr count]; i++) {
+            
+            NerdDinnerModel_Dinner *p = [resultArr objectAtIndex:i];
+#if DEBUG
+            NSLog(@"=== Dinner %d  ===",i);
+            NSLog(@"dinner id...%@",[[p getDinnerID] stringValue]);
+            NSLog(@"dinner name...%@",[p getTitle]);
+            NSLog(@"dinner desc......%@",[p getDescription]);
+            NSLog(@"Date..%@",[p getEventDate]);
+            //		NSLog(@"Type..%@",[p getDinnerType]);
+            NSLog(@"Latitude..%@",[p getLatitude]);
+            NSLog(@"Longitude..%@",[p getLongitude]);
+            NSLog(@"==Fine Dinner==");
+#endif   
+        }
+        
+        results = [resultArr mutableCopy];
+    }
+    @catch (DataServiceRequestException * e) 
+    {
+        NSLog(@"exception = %@,  innerExceptiom= %@",[e name],[[e getResponse] getError]);
+    }	
+    @catch (ODataServiceException * e) 
+    {
+        NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
+        
+    }	
+    @catch (NSException * e) 
+    {
+        NSLog(@"exception = %@, %@",[e name],[e reason]);
+    }
+    
+    HUD.detailsLabelText = [NSString stringWithFormat: @"Loading Complete"];
+    [HUD hide:YES afterDelay:1];
+    
+    // Do any additional setup after loading the view from its nib.
+    for (NerdDinnerModel_Dinner *aResult in results)
+	{
+        
+		//NSDictionary *resultLocation = [NSDictionary dictionaryWithObjectsAndKeys:[aResult getLatitude],@"latitude",[aResult getLongitude],@"longitude",[aResult getTitle],@"title", [aResult getDescription], @"description",[aResult getDinnerID], @"annotationid", nil];//  [aResult objectForKey:@"stationLocation"];
+        //Per usare il Dictionary è necessario implementare 
+        
+        MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
+        resultAnnotation.dinner = aResult;
+        [resultAnnotation retain];
+        
+        [mapView addAnnotation:resultAnnotation];
+        
+	}
+    
+}
+
+
 #pragma mark - View lifecycle
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
-    
+    //Icons
     if([self.iconsDictionary count] < 1)
     {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
@@ -102,6 +367,30 @@
         self.iconsDictionary = plistDictionary;
 
     }
+    
+    
+    
+    //Location
+    //    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+    //    self.locationManager.delegate = self;
+    //    [self.locationManager startUpdatingLocation];
+    //    [self.locationManager startUpdatingHeading]; // <label id="code.viewDidLoad02.heading"/>
+    
+    // Start the gpsLocation manager
+	// We start it *after* startup so that the UI is ready to display errors, if needed.
+	locationManager = [[CLLocationManager alloc] init];
+
+
+    usingManualLocation = NO;    
+    locationManager.delegate = self; 
+    locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    [locationManager startUpdatingLocation];
+    
+#ifdef __IPHONE_5_0
+    geocoder = [[CLGeocoder alloc] init];
+       
+#endif   
+    
     /*
     mapView.delegate = self;
     mapView.showsUserLocation = YES;
@@ -111,40 +400,10 @@
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
      */
 
-//    
-//    for (id<MKAnnotation> annotation in mapView.annotations) {
-//        [mapView removeAnnotation:annotation];
-//    }
     
-    self.title = [selectedResult getTitle];
-    self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", [[selectedResult getLatitude] floatValue]];
-    self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", [[selectedResult getLongitude] floatValue]];
+    self.title = NSLocalizedString(@"Cassonetti vicini a te", @"");
     
-    // Do any additional setup after loading the view from its nib.
-    for (NerdDinnerModel_Dinner *aResult in results)
-	{
-       
-		//NSDictionary *resultLocation = [NSDictionary dictionaryWithObjectsAndKeys:[aResult getLatitude],@"latitude",[aResult getLongitude],@"longitude",[aResult getTitle],@"title", [aResult getDescription], @"description",[aResult getDinnerID], @"annotationid", nil];//  [aResult objectForKey:@"stationLocation"];
-        //Per usare il Dictionary è necessario implementare 
-        
-        MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
-        resultAnnotation.dinner = aResult;
-        [resultAnnotation retain];
-
-        [mapView addAnnotation:resultAnnotation];
-         
-        if([aResult getDinnerID] == [selectedResult getDinnerID])
-        {
-            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([resultAnnotation coordinate] ,1000,1000);        
-            MKCoordinateRegion adjustedRegion = [mapView regionThatFits:region];  
-            [mapView setRegion:adjustedRegion animated:YES];
-        }
-//		if (resultLocation)
-//		{
-//			[mapView addAnnotation:(id<MKAnnotation>)resultLocation];
-//            NSLog(@"Aggiunto annotazione %@", resultLocation);
-//		}
-	}
+    
 }
 
 - (void)viewDidUnload
@@ -235,12 +494,6 @@
     
 }
  */
-
-///
-///
-//TODO: update map when moved or zoomed. Do not reload mapview everytime!
-///
-///
 
 
 /*
@@ -337,6 +590,291 @@
     
     return newAnnotationPin;
 }
+
+
+
+#pragma mark -
+#pragma mark Reverse Geocoder Delegate
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+{
+    self.country = placemark.country;
+    self.postCode = placemark.postalCode;
+    self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+    
+//    if (reverseGeocoder != nil)
+//    {
+//        // release the existing reverse geocoder to stop it running
+//        [reverseGeocoder release];
+//    }
+//    
+    
+//    [self retrieveDinners];
+    [self retrieveDinnersForType:self.selectedType];
+}
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
+{
+    NSString *errorMessage = [error localizedDescription];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot obtain address."
+														message:errorMessage
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
+
+
+
+
+
+# pragma mark - Location
+
+/*
+ //
+ // qualifiedAddressStringForResultDictionary:
+ //
+ // Generate the fully qualified address string from a result dictionary
+ //
+ // Parameters:
+ //    result - the result dictionary
+ //
+ // returns the address, location, WA, Australia.
+ //
+ + (NSString *)qualifiedAddressStringForResultDictionary:(NSDictionary *)result
+ {
+ return [NSString stringWithFormat:@"%@, %@, WA, Australia",
+ [result objectForKey:@"address"],
+ [result objectForKey:@"location"]];
+ }
+ */
+
+//
+// locationFailedWithCode:
+//
+// Handle an error from the GPS
+//
+// Parameters:
+//    errorCode - either an error from the gpsLocation manager or FVLocationFailedOutsideWA if gpsLocation
+//		is not in Western Australia
+//
+- (void)locationFailedWithCode:(NSInteger)errorCode
+{
+	if (!gpsLocationFailed)
+	{
+		gpsLocationFailed = YES;
+		
+		//
+		// Don't show an error or override the gpsLocation if we're using a manually
+		// entered gpsLocation
+		//
+		if (usingManualLocation)
+		{
+			return;
+		}
+		
+		//
+		// Deliberately set our own GPS Location to Brescia
+		//
+		self.gpsLocation = CLLocationCoordinate2DMake(45.53576534999999, 10.21160257);
+		
+		NSMutableString *errorString = [NSMutableString string];
+		switch (errorCode) 
+		{
+                //
+                // We shouldn't ever get an unknown error code, but just in case...
+                //
+                //			case FVLocationFailedOutsideWA:
+                //				[errorString appendString:NSLocalizedStringFromTable(@"The gpsLocation reported by the GPS is not in Western Australia.", @"ResultsView", @"Error detail")];
+                //				break;
+                //                
+                //
+                // This error code is usually returned whenever user taps "Don't Allow" in response to
+                // being told your app wants to access the current gpsLocation. Once this happens, you cannot
+                // attempt to get the gpsLocation again until the app has quit and relaunched.
+                //
+                // "Don't Allow" on two successive app launches is the same as saying "never allow". The user
+                // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
+                //
+			case kCLErrorDenied:
+				[errorString appendString:NSLocalizedStringFromTable(@"Location from GPS denied.", @"ResultsView", nil)];
+				break;
+                
+                //
+                // This error code is usually returned whenever the device has no data or WiFi connectivity,
+                // or when the gpsLocation cannot be determined for some other reason.
+                //
+                // CoreLocation will keep trying, so you can keep waiting, or prompt the user.
+                //
+			case kCLErrorLocationUnknown:
+				[errorString appendString:NSLocalizedStringFromTable(@"Location from GPS reported error.", @"ResultsView", nil)];
+				break;
+                //
+                // We shouldn't ever get an unknown error code, but just in case...
+                //
+			default:
+				[errorString appendString:NSLocalizedStringFromTable(@"Location from GPS failed.", @"ResultsView", nil)];
+				break;
+		}
+		
+		[errorString appendString:NSLocalizedStringFromTable(@"È stata impostata una posizione di default.", @"ResultsView", nil)];
+		
+		//
+		// Present the error dialog
+		//
+		UIAlertView *alert =
+        [[UIAlertView alloc]
+         initWithTitle:NSLocalizedStringFromTable(@"Errore GPS", @"ResultsView", nil)
+         message:errorString
+         delegate:self
+         cancelButtonTitle:NSLocalizedStringFromTable(@"OK", @"ResultsView", @"Chiudi.")
+         otherButtonTitles: nil];
+		[alert show];    
+		[alert release];
+        
+        //Imposto che stiamo usando location manualmente
+        self.usingManualLocation = YES;
+        
+	}
+}
+
+//
+// locationManager:didFailWithError:
+//
+// Handle an error from the gpsLocation manager by calling the locationFailed
+// method
+//
+// Parameters:
+//    manager - the gpsLocation manager
+//    error - the error assocated with this notification
+//
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    [self locationFailedWithCode:[error code]];
+    if ([error domain] == kCLErrorDomain) {
+        
+        // We handle CoreLocation-related errors here
+        switch ([error code]) {
+                // "Don't Allow" on two successive app launches is the same as saying "never allow". The user
+                // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
+            case kCLErrorDenied:
+                self.usingManualLocation = YES; 
+                
+            case kCLErrorLocationUnknown:
+                self.usingManualLocation = YES; 
+                
+            default:
+                break;
+        }
+        
+    } else {
+        // We handle all non-CoreLocation errors here
+        NSLog(@"Errore Sconosciuto");
+    }
+    
+}
+
+/*
+ //
+ // setGpsLocation:
+ //
+ // When the gpsLocation changes, refresh the page at the new gpsLocation
+ //
+ // Parameters:
+ //    newLocation - gpsLocation to apply
+ //
+ - (void)setGpsLocation:(CLLocationCoordinate2D)newGpsLocation
+ {
+ //TODO: questa funzione va rivista
+ //	gpsLocation = newGpsLocation;
+ //	
+ //	if (usingManualLocation)
+ //	{
+ //		return;
+ //	}
+ //	
+ //	if (!CLLocationCoordinate2DIsValid(gpsLocation))
+ //	{
+ //		self.location = nil;
+ //		return;
+ //	}
+ //	
+ //	self.location =
+ //    [[PostcodesController sharedPostcodesController]
+ //     postcodeClosestToLocation:gpsLocation];
+ }
+ */
+
+
+
+//
+// locationManager:didUpdateToLocation:fromLocation:
+//
+// Receives gpsLocation updates
+//
+// Parameters:
+//    manager - our gpsLocation manager
+//    newLocation - the new gpsLocation
+//    oldLocation - gpsLocation previously reported
+//
+ - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([newLocation coordinate] ,1000,1000);        
+    MKCoordinateRegion adjustedRegion = [mapView regionThatFits:region];  
+    [mapView setRegion:adjustedRegion animated:YES];
+    self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", newLocation.coordinate.latitude];
+    self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", newLocation.coordinate.longitude];
+    
+    
+    
+    gpsLocationFailed = NO;
+    self.usingManualLocation = NO;
+    self.gpsLocation = newLocation.coordinate;
+    [locationManager stopUpdatingLocation]; //TODO: ok ma quando la faccio ripartire ? 
+#ifdef __IPHONE_5_0
+
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+    CLPlacemark *placemark = [placemarks objectAtIndex:0];
+    self.country = placemark.country;
+    self.postCode = placemark.postalCode;
+    self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+    NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
+    NSLog(@"Address of placemark: %@", ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO));
+    NSLog(@"street::::%@",[placemark thoroughfare]); //Via dei Mille
+    NSLog(@"street number::::%@",[placemark subThoroughfare]); //45
+    NSLog(@"postalcode %@", [placemark postalCode]);
+    NSLog(@"sublocality %@", [placemark subLocality]);  //Brescia
+    NSLog(@"locality %@", [placemark locality]); //Brescia
+    NSLog(@"streetinfo::::%@",[placemark administrativeArea]); //Lombardy
+    
+    NSLog(@"streeteersub ::::%@",[placemark subAdministrativeArea]); //Province of Brescia
+
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+//        [self retrieveDinnersWithAddress:self.address];
+//        [self retrieveDinners];
+        [self retrieveDinnersForType:self.selectedType];
+        
+        HUD.delegate = self;
+        HUD.labelText = @"Loading";
+        HUD.detailsLabelText = @"Loading Dinners...";
+    }];
+
+
+#else
+
+    CLLocationCoordinate2D locationToLookup = newLocation.coordinate;
+    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
+    reverseGeocoder.delegate = self;
+    [reverseGeocoder start];
+
+#endif
+    
+        
+ }
+ 
+
 
 
 @end

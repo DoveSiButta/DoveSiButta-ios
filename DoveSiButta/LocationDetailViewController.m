@@ -51,12 +51,13 @@
 */
 
 
+/*
 -(void)addRSVP:(id)sender;
 {
-    //TODO: work in progress
     NSLog(@"Work in progress to add RSVP");
-    //L'ho trovato utile
+    //Può essere usato in 2 modi: per dare un "voto" al cassonetto o per riportare un errore
 }
+*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -65,7 +66,8 @@
     
     self.title = NSLocalizedString(@"Dinner Details", @"");
     
-
+    /*
+     //Potremmo fare in modo che i cassonetti si possano "votare" oppure un tasto per segnalare errori
     UIBarButtonItem *addButton =
     [[[UIBarButtonItem alloc]
       initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -73,6 +75,7 @@
       action:@selector(addRSVP:)]
      autorelease];
     self.navigationItem.rightBarButtonItem = addButton;
+    */
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];

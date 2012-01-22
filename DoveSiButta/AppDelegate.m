@@ -31,6 +31,18 @@
     self.navigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
+    
+    
+    //Imposto l'URL del servizio una volta sola nella app
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *storedVal = @"http://c0061e8a94b24692b9f5c2fff622b38c.cloudapp.net/Services/OData.svc/";
+    NSString *key = @"serviceURI"; // the key for the data
+    
+    [defaults setObject:storedVal forKey:key];
+    [defaults synchronize]; // this method is optional
+    
+    
     return YES;
 }
 

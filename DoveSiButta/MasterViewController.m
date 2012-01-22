@@ -8,8 +8,8 @@
 
 #import "MasterViewController.h"
 
-//#import "DetailViewController.h"
 #import "MapViewController.h"
+#import "LocationAddViewController.h"
 
 //OData
 #import "WindowsCredential.h"
@@ -43,89 +43,13 @@
 
 @implementation MasterViewController
 
-//@synthesize detailViewController = _detailViewController;
 @synthesize mapViewController = _mapViewController;
-//@synthesize resultArray;
 @synthesize listContent, filteredListContent;
 @synthesize savedSearchTerm, savedScopeButtonIndex, searchWasActive;
 @synthesize segmentedControlTopBar;
 @synthesize tmpCell, cellNib;
-@synthesize usingManualLocation, gpsLocation;
-@synthesize address, postCode, country;
-@synthesize rifiutiTypes;
 
 
-
-NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Services/OData.svc/";
-
-//query con parametri
-//http://nerddinner.com/Services/OData.svc/Dinners?$top=200&$skip=150&$orderby=EventDate%20desc
-//http://www.odata.org/developers/protocols/uri-conventions
-
-- (void) onAfterReceive:(HttpResponse*)response
-{
-	NSLog(@"on after receive");
-	NSLog(@"http response = %@",[response getMessage]);
-}
-
-
--(void) retrieveDinners
-{
-    @try{
-        
-#if DEBUG
-        NSLog(@"retriving dinners....");
-#endif
-        NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
-        
-        DataServiceQuery *query = [proxy dinners];
-    //	//[query top:1];
-        QueryOperationResponse *response = [query execute];
-        NSArray *resultArr =[[response getResult] retain];
-    //    NSArray *resultArr = [[proxy FindUpcomingDinners] retain]; //??? Returns no results as of 2012-01-12
-//        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
-        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
-#if DEBUG
-        NSLog(@"resultarray...%d",[resultArr count]);
-#endif
-        for (int i =0;i<[resultArr count]; i++) {
-            
-            NerdDinnerModel_Dinner *p = [resultArr objectAtIndex:i];
-#if DEBUG
-            NSLog(@"=== Dinner %d  ===",i);
-            NSLog(@"dinner id...%@",[[p getDinnerID] stringValue]);
-            NSLog(@"dinner name...%@",[p getTitle]);
-            NSLog(@"dinner desc......%@",[p getDescription]);
-            NSLog(@"Date..%@",[p getEventDate]);
-    //		NSLog(@"Type..%@",[p getDinnerType]);
-            NSLog(@"Latitude..%@",[p getLatitude]);
-            NSLog(@"Longitude..%@",[p getLongitude]);
-            NSLog(@"==Fine Dinner==");
-#endif   
-        }
-
-        self.listContent = resultArr;
-        self.filteredListContent = [NSMutableArray arrayWithCapacity:[self.listContent count]];
-    }
-    @catch (DataServiceRequestException * e) 
-    {
-        NSLog(@"exception = %@,  innerExceptiom= %@",[e name],[[e getResponse] getError]);
-    }	
-    @catch (ODataServiceException * e) 
-    {
-        NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
-        
-    }	
-    @catch (NSException * e) 
-    {
-        NSLog(@"exception = %@, %@",[e name],[e reason]);
-    }
-    
-    HUD.detailsLabelText = [NSString stringWithFormat: @"Loading Complete"];
-    [HUD hide:YES afterDelay:1];
-    
-    [self.tableView reloadData];
-}
 
 
 
@@ -133,16 +57,13 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Dinners", @"Dinners");
+        self.title = NSLocalizedString(@"Cosa Butti?", @"");
     }
     return self;
 }
 							
 - (void)dealloc
 {
-//    [_detailViewController release];
-//    [reverseGeocoder release];    
-    [locationManager release];
     [_mapViewController release];
     [listContent release];
 	[filteredListContent release];
@@ -163,67 +84,13 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 	// Do any additional setup after loading the view, typically from a nib.
     
     //Buttons
-    self.navigationItem.rightBarButtonItem = self.editButtonItem; //TODO: è un "add"
-    addButton= [[UIBarButtonItem alloc] 
-                      initWithTitle:@"Add"                                            
-                      style:UIBarButtonSystemItemAdd 
-                      target:self 
-                      action:@selector(addToProximity)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] 
-                                              initWithTitle:@"Add"                                            
-                                              style:UIBarButtonSystemItemAdd 
-                                              target:self 
-                                              action:@selector(addItem:)];
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle: @"Config"                                                                               style: UIBarButtonItemStyleBordered                                                                              target: self        action: @selector(config:)]        autorelease];
-    //TODO: implementa i bottoni
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)] autorelease];
+    /*
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle: @"Configura"                                                                               style: UIBarButtonItemStyleBordered                                                                              target: self        action: @selector(configuration:)] autorelease];
+     */
     
-    
-    //Location
-//    self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-//    self.locationManager.delegate = self;
-//    [self.locationManager startUpdatingLocation];
-//    [self.locationManager startUpdatingHeading]; // <label id="code.viewDidLoad02.heading"/>
-    
-    // Start the gpsLocation manager
-	// We start it *after* startup so that the UI is ready to display errors, if needed.
-	locationManager = [[CLLocationManager alloc] init];
-    geocoder = [[CLGeocoder alloc] init];
-	locationManager.delegate = self;
-	[locationManager startUpdatingLocation];
-    usingManualLocation = NO;
-
-    
-    locationManager.delegate = self; 
-    locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-    [locationManager startUpdatingLocation];
-    
-   
-    [geocoder reverseGeocodeLocation: locationManager.location completionHandler: 
-     ^(NSArray *placemarks, NSError *error) {
-         
-         CLPlacemark *placemark = [placemarks objectAtIndex:0];
-         self.country = placemark.country;
-         self.postCode = placemark.postalCode;
-         self.address = placemark.locality;
-         NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
-//         NerdDinnerEntities *proxy2=[[NerdDinnerEntities alloc]initWithUri:dinnerURI credential:nil];
-//         NSArray *arr = [proxy2 DinnersNearMeWithplaceorzip:[NSString stringWithFormat:@"%@, %@",self.address, self.country]];
-//         NSLog(@"Array %@", arr);
-//         isoCountryCode.text = placemark.ISOcountryCode;
-//         country.text = placemark.country;
-//         postalCode.text= placemark.postalCode;
-//         adminArea.text=placemark.administrativeArea;
-//         subAdminArea.text=placemark.subAdministrativeArea;
-//         locality.text=placemark.locality;
-//         subLocality.text=placemark.subLocality;
-//         thoroughfare.text=placemark.thoroughfare;
-//         subThoroughfare.text=placemark.subThoroughfare;
-         //region.text=placemark.region;
-         
-     }];
-    
-
-    
+    /*
+    //Only if we use items as data source
     // Configure the table view.
     self.tableView.rowHeight = 73.0;
     self.tableView.backgroundColor = DARK_BACKGROUND;
@@ -231,8 +98,10 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
     self.searchDisplayController.searchResultsTableView.rowHeight = 73.0;
     self.searchDisplayController.searchResultsTableView.backgroundColor = DARK_BACKGROUND;
     self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    */
+     
     //TODO: check functioning
+    segmentedControlTopBar = [[UISegmentedControl alloc ] init];
     [self.navigationController.navigationBar addSubview:segmentedControlTopBar];
     
     // create our UINib instance which will later help us load and instanciate the
@@ -260,45 +129,44 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 
     
     //Icons
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
-//    NSData* data = [NSData dataWithContentsOfFile:path];
-//    NSString *error;
-//    NSPropertyListFormat format;
-//    iconsDictionary = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
-    
+  
     // read property list into memory as an NSData object
     NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
-    NSString *errorDesc = nil;
+    NSError *error = [[NSError alloc] init];
     NSPropertyListFormat format;
     
     // convert static property list into dictionary object
-    NSDictionary *plistDictionary = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+    NSDictionary *plistDictionary = (NSDictionary*)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
+
     if (!plistDictionary) 
     {
-        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        NSLog(@"Error reading plist: %@, format: %d", error, format);
     }
     iconsDictionary = plistDictionary;
     [iconsDictionary retain];
     
+    //Types
     path = [[NSBundle mainBundle] pathForResource:@"RifiutiTypes" ofType:@"plist"];
     plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
-    errorDesc = nil;
-    NSPropertyListFormat format;
     
     // convert static property list into dictionary object
-    NSDictionary *plistDictionary = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+    plistDictionary =(NSDictionary*)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error]; 
     if (!plistDictionary) 
     {
-        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+        NSLog(@"Error reading plist: %@, format: %d", error, format);
     }
-    for(NSDictionary in plistDictionary)
+    NSMutableArray* rifiutiTypes = [[NSMutableArray alloc] init];
+    for(NSString *dic in plistDictionary)
     {
-        [rifiutiTypes addObject:plistDictionary];
+        NSDictionary *i = [plistDictionary objectForKey:dic];
+        [rifiutiTypes addObject:i];
     }
+    [rifiutiTypes retain];
     NSLog(@"rifiutitypes: %@", rifiutiTypes);
-    iconsDictionary = plistDictionary;
-    [iconsDictionary retain];
+    self.listContent = rifiutiTypes;
+    self.filteredListContent = [self.listContent mutableCopy];
+
 
     
 }
@@ -310,6 +178,8 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
     // e.g. self.myOutlet = nil;
     [listContent release];
 	listContent = nil;
+    [filteredListContent release];
+    filteredListContent = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -321,59 +191,7 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 {
     [super viewDidAppear:animated];
     
-    if([listContent count] < 1)
-    {
-    
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:HUD];
-        
-        HUD.delegate = self;
-        HUD.labelText = @"Loading";
-        HUD.detailsLabelText = @"Loading Dinners...";
-        
-        [HUD showWhileExecuting:@selector(retrieveDinners) onTarget:self withObject:nil animated:YES];
-        //[HUD show:YES];
-        
-        /*
-        @try 
-        {
-            //[self checkForInnerError];
-            //uncomment to products
-            //[self addProductObject];
-            
-            //[self updateProductObject];
-            //[self deleteProductObject];
-            
-            
-            [self retrieveDinners];
-            
-            self.filteredListContent = [NSMutableArray arrayWithCapacity:[self.listContent count]];
-            
-            //[self addLink];
-            //[self setLink];
-            //[self deleteLink];
-            
-            //[self functionImport];
-            
-        }
-        @catch (DataServiceRequestException * e) 
-        {
-            NSLog(@"exception = %@,  innerExceptiom= %@",[e name],[[e getResponse] getError]);
-        }	
-        @catch (ODataServiceException * e) 
-        {
-            NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
-            
-        }	
-        @catch (NSException * e) 
-        {
-            NSLog(@"exception = %@, %@",[e name],[e reason]);
-        }	
-         */
-        
-
-    }
-}
+   }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -399,7 +217,7 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1; //TODO: organizzare per tipo di cestino?
+    return 1; 
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -419,7 +237,7 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    /*
+
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -429,42 +247,25 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
     }
 
     // Configure the cell.
-    cell.textLabel.text = NSLocalizedString(@"Detail", @"Detail");
-    return cell;
-     */
-    
-    /*
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    NerdDinner_Models_Dinner *dinner = nil;
+    NSDictionary *cellDict = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        dinner = [self.filteredListContent objectAtIndex:indexPath.row];
+        cellDict = [self.filteredListContent objectAtIndex:indexPath.row];
     }
 	else
 	{
-        dinner = [self.listContent objectAtIndex:indexPath.row];
+        cellDict = [self.listContent objectAtIndex:indexPath.row];
     }
-	
-    cell.textLabel.text = [dinner getTitle];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
-    cell.detailTextLabel.text =  [dateFormat stringFromDate:[dinner getEventDate]];
-    
-//	if([resultArray count] > 0 )
-//	{
-//        cell.textLabel.text = [[resultArray objectAtIndex:indexPath.row] getTitle];
-//		//NetflixCatalog_Model_Title *t = [resultArray objectAtIndex:indexPath.row];
-//		//cell.textLabel.text = [t getShortName];
-//	}
-	return cell;
-     */
-    
+        
+    cell.textLabel.text = NSLocalizedString([cellDict objectForKey:@"type"], @"Detail");
+
+    cell.imageView.image = [UIImage imageNamed:[iconsDictionary objectForKey:[cellDict objectForKey:@"id"]] ];
+
+    return cell;
+
+ 
+ /*   
+  //Following code if we use dinner list as data source
     static NSString *CellIdentifier = @"ApplicationCell";
     
     ApplicationCell *cell = (ApplicationCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -509,7 +310,7 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
     cell.icon = [UIImage imageNamed:[iconsDictionary objectForKey:[dinner getDinnerType]] ];  // [UIImage imageNamed:@"Dinner"];
     cell.dinnerTitle = [dinner getHostedBy];
     cell.name = [dinner getTitle];
-    cell.numRSVPs = [[dinner getRSVPs] count]; //TODO: get RSVPs correctly
+    cell.numRSVPs = [[dinner getRSVPs] count]; 
     cell.rating = 1.0f; //TODO: calculate rating based on RSVPs
     cell.date = [dateFormat stringFromDate:[dinner getEventDate]];
 	
@@ -517,13 +318,16 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
     [dateFormat release];
     
     return cell;
+  */
 }
 
+/*
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = ((ApplicationCell *)cell).useDarkBackground ? DARK_BACKGROUND : LIGHT_BACKGROUND;
 }
-
+*/
+ 
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -571,6 +375,8 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
     
     [self.navigationController pushViewController:self.detailViewController animated:YES];
      */
+    
+    /*
     NerdDinnerModel_Dinner *dinner = nil;
     NSArray *allresults;
     if (tableView == self.searchDisplayController.searchResultsTableView)
@@ -584,6 +390,20 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
         allresults = self.listContent;
     }
     self.mapViewController = [[[MapViewController alloc] initWithSelectedResult:dinner allResults:allresults] autorelease];
+    self.mapViewController.iconsDictionary = iconsDictionary;
+    [self.navigationController pushViewController:self.mapViewController animated:YES];
+     */
+
+
+    self.mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:[NSBundle mainBundle]] autorelease];
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        self.mapViewController.selectedType = [[filteredListContent objectAtIndex:indexPath.row] objectForKey:@"id"];
+    }
+    else
+    {
+        self.mapViewController.selectedType = [[listContent objectAtIndex:indexPath.row] objectForKey:@"id"];
+    }
     self.mapViewController.iconsDictionary = iconsDictionary;
     [self.navigationController pushViewController:self.mapViewController animated:YES];
 }
@@ -659,256 +479,12 @@ NSString *serviceURI= @"http://c3dd828444d64db993a2520af6a040df.cloudapp.net/Ser
 }
 
 
-//#pragma mark -
-//#pragma mark Reverse Geocoder Delegate
-//- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder  didFindPlacemark:(MKPlacemark *)placemark
-//{
-////    if (reverseGeocoder != nil)
-////    {
-////        // release the existing reverse geocoder to stop it running
-////        [reverseGeocoder release];
-////    }
-////    
-//    NSLog(@"Found Placemark %@", placemark);
-//    // use whatever lat / long values or CLLocationCoordinate2D you like here.
-//    CLLocationCoordinate2D locationToLookup = {52.0,0};
-//    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
-//    reverseGeocoder.delegate = self;
-//    [reverseGeocoder start];
-//}
-//- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
-//{
-//    NSString *errorMessage = [error localizedDescription];
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot obtain address."
-//														message:errorMessage
-//													   delegate:nil
-//											  cancelButtonTitle:@"OK"
-//											  otherButtonTitles:nil];
-//    [alertView show];
-//    [alertView release];
-//}
-
-# pragma mark - Location
-
-/*
-//
-// qualifiedAddressStringForResultDictionary:
-//
-// Generate the fully qualified address string from a result dictionary
-//
-// Parameters:
-//    result - the result dictionary
-//
-// returns the address, location, WA, Australia.
-//
-+ (NSString *)qualifiedAddressStringForResultDictionary:(NSDictionary *)result
-{
-	return [NSString stringWithFormat:@"%@, %@, WA, Australia",
-            [result objectForKey:@"address"],
-            [result objectForKey:@"location"]];
-}
-*/
-
-//
-// locationFailedWithCode:
-//
-// Handle an error from the GPS
-//
-// Parameters:
-//    errorCode - either an error from the gpsLocation manager or FVLocationFailedOutsideWA if gpsLocation
-//		is not in Western Australia
-//
-- (void)locationFailedWithCode:(NSInteger)errorCode
-{
-	if (!gpsLocationFailed)
-	{
-		gpsLocationFailed = YES;
-		
-		//
-		// Don't show an error or override the gpsLocation if we're using a manually
-		// entered gpsLocation
-		//
-		if (usingManualLocation)
-		{
-			return;
-		}
-		
-		//
-		// Deliberately set an invalid gpsLocation
-		//
-		self.gpsLocation = CLLocationCoordinate2DMake(1000, 1000);
-		
-		NSMutableString *errorString = [NSMutableString string];
-		switch (errorCode) 
-		{
-                //
-                // We shouldn't ever get an unknown error code, but just in case...
-                //
-                //			case FVLocationFailedOutsideWA:
-                //				[errorString appendString:NSLocalizedStringFromTable(@"The gpsLocation reported by the GPS is not in Western Australia.", @"ResultsView", @"Error detail")];
-                //				break;
-                //                
-                //
-                // This error code is usually returned whenever user taps "Don't Allow" in response to
-                // being told your app wants to access the current gpsLocation. Once this happens, you cannot
-                // attempt to get the gpsLocation again until the app has quit and relaunched.
-                //
-                // "Don't Allow" on two successive app launches is the same as saying "never allow". The user
-                // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
-                //
-			case kCLErrorDenied:
-				[errorString appendString:NSLocalizedStringFromTable(@"Location from GPS denied.", @"ResultsView", nil)];
-				break;
-                
-                //
-                // This error code is usually returned whenever the device has no data or WiFi connectivity,
-                // or when the gpsLocation cannot be determined for some other reason.
-                //
-                // CoreLocation will keep trying, so you can keep waiting, or prompt the user.
-                //
-			case kCLErrorLocationUnknown:
-				[errorString appendString:NSLocalizedStringFromTable(@"Location from GPS reported error.", @"ResultsView", nil)];
-				break;
-                //
-                // We shouldn't ever get an unknown error code, but just in case...
-                //
-			default:
-				[errorString appendString:NSLocalizedStringFromTable(@"Location from GPS failed.", @"ResultsView", nil)];
-				break;
-		}
-		
-		[errorString appendString:NSLocalizedStringFromTable(@" You may use a manually entered postcode.", @"ResultsView", nil)];
-		
-		//
-		// Present the error dialog
-		//
-		UIAlertView *alert =
-        [[UIAlertView alloc]
-         initWithTitle:NSLocalizedStringFromTable(@"GPS Error", @"ResultsView", nil)
-         message:errorString
-         delegate:self
-         cancelButtonTitle:NSLocalizedStringFromTable(@"OK", @"ResultsView", @"Dimiss dialog.")
-         otherButtonTitles: nil];
-		[alert show];    
-		[alert release];
-	}
-}
-
-//
-// locationManager:didFailWithError:
-//
-// Handle an error from the gpsLocation manager by calling the locationFailed
-// method
-//
-// Parameters:
-//    manager - the gpsLocation manager
-//    error - the error assocated with this notification
-//
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error
-{
-//	[self locationFailedWithCode:[error code]];
-    if ([error domain] == kCLErrorDomain) {
-        
-        // We handle CoreLocation-related errors here
-        switch ([error code]) {
-                // "Don't Allow" on two successive app launches is the same as saying "never allow". The user
-                // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
-            case kCLErrorDenied:
-                self.usingManualLocation = YES; //TODO: e dove cazzo la setto?!?!?!?
-                
-            case kCLErrorLocationUnknown:
-                self.usingManualLocation = YES; //TODO: come sopra
-                
-            default:
-                break;
-        }
-        
-    } else {
-        // We handle all non-CoreLocation errors here
-    }
-    
-}
-
-/*
-//
-// setGpsLocation:
-//
-// When the gpsLocation changes, refresh the page at the new gpsLocation
-//
-// Parameters:
-//    newLocation - gpsLocation to apply
-//
-- (void)setGpsLocation:(CLLocationCoordinate2D)newGpsLocation
-{
-    //TODO: questa funzione va rivista
-//	gpsLocation = newGpsLocation;
-//	
-//	if (usingManualLocation)
-//	{
-//		return;
-//	}
-//	
-//	if (!CLLocationCoordinate2DIsValid(gpsLocation))
-//	{
-//		self.location = nil;
-//		return;
-//	}
-//	
-//	self.location =
-//    [[PostcodesController sharedPostcodesController]
-//     postcodeClosestToLocation:gpsLocation];
-}
-*/
-
-/*
-//
-// locationManager:didUpdateToLocation:fromLocation:
-//
-// Receives gpsLocation updates
-//
-// Parameters:
-//    manager - our gpsLocation manager
-//    newLocation - the new gpsLocation
-//    oldLocation - gpsLocation previously reported
-//
-- (void)locationManager:(CLLocationManager *)manager
-	didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
-		gpsLocationFailed = NO;
-		self.gpsLocation = newLocation.coordinate;
-    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark *placemark = [placemarks objectAtIndex:0];
-        self.country = placemark.country;
-        self.postCode = placemark.postalCode;
-        self.address = placemark.locality;
-        NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
-
-      //  CLPlacemark *placemark = [placemarks objectAtIndex:0];
-        
-//        isoCountryCode.text = placemark.ISOcountryCode;
-//        country.text = placemark.country;
-//        postalCode.text= placemark.postalCode;
-//        adminArea.text=placemark.administrativeArea;
-//        subAdminArea.text=placemark.subAdministrativeArea;
-//        locality.text=placemark.locality;
-//        subLocality.text=placemark.subLocality;
-//        thoroughfare.text=placemark.thoroughfare;
-//        subThoroughfare.text=placemark.subThoroughfare;
-//        //region.text=placemark.region;
-        
-    }];
-
-}
-*/
-
-
 #pragma mark - Manage IBActions
 
 -(IBAction)addItem:(id)sender
 {
-    //TODO: show sheet to add item
+    LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
+    [self presentModalViewController:addVC animated:YES];
 }
 
 -(IBAction)configuration:(id)sender

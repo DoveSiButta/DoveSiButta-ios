@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "MapViewController.h"
-#import <CoreLocation/CoreLocation.h>
 
 //Manager
 #import "Manager.h"
@@ -21,19 +20,14 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, CLLocationManagerDelegate>
-{
-//    NSArray *resultArray;
-    
+@interface MasterViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate>
+{    
     UISegmentedControl *segmentedControlTopBar;
     
     UIBarButtonItem *configButton;
     UIBarButtonItem *addButton;
-    
-    //For rifiuti types in first screen
-    NSMutableArray *rifiutiTypes;
-    
-    //Search 
+        
+    //data sources
     NSArray			*listContent;			// The master content.
 	NSMutableArray	*filteredListContent;	// The content filtered as a result of a search.
     
@@ -52,21 +46,13 @@
     
     //Icons
     NSDictionary *iconsDictionary;
-    
-    //For location
-    CLLocationManager *locationManager;
-	CLLocationCoordinate2D gpsLocation;
-	BOOL gpsLocationFailed;
-	BOOL usingManualLocation;
-    CLGeocoder *geocoder; //!!!! iOS5.0
+        
 }
 
-@property (nonatomic, retain) NSMutableArray *rifiutiTypes;
-
-//@property (nonatomic, retain) DetailViewController *detailViewController;
+//detail
 @property (nonatomic, retain) MapViewController *mapViewController;
-//@property (nonatomic, retain) NSArray *resultArray;
 
+//tableview data sources
 @property (nonatomic, retain) NSArray *listContent;
 @property (nonatomic, retain) NSMutableArray *filteredListContent;
 
@@ -75,21 +61,12 @@
 @property (nonatomic) NSInteger savedScopeButtonIndex;
 @property (nonatomic) BOOL searchWasActive;
 
-
-@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControlTopBar;
+//UI
+@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControlTopBar; //!!! Non funziona
 
 //Cells
 @property (nonatomic, retain) IBOutlet ApplicationCell *tmpCell;
 @property (nonatomic, retain) UINib *cellNib;
 
-//For location
-@property (nonatomic, assign) BOOL usingManualLocation;
-@property (nonatomic, assign) CLLocationCoordinate2D gpsLocation;
-@property (nonatomic, retain) NSString *address;
-@property (nonatomic, retain) NSString *postCode;
-@property (nonatomic, retain) NSString *country;
-
-
-//+ (NSString *)qualifiedAddressStringForResultDictionary:(NSDictionary *)result;
 
 @end

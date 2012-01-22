@@ -14,6 +14,6 @@
 @property (nonatomic, retain) NerdDinnerModel_Dinner *selectedDinner;
 
 - (id)initWithDinner:(NerdDinnerModel_Dinner*)dinner;
-- (void)addRSVP:(id)sender;;
+//- (void)addRSVP:(id)sender;;
 
 @end

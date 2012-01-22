@@ -8,6 +8,23 @@
 
 #import "PictureFileViewController.h"
 #import "ASIHTTPRequest.h"
+#import <regex.h>
+//XPathQuery
+#import "XPathQuery.h"
+
+//OData
+#import "WindowsCredential.h"
+#import "ACSCredential.h"
+#import "ACSUtil.h"
+#import "AzureTableCredential.h"
+#import "Tables.h"
+#import "ODataServiceException.h"
+#import "ODataXMlParser.h"
+//Service
+#import "NerdDinnerEntities.h"
+
+//HUD
+#import "MBProgressHUD.h"
 
 @implementation PictureFileViewController
 @synthesize imageView,selectedItem;
@@ -30,53 +47,147 @@
 }
 
 
+
+
+// searchIPAddressFrom
+// search IP address from the passed sourceString
+//
+// returns a found string in NSString form.
+//			nil, if not found
+- (NSString *)searchRegexFrom:(NSString *)sourceString
+{
+	int isFail;
+	
+	char *regexPattern = "Node{+(?<id>[0-9]*)+}data_{+(?<name>[a-zA-Z]*)}key"; // For IP address
+	
+	regex_t regex;
+	regmatch_t pmatch[5]; // track up to 5 maches. Actually only one is needed.
+	
+	const char *sourceCString;
+	char errorMessage[512], foundCString[16];
+	
+	NSString *errorMessageString;
+	NSString *foundString = nil;
+	
+	sourceCString = [sourceString UTF8String];
+	
+	// setup the regular expression
+	
+	@try{
+		
+		NSException *exception;
+		
+		if( isFail = regcomp(&regex, regexPattern, REG_EXTENDED) )
+		{
+			regerror(isFail, &regex, errorMessage, 512);
+			errorMessageString = [NSString stringWithCString:errorMessage];
+			
+			exception = [NSException exceptionWithName:@"RegexException" 
+												reason:errorMessageString 
+											  userInfo:nil];
+			@throw exception;
+		}
+		else
+		{
+			if( isFail = regexec( &regex, sourceCString, 5, pmatch, 0 ) )
+			{
+				regerror( isFail, &regex, errorMessage, 512 );
+				errorMessageString = [NSString stringWithCString:errorMessage];
+				exception = [NSException exceptionWithName:@"RegexException"
+													reason:errorMessageString
+												  userInfo:nil];
+				@throw exception;
+			}
+			else
+			{
+				snprintf( foundCString, pmatch[0].rm_eo - pmatch[0].rm_so + 1, 
+						 "%s", &sourceCString[pmatch[0].rm_so] );
+				
+				foundString = [NSString stringWithCString:foundCString];
+			}
+		}
+	}
+	@catch( NSException *caughtException ) {
+		NSLog(@"%@ occurred due to %@", [caughtException name], [caughtException reason]);
+	}
+	@finally {
+		regfree(&regex);		
+	}	
+	
+	return foundString;
+}
+
+
 #pragma mark - Data items
 
 - (void) getPictureFile
-{
+{    
+    //1- Get dinner with ID
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
+    NSString *appURI = [defaults objectForKey:@"appURI"];
+    NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
+    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
+
+    //
+//    <?xml version="1.0" encoding="UTF-8" standalone="true"?>
+//    <GetFile xmlns="http://schemas.microsoft.com/ado/2007/08/dataservices">/Pictures/nippon_sun_by_mcdeesh.jpg</GetFile>
+    NSString *fileRemotePath = [self searchRegexFrom:odataResult];
+
+    NSArray *prova2 = PerformXMLXPathQuery([odataResult dataUsingEncoding:NSUTF8StringEncoding], @"//GetFile");
+    NSArray *prova = PerformXMLXPathQuery([odataResult dataUsingEncoding:NSASCIIStringEncoding], @"//GetFile");
+//    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
+//    NSError *error = NULL;
+//    NSRegularExpression *regex = [NSRegularExpression         
+//                                  regularExpressionWithPattern:@"Node{+(?<id>[0-9]*)+}data_{+(?<name>[a-zA-Z]*)}key"
+//                                  options:NSRegularExpressionCaseInsensitive
+//                                  error:&error];
+//    [regex enumerateMatchesInString:odataResult options:0 range:NSMakeRange(0, [odataResult length]) usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){
+//        // your code to handle matches here
+//        fileRemotePath = match;
+//    }];
+    NSString *fileName = [fileRemotePath lastPathComponent];
+    NSLog(@"fileRemotePath %@", fileRemotePath);
+    NSLog(@"fileName %@", fileName);    
+    //    NSArray *resultArr = [[proxy FindUpcomingDinners] retain]; //??? Returns no results as of 2012-01-12
+    //        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
+
+
+    
     
     //http://c0061e8a94b24692b9f5c2fff622b38c.cloudapp.net/Services/Odata.svc/GetFile=1
 
-    /*
+    
     //http://stackoverflow.com/questions/5445106/asihttp-asynchrounous-pdf-download
     // SAVED PDF PATH
     // Get the Document directory
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     // Add your filename to the directory to create your saved pdf location
-    NSString *pdfLocation = [documentDirectory stringByAppendingPathComponent:@"test.pdf"];
+    NSString *fileLocation = [documentDirectory stringByAppendingPathComponent:@"prova.jpg"];
     
     // TEMPORARY PDF PATH
     // Get the Caches directory
     NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     // Add your filename to the directory to create your temp pdf location
-    NSString *tempPdfLocation = [cachesDirectory stringByAppendingPathComponent:@"test.pdf"];
+    NSString *tempFileLocation = [cachesDirectory stringByAppendingPathComponent:@"prova.jpg"];
     
+    NSURL *url = [NSURL URLWithString: [appURI stringByAppendingString:fileRemotePath] ];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     // Tell ASIHTTPRequest where to save things:
-    [request setTemporaryFileDownloadPath:tempPdfLocation];     
-    [request setDownloadDestinationPath:pdfLocation]; 
+    [request setTemporaryFileDownloadPath:tempFileLocation];     
+    [request setDownloadDestinationPath:fileLocation]; 
     
     // If you've stored documentDirectory or pdfLocation somewhere you won't need one or both of these lines
-    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *pdfLocation = [documentDirectory stringByAppendingPathComponent:@"test.pdf"];
+//    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSString *pdfLocation = [documentDirectory stringByAppendingPathComponent:@"test.pdf"];
     
     // Now tell your UIWebView to load that file
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:pdfLocation]]];
-    */
+//    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:pdfLocation]]];
+    self.imageView.image = [UIImage imageWithContentsOfFile:fileLocation];
     
 //    NSData *fileData =  [NSData dataWithBase64EncodedString:[result objectForKey:@"FileByte"] ];
     //        NSLog(@"GetFileProfileByDocumentId returned the file: %@", [result objectForKey:@"FileByte"]);
-    NSString *fileprofile = (NSString*)[result objectForKey:@"GetFileProfileByDocumentIdResult"];
-    NSLog(@"FileProfile: %@", fileprofile);
-    NSArray *fileprofileArr = PerformXMLXPathQuery([fileprofile dataUsingEncoding:NSUTF8StringEncoding],@"//FILENAME");
-    NSString *filename = [[fileprofileArr objectAtIndex:0] objectForKey:@"nodeContent"];
-    NSLog(@"GetFileProfileByDocumentId returned the filename: %@",  filename);
-    
-    
-    // Get the Document directory
-    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    // Add your filename to the directory to create your saved pdf location
-    NSString *fileLocation = [documentDirectory stringByAppendingPathComponent:filename];
-    NSURL *fileURL = [NSURL fileURLWithPath:fileLocation];
+   
 
 }
 
@@ -87,6 +198,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    [HUD show:YES];
+    //        [self retrieveDinnersWithAddress:self.address];
+    //        [self retrieveDinners];
+    [self getPictureFile];
+    
+    HUD.delegate = self;
+    HUD.labelText = @"Caricamento";
 }
 
 - (void)viewDidUnload

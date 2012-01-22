@@ -458,14 +458,13 @@
 }
 
 /*
- * Method for service operation
+ * Method for service operation //GM
  */
 - (NSArray *) GetMostRecentDinners
 {
 	NSString *aQuery=[self prepareQuery:@"Dinners?$orderby=EventDate%20desc" parameters:nil];
 	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:YES];
 }
-
 
 /*
  * Method for service operation
@@ -508,6 +507,7 @@
 
 	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
 }
+
 
 /**
  * Method returns DataServiceQuery reference for

@@ -214,6 +214,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
+    /*
     [self appendRowToSection:1 cellClass:[DetailDisclosureCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
                                NSLocalizedString(@"View RSVPs",@""),
@@ -222,19 +223,16 @@
                                @"action", //TODO: Mostra chi l'ha trovata interessante
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
+     */
     [self appendRowToSection:1 cellClass:[DetailDisclosureCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
-                               NSLocalizedString(@"View RSVPs",@""),
+                               NSLocalizedString(@"Immagine",@""),
                                @"label",
                                @"showPicture", 
                                @"action", 
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
 
-
-
-
-    
     [dateFormat release];
 
 }
@@ -248,7 +246,7 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	else if (section == 1)
 	{
-		return NSLocalizedString(@"Detailed Info", nil);
+		return NSLocalizedString(@"Informazioni Dettagliate", nil);
 	}
 	else if (section == 2)
 	{

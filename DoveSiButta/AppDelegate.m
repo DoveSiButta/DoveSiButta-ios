@@ -38,9 +38,12 @@
     
     NSString *storedVal = @"http://c0061e8a94b24692b9f5c2fff622b38c.cloudapp.net/Services/OData.svc/";
     NSString *key = @"serviceURI"; // the key for the data
-    
+    [defaults setObject:storedVal forKey:key];
+    storedVal = @"http://c0061e8a94b24692b9f5c2fff622b38c.cloudapp.net";
+    key = @"appURI"; // the key for the data
     [defaults setObject:storedVal forKey:key];
     [defaults synchronize]; // this method is optional
+
     
     
     return YES;

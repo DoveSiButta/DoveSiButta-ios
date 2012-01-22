@@ -128,7 +128,7 @@
         NSArray *resultArr =[[response getResult] retain];
         //    NSArray *resultArr = [[proxy FindUpcomingDinners] retain]; //??? Returns no results as of 2012-01-12
         //        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
-        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
+//        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
 #if DEBUG
         NSLog(@"resultarray...%d",[resultArr count]);
 #endif
@@ -164,7 +164,7 @@
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
-    HUD.detailsLabelText = [NSString stringWithFormat: @"Loading Complete"];
+    HUD.detailsLabelText = [NSString stringWithFormat: @"Completato"];
     [HUD hide:YES afterDelay:1];
     
     // Do any additional setup after loading the view from its nib.
@@ -199,7 +199,7 @@
         QueryOperationResponse *response = [query execute];
         results = [[NSMutableArray alloc] init ];
         NSArray *resultArr =[[response getResult] retain];
-        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
+//        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
 #if DEBUG
         NSLog(@"resultarray...%d",[resultArr count]);
 #endif
@@ -240,7 +240,7 @@ NSLog(@"Type..%@",[p getDinnerType]);
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
-    HUD.detailsLabelText = [NSString stringWithFormat: @"Loading Complete"];
+    HUD.detailsLabelText = [NSString stringWithFormat: @"Completato"];
     [HUD hide:YES afterDelay:1];
     
     // Do any additional setup after loading the view from its nib.
@@ -281,7 +281,7 @@ NSLog(@"Type..%@",[p getDinnerType]);
 //        NSArray *resultArr =[[response getResult] retain];
         NSArray *resultArr = [[proxy DinnersNearMeWithplaceorzip:[searchAddress stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]] retain];
         //        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
-        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
+//        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
 #if DEBUG
         NSLog(@"resultarray...%d",[resultArr count]);
 #endif
@@ -317,7 +317,7 @@ NSLog(@"Type..%@",[p getDinnerType]);
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
-    HUD.detailsLabelText = [NSString stringWithFormat: @"Loading Complete"];
+    HUD.detailsLabelText = [NSString stringWithFormat: @"Completato"];
     [HUD hide:YES afterDelay:1];
     
     // Do any additional setup after loading the view from its nib.
@@ -600,16 +600,23 @@ NSLog(@"Type..%@",[p getDinnerType]);
     self.country = placemark.country;
     self.postCode = placemark.postalCode;
     self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    [HUD show:YES];
+    //        [self retrieveDinnersWithAddress:self.address];
+    //        [self retrieveDinners];
+    [self retrieveDinnersForType:self.selectedType];
     
+    HUD.delegate = self;
+    HUD.labelText = @"Caricamento";
+
 //    if (reverseGeocoder != nil)
 //    {
 //        // release the existing reverse geocoder to stop it running
 //        [reverseGeocoder release];
 //    }
 //    
-    
-//    [self retrieveDinners];
-    [self retrieveDinnersForType:self.selectedType];
+
 }
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
@@ -852,13 +859,14 @@ NSLog(@"Type..%@",[p getDinnerType]);
 
         HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         [self.navigationController.view addSubview:HUD];
+        [HUD show:YES];
 //        [self retrieveDinnersWithAddress:self.address];
 //        [self retrieveDinners];
         [self retrieveDinnersForType:self.selectedType];
         
         HUD.delegate = self;
-        HUD.labelText = @"Loading";
-        HUD.detailsLabelText = @"Loading Dinners...";
+        HUD.labelText = @"Caricamento";
+//        HUD.detailsLabelText = @"Loading...";
     }];
 
 

@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface PictureFileViewController : UIViewController
 
-@property (nonatomic, retain) NSString* selectedItem;
+@interface PictureFileViewController : UIViewController <MBProgressHUDDelegate>
+{
+    MBProgressHUD *HUD;
+}
+@property (nonatomic, retain) NSNumber* selectedItem;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
 @end

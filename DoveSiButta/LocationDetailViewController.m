@@ -10,6 +10,7 @@
 #import "TextFieldCell.h"
 #import "DetailDisclosureCell.h"
 #import "NibLoadedCell.h"
+#import "PictureFileViewController.h"
 
 @implementation LocationDetailViewController
 @synthesize selectedDinner;
@@ -217,11 +218,18 @@
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
                                NSLocalizedString(@"View RSVPs",@""),
                                @"label",
-                               @"", 
+                               @"showRSVP", 
                                @"action", //TODO: Mostra chi l'ha trovata interessante
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
-
+    [self appendRowToSection:1 cellClass:[DetailDisclosureCell class] 
+                    cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+                               NSLocalizedString(@"View RSVPs",@""),
+                               @"label",
+                               @"showPicture", 
+                               @"action", 
+                               nil] 
+               withAnimation:UITableViewRowAnimationNone]; 
 
 
 
@@ -249,6 +257,49 @@ titleForHeaderInSection:(NSInteger)section
     
 	return nil;
 }
+
+
+
+#pragma mark - Table view delegates
+
+//
+// tableView:didSelectRowAtIndexPath:
+//
+// Handle row selection
+//
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)anIndexPath
+{
+    //	PageCell *cell = (PageCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
+	if (![[aTableView cellForRowAtIndexPath:anIndexPath] isKindOfClass:[PageCell class]])
+	{
+		return;
+	}
+	
+    if ([[aTableView cellForRowAtIndexPath:anIndexPath] isKindOfClass:[DetailDisclosureCell class]]) {
+        DetailDisclosureCell *cell = (DetailDisclosureCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
+        if([cell.action isEqualToString:@"showPicture"])
+        {
+            [cell handleSelectionInTableView:aTableView];
+            PictureFileViewController *pvc = [[PictureFileViewController alloc] initWithNibName:@"PictureFileViewController" bundle:[NSBundle mainBundle]];
+            pvc.selectedItem = [self.selectedDinner];
+            [self.navigationController pushViewController:pvc animated:YES];
+        }
+        else if ([cell.action isEqualToString:@"showRSVP"])
+        {
+            [cell handleSelectionInTableView:aTableView];
+        }
+        
+        return;
+    }
+    
+    PageCell *cell = (PageCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
+    [cell handleSelectionInTableView:aTableView];
+    
+	
+}
+
+
+#pragma mark - View
 
 - (void)viewDidUnload
 {

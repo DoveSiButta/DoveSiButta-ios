@@ -281,7 +281,7 @@ titleForHeaderInSection:(NSInteger)section
         {
             [cell handleSelectionInTableView:aTableView];
             PictureFileViewController *pvc = [[PictureFileViewController alloc] initWithNibName:@"PictureFileViewController" bundle:[NSBundle mainBundle]];
-            pvc.selectedItem = [self.selectedDinner];
+            pvc.selectedItem = [self.selectedDinner getDinnerID];
             [self.navigationController pushViewController:pvc animated:YES];
         }
         else if ([cell.action isEqualToString:@"showRSVP"])

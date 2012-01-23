@@ -128,14 +128,16 @@
     NSString *appURI = [defaults objectForKey:@"appURI"];
     NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
     NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
-
+    odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
+    
     //
 //    <?xml version="1.0" encoding="UTF-8" standalone="true"?>
 //    <GetFile xmlns="http://schemas.microsoft.com/ado/2007/08/dataservices">/Pictures/nippon_sun_by_mcdeesh.jpg</GetFile>
-    NSString *fileRemotePath = [self searchRegexFrom:odataResult];
+//    NSString *fileRemotePath = [self searchRegexFrom:odataResult];
 
-    NSArray *prova2 = PerformXMLXPathQuery([odataResult dataUsingEncoding:NSUTF8StringEncoding], @"//GetFile");
-    NSArray *prova = PerformXMLXPathQuery([odataResult dataUsingEncoding:NSASCIIStringEncoding], @"//GetFile");
+
+    NSArray *prova = PerformXMLXPathQuery([odataResult dataUsingEncoding:NSASCIIStringEncoding], @"/GetFile");
+    NSString *fileRemotePath = [[prova objectAtIndex:0] objectForKey:@"nodeContent"];
 //    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
 //    NSError *error = NULL;
 //    NSRegularExpression *regex = [NSRegularExpression         
@@ -176,7 +178,7 @@
     // Tell ASIHTTPRequest where to save things:
     [request setTemporaryFileDownloadPath:tempFileLocation];     
     [request setDownloadDestinationPath:fileLocation]; 
-    
+    [request startSynchronous];
     // If you've stored documentDirectory or pdfLocation somewhere you won't need one or both of these lines
 //    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 //    NSString *pdfLocation = [documentDirectory stringByAppendingPathComponent:@"test.pdf"];
@@ -199,14 +201,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    HUD.delegate = self;
+    HUD.labelText = @"Caricamento";
     [self.navigationController.view addSubview:HUD];
     [HUD show:YES];
     //        [self retrieveDinnersWithAddress:self.address];
     //        [self retrieveDinners];
     [self getPictureFile];
+    [HUD hide:YES afterDelay:1];
     
-    HUD.delegate = self;
-    HUD.labelText = @"Caricamento";
 }
 
 - (void)viewDidUnload

@@ -10,6 +10,8 @@
 
 #import "MasterViewController.h"
 
+//#import "SHK.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -32,6 +34,8 @@
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
+    //questo è un buon momento per spedire tutti gli elementi sharati che la app non è riuscita a spedire se era senza connettività. http://getsharekit.com/install/
+//    [SHK flushOfflineQueue];
     
     //Imposto l'URL del servizio una volta sola nella app
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

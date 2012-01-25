@@ -8,7 +8,7 @@
 
 #import "PictureFileViewController.h"
 #import "ASIHTTPRequest.h"
-#import <regex.h>
+//#import <regex.h>
 //XPathQuery
 #import "XPathQuery.h"
 
@@ -48,7 +48,7 @@
 
 
 
-
+/*
 // searchIPAddressFrom
 // search IP address from the passed sourceString
 //
@@ -116,7 +116,7 @@
 	
 	return foundString;
 }
-
+*/
 
 #pragma mark - Data items
 

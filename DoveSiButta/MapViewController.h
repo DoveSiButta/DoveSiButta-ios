@@ -16,6 +16,9 @@
 //For reverse geocoder to get address string correctly
 #import <AddressBookUI/AddressBookUI.h>
 
+//For adding
+#import "LocationAddViewController.h"
+
 
 #ifdef __IPHONE_5_0
 @interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate> 

@@ -84,7 +84,10 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     //Buttons
+    /*
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)] autorelease];
+     //Per creare un nuovo elemento da questo schermo dovrei per forza avere iOS5. Dato che solo con iOS5 posso fare il reverse geocode della posizione dell'utente senza dover avere una MKMapView da cui prendere la posizione attuale
+     */
     /*
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle: @"Configura"                                                                               style: UIBarButtonItemStyleBordered                                                                              target: self        action: @selector(configuration:)] autorelease];
      */
@@ -484,7 +487,11 @@
 -(IBAction)addItem:(id)sender
 {
     LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
-    [self presentModalViewController:addVC animated:YES];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
+    
+    [self presentModalViewController:navController animated:YES];
+    [addVC release];
+    [navController release];
 }
 
 -(IBAction)configuration:(id)sender

@@ -7,10 +7,14 @@
 //
 
 #import "LocationDetailViewController.h"
+//Pageviewcontroller
 #import "TextFieldCell.h"
 #import "DetailDisclosureCell.h"
 #import "NibLoadedCell.h"
 #import "PictureFileViewController.h"
+
+
+#import "SHK.h"
 
 @implementation LocationDetailViewController
 @synthesize selectedDinner;
@@ -60,23 +64,37 @@
 }
 */
 
+
+- (void)shareItem:(id)sender
+{
+    // Create the item to share (in this example, a url)
+	NSURL *url = [NSURL URLWithString:@"http://dovesibutta.cloudapp.net/"]; //TODO: metterci l'ID della cena/cestino
+	SHKItem *item = [SHKItem URL:url title:@"Ho appena trovato il cestino della raccolta differenziata che stavo cercando grazie a DoveSiButta!"];
+    
+	// Get the ShareKit action sheet
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+	// Display the action sheet
+	[actionSheet showFromToolbar:self.navigationController.toolbar];
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"Dinner Details", @"");
+    self.title = NSLocalizedString(@"Dettagli", @"");
     
-    /*
-     //Potremmo fare in modo che i cassonetti si possano "votare" oppure un tasto per segnalare errori
-    UIBarButtonItem *addButton =
+
+     //Tasto ShareKit
+    UIBarButtonItem *shareButton =
     [[[UIBarButtonItem alloc]
-      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+      initWithBarButtonSystemItem:UIBarButtonSystemItemAction
       target:self
-      action:@selector(addRSVP:)]
+      action:@selector(shareItem:)]
      autorelease];
-    self.navigationItem.rightBarButtonItem = addButton;
-    */
+    self.navigationItem.rightBarButtonItem = shareButton;
+
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];

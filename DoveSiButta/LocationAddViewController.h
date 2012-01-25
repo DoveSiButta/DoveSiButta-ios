@@ -7,7 +7,16 @@
 //
 
 #import "PageViewController.h"
+#import "MBProgressHUD.h"
+//Service
+#import "NerdDinnerEntities.h"
 
-@interface LocationAddViewController : PageViewController
+
+@interface LocationAddViewController : PageViewController <MBProgressHUDDelegate>
+
+@property (nonatomic, retain) NerdDinnerModel_Dinner *newItem;
+@property (nonatomic, retain) NSString* pictureFile; //se non c'è la foto, non posso procedere!
+
+
 
 @end

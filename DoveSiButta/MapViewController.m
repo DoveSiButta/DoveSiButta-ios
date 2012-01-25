@@ -164,7 +164,7 @@
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
-    HUD.detailsLabelText = [NSString stringWithFormat: @"Completato"];
+    HUD.labelText = [NSString stringWithFormat: @"Completato"];
     [HUD hide:YES afterDelay:1];
     
     // Do any additional setup after loading the view from its nib.
@@ -240,7 +240,7 @@ NSLog(@"Type..%@",[p getDinnerType]);
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
-    HUD.detailsLabelText = [NSString stringWithFormat: @"Completato"];
+    HUD.labelText = [NSString stringWithFormat: @"Completato"];
     [HUD hide:YES afterDelay:1];
     
     // Do any additional setup after loading the view from its nib.
@@ -317,7 +317,7 @@ NSLog(@"Type..%@",[p getDinnerType]);
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
-    HUD.detailsLabelText = [NSString stringWithFormat: @"Completato"];
+    HUD.labelText = [NSString stringWithFormat: @"Completato"];
     [HUD hide:YES afterDelay:1];
     
     // Do any additional setup after loading the view from its nib.
@@ -338,6 +338,25 @@ NSLog(@"Type..%@",[p getDinnerType]);
 }
 
 
+#pragma mark - IBAction
+
+-(void) addItem:(id)sender
+{
+    LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
+    NerdDinnerModel_Dinner *newItem = [[NerdDinnerModel_Dinner alloc] init];
+    [newItem setTitle:@"Nuovo"];
+    [newItem setAddress:self.address];
+    [newItem setCountry:self.country];
+    //TODO: setta la posizione prendendola dalla mappa e cose simili
+    addVC.newItem = newItem;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
+    
+    [self presentModalViewController:navController animated:YES];
+    [addVC release];
+    [navController release];
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidAppear:(BOOL)animated
@@ -349,6 +368,15 @@ NSLog(@"Type..%@",[p getDinnerType]);
 {
     [super viewDidLoad];
 
+    //Add button
+    UIBarButtonItem *addButton =
+    [[[UIBarButtonItem alloc]
+      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+      target:self
+      action:@selector(addItem:)]
+     autorelease];
+    self.navigationItem.rightBarButtonItem = addButton;
+    
     
     //Icons
     if([self.iconsDictionary count] < 1)
@@ -602,13 +630,15 @@ NSLog(@"Type..%@",[p getDinnerType]);
     self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = @"Caricamento";
     [HUD show:YES];
     //        [self retrieveDinnersWithAddress:self.address];
     //        [self retrieveDinners];
     [self retrieveDinnersForType:self.selectedType];
     
-    HUD.delegate = self;
-    HUD.labelText = @"Caricamento";
+    
+    
 
 //    if (reverseGeocoder != nil)
 //    {
@@ -859,13 +889,14 @@ NSLog(@"Type..%@",[p getDinnerType]);
 
         HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         [self.navigationController.view addSubview:HUD];
+        HUD.delegate = self;
+        HUD.labelText = @"Caricamento";
         [HUD show:YES];
 //        [self retrieveDinnersWithAddress:self.address];
 //        [self retrieveDinners];
         [self retrieveDinnersForType:self.selectedType];
         
-        HUD.delegate = self;
-        HUD.labelText = @"Caricamento";
+        
 //        HUD.detailsLabelText = @"Loading...";
     }];
 

@@ -24,6 +24,8 @@
 
 
 
+#define radians( degrees ) ( degrees * M_PI / 180 ) 
+
 @implementation LocationAddViewController
 @synthesize newItem;
 @synthesize pictureFile;
@@ -53,6 +55,21 @@
 {
 }
 */
+
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 
 - (void)saveItem:(id)sender
 {
@@ -91,8 +108,46 @@
     self.navigationItem.rightBarButtonItem = saveButton;
     
     //TODO: fare in modo che le celle assomiglino a quelle di CoreDataBooks
-    //TODO: mettere un tasto per aggiornare la posizione corrente con CLGeocoder, fare il reverse geocoding e mostrare all'utente l'indirizzo chiedendo: è corretto?
-    //TODO: fare aggiungere la foto all'utente
+         
+    //Icons
+    
+    // read property list into memory as an NSData object
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+    NSError *error = [[NSError alloc] init];
+    NSPropertyListFormat format;
+    
+    // convert static property list into dictionary object
+    NSDictionary *plistDictionary = (NSDictionary*)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
+    
+    if (!plistDictionary) 
+    {
+        NSLog(@"Error reading plist: %@, format: %d", error, format);
+    }
+    NSDictionary *iconsDictionary = [plistDictionary copy ];
+    [iconsDictionary retain];
+    
+    //Types
+    path = [[NSBundle mainBundle] pathForResource:@"RifiutiTypes" ofType:@"plist"];
+    plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+    
+    // convert static property list into dictionary object
+    plistDictionary =(NSDictionary*)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error]; 
+    if (!plistDictionary) 
+    {
+        NSLog(@"Error reading plist: %@, format: %d", error, format);
+    }
+    NSMutableArray* rifiutiTypes = [[NSMutableArray alloc] init];
+    for(NSString *dic in plistDictionary)
+    {
+        NSDictionary *i = [plistDictionary objectForKey:dic];
+        [rifiutiTypes addObject:i];
+    }
+    [rifiutiTypes retain];
+    NSLog(@"rifiutitypes: %@", rifiutiTypes);
+
+    
+    
     
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -279,7 +334,20 @@
         DetailDisclosureCell *cell = (DetailDisclosureCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
         if([cell.action isEqualToString:@"addPicture"])
         {
-            //TODO: UIImagePickersticazzi ?!?!?!
+            UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+            [imgPicker setAllowsEditing:YES];
+            imgPicker.delegate = self;
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+            {
+                imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            }
+            else 
+            {
+                imgPicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            }
+            [self.navigationController presentModalViewController:imgPicker animated:YES];
+//            [self presentModalViewController:self.imgPicker animated:YES];
+                
         }
         
         return;
@@ -292,17 +360,124 @@
 }
 
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+#pragma mark - ImagePicker Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo {
+    //Qui devo salvare l'immagine nella cache e resizarla
+    UIImage *scaledImage = [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
+    NSData* imageData = UIImageJPEGRepresentation(scaledImage, 0.9f);
+    
+    // Give a name to the file
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyyMMdd_hhmmss"];
+    NSString* imageName = [dateFormat stringFromDate:[NSDate date]];
+    
+    // Now, we have to find the documents directory so we can save it
+    // Note that you might want to save it elsewhere, like the cache directory,
+    // or something similar.
+//    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString* documentsDirectory = [paths objectAtIndex:0];
+    NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    // Now we get the full path to the file
+    NSString* fullPathToFile = [cachesDirectory stringByAppendingPathComponent:imageName];
+    
+    // and then we write it out
+    [imageData writeToFile:fullPathToFile atomically:NO];
+    self.pictureFile = fullPathToFile;
+    [[picker parentViewController] dismissModalViewControllerAnimated:YES];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+
+- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize
+{  
+    CGSize imageSize = sourceImage.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
+    
+    if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
+        CGFloat widthFactor = targetWidth / width;
+        CGFloat heightFactor = targetHeight / height;
+        
+        if (widthFactor > heightFactor) {
+            scaleFactor = widthFactor; // scale to fit height
+        }
+        else {
+            scaleFactor = heightFactor; // scale to fit width
+        }
+        
+        scaledWidth  = width * scaleFactor;
+        scaledHeight = height * scaleFactor;
+        
+        // center the image
+        if (widthFactor > heightFactor) {
+            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5; 
+        }
+        else if (widthFactor < heightFactor) {
+            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+        }
+    }     
+    
+    CGImageRef imageRef = [sourceImage CGImage];
+    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+    CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
+    
+    if (bitmapInfo == kCGImageAlphaNone) {
+        bitmapInfo = kCGImageAlphaNoneSkipLast;
+    }
+    
+    CGContextRef bitmap;
+    
+    if (sourceImage.imageOrientation == UIImageOrientationUp || sourceImage.imageOrientation == UIImageOrientationDown) {
+        bitmap = CGBitmapContextCreate(NULL, targetWidth, targetHeight, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+        
+    } else {
+        bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+        
+    }   
+    
+    // In the right or left cases, we need to switch scaledWidth and scaledHeight,
+    // and also the thumbnail point
+    if (sourceImage.imageOrientation == UIImageOrientationLeft) {
+        thumbnailPoint = CGPointMake(thumbnailPoint.y, thumbnailPoint.x);
+        CGFloat oldScaledWidth = scaledWidth;
+        scaledWidth = scaledHeight;
+        scaledHeight = oldScaledWidth;
+        
+        CGContextRotateCTM (bitmap, radians(90));
+        CGContextTranslateCTM (bitmap, 0, -targetHeight);
+        
+    } else if (sourceImage.imageOrientation == UIImageOrientationRight) {
+        thumbnailPoint = CGPointMake(thumbnailPoint.y, thumbnailPoint.x);
+        CGFloat oldScaledWidth = scaledWidth;
+        scaledWidth = scaledHeight;
+        scaledHeight = oldScaledWidth;
+        
+        CGContextRotateCTM (bitmap, radians(-90));
+        CGContextTranslateCTM (bitmap, -targetWidth, 0);
+        
+    } else if (sourceImage.imageOrientation == UIImageOrientationUp) {
+        // NOTHING
+    } else if (sourceImage.imageOrientation == UIImageOrientationDown) {
+        CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
+        CGContextRotateCTM (bitmap, radians(-180.));
+    }
+    
+    CGContextDrawImage(bitmap, CGRectMake(thumbnailPoint.x, thumbnailPoint.y, scaledWidth, scaledHeight), imageRef);
+    CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+    UIImage* newImage = [UIImage imageWithCGImage:ref];
+    
+    CGContextRelease(bitmap);
+    CGImageRelease(ref);
+    
+    return newImage; 
 }
+
+
 
 @end

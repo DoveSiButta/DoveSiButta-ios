@@ -146,8 +146,6 @@
 		ACE8850E14CDF5680004B9DF /* SHKViewControllerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE884CF14CDF5680004B9DF /* SHKViewControllerWrapper.m */; };
 		ACE8851014CDF57E0004B9DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE8850F14CDF57E0004B9DF /* Security.framework */; };
 		ACE8851214CDF5890004B9DF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE8851114CDF5890004B9DF /* MessageUI.framework */; };
-		ACE8851614CDF87A0004B9DF /* LocationAddPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE8851414CDF87A0004B9DF /* LocationAddPictureViewController.m */; };
-		ACE8851714CDF87B0004B9DF /* LocationAddPictureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE8851514CDF87A0004B9DF /* LocationAddPictureViewController.xib */; };
 		ACE8851914CECE570004B9DF /* carta_300px.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE8851814CECE570004B9DF /* carta_300px.png */; };
 		ACE8852614CECE6F0004B9DF /* vetro_300px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE8851A14CECE6E0004B9DF /* vetro_300px@2x.png */; };
 		ACE8852714CECE6F0004B9DF /* rifiuti_300px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE8851B14CECE6E0004B9DF /* rifiuti_300px@2x.png */; };
@@ -170,6 +168,9 @@
 		ACE8854014CECE880004B9DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853914CECE880004B9DF /* iTunesArtwork */; };
 		ACEE63D714CB707700B604C9 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEE63D614CB707700B604C9 /* Manager.m */; };
 		ACEE63DC14CB733900B604C9 /* RifiutoType.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEE63DB14CB733900B604C9 /* RifiutoType.m */; };
+		ACFC0D5514D4C7F9000265B8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5314D4C7F9000265B8 /* Default.png */; };
+		ACFC0D5614D4C7F9000265B8 /* Default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5414D4C7F9000265B8 /* Default@2X.png */; };
+		ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -486,9 +487,6 @@
 		ACE884CF14CDF5680004B9DF /* SHKViewControllerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKViewControllerWrapper.m; sourceTree = "<group>"; };
 		ACE8850F14CDF57E0004B9DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		ACE8851114CDF5890004B9DF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		ACE8851314CDF8790004B9DF /* LocationAddPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAddPictureViewController.h; sourceTree = "<group>"; };
-		ACE8851414CDF87A0004B9DF /* LocationAddPictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAddPictureViewController.m; sourceTree = "<group>"; };
-		ACE8851514CDF87A0004B9DF /* LocationAddPictureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationAddPictureViewController.xib; sourceTree = "<group>"; };
 		ACE8851814CECE570004B9DF /* carta_300px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carta_300px.png; sourceTree = "<group>"; };
 		ACE8851A14CECE6E0004B9DF /* vetro_300px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vetro_300px@2x.png"; sourceTree = "<group>"; };
 		ACE8851B14CECE6E0004B9DF /* rifiuti_300px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rifiuti_300px@2x.png"; sourceTree = "<group>"; };
@@ -514,6 +512,9 @@
 		ACEE63D814CB70B900B604C9 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		ACEE63DA14CB733900B604C9 /* RifiutoType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RifiutoType.h; path = DoveSiButta/Entities/RifiutoType.h; sourceTree = "<group>"; };
 		ACEE63DB14CB733900B604C9 /* RifiutoType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RifiutoType.m; path = DoveSiButta/Entities/RifiutoType.m; sourceTree = "<group>"; };
+		ACFC0D5314D4C7F9000265B8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = DoveSiButta/Images/Default.png; sourceTree = SOURCE_ROOT; };
+		ACFC0D5414D4C7F9000265B8 /* Default@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2X.png"; path = "DoveSiButta/Images/Default@2X.png"; sourceTree = SOURCE_ROOT; };
+		ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ComuniRaccoltaP2P.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -590,9 +591,6 @@
 			isa = PBXGroup;
 			children = (
 				ACEE63D414CB703000B604C9 /* Singleton */,
-				ACE8851314CDF8790004B9DF /* LocationAddPictureViewController.h */,
-				ACE8851414CDF87A0004B9DF /* LocationAddPictureViewController.m */,
-				ACE8851514CDF87A0004B9DF /* LocationAddPictureViewController.xib */,
 				AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */,
 				AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */,
 				AC66D04814C24CFA0098E1F1 /* LocationDetailViewController.h */,
@@ -807,6 +805,7 @@
 				AC66D06414C24E840098E1F1 /* License.rtf */,
 				AC66D01514C24BB70098E1F1 /* RifiutiTypes.plist */,
 				AC66D09114C3862D0098E1F1 /* IconForType.plist */,
+				ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1254,6 +1253,8 @@
 		ACE8853214CECE880004B9DF /* App_Icon */ = {
 			isa = PBXGroup;
 			children = (
+				ACFC0D5314D4C7F9000265B8 /* Default.png */,
+				ACFC0D5414D4C7F9000265B8 /* Default@2X.png */,
 				ACE8853314CECE880004B9DF /* Icon-72.png */,
 				ACE8853414CECE880004B9DF /* Icon-Small-50.png */,
 				ACE8853514CECE880004B9DF /* Icon-Small.png */,
@@ -1294,6 +1295,7 @@
 			buildPhases = (
 				AC66CEE914C246400098E1F1 /* Sources */,
 				AC66CEEA14C246400098E1F1 /* Frameworks */,
+				ACFC0D5814D56EA9000265B8 /* ShellScript */,
 				AC66CEEB14C246400098E1F1 /* Resources */,
 				AC66CF1414C2465D0098E1F1 /* ShellScript */,
 			);
@@ -1382,7 +1384,6 @@
 				ACE884E714CDF5680004B9DF /* SHKSharers.plist in Resources */,
 				ACE884EC14CDF5680004B9DF /* Localizable.strings in Resources */,
 				ACE884F314CDF5680004B9DF /* FBConnect.bundle in Resources */,
-				ACE8851714CDF87B0004B9DF /* LocationAddPictureViewController.xib in Resources */,
 				ACE8851914CECE570004B9DF /* carta_300px.png in Resources */,
 				ACE8852614CECE6F0004B9DF /* vetro_300px@2x.png in Resources */,
 				ACE8852714CECE6F0004B9DF /* rifiuti_300px@2x.png in Resources */,
@@ -1403,6 +1404,9 @@
 				ACE8853E14CECE880004B9DF /* Icon.png in Resources */,
 				ACE8853F14CECE880004B9DF /* Icon@2x.png in Resources */,
 				ACE8854014CECE880004B9DF /* iTunesArtwork in Resources */,
+				ACFC0D5514D4C7F9000265B8 /* Default.png in Resources */,
+				ACFC0D5614D4C7F9000265B8 /* Default@2X.png in Resources */,
+				ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1421,6 +1425,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "KEYWORDS=\"TODO:|FIXME:|\\?\\?\\?:|\\!\\!\\!:\"\n\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"";
+		};
+		ACFC0D5814D56EA9000265B8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash    \nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1528,7 +1545,6 @@
 				ACE8850C14CDF5680004B9DF /* SHKOAuthView.m in Sources */,
 				ACE8850D14CDF5680004B9DF /* SHKShareMenu.m in Sources */,
 				ACE8850E14CDF5680004B9DF /* SHKViewControllerWrapper.m in Sources */,
-				ACE8851614CDF87A0004B9DF /* LocationAddPictureViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

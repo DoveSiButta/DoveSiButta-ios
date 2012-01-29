@@ -62,6 +62,7 @@
 @synthesize selectedType;
 @synthesize usingManualLocation, gpsLocation;
 @synthesize address, postCode, country;
+@synthesize comuniP2P;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -347,8 +348,18 @@ NSLog(@"Type..%@",[p getDinnerType]);
     [newItem setTitle:@"Nuovo"];
     [newItem setAddress:self.address];
     [newItem setCountry:self.country];
-    //TODO: setta la posizione prendendola dalla mappa e cose simili
+    [newItem setHostedBy:@""];
+    [newItem setEventDate:[NSDate date]];
+    [newItem setContactPhone:@""];
+   
+    CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
+    NSLocale *locale = [NSLocale currentLocale];
+    
+    [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
+    [newItem setLongitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale] ];
+
     addVC.newItem = newItem;
+
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
     
     [self presentModalViewController:navController animated:YES];
@@ -378,16 +389,32 @@ NSLog(@"Type..%@",[p getDinnerType]);
     self.navigationItem.rightBarButtonItem = addButton;
     
     
+    
+    
+    //Eccezioni e comuni raccolta p2p
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"ComuniRaccoltaP2P" ofType:@"plist"];
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    
+    // convert static property list into dictionary object
+    NSDictionary *plistDictionary = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+    if (!plistDictionary) 
+    {
+        NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+    }
+    self.comuniP2P = plistDictionary;
+    
     //Icons
     if([self.iconsDictionary count] < 1)
     {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
-        NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
-        NSString *errorDesc = nil;
-        NSPropertyListFormat format;
+        path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
+        plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+        errorDesc = nil;
+        
         
         // convert static property list into dictionary object
-        NSDictionary *plistDictionary = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
+        plistDictionary = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
         if (!plistDictionary) 
         {
             NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
@@ -396,6 +423,8 @@ NSLog(@"Type..%@",[p getDinnerType]);
 
     }
     
+
+
     
     
     //Location
@@ -628,6 +657,16 @@ NSLog(@"Type..%@",[p getDinnerType]);
     self.country = placemark.country;
     self.postCode = placemark.postalCode;
     self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+    
+    for(NSString *entry in self.comuniP2P)
+    {
+        NSArray *comune = [self.comuniP2P objectForKey:entry];
+        if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [self.address rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+            [alert show];
+        }
+    }
+    
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     HUD.delegate = self;
@@ -883,10 +922,19 @@ NSLog(@"Type..%@",[p getDinnerType]);
     NSLog(@"postalcode %@", [placemark postalCode]);
     NSLog(@"sublocality %@", [placemark subLocality]);  //Brescia
     NSLog(@"locality %@", [placemark locality]); //Brescia
-    NSLog(@"streetinfo::::%@",[placemark administrativeArea]); //Lombardy
+    NSLog(@"administrative area::::%@",[placemark administrativeArea]); //Lombardy
     
     NSLog(@"streeteersub ::::%@",[placemark subAdministrativeArea]); //Province of Brescia
-
+        
+        for(NSString *entry in self.comuniP2P)
+        {
+            NSArray *comune = [self.comuniP2P objectForKey:entry];
+            if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [[placemark subAdministrativeArea] rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+                [alert show];
+            }
+        }
+        
         HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         [self.navigationController.view addSubview:HUD];
         HUD.delegate = self;

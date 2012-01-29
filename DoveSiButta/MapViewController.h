@@ -21,9 +21,9 @@
 
 
 #ifdef __IPHONE_5_0
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate> 
+@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> 
 #else
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate>
 #endif
 
 {
@@ -31,6 +31,10 @@
     NSMutableArray *results;
     NerdDinnerModel_Dinner *selectedResult;
 
+    //for debug.
+    NSDictionary *comuniP2P;
+    
+    
     NSString* selectedType;
     
     //HUD
@@ -57,6 +61,9 @@
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *buttonLat;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *buttonLon;
 @property (nonatomic,retain) NSDictionary *iconsDictionary;
+
+//For comuni raccolta p2p
+@property (nonatomic, retain) NSDictionary *comuniP2P;
 
 //For managing rifiuti types
 @property (nonatomic, retain) NSString* selectedType;

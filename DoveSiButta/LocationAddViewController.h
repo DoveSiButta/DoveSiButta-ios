@@ -12,11 +12,13 @@
 #import "NerdDinnerEntities.h"
 
 
-@interface LocationAddViewController : PageViewController <MBProgressHUDDelegate>
+@interface LocationAddViewController : PageViewController <MBProgressHUDDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, retain) NerdDinnerModel_Dinner *newItem;
 @property (nonatomic, retain) NSString* pictureFile; //se non c'è la foto, non posso procedere!
 
+
+- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize;
 
 
 @end

@@ -91,7 +91,7 @@
         DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
     //    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
     //    odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
-        NSString *retString = [proxy CreateNewItemWithtitle:[newItem getTitle] latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[[newItem getAddress] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding] boxtype:[newItem getBoxType] picture_filename:[newItem getPicture_Filename]];
+        NSString *retString = [proxy CreateNewItemWithtitle:[newItem getTitle] latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] boxtype:[newItem getBoxType] picture_filename:[newItem getPicture_Filename]];
         NSLog(@"Returned: %@", retString);
         //TODO: controllare l'indirizzo, ma la stringa funziona
 //            http://192.168.138.2/Services/OData.svc/CreateNewItem?longitude=10.32752f&title='Nuovo'&latitude=45.51141f    

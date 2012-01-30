@@ -22,7 +22,8 @@
 #import "ODataServiceException.h"
 #import "ODataXMlParser.h"
 
-
+//UIImage extensions
+#import "UIImage+Extensions.h"
 
 #define radians( degrees ) ( degrees * M_PI / 180 ) 
 
@@ -91,9 +92,10 @@
         NSString *retString = [proxy CreateNewItemWithtitle:[newItem getTitle] latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[[newItem getAddress] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding] boxtype:[newItem getBoxType] picture_filename:[newItem getPicture_Filename]];
         NSLog(@"Returned: %@", retString);
         //TODO: controllare l'indirizzo, ma la stringa funziona
-//            http://192.168.138.2/Services/OData.svc/CreateNewItem?longitude=10.32752f&title='Nuovo'&latitude=45.51141f    }
+//            http://192.168.138.2/Services/OData.svc/CreateNewItem?longitude=10.32752f&title='Nuovo'&latitude=45.51141f    
     //TODO: Controlla che i dati ci siano tutti i dati
     //TODO:  Controlla che ci sia la foto
+    }
 }
 
 
@@ -383,13 +385,13 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo {
     //Qui devo salvare l'immagine nella cache e resizarla
-    UIImage *scaledImage = [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
+    UIImage *scaledImage = [img imageByScalingProportionallyToMinimumSize:CGSizeMake(640.0f, 480.0f)]; // [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
     NSData* imageData = UIImageJPEGRepresentation(scaledImage, 0.9f);
     
     // Give a name to the file
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyyMMdd_hhmmss"];
-    NSString* imageName = [dateFormat stringFromDate:[NSDate date]];
+    NSString* imageName = [[dateFormat stringFromDate:[NSDate date]] stringByAppendingString:@".jpg"];
     
     // Now, we have to find the documents directory so we can save it
     // Note that you might want to save it elsewhere, like the cache directory,
@@ -403,7 +405,10 @@
     // and then we write it out
     [imageData writeToFile:fullPathToFile atomically:NO];
     self.pictureFile = fullPathToFile;
-    [[picker parentViewController] dismissModalViewControllerAnimated:YES];
+    NSLog(@"Picture path: %@", fullPathToFile);
+//    [[picker parentViewController] dismissModalViewControllerAnimated:YES];
+//    [picker dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 

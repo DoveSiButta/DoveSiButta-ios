@@ -65,6 +65,7 @@
 		AC66D09014C381B10098E1F1 /* LocationAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */; };
 		AC66D09214C3862E0098E1F1 /* IconForType.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D09114C3862D0098E1F1 /* IconForType.plist */; };
 		AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC99992414D68AF6006229A8 /* UIImage+Extensions.m */; };
+		AC99992714D68E83006229A8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AC99992614D68E83006229A8 /* LICENSE */; };
 		ACE882AE14CC59C80004B9DF /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE882AD14CC59C80004B9DF /* AddressBookUI.framework */; };
 		ACE882B214CC6D910004B9DF /* PictureFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE882B014CC6D910004B9DF /* PictureFileViewController.m */; };
 		ACE882B314CC6D910004B9DF /* PictureFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE882B114CC6D910004B9DF /* PictureFileViewController.xib */; };
@@ -330,6 +331,7 @@
 		AC66D09114C3862D0098E1F1 /* IconForType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IconForType.plist; sourceTree = "<group>"; };
 		AC99992314D68AF6006229A8 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		AC99992414D68AF6006229A8 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
+		AC99992614D68E83006229A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		ACE882AD14CC59C80004B9DF /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		ACE882AF14CC6D900004B9DF /* PictureFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureFileViewController.h; sourceTree = "<group>"; };
 		ACE882B014CC6D910004B9DF /* PictureFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureFileViewController.m; sourceTree = "<group>"; };
@@ -813,6 +815,7 @@
 				ACE8853214CECE880004B9DF /* App_Icon */,
 				AC66D07514C37CA70098E1F1 /* icone */,
 				AC66D06414C24E840098E1F1 /* License.rtf */,
+				AC99992614D68E83006229A8 /* LICENSE */,
 				AC66D01514C24BB70098E1F1 /* RifiutiTypes.plist */,
 				AC66D09114C3862D0098E1F1 /* IconForType.plist */,
 				ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */,
@@ -1417,6 +1420,7 @@
 				ACFC0D5514D4C7F9000265B8 /* Default.png in Resources */,
 				ACFC0D5614D4C7F9000265B8 /* Default@2X.png in Resources */,
 				ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */,
+				AC99992714D68E83006229A8 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

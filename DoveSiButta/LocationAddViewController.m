@@ -82,6 +82,8 @@
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
 
         
+        NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
+        [newItem setContactPhone:udid];
         //SOLO PER DEBUG!!!
         [newItem setBoxType:@"1"];
         [newItem setPicture_Filename:@"prova.jpg"];

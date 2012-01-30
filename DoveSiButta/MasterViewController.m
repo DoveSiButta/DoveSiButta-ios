@@ -1,6 +1,6 @@
 //
 //  MasterViewController.m
-//  NerdDinner
+//  DoveSiButta
 //
 //  Created by Giovanni Maggini on 22/12/11.
 //  Copyright (c) 2011 Giovanni Maggini. All rights reserved.
@@ -20,7 +20,8 @@
 #import "ODataServiceException.h"
 #import "ODataXMlParser.h"
 //Service
-#import "NerdDinnerEntities.h"
+//#import "NerdDinnerEntities.h"
+#import "DoveSiButtaEntities.h"
 
 //Cells
 #import "ApplicationCell.h"
@@ -427,7 +428,7 @@
 	/*
 	 Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
 	 */
-	for (NerdDinnerModel_Dinner *dinner in listContent)
+	for (DoveSiButtaModel_Box *dinner in listContent)
 	{
         
         if([[dinner getTitle] rangeOfString:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)].location != NSNotFound)

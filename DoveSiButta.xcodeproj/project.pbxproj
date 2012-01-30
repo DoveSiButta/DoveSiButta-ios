@@ -171,6 +171,7 @@
 		ACFC0D5514D4C7F9000265B8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5314D4C7F9000265B8 /* Default.png */; };
 		ACFC0D5614D4C7F9000265B8 /* Default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5414D4C7F9000265B8 /* Default@2X.png */; };
 		ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */; };
+		ACFC0D6714D60AE9000265B8 /* DoveSiButtaEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFC0D6614D60AE9000265B8 /* DoveSiButtaEntities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,8 +193,8 @@
 		AC66CEFB14C246410098E1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AC66CEFD14C246410098E1F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC66CEFF14C246410098E1F1 /* DoveSiButta-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoveSiButta-Prefix.pch"; sourceTree = "<group>"; };
-		AC66CF0014C246410098E1F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		AC66CF0114C246410098E1F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AC66CF0014C246410098E1F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		AC66CF0114C246410098E1F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AC66CF0314C246410098E1F1 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		AC66CF0414C246410098E1F1 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		AC66CF0A14C246410098E1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
@@ -309,8 +310,8 @@
 		AC66D02514C24BD60098E1F1 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingView.m; path = DoveSiButta/CustomTableViewCells/RatingView.m; sourceTree = "<group>"; };
 		AC66D02614C24BD60098E1F1 /* StarsBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StarsBackground.png; path = DoveSiButta/CustomTableViewCells/StarsBackground.png; sourceTree = "<group>"; };
 		AC66D02714C24BD60098E1F1 /* StarsForeground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StarsForeground.png; path = DoveSiButta/CustomTableViewCells/StarsForeground.png; sourceTree = "<group>"; };
-		AC66D04814C24CFA0098E1F1 /* LocationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailViewController.h; sourceTree = "<group>"; };
-		AC66D04914C24CFA0098E1F1 /* LocationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailViewController.m; sourceTree = "<group>"; };
+		AC66D04814C24CFA0098E1F1 /* LocationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LocationDetailViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		AC66D04914C24CFA0098E1F1 /* LocationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LocationDetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AC66D06414C24E840098E1F1 /* License.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = License.rtf; sourceTree = "<group>"; };
 		AC66D07614C37CA70098E1F1 /* batterie2_300px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batterie2_300px.png; sourceTree = "<group>"; };
 		AC66D07714C37CA70098E1F1 /* batterie_300px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batterie_300px.png; sourceTree = "<group>"; };
@@ -323,8 +324,8 @@
 		AC66D07F14C37CA70098E1F1 /* plastica_300px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plastica_300px.png; sourceTree = "<group>"; };
 		AC66D08014C37CA70098E1F1 /* rifiuti_300px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rifiuti_300px.png; sourceTree = "<group>"; };
 		AC66D08114C37CA70098E1F1 /* vetro_300px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vetro_300px.png; sourceTree = "<group>"; };
-		AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAddViewController.h; sourceTree = "<group>"; };
-		AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAddViewController.m; sourceTree = "<group>"; };
+		AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LocationAddViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LocationAddViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AC66D09114C3862D0098E1F1 /* IconForType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IconForType.plist; sourceTree = "<group>"; };
 		ACE882AD14CC59C80004B9DF /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		ACE882AF14CC6D900004B9DF /* PictureFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureFileViewController.h; sourceTree = "<group>"; };
@@ -515,6 +516,8 @@
 		ACFC0D5314D4C7F9000265B8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = DoveSiButta/Images/Default.png; sourceTree = SOURCE_ROOT; };
 		ACFC0D5414D4C7F9000265B8 /* Default@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2X.png"; path = "DoveSiButta/Images/Default@2X.png"; sourceTree = SOURCE_ROOT; };
 		ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ComuniRaccoltaP2P.plist; sourceTree = "<group>"; };
+		ACFC0D6514D60AE9000265B8 /* DoveSiButtaEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoveSiButtaEntities.h; sourceTree = "<group>"; };
+		ACFC0D6614D60AE9000265B8 /* DoveSiButtaEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoveSiButtaEntities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -636,6 +639,8 @@
 		AC66CF4614C248180098E1F1 /* OData */ = {
 			isa = PBXGroup;
 			children = (
+				ACFC0D6514D60AE9000265B8 /* DoveSiButtaEntities.h */,
+				ACFC0D6614D60AE9000265B8 /* DoveSiButtaEntities.m */,
 				ACE882DD14CCD1710004B9DF /* XPathQuery.h */,
 				ACE882DE14CCD1710004B9DF /* XPathQuery.m */,
 				AC66CF4C14C248610098E1F1 /* include */,
@@ -1545,6 +1550,7 @@
 				ACE8850C14CDF5680004B9DF /* SHKOAuthView.m in Sources */,
 				ACE8850D14CDF5680004B9DF /* SHKShareMenu.m in Sources */,
 				ACE8850E14CDF5680004B9DF /* SHKViewControllerWrapper.m in Sources */,
+				ACFC0D6714D60AE9000265B8 /* DoveSiButtaEntities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,6 @@
 //
 //  LocationDetailViewController.m
-//  NerdDinner
+//  DoveSiButta
 //
 //  Created by Giovanni Maggini on 10/01/12.
 //  Copyright (c) 2012 Giovanni Maggini. All rights reserved.
@@ -28,7 +28,7 @@
     return self;
 }
 
-- (id)initWithDinner:(NerdDinnerModel_Dinner*)dinner
+- (id)initWithDinner:(DoveSiButtaModel_Box*)dinner
 {
     self = [super init];
     if (self) {
@@ -157,7 +157,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"ID", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getDinnerID] ], @"value",
+                              [NSString stringWithFormat:@"%@",[selectedDinner getBoxID] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               NO, 
@@ -297,7 +297,7 @@ titleForHeaderInSection:(NSInteger)section
         {
             [cell handleSelectionInTableView:aTableView];
             PictureFileViewController *pvc = [[PictureFileViewController alloc] initWithNibName:@"PictureFileViewController" bundle:[NSBundle mainBundle]];
-            pvc.selectedItem = [self.selectedDinner getDinnerID];
+            pvc.selectedItem = [self.selectedDinner getBoxID];
             [self.navigationController pushViewController:pvc animated:YES];
         }
         else if ([cell.action isEqualToString:@"showRSVP"])

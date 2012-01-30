@@ -1,6 +1,6 @@
 //
 //  MapViewController.m
-//  NerdDinner
+//  DoveSiButta
 //
 //  Created by Giovanni Maggini on 22/12/11.
 //  Copyright (c) 2011 Giovanni Maggini. All rights reserved.
@@ -20,7 +20,8 @@
 #import "ODataServiceException.h"
 #import "ODataXMlParser.h"
 //Service
-#import "NerdDinnerEntities.h"
+//#import "NerdDinnerEntities.h"
+#import "DoveSiButtaEntities.h"
 
 /*
 //
@@ -121,9 +122,9 @@
 #endif
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
-        NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
+        DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
         
-        DataServiceQuery *query = [proxy dinners];
+        DataServiceQuery *query = [proxy boxes];
         //	//[query top:1];
         QueryOperationResponse *response = [query execute];
         NSArray *resultArr =[[response getResult] retain];
@@ -135,10 +136,10 @@
 #endif
         for (int i =0;i<[resultArr count]; i++) {
             
-            NerdDinnerModel_Dinner *p = [resultArr objectAtIndex:i];
+            DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
 #if DEBUG
-            NSLog(@"=== Dinner %d  ===",i);
-            NSLog(@"dinner id...%@",[[p getDinnerID] stringValue]);
+            NSLog(@"=== Item %d  ===",i);
+            NSLog(@"dinner id...%@",[[p getBoxID] stringValue]);
             NSLog(@"dinner name...%@",[p getTitle]);
             NSLog(@"dinner desc......%@",[p getDescription]);
             NSLog(@"Date..%@",[p getEventDate]);
@@ -169,7 +170,7 @@
     [HUD hide:YES afterDelay:1];
     
     // Do any additional setup after loading the view from its nib.
-    for (NerdDinnerModel_Dinner *aResult in results)
+    for (DoveSiButtaModel_Box *aResult in results)
 	{
         
 		//NSDictionary *resultLocation = [NSDictionary dictionaryWithObjectsAndKeys:[aResult getLatitude],@"latitude",[aResult getLongitude],@"longitude",[aResult getTitle],@"title", [aResult getDescription], @"description",[aResult getDinnerID], @"annotationid", nil];//  [aResult objectForKey:@"stationLocation"];
@@ -194,9 +195,9 @@
 #endif
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
-        NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
+        DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
 
-        DataServiceQuery *query = [proxy dinners];
+        DataServiceQuery *query = [proxy boxes];
         QueryOperationResponse *response = [query execute];
         results = [[NSMutableArray alloc] init ];
         NSArray *resultArr =[[response getResult] retain];
@@ -206,19 +207,19 @@
 #endif
         for (int i =0;i<[resultArr count]; i++) {
             
-            NerdDinnerModel_Dinner *p = [resultArr objectAtIndex:i];
+            DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
 #if DEBUG
             NSLog(@"=== Dinner %d  ===",i);
-            NSLog(@"dinner id...%@",[[p getDinnerID] stringValue]);
+            NSLog(@"dinner id...%@",[[p getBoxID] stringValue]);
             NSLog(@"dinner name...%@",[p getTitle]);
             NSLog(@"dinner desc......%@",[p getDescription]);
             NSLog(@"Date..%@",[p getEventDate]);
-NSLog(@"Type..%@",[p getDinnerType]);
+NSLog(@"Type..%@",[p getBoxType]);
             NSLog(@"Latitude..%@",[p getLatitude]);
             NSLog(@"Longitude..%@",[p getLongitude]);
             NSLog(@"==Fine Dinner==");
 #endif   
-            if ([[p getDinnerType] isEqualToString:self.selectedType]) //TODO: andrebbe filtrato nella query
+            if ([[p getBoxType] isEqualToString:self.selectedType]) //TODO: andrebbe filtrato nella query
             {
                 [results addObject:p];
             }
@@ -245,7 +246,7 @@ NSLog(@"Type..%@",[p getDinnerType]);
     [HUD hide:YES afterDelay:1];
     
     // Do any additional setup after loading the view from its nib.
-    for (NerdDinnerModel_Dinner *aResult in results)
+    for (DoveSiButtaModel_Box *aResult in results)
 	{
         
 		//NSDictionary *resultLocation = [NSDictionary dictionaryWithObjectsAndKeys:[aResult getLatitude],@"latitude",[aResult getLongitude],@"longitude",[aResult getTitle],@"title", [aResult getDescription], @"description",[aResult getDinnerID], @"annotationid", nil];//  [aResult objectForKey:@"stationLocation"];
@@ -273,14 +274,14 @@ NSLog(@"Type..%@",[p getDinnerType]);
 #endif
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
-        NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
+        DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
         
 //        DataServiceQuery *query = [proxy DinnersNearMeWithplaceorzip:searchAddress];
         //	//[query top:1];
         
 //        QueryOperationResponse *response = [query execute];
 //        NSArray *resultArr =[[response getResult] retain];
-        NSArray *resultArr = [[proxy DinnersNearMeWithplaceorzip:[searchAddress stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]] retain];
+        NSArray *resultArr = [[proxy ItemsNearMeWithplaceorzip:[searchAddress stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]] retain];
         //        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
 //        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
 #if DEBUG
@@ -288,14 +289,14 @@ NSLog(@"Type..%@",[p getDinnerType]);
 #endif
         for (int i =0;i<[resultArr count]; i++) {
             
-            NerdDinnerModel_Dinner *p = [resultArr objectAtIndex:i];
+            DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
 #if DEBUG
             NSLog(@"=== Dinner %d  ===",i);
-            NSLog(@"dinner id...%@",[[p getDinnerID] stringValue]);
+            NSLog(@"dinner id...%@",[[p getBoxID] stringValue]);
             NSLog(@"dinner name...%@",[p getTitle]);
             NSLog(@"dinner desc......%@",[p getDescription]);
             NSLog(@"Date..%@",[p getEventDate]);
-            //		NSLog(@"Type..%@",[p getDinnerType]);
+            NSLog(@"Type..%@",[p getBoxType]);
             NSLog(@"Latitude..%@",[p getLatitude]);
             NSLog(@"Longitude..%@",[p getLongitude]);
             NSLog(@"==Fine Dinner==");
@@ -322,7 +323,7 @@ NSLog(@"Type..%@",[p getDinnerType]);
     [HUD hide:YES afterDelay:1];
     
     // Do any additional setup after loading the view from its nib.
-    for (NerdDinnerModel_Dinner *aResult in results)
+    for (DoveSiButtaModel_Box *aResult in results)
 	{
         
 		//NSDictionary *resultLocation = [NSDictionary dictionaryWithObjectsAndKeys:[aResult getLatitude],@"latitude",[aResult getLongitude],@"longitude",[aResult getTitle],@"title", [aResult getDescription], @"description",[aResult getDinnerID], @"annotationid", nil];//  [aResult objectForKey:@"stationLocation"];
@@ -344,7 +345,7 @@ NSLog(@"Type..%@",[p getDinnerType]);
 -(void) addItem:(id)sender
 {
     LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
-    NerdDinnerModel_Dinner *newItem = [[NerdDinnerModel_Dinner alloc] init];
+    DoveSiButtaModel_Box *newItem = [[DoveSiButtaModel_Box alloc] init];
     [newItem setTitle:@"Nuovo"];
     [newItem setAddress:self.address];
     [newItem setCountry:self.country];
@@ -622,7 +623,7 @@ NSLog(@"Type..%@",[p getDinnerType]);
         return nil;
     
     MKPinAnnotationView *newAnnotationPin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"] autorelease];
-    if([selectedResult getDinnerID] == [annotation annotationid])
+    if([selectedResult getBoxID] == [annotation annotationid])
     {
         newAnnotationPin.pinColor = MKPinAnnotationColorRed;
     }

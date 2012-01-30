@@ -21,7 +21,8 @@
 #import "ODataServiceException.h"
 #import "ODataXMlParser.h"
 //Service
-#import "NerdDinnerEntities.h"
+//#import "NerdDinnerEntities.h"
+#import "DoveSiButtaEntities.h"
 
 //HUD
 #import "MBProgressHUD.h"
@@ -126,8 +127,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
     NSString *appURI = [defaults objectForKey:@"appURI"];
-    NerdDinnerEntities *proxy=[[NerdDinnerEntities alloc]initWithUri:serviceURI credential:nil];
-    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
+    DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
+    NSString *odataResult = [[proxy GetFileWithitemid:self.selectedItem] retain];
     odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
     
     //

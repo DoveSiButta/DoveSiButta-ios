@@ -1,6 +1,6 @@
 //
 //  MapViewController.h
-//  NerdDinner
+//  DoveSiButta
 //
 //  Created by Giovanni Maggini on 22/12/11.
 //  Copyright (c) 2011 Giovanni Maggini. All rights reserved.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "NerdDinnerEntities.h"
+//#import "NerdDinnerEntities.h"
+#import "DoveSiButtaEntities.h"
 
 //HUD
 #import "MBProgressHUD.h"
@@ -29,7 +30,7 @@
 {
     MKMapView *mapView;
     NSMutableArray *results;
-    NerdDinnerModel_Dinner *selectedResult;
+    DoveSiButtaModel_Box *selectedResult;
 
     //for debug.
     NSDictionary *comuniP2P;

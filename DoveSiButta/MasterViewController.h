@@ -1,6 +1,6 @@
 //
 //  MasterViewController.h
-//  NerdDinner
+//  DoveSiButta
 //
 //  Created by Giovanni Maggini on 22/12/11.
 //  Copyright (c) 2011 Giovanni Maggini. All rights reserved.

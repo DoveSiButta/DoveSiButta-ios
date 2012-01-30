@@ -1,6 +1,6 @@
 //
 //  MapAnnotationDefault.h
-//  NerdDinner
+//  DoveSiButta
 //
 //  Created by Giovanni Maggini on 23/12/11.
 //  Copyright (c) 2011 Giovanni Maggini. All rights reserved.
@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "NerdDinnerEntities.h"
+//#import "NerdDinnerEntities.h"
+#import "DoveSiButtaEntities.h"
 
 @protocol GMAnnotation <MKAnnotation>
 
 @optional
 - (NSNumber *)annotationid;
-- (NerdDinnerModel_Dinner *)dinner;
+- (DoveSiButtaModel_Box *)dinner;
 - (NSString *)type;
 
 @end
@@ -26,7 +27,7 @@
 
 }
 
-@property (nonatomic, retain) NerdDinnerModel_Dinner *dinner;
+@property (nonatomic, retain) DoveSiButtaModel_Box *dinner;
 
 
 

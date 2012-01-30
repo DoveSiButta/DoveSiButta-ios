@@ -9,12 +9,13 @@
 #import "PageViewController.h"
 #import "MBProgressHUD.h"
 //Service
-#import "NerdDinnerEntities.h"
+//#import "NerdDinnerEntities.h"
+#import "DoveSiButtaEntities.h"
 
 
 @interface LocationAddViewController : PageViewController <MBProgressHUDDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, retain) NerdDinnerModel_Dinner *newItem;
+@property (nonatomic, retain) DoveSiButtaModel_Box *newItem;
 @property (nonatomic, retain) NSString* pictureFile; //se non c'è la foto, non posso procedere!
 
 

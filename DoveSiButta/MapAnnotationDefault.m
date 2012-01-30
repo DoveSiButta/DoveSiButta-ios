@@ -37,12 +37,12 @@
 
 - (NSNumber *)annotationid
 {
-    return [dinner getDinnerID];
+    return [dinner getBoxID];
 }
 
 - (NSString *)type
 {
-    return [dinner getDinnerType];
+    return [dinner getBoxType];
 }
 
 - (void)dealloc

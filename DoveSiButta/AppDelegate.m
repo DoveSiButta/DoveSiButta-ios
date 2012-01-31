@@ -39,13 +39,22 @@
     
     //Imposto l'URL del servizio una volta sola nella app
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *storedVal =  @"http://192.168.138.2/Services/OData.svc/"; // @"http://c0061e8a94b24692b9f5c2fff622b38c.cloudapp.net/Services/OData.svc/";
+#if TARGET_IPHONE_SIMULATOR
+    NSString *storedVal = @"http://192.168.138.2/Services/OData.svc/"; 
     NSString *key = @"serviceURI"; // the key for the data
     [defaults setObject:storedVal forKey:key];
-    storedVal = @"http://192.168.138.2"; // @"http://c0061e8a94b24692b9f5c2fff622b38c.cloudapp.net";
+    storedVal = @"http://192.168.138.2";
     key = @"appURI"; // the key for the data
     [defaults setObject:storedVal forKey:key];
+#else
+    NSString *storedVal = @"http://49749bc912fa464c86d168ee3c06a48a.cloudapp.net/Services/OData.svc/";  //@"http://192.168.138.2/Services/OData.svc/"; 
+    NSString *key = @"serviceURI"; // the key for the data
+    [defaults setObject:storedVal forKey:key];
+    storedVal = @"http://49749bc912fa464c86d168ee3c06a48a.cloudapp.net"; //@"http://192.168.138.2";
+    key = @"appURI"; // the key for the data
+    [defaults setObject:storedVal forKey:key];    
+#endif
+    
     [defaults synchronize]; // this method is optional
 
     

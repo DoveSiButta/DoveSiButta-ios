@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSString* pictureFile; //se non c'è la foto, non posso procedere!
 
 
-- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize;
+//- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize;
 
 
 @end

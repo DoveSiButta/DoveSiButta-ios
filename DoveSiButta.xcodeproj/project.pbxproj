@@ -15,7 +15,6 @@
 		AC66CF0214C246410098E1F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CF0114C246410098E1F1 /* AppDelegate.m */; };
 		AC66CF0514C246410098E1F1 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CF0414C246410098E1F1 /* MasterViewController.m */; };
 		AC66CF0B14C246410098E1F1 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66CF0914C246410098E1F1 /* MasterViewController.xib */; };
-		AC66CF4B14C2485E0098E1F1 /* NerdDinnerEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CF4A14C2485E0098E1F1 /* NerdDinnerEntities.m */; };
 		AC66CFBC14C2491B0098E1F1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFBB14C2491B0098E1F1 /* MBProgressHUD.m */; };
 		AC66CFBF14C249230098E1F1 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFBE14C249230098E1F1 /* GradientButton.m */; };
 		AC66CFDF14C2494F0098E1F1 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFC214C2494F0098E1F1 /* ButtonCell.m */; };
@@ -201,8 +200,6 @@
 		AC66CF0414C246410098E1F1 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		AC66CF0A14C246410098E1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
 		AC66CF3814C247ED0098E1F1 /* MSODataLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MSODataLib.xcodeproj; path = ../../github/OData4ObjC/Framework/src/MSODataLib/MSODataLib.xcodeproj; sourceTree = "<group>"; };
-		AC66CF4914C2485E0098E1F1 /* NerdDinnerEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NerdDinnerEntities.h; sourceTree = "<group>"; };
-		AC66CF4A14C2485E0098E1F1 /* NerdDinnerEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NerdDinnerEntities.m; sourceTree = "<group>"; };
 		AC66CF8214C248F90098E1F1 /* ACSCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACSCredential.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ACSCredential.h; sourceTree = "<group>"; };
 		AC66CF8314C248F90098E1F1 /* ACSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACSUtil.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ACSUtil.h; sourceTree = "<group>"; };
 		AC66CF8414C248F90098E1F1 /* ACSUtilException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACSUtilException.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ACSUtilException.h; sourceTree = "<group>"; };
@@ -651,8 +648,6 @@
 				ACE882DD14CCD1710004B9DF /* XPathQuery.h */,
 				ACE882DE14CCD1710004B9DF /* XPathQuery.m */,
 				AC66CF4C14C248610098E1F1 /* include */,
-				AC66CF4914C2485E0098E1F1 /* NerdDinnerEntities.h */,
-				AC66CF4A14C2485E0098E1F1 /* NerdDinnerEntities.m */,
 			);
 			name = OData;
 			sourceTree = "<group>";
@@ -1463,7 +1458,6 @@
 				AC66CEFE14C246410098E1F1 /* main.m in Sources */,
 				AC66CF0214C246410098E1F1 /* AppDelegate.m in Sources */,
 				AC66CF0514C246410098E1F1 /* MasterViewController.m in Sources */,
-				AC66CF4B14C2485E0098E1F1 /* NerdDinnerEntities.m in Sources */,
 				AC66CFBC14C2491B0098E1F1 /* MBProgressHUD.m in Sources */,
 				AC66CFBF14C249230098E1F1 /* GradientButton.m in Sources */,
 				AC66CFDF14C2494F0098E1F1 /* ButtonCell.m in Sources */,

@@ -380,14 +380,29 @@ NSLog(@"Type..%@",[p getBoxType]);
 {
     [super viewDidLoad];
 
-    //Add button
-    UIBarButtonItem *addButton =
-    [[[UIBarButtonItem alloc]
-      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-      target:self
-      action:@selector(addItem:)]
-     autorelease];
-    self.navigationItem.rightBarButtonItem = addButton;
+#if TARGET_IPHONE_SIMULATOR
+        //Add button sempre, per testing
+        UIBarButtonItem *addButton =
+        [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+          target:self
+          action:@selector(addItem:)]
+         autorelease];
+        self.navigationItem.rightBarButtonItem = addButton;
+
+#else
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ]) {
+        //Add button solo se in presenza di camera (no vecchi iPod e iPad)
+        UIBarButtonItem *addButton =
+        [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+          target:self
+          action:@selector(addItem:)]
+         autorelease];
+        self.navigationItem.rightBarButtonItem = addButton;
+    }
+    
+#endif
     
     
     

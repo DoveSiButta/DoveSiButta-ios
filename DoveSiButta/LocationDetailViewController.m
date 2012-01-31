@@ -100,6 +100,7 @@
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     
    	[self addSectionAtIndex:0 withAnimation:UITableViewRowAnimationNone];
+    /*
     [self appendRowToSection:0 cellClass:[NibLoadedCell class] 
                     cellData:[NSDictionary dictionaryWithObjectsAndKeys:
                               [selectedDinner getTitle],@"labelText",
@@ -107,7 +108,7 @@
                               NSLocalizedString(@"Title", @"Title Label"),@"titleLabelText", 
                               nil] 
                withAnimation:UITableViewRowAnimationNone];
-
+*/
     [self addSectionAtIndex:1 withAnimation:UITableViewRowAnimationNone];
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -116,7 +117,7 @@
                               [NSString stringWithFormat:@"%@",[selectedDinner getTitle] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -127,7 +128,7 @@
                               [NSString stringWithFormat:@"%@",[selectedDinner getEventDate] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -138,7 +139,7 @@
                               [NSString stringWithFormat:@"%@",[selectedDinner getLatitude] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -149,7 +150,7 @@
                               [NSString stringWithFormat:@"%@",[selectedDinner getLongitude] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -160,7 +161,7 @@
                               [NSString stringWithFormat:@"%@",[selectedDinner getBoxID] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -217,7 +218,7 @@
                               [NSString stringWithFormat:@"%@",[selectedDinner getAddress] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -228,7 +229,7 @@
                               [NSString stringWithFormat:@"%@",[selectedDinner getCountry] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];

@@ -12,6 +12,7 @@
 #import "DetailDisclosureCell.h"
 #import "NibLoadedCell.h"
 #import "PictureFileViewController.h"
+#import "LabelCell.h"
 
 //OData
 #import "WindowsCredential.h"
@@ -193,7 +194,7 @@
                               [NSString stringWithFormat:@"%@",[newItem getAddress] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -204,7 +205,7 @@
                               [NSString stringWithFormat:@"%@",[newItem getEventDate] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -215,7 +216,7 @@
                               [NSString stringWithFormat:@"%@",[newItem getLatitude] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -226,7 +227,7 @@
                               [NSString stringWithFormat:@"%@",[newItem getLongitude] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -296,7 +297,7 @@
                               [NSString stringWithFormat:@"%@",[newItem getAddress] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -307,7 +308,7 @@
                               [NSString stringWithFormat:@"%@",[newItem getCountry] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
-                              NO, 
+                              [NSNumber numberWithBool:NO], 
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
@@ -321,7 +322,7 @@
      nil] 
      withAnimation:UITableViewRowAnimationNone]; 
      */
-    [self appendRowToSection:1 cellClass:[DetailDisclosureCell class] 
+    [self appendRowToSection:1 cellClass:[LabelCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
                                NSLocalizedString(@"Scatta una foto!",@""),
                                @"label",
@@ -413,7 +414,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-
+/*
 - (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize
 {  
     CGSize imageSize = sourceImage.size;
@@ -503,7 +504,7 @@
     
     return newImage; 
 }
-
+*/
 
 
 @end

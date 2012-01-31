@@ -13,11 +13,15 @@
 #import "DoveSiButtaEntities.h"
 
 
-@interface LocationAddViewController : PageViewController <MBProgressHUDDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface LocationAddViewController : PageViewController <MBProgressHUDDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
+{
+    MBProgressHUD *HUD;
+}
 
 @property (nonatomic, retain) DoveSiButtaModel_Box *newItem;
 @property (nonatomic, retain) NSString* pictureFile; //se non c'è la foto, non posso procedere!
-
+@property (nonatomic, retain) NSMutableArray* selectedTypes;
+@property (nonatomic, retain) NSMutableSet* setTypes;
 
 //- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize;
 

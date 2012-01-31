@@ -9,10 +9,10 @@
 #import "LocationAddViewController.h"
 //Pageviewcontroller
 #import "TextFieldCell.h"
-#import "DetailDisclosureCell.h"
 #import "NibLoadedCell.h"
 #import "PictureFileViewController.h"
 #import "LabelCell.h"
+#import "CheckmarkCell.h"
 
 //OData
 #import "WindowsCredential.h"
@@ -26,11 +26,16 @@
 //UIImage extensions
 #import "UIImage+Extensions.h"
 
+//Xpath
+#import "XPathQuery.h"
+
 #define radians( degrees ) ( degrees * M_PI / 180 ) 
 
 @implementation LocationAddViewController
 @synthesize newItem;
 @synthesize pictureFile;
+@synthesize selectedTypes;
+@synthesize setTypes;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,8 +81,32 @@
 - (void)saveItem:(id)sender
 {
     
-    if( [newItem getLatitude] != [NSDecimalNumber zero] || [newItem getLongitude]  !=  [NSDecimalNumber zero])
+    if([self.setTypes count] < 1)
     {
+        //avviso che non può creare un cestino senza almeno un tipo!
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Devi selezionare almeno una tipologia dei cassonetti in foto!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    if( ([newItem getLatitude] != [NSDecimalNumber zero] || [newItem getLongitude]  !=  [NSDecimalNumber zero] ) && [self.pictureFile length] > 0)
+    {
+        
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        HUD.delegate = self;
+        HUD.labelText = @"Caricamento";
+        [self.view addSubview:HUD];
+        [HUD show:YES];
+        
+        NSString *boxType = [[NSString alloc] init];
+        for(NSString *s in self.setTypes)
+        {
+            boxType = [boxType stringByAppendingFormat:@"%@;",s];
+        }
+        
+        [boxType retain];
+//        NSLog(@"boxtype: %@", boxType);
+        
         //1- Get dinner with ID
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
@@ -85,19 +114,72 @@
         
         NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
         [newItem setContactPhone:udid];
+        [newItem setBoxType:boxType];
+        
         //SOLO PER DEBUG!!!
-        [newItem setBoxType:@"1"];
         [newItem setPicture_Filename:@"prova.jpg"];
         
         DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
+        [proxy retain];
     //    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
     //    odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
         NSString *retString = [proxy CreateNewItemWithtitle:[newItem getTitle] latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] boxtype:[newItem getBoxType] picture_filename:[newItem getPicture_Filename]];
         NSLog(@"Returned: %@", retString);
-        //TODO: controllare l'indirizzo, ma la stringa funziona
+        
+        retString = [[retString stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
+        NSArray *result = PerformXMLXPathQuery([retString dataUsingEncoding:NSUTF8StringEncoding], @"/CreateNewItem");
+
+        //Dovrebbe contenere solo il numero dell'ID della box
+        int newBoxID = 0;//NSNumber *newBoxID = [[NSNumber alloc] init];
+        @try {
+            newBoxID = [[[result objectAtIndex:0] objectForKey:@"nodeContent"] integerValue];
+        }
+        @catch (NSException *exception) {
+            newBoxID = -1;
+        }
+        if (newBoxID > 0) {
+            //Vuole dire che ha funzionato
+            NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
+            
+            NSString *setFileReturn = [proxy SetFileWithitemid:[NSNumber numberWithInt:newBoxID] file:pictureData];
+            setFileReturn = [[setFileReturn stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
+            result = PerformXMLXPathQuery([setFileReturn dataUsingEncoding:NSUTF8StringEncoding], @"/SetFile");
+            NSString *setFileResult = [[result objectAtIndex:0] objectForKey:@"nodeContent"];
+            [setFileResult retain];
+            NSLog(@"setfileresult %@", setFileResult);
+            int resultNumber = 0;//NSNumber *resultNumber = [[NSNumber alloc] init];
+            @try {
+                resultNumber = [setFileResult integerValue];
+            }
+            @catch (NSException *exception) {
+                resultNumber = -1;
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Si è verificato un problema. Errore nel caricamento della foto.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+                [alert show];
+            }
+            @finally {
+                [HUD hide:YES afterDelay:1];
+            }
+            
+        }
+        else
+        {
+            [HUD hide:YES afterDelay:1];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Si è verificato un problema. La segnalazione non è andata a buon fine!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+            [alert show];
+
+        }
+        
+//TODO: controllare l'indirizzo, ma la stringa funziona
 //            http://192.168.138.2/Services/OData.svc/CreateNewItem?longitude=10.32752f&title='Nuovo'&latitude=45.51141f    
-    //TODO: Controlla che i dati ci siano tutti i dati
-    //TODO:  Controlla che ci sia la foto
+//TODO: Controlla che i dati ci siano tutti i dati
+//TODO:  Controlla che ci sia la foto
+    }
+    else
+    {
+        //avviso che non può creare un cestino senza foto!
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"È necessario scattare una fotografia!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
+        
     }
 }
 
@@ -112,6 +194,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //tipi delle checkmark
+    self.setTypes = [[NSMutableSet alloc] init];
+    self.selectedTypes = [[NSMutableArray alloc] init];
     
     //Tasto Cancel
     UIBarButtonItem *cancelButton =
@@ -312,16 +398,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
-    /*
-     [self appendRowToSection:1 cellClass:[DetailDisclosureCell class] 
-     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
-     NSLocalizedString(@"View RSVPs",@""),
-     @"label",
-     @"showRSVP", 
-     @"action", //TODO: Mostra chi l'ha trovata interessante
-     nil] 
-     withAnimation:UITableViewRowAnimationNone]; 
-     */
+ 
     [self appendRowToSection:1 cellClass:[LabelCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
                                NSLocalizedString(@"Scatta una foto!",@""),
@@ -334,6 +411,22 @@
     //TODO: qui ci vanno le celle (che sono poi delle normali LabelCell ma con accanto il checkbox
     
     [dateFormat release];
+
+    
+    [self addSectionAtIndex:2 withAnimation:UITableViewRowAnimationNone];
+    for (NSDictionary *dict in rifiutiTypes)
+    {
+        [self appendRowToSection:2 cellClass:[CheckmarkCell class] 
+                        cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+                                   NSLocalizedString([dict objectForKey:@"type"],@""),
+                                   @"label",
+                                   [dict objectForKey:@"id"], 
+                                   @"value",
+                                   [NSNumber numberWithBool:NO],
+                                   @"checked",
+                                   nil] 
+                   withAnimation:UITableViewRowAnimationNone];
+    }
 
     
 }
@@ -351,11 +444,12 @@
     //	PageCell *cell = (PageCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
 	if (![[aTableView cellForRowAtIndexPath:anIndexPath] isKindOfClass:[PageCell class]])
 	{
-		return;
+		//return;
 	}
 	
-    if ([[aTableView cellForRowAtIndexPath:anIndexPath] isKindOfClass:[DetailDisclosureCell class]]) {
-        DetailDisclosureCell *cell = (DetailDisclosureCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
+    if ([[aTableView cellForRowAtIndexPath:anIndexPath] isKindOfClass:[LabelCell class]]) 
+    {
+        LabelCell *cell = (LabelCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
         if([cell.action isEqualToString:@"addPicture"])
         {
             UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
@@ -373,8 +467,34 @@
 //            [self presentModalViewController:self.imgPicker animated:YES];
                 
         }
+        //return;
         
-        return;
+    }
+    else if ([[aTableView cellForRowAtIndexPath:anIndexPath] isKindOfClass:[CheckmarkCell class]])
+    {
+        CheckmarkCell *cell = (CheckmarkCell*)[aTableView cellForRowAtIndexPath:anIndexPath];
+        if(!cell.checked)
+        {
+            cell.checked = YES;
+            [self.setTypes addObject:cell.value];
+            
+        }
+        else if (cell.checked)
+        {
+            cell.checked = NO;
+            [self.setTypes removeObject:cell.value];
+        }
+        
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) 
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        else if (cell.accessoryType == UITableViewCellAccessoryNone)
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        
+        //return;
     }
     
     PageCell *cell = (PageCell *)[aTableView cellForRowAtIndexPath:anIndexPath];

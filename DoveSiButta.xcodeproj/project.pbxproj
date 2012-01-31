@@ -168,7 +168,6 @@
 		ACE8853F14CECE880004B9DF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853814CECE880004B9DF /* Icon@2x.png */; };
 		ACE8854014CECE880004B9DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853914CECE880004B9DF /* iTunesArtwork */; };
 		ACEE63D714CB707700B604C9 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEE63D614CB707700B604C9 /* Manager.m */; };
-		ACEE63DC14CB733900B604C9 /* RifiutoType.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEE63DB14CB733900B604C9 /* RifiutoType.m */; };
 		ACFC0D5514D4C7F9000265B8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5314D4C7F9000265B8 /* Default.png */; };
 		ACFC0D5614D4C7F9000265B8 /* Default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5414D4C7F9000265B8 /* Default@2X.png */; };
 		ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */; };
@@ -513,8 +512,6 @@
 		ACEE63D514CB707700B604C9 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
 		ACEE63D614CB707700B604C9 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
 		ACEE63D814CB70B900B604C9 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
-		ACEE63DA14CB733900B604C9 /* RifiutoType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RifiutoType.h; path = DoveSiButta/Entities/RifiutoType.h; sourceTree = "<group>"; };
-		ACEE63DB14CB733900B604C9 /* RifiutoType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RifiutoType.m; path = DoveSiButta/Entities/RifiutoType.m; sourceTree = "<group>"; };
 		ACFC0D5314D4C7F9000265B8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = DoveSiButta/Images/Default.png; sourceTree = SOURCE_ROOT; };
 		ACFC0D5414D4C7F9000265B8 /* Default@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2X.png"; path = "DoveSiButta/Images/Default@2X.png"; sourceTree = SOURCE_ROOT; };
 		ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ComuniRaccoltaP2P.plist; sourceTree = "<group>"; };
@@ -554,7 +551,6 @@
 				ACE8843214CDF5670004B9DF /* ShareKit */,
 				ACE882B414CC728C0004B9DF /* ASIHttp */,
 				AC66D01814C24BC70098E1F1 /* CustomTableViewCells */,
-				ACEE63D914CB72CE00B604C9 /* Entities */,
 				AC66CF4814C2482F0098E1F1 /* PageView */,
 				AC66CF4714C248230098E1F1 /* ProgressHUD */,
 				AC66CF4614C248180098E1F1 /* OData */,
@@ -595,11 +591,11 @@
 		AC66CEF714C246410098E1F1 /* DoveSiButta */ = {
 			isa = PBXGroup;
 			children = (
+				AC99992314D68AF6006229A8 /* UIImage+Extensions.h */,
+				AC99992414D68AF6006229A8 /* UIImage+Extensions.m */,
 				ACEE63D414CB703000B604C9 /* Singleton */,
 				AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */,
 				AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */,
-				AC99992314D68AF6006229A8 /* UIImage+Extensions.h */,
-				AC99992414D68AF6006229A8 /* UIImage+Extensions.m */,
 				AC66D04814C24CFA0098E1F1 /* LocationDetailViewController.h */,
 				AC66D04914C24CFA0098E1F1 /* LocationDetailViewController.m */,
 				AC66D00B14C24B6C0098E1F1 /* MapAnnotationDefault.h */,
@@ -1285,15 +1281,6 @@
 			name = Singleton;
 			sourceTree = "<group>";
 		};
-		ACEE63D914CB72CE00B604C9 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				ACEE63DA14CB733900B604C9 /* RifiutoType.h */,
-				ACEE63DB14CB733900B604C9 /* RifiutoType.m */,
-			);
-			name = Entities;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1482,7 +1469,6 @@
 				AC66D04A14C24CFA0098E1F1 /* LocationDetailViewController.m in Sources */,
 				AC66D09014C381B10098E1F1 /* LocationAddViewController.m in Sources */,
 				ACEE63D714CB707700B604C9 /* Manager.m in Sources */,
-				ACEE63DC14CB733900B604C9 /* RifiutoType.m in Sources */,
 				ACE882B214CC6D910004B9DF /* PictureFileViewController.m in Sources */,
 				ACE882C914CC72A90004B9DF /* ASIAuthenticationDialog.m in Sources */,
 				ACE882CA14CC72A90004B9DF /* ASIDataCompressor.m in Sources */,

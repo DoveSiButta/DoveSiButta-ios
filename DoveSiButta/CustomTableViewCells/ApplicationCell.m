@@ -49,7 +49,7 @@
 
 @implementation ApplicationCell
 
-@synthesize useDarkBackground, icon, dinnerTitle, name, rating, numRSVPs, date;
+@synthesize useDarkBackground, icon, itemTitle, name, rating, numRSVPs, date;
 
 - (void)setUseDarkBackground:(BOOL)flag
 {
@@ -68,7 +68,7 @@
 - (void)dealloc
 {
     [icon release];
-    [dinnerTitle release];
+    [itemTitle release];
     [name release];
     [date release];
     

@@ -65,29 +65,6 @@
 @synthesize address, postCode, country;
 @synthesize comuniP2P;
 
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-- (id)initWithSelectedResult:(NerdDinnerModel_Dinner *)aResult
-                  allResults:(NSArray *)allResults{
-    self = [super initWithNibName:@"MapViewController" bundle:[NSBundle mainBundle]];
-    if (self) {
-        selectedResult = [aResult retain];
-		results = [allResults retain];
-    }
-    return self;
-}
-*/
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -113,7 +90,7 @@
 }
 
 
--(void) retrieveDinners
+-(void) retrieveBoxes
 {
     @try{
         
@@ -131,38 +108,44 @@
         //    NSArray *resultArr = [[proxy FindUpcomingDinners] retain]; //??? Returns no results as of 2012-01-12
         //        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
 //        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
-#if DEBUG
-        NSLog(@"resultarray...%d",[resultArr count]);
-#endif
-        for (int i =0;i<[resultArr count]; i++) {
-            
-            DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
-#if DEBUG
-            NSLog(@"=== Item %d  ===",i);
-            NSLog(@"dinner id...%@",[[p getBoxID] stringValue]);
-            NSLog(@"dinner name...%@",[p getTitle]);
-            NSLog(@"dinner desc......%@",[p getDescription]);
-            NSLog(@"Date..%@",[p getEventDate]);
-            //		NSLog(@"Type..%@",[p getDinnerType]);
-            NSLog(@"Latitude..%@",[p getLatitude]);
-            NSLog(@"Longitude..%@",[p getLongitude]);
-            NSLog(@"==Fine Dinner==");
-#endif   
-        }
+//#if DEBUG
+//        NSLog(@"resultarray...%d",[resultArr count]);
+//#endif
+//        for (int i =0;i<[resultArr count]; i++) {
+//            
+//            DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
+//#if DEBUG
+//            NSLog(@"=== Item %d  ===",i);
+//            NSLog(@"dinner id...%@",[[p getBoxID] stringValue]);
+//            NSLog(@"dinner name...%@",[p getTitle]);
+//            NSLog(@"dinner desc......%@",[p getDescription]);
+//            NSLog(@"Date..%@",[p getEventDate]);
+//            //		NSLog(@"Type..%@",[p getDinnerType]);
+//            NSLog(@"Latitude..%@",[p getLatitude]);
+//            NSLog(@"Longitude..%@",[p getLongitude]);
+//            NSLog(@"==Fine Dinner==");
+//#endif   
+//        }
         
         results = [resultArr mutableCopy];
     }
     @catch (DataServiceRequestException * e) 
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
         NSLog(@"exception = %@,  innerExceptiom= %@",[e name],[[e getResponse] getError]);
     }	
     @catch (ODataServiceException * e) 
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
         NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
         
     }	
     @catch (NSException * e) 
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
@@ -177,7 +160,7 @@
         //Per usare il Dictionary è necessario implementare 
         
         MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
-        resultAnnotation.dinner = aResult;
+        resultAnnotation.item = aResult;
         [resultAnnotation retain];
         
         [mapView addAnnotation:resultAnnotation];
@@ -186,7 +169,7 @@
     
 }
 
--(void) retrieveDinnersForType:(NSString*)searchType
+-(void) retrieveBoxesForType:(NSString*)searchType
 {
     @try{
         
@@ -202,23 +185,23 @@
         results = [[NSMutableArray alloc] init ];
         NSArray *resultArr =[[response getResult] retain];
 //        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
-#if DEBUG
-        NSLog(@"resultarray...%d",[resultArr count]);
-#endif
+//#if DEBUG
+//        NSLog(@"resultarray...%d",[resultArr count]);
+//#endif
         for (int i =0;i<[resultArr count]; i++) {
             
             DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
-#if DEBUG
-            NSLog(@"=== Dinner %d  ===",i);
-            NSLog(@"dinner id...%@",[[p getBoxID] stringValue]);
-            NSLog(@"dinner name...%@",[p getTitle]);
-            NSLog(@"dinner desc......%@",[p getDescription]);
-            NSLog(@"Date..%@",[p getEventDate]);
-NSLog(@"Type..%@",[p getBoxType]);
-            NSLog(@"Latitude..%@",[p getLatitude]);
-            NSLog(@"Longitude..%@",[p getLongitude]);
-            NSLog(@"==Fine Dinner==");
-#endif   
+//#if DEBUG
+//            NSLog(@"=== Dinner %d  ===",i);
+//            NSLog(@"dinner id...%@",[[p getBoxID] stringValue]);
+//            NSLog(@"dinner name...%@",[p getTitle]);
+//            NSLog(@"dinner desc......%@",[p getDescription]);
+//            NSLog(@"Date..%@",[p getEventDate]);
+//NSLog(@"Type..%@",[p getBoxType]);
+//            NSLog(@"Latitude..%@",[p getLatitude]);
+//            NSLog(@"Longitude..%@",[p getLongitude]);
+//            NSLog(@"==Fine Dinner==");
+//#endif   
             if ([[p getBoxType] isEqualToString:self.selectedType]) //TODO: andrebbe filtrato nella query
             {
                 [results addObject:p];
@@ -230,15 +213,21 @@ NSLog(@"Type..%@",[p getBoxType]);
     }
     @catch (DataServiceRequestException * e) 
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
         NSLog(@"exception = %@,  innerExceptiom= %@",[e name],[[e getResponse] getError]);
     }	
     @catch (ODataServiceException * e) 
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
         NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
         
     }	
     @catch (NSException * e) 
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
@@ -253,7 +242,7 @@ NSLog(@"Type..%@",[p getBoxType]);
         //Per usare il Dictionary è necessario implementare 
         
         MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
-        resultAnnotation.dinner = aResult;
+        resultAnnotation.item = aResult;
         [resultAnnotation retain];
         
         [mapView addAnnotation:resultAnnotation];
@@ -284,38 +273,45 @@ NSLog(@"Type..%@",[p getBoxType]);
         NSArray *resultArr = [[proxy ItemsNearMeWithplaceorzip:[searchAddress stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]] retain];
         //        NSArray *resultArr =[[proxy GetMostRecentDinners] retain]; //Method with custom OData Query
 //        [[resultArr reverseObjectEnumerator] allObjects]; //Reversed order if I use my own query
-#if DEBUG
-        NSLog(@"resultarray...%d",[resultArr count]);
-#endif
-        for (int i =0;i<[resultArr count]; i++) {
+//#if DEBUG
+//        NSLog(@"resultarray...%d",[resultArr count]);
+//#endif
+//        for (int i =0;i<[resultArr count]; i++) {
+//            
+//            DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
+//#if DEBUG
+//            NSLog(@"=== Dinner %d  ===",i);
+//            NSLog(@"dinner id...%@",[[p getBoxID] stringValue]);
+//            NSLog(@"dinner name...%@",[p getTitle]);
+//            NSLog(@"dinner desc......%@",[p getDescription]);
+//            NSLog(@"Date..%@",[p getEventDate]);
+//            NSLog(@"Type..%@",[p getBoxType]);
+//            NSLog(@"Latitude..%@",[p getLatitude]);
+//            NSLog(@"Longitude..%@",[p getLongitude]);
+//            NSLog(@"==Fine Dinner==");
+//#endif   
             
-            DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
-#if DEBUG
-            NSLog(@"=== Dinner %d  ===",i);
-            NSLog(@"dinner id...%@",[[p getBoxID] stringValue]);
-            NSLog(@"dinner name...%@",[p getTitle]);
-            NSLog(@"dinner desc......%@",[p getDescription]);
-            NSLog(@"Date..%@",[p getEventDate]);
-            NSLog(@"Type..%@",[p getBoxType]);
-            NSLog(@"Latitude..%@",[p getLatitude]);
-            NSLog(@"Longitude..%@",[p getLongitude]);
-            NSLog(@"==Fine Dinner==");
-#endif   
-        }
+//        }
         
         results = [resultArr mutableCopy];
     }
     @catch (DataServiceRequestException * e) 
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
         NSLog(@"exception = %@,  innerExceptiom= %@",[e name],[[e getResponse] getError]);
     }	
     @catch (ODataServiceException * e) 
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
         NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
         
     }	
     @catch (NSException * e) 
     {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert show];
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
@@ -330,7 +326,7 @@ NSLog(@"Type..%@",[p getBoxType]);
         //Per usare il Dictionary è necessario implementare 
         
         MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
-        resultAnnotation.dinner = aResult;
+        resultAnnotation.item = aResult;
         [resultAnnotation retain];
         
         [mapView addAnnotation:resultAnnotation];
@@ -511,7 +507,7 @@ NSLog(@"Type..%@",[p getBoxType]);
 - (void)showDetails:(id)sender forAnnotation:(MKAnnotationView <GMAnnotation> *)annotation
 {
     // the detail view does not want a toolbar so hide it
-    LocationDetailViewController *detailvc = [[LocationDetailViewController alloc] initWithDinner:[annotation dinner]];
+    LocationDetailViewController *detailvc = [[LocationDetailViewController alloc] initWithItem:[annotation dinner]];
     [self.navigationController pushViewController:detailvc animated:YES];
 }
     /*
@@ -623,7 +619,7 @@ NSLog(@"Type..%@",[p getBoxType]);
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
     MapAnnotationDefault *myAnnotation = (MapAnnotationDefault*)view.annotation;
-    LocationDetailViewController *ldvc = [[LocationDetailViewController alloc] initWithDinner:myAnnotation.dinner];
+    LocationDetailViewController *ldvc = [[LocationDetailViewController alloc] initWithItem:myAnnotation.item];
     //[myAnnotation loadDetailView];
     [self.navigationController pushViewController:ldvc animated:YES];
     
@@ -690,7 +686,7 @@ NSLog(@"Type..%@",[p getBoxType]);
     [HUD show:YES];
     //        [self retrieveDinnersWithAddress:self.address];
     //        [self retrieveDinners];
-    [self retrieveDinnersForType:self.selectedType];
+    [self retrieveBoxesForType:self.selectedType];
     
     
     
@@ -933,8 +929,8 @@ NSLog(@"Type..%@",[p getBoxType]);
     self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
     NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
     NSLog(@"Address of placemark: %@", ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO));
-    NSLog(@"street::::%@",[placemark thoroughfare]); //Via dei Mille
-    NSLog(@"street number::::%@",[placemark subThoroughfare]); //45
+    NSLog(@"street::::%@",[placemark thoroughfare]); //Via 
+    NSLog(@"street number::::%@",[placemark subThoroughfare]); //num civico
     NSLog(@"postalcode %@", [placemark postalCode]);
     NSLog(@"sublocality %@", [placemark subLocality]);  //Brescia
     NSLog(@"locality %@", [placemark locality]); //Brescia
@@ -958,7 +954,7 @@ NSLog(@"Type..%@",[p getBoxType]);
         [HUD show:YES];
 //        [self retrieveDinnersWithAddress:self.address];
 //        [self retrieveDinners];
-        [self retrieveDinnersForType:self.selectedType];
+        [self retrieveBoxesForType:self.selectedType];
         
         
 //        HUD.detailsLabelText = @"Loading...";

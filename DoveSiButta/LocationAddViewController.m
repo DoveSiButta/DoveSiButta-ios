@@ -107,7 +107,7 @@
         [boxType retain];
 //        NSLog(@"boxtype: %@", boxType);
         
-        //1- Get dinner with ID
+        //1- Get item with ID
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
 
@@ -317,65 +317,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
-    /*
-    [self appendRowToSection:1 cellClass:[TextFieldCell class] 
-                    cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              NSLocalizedString(@"ID", @""),
-                              @"label",
-                              [NSString stringWithFormat:@"%@",[newItem getDinnerID] ], @"value",
-                              NSLocalizedString(@"Value goes here", @""),
-                              @"placeholder", 
-                              NO, 
-                              @"editable",
-                              nil]
-               withAnimation:UITableViewRowAnimationNone];
-     */
-    /*
-     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
-     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-     NSLocalizedString(@"Hosted By", @""),
-     @"label",
-     [NSString stringWithFormat:@"%@",[selectedDinner getHostedBy] ], @"value",
-     NSLocalizedString(@"Value goes here", @""),
-     @"placeholder", 
-     NO, 
-     @"editable",
-     nil]
-     withAnimation:UITableViewRowAnimationNone];
-     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
-     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-     NSLocalizedString(@"Description", @""),
-     @"label",
-     [NSString stringWithFormat:@"%@",[selectedDinner getDescription] ], @"value",
-     NSLocalizedString(@"Value goes here", @""),
-     @"placeholder", 
-     NO, 
-     @"editable",
-     nil]
-     withAnimation:UITableViewRowAnimationNone];
-     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
-     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-     NSLocalizedString(@"Phone", @""),
-     @"label",
-     [NSString stringWithFormat:@"%@",[selectedDinner getContactPhone] ], @"value",
-     NSLocalizedString(@"Value goes here", @""),
-     @"placeholder", 
-     NO, 
-     @"editable",
-     nil]
-     withAnimation:UITableViewRowAnimationNone];
-     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
-     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-     NSLocalizedString(@"Hosted by ID", @""),
-     @"label",
-     [NSString stringWithFormat:@"%@",[selectedDinner getHostedById] ], @"value",
-     NSLocalizedString(@"Value goes here", @""),
-     @"placeholder", 
-     NO, 
-     @"editable",
-     nil]
-     withAnimation:UITableViewRowAnimationNone];
-     */
+  
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Address", @""),

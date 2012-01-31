@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-//#import "NerdDinnerEntities.h"
 #import "DoveSiButtaEntities.h"
 
 @protocol GMAnnotation <MKAnnotation>
@@ -27,7 +26,7 @@
 
 }
 
-@property (nonatomic, retain) DoveSiButtaModel_Box *dinner;
+@property (nonatomic, retain) DoveSiButtaModel_Box *item;
 
 
 

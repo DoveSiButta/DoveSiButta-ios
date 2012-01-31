@@ -20,7 +20,6 @@
 		AC66CFDF14C2494F0098E1F1 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFC214C2494F0098E1F1 /* ButtonCell.m */; };
 		AC66CFE014C2494F0098E1F1 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66CFC314C2494F0098E1F1 /* ButtonCell.xib */; };
 		AC66CFE114C2494F0098E1F1 /* CheckmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFC514C2494F0098E1F1 /* CheckmarkCell.m */; };
-		AC66CFE214C2494F0098E1F1 /* LabelCell+Selectable.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFC714C2494F0098E1F1 /* LabelCell+Selectable.m */; };
 		AC66CFE314C2494F0098E1F1 /* LabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFC914C2494F0098E1F1 /* LabelCell.m */; };
 		AC66CFE414C2494F0098E1F1 /* NibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66CFCA14C2494F0098E1F1 /* NibCell.xib */; };
 		AC66CFE514C2494F0098E1F1 /* NibLoadedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFCC14C2494F0098E1F1 /* NibLoadedCell.m */; };
@@ -264,8 +263,6 @@
 		AC66CFC314C2494F0098E1F1 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		AC66CFC414C2494F0098E1F1 /* CheckmarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckmarkCell.h; sourceTree = "<group>"; };
 		AC66CFC514C2494F0098E1F1 /* CheckmarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckmarkCell.m; sourceTree = "<group>"; };
-		AC66CFC614C2494F0098E1F1 /* LabelCell+Selectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LabelCell+Selectable.h"; sourceTree = "<group>"; };
-		AC66CFC714C2494F0098E1F1 /* LabelCell+Selectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LabelCell+Selectable.m"; sourceTree = "<group>"; };
 		AC66CFC814C2494F0098E1F1 /* LabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelCell.h; sourceTree = "<group>"; };
 		AC66CFC914C2494F0098E1F1 /* LabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelCell.m; sourceTree = "<group>"; };
 		AC66CFCA14C2494F0098E1F1 /* NibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NibCell.xib; sourceTree = "<group>"; };
@@ -742,8 +739,6 @@
 				AC66CFC314C2494F0098E1F1 /* ButtonCell.xib */,
 				AC66CFC414C2494F0098E1F1 /* CheckmarkCell.h */,
 				AC66CFC514C2494F0098E1F1 /* CheckmarkCell.m */,
-				AC66CFC614C2494F0098E1F1 /* LabelCell+Selectable.h */,
-				AC66CFC714C2494F0098E1F1 /* LabelCell+Selectable.m */,
 				AC66CFC814C2494F0098E1F1 /* LabelCell.h */,
 				AC66CFC914C2494F0098E1F1 /* LabelCell.m */,
 				AC66CFCA14C2494F0098E1F1 /* NibCell.xib */,
@@ -1449,7 +1444,6 @@
 				AC66CFBF14C249230098E1F1 /* GradientButton.m in Sources */,
 				AC66CFDF14C2494F0098E1F1 /* ButtonCell.m in Sources */,
 				AC66CFE114C2494F0098E1F1 /* CheckmarkCell.m in Sources */,
-				AC66CFE214C2494F0098E1F1 /* LabelCell+Selectable.m in Sources */,
 				AC66CFE314C2494F0098E1F1 /* LabelCell.m in Sources */,
 				AC66CFE514C2494F0098E1F1 /* NibLoadedCell.m in Sources */,
 				AC66CFE614C2494F0098E1F1 /* TextFieldCell.m in Sources */,

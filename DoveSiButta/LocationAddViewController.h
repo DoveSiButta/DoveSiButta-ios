@@ -9,7 +9,6 @@
 #import "PageViewController.h"
 #import "MBProgressHUD.h"
 //Service
-//#import "NerdDinnerEntities.h"
 #import "DoveSiButtaEntities.h"
 
 

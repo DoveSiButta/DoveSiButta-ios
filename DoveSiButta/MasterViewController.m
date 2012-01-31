@@ -20,7 +20,6 @@
 #import "ODataServiceException.h"
 #import "ODataXMlParser.h"
 //Service
-//#import "NerdDinnerEntities.h"
 #import "DoveSiButtaEntities.h"
 
 //Cells
@@ -267,62 +266,7 @@
 
     return cell;
 
- 
- /*   
-  //Following code if we use dinner list as data source
-    static NSString *CellIdentifier = @"ApplicationCell";
-    
-    ApplicationCell *cell = (ApplicationCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	
-    if (cell == nil)
-    {
-#if USE_INDIVIDUAL_SUBVIEWS_CELL
-        [self.cellNib instantiateWithOwner:self options:nil];
-		cell = tmpCell;
-		self.tmpCell = nil;
-		
-#elif USE_COMPOSITE_SUBVIEW_CELL
-        cell = [[[CompositeSubviewBasedApplicationCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                                            reuseIdentifier:CellIdentifier] autorelease];
-		
-#elif USE_HYBRID_CELL
-        cell = [[[HybridSubviewBasedApplicationCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                                         reuseIdentifier:CellIdentifier] autorelease];
-#endif
-    }
-    
-	// Display dark and light background in alternate rows -- see tableView:willDisplayCell:forRowAtIndexPath:.
-    cell.useDarkBackground = (indexPath.row % 2 == 0);
-	
-    
-    //Get data
-    NerdDinnerModel_Dinner *dinner = nil;
-    if (tableView == self.searchDisplayController.searchResultsTableView)
-	{
-        dinner = [self.filteredListContent objectAtIndex:indexPath.row];
-    }
-	else
-	{
-        dinner = [self.listContent objectAtIndex:indexPath.row];
-    }
-	    
-	// Configure the data for the cell.
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd"];
-//    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-//    [f setNumberStyle:NSNumberFormatterDecimalStyle];
-    cell.icon = [UIImage imageNamed:[iconsDictionary objectForKey:[dinner getDinnerType]] ];  // [UIImage imageNamed:@"Dinner"];
-    cell.dinnerTitle = [dinner getHostedBy];
-    cell.name = [dinner getTitle];
-    cell.numRSVPs = [[dinner getRSVPs] count]; 
-    cell.rating = 1.0f; //TODO: calculate rating based on RSVPs
-    cell.date = [dateFormat stringFromDate:[dinner getEventDate]];
-	
-    //[f release];
-    [dateFormat release];
-    
-    return cell;
-  */
+
 }
 
 /*

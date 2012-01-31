@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-//#import "NerdDinnerEntities.h"
 #import "DoveSiButtaEntities.h"
 
 //HUD
@@ -77,8 +76,6 @@
 @property (nonatomic, retain) NSString *country;
 
 
-
-//- (id)initWithSelectedResult:(NerdDinnerModel_Dinner *)aResult allResults:(NSArray *)allResults;
 
 
 

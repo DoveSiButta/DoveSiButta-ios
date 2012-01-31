@@ -53,7 +53,7 @@
     BOOL useDarkBackground;
 
     UIImage *icon;
-    NSString *dinnerTitle;
+    NSString *itemTitle;
     NSString *name;
     float rating;
     NSInteger numRSVPs;
@@ -63,7 +63,7 @@
 @property(nonatomic) BOOL useDarkBackground;
 
 @property(retain) UIImage *icon;
-@property(retain) NSString *dinnerTitle;
+@property(retain) NSString *itemTitle;
 @property(retain) NSString *name;
 @property float rating;
 @property NSInteger numRSVPs;

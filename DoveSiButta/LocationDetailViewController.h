@@ -7,14 +7,13 @@
 //
 
 #import "PageViewController.h"
-//#import "NerdDinnerEntities.h"
 #import "DoveSiButtaEntities.h"
 
 @interface LocationDetailViewController : PageViewController
 
-@property (nonatomic, retain) DoveSiButtaModel_Box *selectedDinner;
+@property (nonatomic, retain) DoveSiButtaModel_Box *selectedBox;
 
-- (id)initWithDinner:(DoveSiButtaModel_Box*)dinner;
+- (id)initWithItem:(DoveSiButtaModel_Box*)dinner;
 //- (void)addRSVP:(id)sender;;
 
 @end

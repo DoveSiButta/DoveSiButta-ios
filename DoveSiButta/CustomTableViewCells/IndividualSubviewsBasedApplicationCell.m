@@ -68,9 +68,9 @@
     iconView.image = newIcon;
 }
 
-- (void)setDinnerTitle:(NSString *)newPublisher
+- (void)setItemTitle:(NSString *)newPublisher
 {
-    [super setDinnerTitle:newPublisher];
+    [super setItemTitle:newPublisher];
     publisherLabel.text = newPublisher;
 }
 

@@ -17,7 +17,7 @@
 #import "SHK.h"
 
 @implementation LocationDetailViewController
-@synthesize selectedDinner;
+@synthesize selectedBox;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,12 +28,12 @@
     return self;
 }
 
-- (id)initWithDinner:(DoveSiButtaModel_Box*)dinner
+- (id)initWithItem:(DoveSiButtaModel_Box*)item
 {
     self = [super init];
     if (self) {
         // Custom initialization
-        self.selectedDinner = dinner;
+        self.selectedBox = item;
     }
     return self;
 }
@@ -100,21 +100,13 @@
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     
    	[self addSectionAtIndex:0 withAnimation:UITableViewRowAnimationNone];
-    /*
-    [self appendRowToSection:0 cellClass:[NibLoadedCell class] 
-                    cellData:[NSDictionary dictionaryWithObjectsAndKeys:
-                              [selectedDinner getTitle],@"labelText",
-                              [NSString stringWithString:@"Dinner"],@"imageName", //No primitive types in NSDictionary objects
-                              NSLocalizedString(@"Title", @"Title Label"),@"titleLabelText", 
-                              nil] 
-               withAnimation:UITableViewRowAnimationNone];
-*/
+
     [self addSectionAtIndex:1 withAnimation:UITableViewRowAnimationNone];
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Where", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getTitle] ], @"value",
+                              [NSString stringWithFormat:@"%@",[selectedBox getTitle] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -125,7 +117,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"When", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getEventDate] ], @"value",
+                              [NSString stringWithFormat:@"%@",[selectedBox getEventDate] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -136,7 +128,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Latitude", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getLatitude] ], @"value",
+                              [NSString stringWithFormat:@"%@",[selectedBox getLatitude] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -147,7 +139,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Longitude", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getLongitude] ], @"value",
+                              [NSString stringWithFormat:@"%@",[selectedBox getLongitude] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -158,7 +150,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"ID", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getBoxID] ], @"value",
+                              [NSString stringWithFormat:@"%@",[selectedBox getBoxID] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -215,7 +207,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Address", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getAddress] ], @"value",
+                              [NSString stringWithFormat:@"%@",[selectedBox getAddress] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -226,7 +218,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Country", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getCountry] ], @"value",
+                              [NSString stringWithFormat:@"%@",[selectedBox getCountry] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -298,7 +290,7 @@ titleForHeaderInSection:(NSInteger)section
         {
             [cell handleSelectionInTableView:aTableView];
             PictureFileViewController *pvc = [[PictureFileViewController alloc] initWithNibName:@"PictureFileViewController" bundle:[NSBundle mainBundle]];
-            pvc.selectedItem = [self.selectedDinner getBoxID];
+            pvc.selectedItem = [self.selectedBox getBoxID];
             [self.navigationController pushViewController:pvc animated:YES];
         }
         else if ([cell.action isEqualToString:@"showRSVP"])

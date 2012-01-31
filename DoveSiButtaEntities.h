@@ -279,7 +279,7 @@
 - (NSArray *) FindAllItems;
 - (NSArray *) ItemsNearMeWithplaceorzip:(NSString *)placeOrZip;
 - (NSArray *) ItemsNearMeByCoordinatesWithlatitude:(NSDecimalNumber *)latitude longitude:(NSDecimalNumber *)longitude;
-- (NSString *) CreateNewItemWithtitle:(NSString *)title latitude:(NSDecimalNumber *)latitude longitude:(NSDecimalNumber *)longitude address:(NSString *)address boxtype:(NSString *)boxType picture_filename:(NSString *)picture_filename;
+- (NSString *) CreateNewItemWithtitle:(NSString *)title description:(NSString *)description hostedby:(NSString *)hostedby latitude:(NSDecimalNumber *)latitude longitude:(NSDecimalNumber *)longitude address:(NSString *)address country:(NSString *)country boxtype:(NSString *)boxType contactphone:(NSString *)contactphone picture_filename:(NSString *)picture_filename;
 - (NSString *) SetFileWithitemid:(NSNumber *)itemID file:(NSData *)file;
 - (NSString *) SetFileBase64Withitemid:(NSNumber *)itemID filebase64:(NSString *)fileBase64;
 - (NSString *) GetFileWithitemid:(NSNumber *)itemID;

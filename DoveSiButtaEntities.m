@@ -503,13 +503,13 @@
 /*
  * Method for service operation
  */
-- (NSString *) CreateNewItemWithtitle:(NSString *)title latitude:(NSDecimalNumber *)latitude longitude:(NSDecimalNumber *)longitude address:(NSString *)address boxtype:(NSString *)boxType picture_filename:(NSString *)picture_filename
+- (NSString *) CreateNewItemWithtitle:(NSString *)title description:(NSString *)description hostedby:(NSString *)hostedby latitude:(NSDecimalNumber *)latitude longitude:(NSDecimalNumber *)longitude address:(NSString *)address country:(NSString *)country boxtype:(NSString *)boxType contactphone:(NSString *)contactphone picture_filename:(NSString *)picture_filename
 {
-	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:title,@"title",latitude,@"latitude",longitude,@"longitude",address,@"address",boxType,@"boxType",picture_filename,@"picture_filename",nil];
+	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:title,@"title",description,@"description",hostedby,@"hostedby",latitude,@"latitude",longitude,@"longitude",address,@"address",country,@"country",boxType,@"boxType",contactphone,@"contactphone",picture_filename,@"picture_filename",nil];
 	NSString *aQuery=[self prepareQuery:@"CreateNewItem" parameters:params];
 	[params release];
 
-	return [self executeServiceOperation:aQuery httpMethod:@"POST" isReturnTypeCollection:NO];
+	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
 }
 /*
  * Method for service operation
@@ -520,7 +520,7 @@
 	NSString *aQuery=[self prepareQuery:@"SetFile" parameters:params];
 	[params release];
 
-	return [self executeServiceOperation:aQuery httpMethod:@"POST" isReturnTypeCollection:NO];
+	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
 }
 /*
  * Method for service operation
@@ -531,7 +531,7 @@
 	NSString *aQuery=[self prepareQuery:@"SetFileBase64" parameters:params];
 	[params release];
 
-	return [self executeServiceOperation:aQuery httpMethod:@"POST" isReturnTypeCollection:NO];
+	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
 }
 /*
  * Method for service operation

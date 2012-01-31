@@ -169,10 +169,8 @@
 
         }
         
-//TODO: controllare l'indirizzo, ma la stringa funziona
 //            http://192.168.138.2/Services/OData.svc/CreateNewItem?longitude=10.32752f&title='Nuovo'&latitude=45.51141f    
-//TODO: Controlla che i dati ci siano tutti i dati
-//TODO:  Controlla che ci sia la foto
+
     }
     else
     {

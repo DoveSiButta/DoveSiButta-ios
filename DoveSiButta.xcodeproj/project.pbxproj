@@ -65,6 +65,7 @@
 		AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC99992414D68AF6006229A8 /* UIImage+Extensions.m */; };
 		AC99992714D68E83006229A8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AC99992614D68E83006229A8 /* LICENSE */; };
 		ACD7D1E914D8A75600B1FE37 /* DoveSiButtaEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD7D1E814D8A75600B1FE37 /* DoveSiButtaEntities.m */; };
+		ACD7D1F614D8AFD700B1FE37 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD7D1F514D8AFD700B1FE37 /* NSData+Base64.m */; };
 		ACE882AE14CC59C80004B9DF /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE882AD14CC59C80004B9DF /* AddressBookUI.framework */; };
 		ACE882B214CC6D910004B9DF /* PictureFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE882B014CC6D910004B9DF /* PictureFileViewController.m */; };
 		ACE882B314CC6D910004B9DF /* PictureFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE882B114CC6D910004B9DF /* PictureFileViewController.xib */; };
@@ -327,6 +328,8 @@
 		AC99992614D68E83006229A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		ACD7D1E714D8A75600B1FE37 /* DoveSiButtaEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoveSiButtaEntities.h; sourceTree = "<group>"; };
 		ACD7D1E814D8A75600B1FE37 /* DoveSiButtaEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoveSiButtaEntities.m; sourceTree = "<group>"; };
+		ACD7D1F414D8AFD700B1FE37 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		ACD7D1F514D8AFD700B1FE37 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		ACE882AD14CC59C80004B9DF /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		ACE882AF14CC6D900004B9DF /* PictureFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureFileViewController.h; sourceTree = "<group>"; };
 		ACE882B014CC6D910004B9DF /* PictureFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureFileViewController.m; sourceTree = "<group>"; };
@@ -636,6 +639,8 @@
 		AC66CF4614C248180098E1F1 /* OData */ = {
 			isa = PBXGroup;
 			children = (
+				ACD7D1F414D8AFD700B1FE37 /* NSData+Base64.h */,
+				ACD7D1F514D8AFD700B1FE37 /* NSData+Base64.m */,
 				ACD7D1E714D8A75600B1FE37 /* DoveSiButtaEntities.h */,
 				ACD7D1E814D8A75600B1FE37 /* DoveSiButtaEntities.m */,
 				ACE882DD14CCD1710004B9DF /* XPathQuery.h */,
@@ -1535,6 +1540,7 @@
 				ACE8850E14CDF5680004B9DF /* SHKViewControllerWrapper.m in Sources */,
 				AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */,
 				ACD7D1E914D8A75600B1FE37 /* DoveSiButtaEntities.m in Sources */,
+				ACD7D1F614D8AFD700B1FE37 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -342,12 +342,26 @@
 {
     LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
     DoveSiButtaModel_Box *newItem = [[DoveSiButtaModel_Box alloc] init];
-    [newItem setTitle:@"Nuovo"];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//    [dateFormat setDateFormat:@"yyyyMMdd_hhmmss"];
+//    [newItem setTitle:[dateFormat stringFromDate:[NSDate date]]];
+//    [dateFormat release];
+    if( [self.address length] > 50)
+    {
+        NSString *shortTitle = [self.address substringToIndex:50];
+        [newItem setTitle:shortTitle ];
+    }
+    else
+    {
+        [newItem setTitle:self.address ];
+    }
+    
+    
     [newItem setAddress:self.address];
     [newItem setCountry:self.country];
     [newItem setHostedBy:@""];
     [newItem setEventDate:[NSDate date]];
-    [newItem setContactPhone:@""];
+
    
     CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
     NSLocale *locale = [NSLocale currentLocale];

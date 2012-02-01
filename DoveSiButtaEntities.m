@@ -508,7 +508,7 @@
 	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:title,@"title",description,@"description",hostedby,@"hostedby",latitude,@"latitude",longitude,@"longitude",address,@"address",country,@"country",boxType,@"boxType",contactphone,@"contactphone",picture_filename,@"picture_filename",nil];
 	NSString *aQuery=[self prepareQuery:@"CreateNewItem" parameters:params];
 	[params release];
-
+//    aQuery = [aQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; //GM
 	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
 }
 /*
@@ -519,7 +519,8 @@
 	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:itemID,@"itemID",file,@"file",nil];
 	NSString *aQuery=[self prepareQuery:@"SetFile" parameters:params];
 	[params release];
-
+    [aQuery retain];
+    NSLog(@"%@", aQuery);
 	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
 }
 /*
@@ -530,7 +531,8 @@
 	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:itemID,@"itemID",fileBase64,@"fileBase64",nil];
 	NSString *aQuery=[self prepareQuery:@"SetFileBase64" parameters:params];
 	[params release];
-
+    [aQuery retain];
+    NSLog(@"%@", aQuery);
 	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
 }
 /*

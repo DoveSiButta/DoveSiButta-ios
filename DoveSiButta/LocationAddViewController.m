@@ -29,6 +29,12 @@
 //Xpath
 #import "XPathQuery.h"
 
+//NSdata
+#import "NSData+Base64.h"
+
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
+
 #define radians( degrees ) ( degrees * M_PI / 180 ) 
 
 @implementation LocationAddViewController
@@ -113,17 +119,17 @@
 
         
         NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
-        [newItem setContactPhone:udid];
+        [newItem setContactPhone:[udid substringToIndex:20]];
         [newItem setBoxType:boxType];
+        [newItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
         
-        //SOLO PER DEBUG!!!
-        [newItem setPicture_Filename:@"prova.jpg"];
+
         
         DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
         [proxy retain];
     //    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
     //    odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
-        NSString *retString = [proxy CreateNewItemWithtitle:[newItem getTitle] latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] boxtype:[newItem getBoxType] picture_filename:[newItem getPicture_Filename]];
+        NSString *retString = [proxy CreateNewItemWithtitle:[newItem getTitle] description:[newItem getDescription] hostedby:@"" latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] country:[newItem getCountry] boxtype:[newItem getBoxType] contactphone:[newItem getContactPhone] picture_filename:@""]; // [proxy CreateNewItemWithtitle:[newItem getTitle] latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] boxtype:[newItem getBoxType] picture_filename:[newItem getPicture_Filename]];
         NSLog(@"Returned: %@", retString);
         
         retString = [[retString stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
@@ -140,10 +146,26 @@
         if (newBoxID > 0) {
             //Vuole dire che ha funzionato
             NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
+
+//            NSString *base64PictureData = [pictureData base64EncodedString];
             
             NSString *setFileReturn = [proxy SetFileWithitemid:[NSNumber numberWithInt:newBoxID] file:pictureData];
             setFileReturn = [[setFileReturn stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
             result = PerformXMLXPathQuery([setFileReturn dataUsingEncoding:NSUTF8StringEncoding], @"/SetFile");
+            
+
+            
+            //prova con asi..
+//            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"192.168.138.2/Services/OData.svc/SetFile/"]];
+//            [request addPostValue:[NSString stringWithFormat:@"%d",newBoxID] forKey:@"id"];
+//            [request addData:pictureData forKey:@"picture_file"];
+//            [request start];
+            
+                //provo con base64...
+//            NSString* setFileReturn = [proxy SetFileBase64Withitemid:[NSNumber numberWithInt:newBoxID] filebase64:base64PictureData];
+//            setFileReturn = [[setFileReturn stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
+//            result = PerformXMLXPathQuery([setFileReturn dataUsingEncoding:NSUTF8StringEncoding], @"/SetFileBase64");
+            
             NSString *setFileResult = [[result objectAtIndex:0] objectForKey:@"nodeContent"];
             [setFileResult retain];
             NSLog(@"setfileresult %@", setFileResult);
@@ -448,7 +470,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo {
     //Qui devo salvare l'immagine nella cache e resizarla
-    UIImage *scaledImage = [img imageByScalingProportionallyToMinimumSize:CGSizeMake(640.0f, 480.0f)]; // [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
+    UIImage *scaledImage = [img imageByScalingProportionallyToMinimumSize:CGSizeMake(50.0f, 50.0f)]; //[img imageByScalingProportionallyToMinimumSize:CGSizeMake(640.0f, 480.0f)]; // [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
     NSData* imageData = UIImageJPEGRepresentation(scaledImage, 0.9f);
     
     // Give a name to the file

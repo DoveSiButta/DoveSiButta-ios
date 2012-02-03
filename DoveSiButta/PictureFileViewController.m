@@ -27,6 +27,8 @@
 //HUD
 #import "MBProgressHUD.h"
 
+#import "NSData+Base64.h"
+
 @implementation PictureFileViewController
 @synthesize imageView,selectedItem;
 
@@ -123,11 +125,15 @@
 
 - (void) getPictureFile
 {    
-    //1- Get dinner with ID
+    
+    
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
-    NSString *appURI = [defaults objectForKey:@"appURI"];
+    NSString *picturesURI = [defaults objectForKey:@"picturesURI"];
     DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
+    /* //OLD METHOD
+     //1- Get dinner with ID
     NSString *odataResult = [[proxy GetFileWithitemid:self.selectedItem] retain];
     odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
     
@@ -190,7 +196,76 @@
     
 //    NSData *fileData =  [NSData dataWithBase64EncodedString:[result objectForKey:@"FileByte"] ];
     //        NSLog(@"GetFileProfileByDocumentId returned the file: %@", [result objectForKey:@"FileByte"]);
-   
+   */
+    
+    //ODATA
+    @try {
+
+        DataServiceQuery *query = [proxy pictures];
+        [query filter:[NSString stringWithFormat:@"LinkedBoxID eq %@",selectedItem]];
+        QueryOperationResponse *queryOperationResponse = [query execute];
+
+        DoveSiButtaModel_Picture *thePicture =[[queryOperationResponse getResult] objectAtIndex:0];
+        [thePicture retain];
+        NSLog(@"pictureID ID: %@", [thePicture getID]); 
+        
+        if([[thePicture getPicture_Filename] length ] >0)
+        {
+        
+            // TEMPORARY  PATH
+            // Get the Caches directory
+            NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+            // Add your filename to the directory to create your temp pdf location
+            NSString *tempFileLocation = [cachesDirectory stringByAppendingPathComponent:[thePicture getPicture_Filename]];
+    //        NSString *debugURL = @"http://192.168.138.2/Pictures/";
+    //        NSURL *url = [NSURL URLWithString: [debugURL stringByAppendingString:[thePicture getPicture_Filename]] ];
+            NSURL *url = [NSURL URLWithString: [picturesURI stringByAppendingString:[thePicture getPicture_Filename]] ];
+
+            ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+            // Tell ASIHTTPRequest where to save things:
+    //        [request setTemporaryFileDownloadPath:tempFileLocation];     
+            [request setDownloadDestinationPath:tempFileLocation]; 
+            [request startSynchronous];
+            self.imageView.image = [UIImage imageWithContentsOfFile:tempFileLocation];
+        }
+        else
+        {
+            self.imageView.image = [UIImage imageNamed:@"NoPicture.jpg"];
+        }
+          /*
+           //DI 'STA ROBA QUI SOTTO NON VA UN CAZZO
+        DataServiceStreamResponse *streamresponse  = [proxy getReadStream:thePicture];
+        [streamresponse retain];
+        NSData *pictData = [proxy getReadStream:thePicture];
+        self.imageView.image = [UIImage imageWithData:pictData];
+      
+        
+        NSString *streamURI = [proxy getReadStreamUri:thePicture];
+        NSLog(@"streamURI %@", streamURI);
+
+        NSLog(@"%@", streamresponse);
+        NSString *stream =[streamresponse getStream];
+
+        NSData *decodedStream = [NSData dataFromBase64String:stream]; 
+        NSLog(@"content-type %@", [streamresponse getContentType]);
+        
+        // TEMPORARY PDF PATH
+        // Get the Caches directory
+        NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        // Add your filename to the directory to create your temp pdf location
+        NSString *tempFileLocation = [cachesDirectory stringByAppendingPathComponent:[thePicture getPicture_Filename]];
+        
+        [decodedStream writeToFile:tempFileLocation atomically:YES];
+        self.imageView.image = [UIImage imageWithContentsOfFile:tempFileLocation];
+*/
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@ %@", exception.name, exception.reason);
+    }
+    @finally {
+        [HUD hide:YES afterDelay:1];
+    }
+
 
 }
 

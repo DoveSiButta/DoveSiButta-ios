@@ -40,8 +40,8 @@
 	@synthesize m_Longitude;
 	@synthesize m_BoxType;
 	@synthesize m_Picture_Filename;
-	@synthesize m_Picture_File;
 	@synthesize m_Ratings;
+	@synthesize m_Pictures;
 
 /**
  *Method to create an instance of Box
@@ -100,6 +100,7 @@
 		[self setBaseURI:anUri];
 		m_OData_hasStream.booleanvalue=NO;
 		[m_OData_entityMap setObject:@"Ratings" forKey:@"Ratings"];
+		[m_OData_entityMap setObject:@"Picture" forKey:@"Pictures"];
 		mProperties *obj;
 		
 		obj=[[mProperties alloc]initWithEdmType:@"Edm.Int32" MaxLength:@"" MinLength:@"" FixedLength:NO Nullable:NO Unicode:NO ConcurrencyMode:@"" FC_TargetPath:@"" FC_KeepInContent:YES FC_SourcePath:@"" FC_ContentKind:@"" FC_NsPrefix:@"" FC_NsUri:@""];
@@ -154,11 +155,8 @@
 		[m_OData_propertiesMap setObject:obj forKey:@"m_Picture_Filename"];
 		[obj release];
 		
-		obj=[[mProperties alloc]initWithEdmType:@"Edm.Binary" MaxLength:@"Max" MinLength:@"" FixedLength:NO Nullable:YES Unicode:NO ConcurrencyMode:@"" FC_TargetPath:@"" FC_KeepInContent:YES FC_SourcePath:@"" FC_ContentKind:@"" FC_NsPrefix:@"" FC_NsUri:@""];
-		[m_OData_propertiesMap setObject:obj forKey:@"m_Picture_File"];
-		[obj release];
-		
 		[m_OData_entityFKRelation setObject:@"FK_Ratings_Boxes" forKey:@"Ratings"];
+		[m_OData_entityFKRelation setObject:@"FK_Pictures_Boxes" forKey:@"Picture"];
 
 		NSMutableArray *anEntityKey=[[NSMutableArray alloc]init];
 		[anEntityKey addObject:@"BoxID"];
@@ -190,8 +188,8 @@
 	[obj setLongitude:[self getLongitude]];
 	[obj setBoxType:[self getBoxType]];
 	[obj setPicture_Filename:[self getPicture_Filename]];
-	[obj setPicture_File:[self getPicture_File]];
 	[obj setRatings:[self getRatings]];
+	[obj setPictures:[self getPictures]];
 
 	return [obj autorelease];
 }
@@ -223,11 +221,11 @@
 	m_BoxType = nil;
 	[m_Picture_Filename release];
 	m_Picture_Filename = nil;
-	[m_Picture_File release];
-	m_Picture_File = nil;
 	
 	[m_Ratings release];
 	m_Ratings = nil;
+	[m_Pictures release];
+	m_Pictures = nil;
 	[super dealloc];
 }
 
@@ -346,6 +344,104 @@
 }
 
 @end
+/**
+ * @interface:Picture
+ * @key:ID
+ */
+@implementation DoveSiButtaModel_Picture
+	@synthesize m_ID;
+	@synthesize m_LinkedBoxID;
+	@synthesize m_Picture_Filename;
+	@synthesize m_Box;
+
+/**
+ *Method to create an instance of Picture
+ */
++ (id) CreatePictureWithid:(NSNumber *)aID linkedboxid:(NSNumber *)aLinkedBoxID picture_filename:(NSString *)aPicture_Filename
+{
+	DoveSiButtaModel_Picture *aPicture = [[DoveSiButtaModel_Picture alloc]init];
+	
+	aPicture.m_ID = aID;
+
+	
+	aPicture.m_LinkedBoxID = aLinkedBoxID;
+
+	
+	aPicture.m_Picture_Filename = aPicture_Filename;
+
+	return aPicture;
+}
+/**
+ * Initialising object for Picture
+ */
+- (id) init
+{
+	self=[self initWithUri:nil];
+	return self;
+}
+
+- (id) initWithUri:(NSString*)anUri 
+{
+	if(self=[super initWithUri:anUri])
+	{
+		[self setBaseURI:anUri];
+		m_OData_hasStream.booleanvalue=YES;
+		[m_OData_entityMap setObject:@"Box" forKey:@"Box"];
+		mProperties *obj;
+		
+		obj=[[mProperties alloc]initWithEdmType:@"Edm.Int32" MaxLength:@"" MinLength:@"" FixedLength:NO Nullable:NO Unicode:NO ConcurrencyMode:@"" FC_TargetPath:@"" FC_KeepInContent:YES FC_SourcePath:@"" FC_ContentKind:@"" FC_NsPrefix:@"" FC_NsUri:@""];
+		[m_OData_propertiesMap setObject:obj forKey:@"m_ID"];
+		[obj release];
+		
+		obj=[[mProperties alloc]initWithEdmType:@"Edm.Int32" MaxLength:@"" MinLength:@"" FixedLength:NO Nullable:NO Unicode:NO ConcurrencyMode:@"" FC_TargetPath:@"" FC_KeepInContent:YES FC_SourcePath:@"" FC_ContentKind:@"" FC_NsPrefix:@"" FC_NsUri:@""];
+		[m_OData_propertiesMap setObject:obj forKey:@"m_LinkedBoxID"];
+		[obj release];
+		
+		obj=[[mProperties alloc]initWithEdmType:@"Edm.String" MaxLength:@"50" MinLength:@"" FixedLength:NO Nullable:NO Unicode:NO ConcurrencyMode:@"" FC_TargetPath:@"" FC_KeepInContent:YES FC_SourcePath:@"" FC_ContentKind:@"" FC_NsPrefix:@"" FC_NsUri:@""];
+		[m_OData_propertiesMap setObject:obj forKey:@"m_Picture_Filename"];
+		[obj release];
+		
+		[m_OData_entityFKRelation setObject:@"FK_Pictures_Boxes" forKey:@"Box"];
+
+		NSMutableArray *anEntityKey=[[NSMutableArray alloc]init];
+		[anEntityKey addObject:@"ID"];
+		[m_OData_entityKey setObject:anEntityKey forKey:@"Picture"];
+		[anEntityKey release];
+	}
+	return self;
+}
+
+-(NSMutableArray *)getSyndicateArray
+{
+	NSMutableArray *syndicateArray=[[NSMutableArray alloc]init];
+	
+	return [syndicateArray autorelease];
+}
+-(DoveSiButtaModel_Picture *)getDeepCopy
+{
+	DoveSiButtaModel_Picture *obj=[[DoveSiButtaModel_Picture alloc]initWithUri:[self getBaseURI]];
+	[obj setID:[self getID]];
+	[obj setLinkedBoxID:[self getLinkedBoxID]];
+	[obj setPicture_Filename:[self getPicture_Filename]];
+	[obj setBox:[self getBox]];
+
+	return [obj autorelease];
+}
+- (void) dealloc
+{
+	[m_ID release];
+	m_ID = nil;
+	[m_LinkedBoxID release];
+	m_LinkedBoxID = nil;
+	[m_Picture_Filename release];
+	m_Picture_Filename = nil;
+	
+	[m_Box release];
+	m_Box = nil;
+	[super dealloc];
+}
+
+@end
 
  
 /**
@@ -357,6 +453,7 @@
 
 	@synthesize m_Boxes;
 	@synthesize m_Ratings;
+	@synthesize m_Pictures;
 /**
  * The initializer for DoveSiButtaEntities accepting service URI
  */
@@ -392,6 +489,7 @@
 		
 		[tempEntities addObject:@"Boxes"];
 		[tempEntities addObject:@"Ratings"];
+		[tempEntities addObject:@"Pictures"];
 
 		if([tempEntities count] > 0 )
 		{
@@ -403,11 +501,13 @@
 		
 		[tempEntitiySetKey addObject:@"boxes"];
 		[tempEntitiySetKey addObject:@"ratings"];
+		[tempEntitiySetKey addObject:@"pictures"];
 
 		NSMutableArray* tempEntitiyTypeobj=[[NSMutableArray alloc]init];
 		
 		[tempEntitiyTypeobj addObject:@"Box"];
 		[tempEntitiyTypeobj addObject:@"Rating"];
+		[tempEntitiyTypeobj addObject:@"Picture"];
 
 		if( ( [tempEntitiySetKey count] > 0 ) && ( [tempEntitiyTypeobj count] > 0 ) )
 		{
@@ -422,10 +522,12 @@
 		
 		[tempEntitiyTypeKey addObject:@"box"];
 		[tempEntitiyTypeKey addObject:@"rating"];
+		[tempEntitiyTypeKey addObject:@"picture"];
 		NSMutableArray* tempEntitySetObj=[[NSMutableArray alloc]init];
 		
 		[tempEntitySetObj addObject:@"Boxes"];
 		[tempEntitySetObj addObject:@"Ratings"];
+		[tempEntitySetObj addObject:@"Pictures"];
 
 		if( ( [tempEntitiyTypeKey count] > 0 ) && ( [tempEntitySetObj count] > 0 ) )
 		{
@@ -437,6 +539,7 @@
 
 		NSMutableArray* foreignKeys=[[NSMutableArray alloc]init];		
 		[foreignKeys addObject:@"FK_Ratings_Boxes"];
+		[foreignKeys addObject:@"FK_Pictures_Boxes"];
 
 		NSMutableArray *arrOfDictionaries=[[NSMutableArray alloc]initWithCapacity:[foreignKeys count]];
 
@@ -445,6 +548,13 @@
 		arr=[[NSMutableArray alloc]init];
 		[arr addObject:[[[NSDictionary alloc]initWithObjectsAndKeys:@"Boxes",@"EndRole",@"Box",@"Type",@"1",@"Multiplicity",nil] autorelease]];
 		[arr addObject:[[[NSDictionary alloc]initWithObjectsAndKeys:@"Ratings",@"EndRole",@"Rating",@"Type",@"*",@"Multiplicity",nil] autorelease]];
+		[arrOfDictionaries addObject:arr];
+		[arr release];
+
+
+		arr=[[NSMutableArray alloc]init];
+		[arr addObject:[[[NSDictionary alloc]initWithObjectsAndKeys:@"Box",@"EndRole",@"Box",@"Type",@"1",@"Multiplicity",nil] autorelease]];
+		[arr addObject:[[[NSDictionary alloc]initWithObjectsAndKeys:@"Picture",@"EndRole",@"Picture",@"Type",@"*",@"Multiplicity",nil] autorelease]];
 		[arrOfDictionaries addObject:arr];
 		[arr release];
 
@@ -457,6 +567,7 @@
 
 		m_Boxes = [[DataServiceQuery alloc]initWithUri:@"Boxes" objectContext: self];
 		m_Ratings = [[DataServiceQuery alloc]initWithUri:@"Ratings" objectContext: self];
+		m_Pictures = [[DataServiceQuery alloc]initWithUri:@"Pictures" objectContext: self];
 		
 	}
 	return self;
@@ -500,63 +611,6 @@
 
 	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:YES];
 }
-/*
- * Method for service operation
- */
-- (NSString *) CreateNewItemWithtitle:(NSString *)title description:(NSString *)description hostedby:(NSString *)hostedby latitude:(NSDecimalNumber *)latitude longitude:(NSDecimalNumber *)longitude address:(NSString *)address country:(NSString *)country boxtype:(NSString *)boxType contactphone:(NSString *)contactphone picture_filename:(NSString *)picture_filename
-{
-	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:title,@"title",description,@"description",hostedby,@"hostedby",latitude,@"latitude",longitude,@"longitude",address,@"address",country,@"country",boxType,@"boxType",contactphone,@"contactphone",picture_filename,@"picture_filename",nil];
-	NSString *aQuery=[self prepareQuery:@"CreateNewItem" parameters:params];
-	[params release];
-//    aQuery = [aQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; //GM
-	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
-}
-/*
- * Method for service operation
- */
-- (NSString *) SetFileWithitemid:(NSNumber *)itemID file:(NSData *)file
-{
-	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:itemID,@"itemID",file,@"file",nil];
-	NSString *aQuery=[self prepareQuery:@"SetFile" parameters:params];
-	[params release];
-    [aQuery retain];
-    NSLog(@"%@", aQuery);
-	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
-}
-/*
- * Method for service operation
- */
-- (NSString *) SetFileBase64Withitemid:(NSNumber *)itemID filebase64:(NSString *)fileBase64
-{
-	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:itemID,@"itemID",fileBase64,@"fileBase64",nil];
-	NSString *aQuery=[self prepareQuery:@"SetFileBase64" parameters:params];
-	[params release];
-    [aQuery retain];
-    NSLog(@"%@", aQuery);
-	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
-}
-/*
- * Method for service operation
- */
-- (NSString *) GetFileWithitemid:(NSNumber *)itemID
-{
-	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:itemID,@"itemID",nil];
-	NSString *aQuery=[self prepareQuery:@"GetFile" parameters:params];
-	[params release];
-
-	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
-}
-/*
- * Method for service operation
- */
-- (NSString *) LoginWithusername:(NSString *)username password:(NSString *)password
-{
-	NSDictionary *params=[[NSDictionary alloc] initWithObjectsAndKeys:username,@"username",password,@"password",nil];
-	NSString *aQuery=[self prepareQuery:@"Login" parameters:params];
-	[params release];
-
-	return [self executeServiceOperation:aQuery httpMethod:@"GET" isReturnTypeCollection:NO];
-}
 
 /**
  * Method returns DataServiceQuery reference for
@@ -579,6 +633,16 @@
 }
 
 /**
+ * Method returns DataServiceQuery reference for
+ * the entityset Pictures
+ */
+- (id) pictures
+{
+	[self.m_Pictures clearAllOptions];
+	return self.m_Pictures;
+}
+
+/**
  * Methods for adding object to the entityset/collection
  */
 
@@ -592,6 +656,11 @@
 	[super addObject:@"Ratings" object:anObject];
 }
 
+- (void) addToPictures:(id)anObject
+{
+	[super addObject:@"Pictures" object:anObject];
+}
+
 - (void) dealloc
 {
 	[ m_OData_etag release];
@@ -601,6 +670,8 @@
 	m_Boxes = nil;
 	[m_Ratings release];
 	m_Ratings = nil;
+	[m_Pictures release];
+	m_Pictures = nil;
 
 	[super dealloc];
 }

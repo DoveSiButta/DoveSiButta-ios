@@ -44,15 +44,21 @@
     NSString *key = @"serviceURI"; // the key for the data
     [defaults setObject:storedVal forKey:key];
     storedVal = @"http://192.168.138.2";
-    key = @"appURI"; // the key for the data
+    key = @"appURI"; // the key for the base app uri
+    [defaults setObject:storedVal forKey:key];
+    storedVal = @"http://192.168.138.2/Pictures/";
+    key = @"picturesURI"; // the key for the pictures path
     [defaults setObject:storedVal forKey:key];
 #else
-    NSString *storedVal = @"http://49749bc912fa464c86d168ee3c06a48a.cloudapp.net/Services/OData.svc/";  //@"http://192.168.138.2/Services/OData.svc/"; 
+    NSString *storedVal = @"http://www.dovesibutta.com/Services/OData.svc/";  //@"http://192.168.138.2/Services/OData.svc/"; 
     NSString *key = @"serviceURI"; // the key for the data
     [defaults setObject:storedVal forKey:key];
-    storedVal = @"http://49749bc912fa464c86d168ee3c06a48a.cloudapp.net"; //@"http://192.168.138.2";
-    key = @"appURI"; // the key for the data
+    storedVal = @"http://www.dovesibutta.com"; //@"http://192.168.138.2";
+    key = @"appURI"; // the key for the base app uri
     [defaults setObject:storedVal forKey:key];    
+    storedVal = @"hhttp://www.dovesibutta.com/Pictures/";
+    key = @"picturesURI"; // the key for the pictures path
+    [defaults setObject:storedVal forKey:key];
 #endif
     
     [defaults synchronize]; // this method is optional

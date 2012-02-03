@@ -154,18 +154,20 @@
 	NSString *m_Picture_Filename;
 	
 	/**
-	* @Type:EntityProperty
-	* @EdmType:Edm.Binary
-	*/
-	NSData *m_Picture_File;
-	
-	/**
 	* @Type:NavigationProperty
 	* @Relationship:FK_Ratings_Boxes
 	* @FromRole:Boxes
 	* @ToRole:Ratings
 	*/
 	NSMutableArray *m_Ratings;
+	
+	/**
+	* @Type:NavigationProperty
+	* @Relationship:FK_Pictures_Boxes
+	* @FromRole:Box
+	* @ToRole:Picture
+	*/
+	NSMutableArray *m_Pictures;
 	
 }
 
@@ -182,8 +184,8 @@
 @property ( nonatomic , retain , getter=getLongitude , setter=setLongitude )NSDecimalNumber *m_Longitude;
 @property ( nonatomic , retain , getter=getBoxType , setter=setBoxType ) NSString *m_BoxType;
 @property ( nonatomic , retain , getter=getPicture_Filename , setter=setPicture_Filename ) NSString *m_Picture_Filename;
-@property ( nonatomic , retain , getter=getPicture_File , setter=setPicture_File )NSData *m_Picture_File;
 @property ( nonatomic , retain , getter=getRatings , setter=setRatings )NSMutableArray *m_Ratings;
+@property ( nonatomic , retain , getter=getPictures , setter=setPictures )NSMutableArray *m_Pictures;
 
 + (id) CreateBoxWithboxid:(NSNumber *)aBoxID title:(NSString *)aTitle eventdate:(NSDate *)aEventDate description:(NSString *)aDescription hostedby:(NSString *)aHostedBy contactphone:(NSString *)aContactPhone address:(NSString *)aAddress country:(NSString *)aCountry latitude:(NSDecimalNumber *)aLatitude longitude:(NSDecimalNumber *)aLongitude boxtype:(NSString *)aBoxType;
 - (id) init;
@@ -259,6 +261,58 @@
 @end
 
 /**
+ * @interface:Picture
+ * @Type:EntityType
+ 
+ * @key:ID* 
+ */
+@interface DoveSiButtaModel_Picture : ODataObject
+{
+	
+	/**
+	* @Type:EntityProperty
+	* NotNullable
+	* @EdmType:Edm.Int32
+	*/
+	NSNumber *m_ID;
+	
+	/**
+	* @Type:EntityProperty
+	* NotNullable
+	* @EdmType:Edm.Int32
+	*/
+	NSNumber *m_LinkedBoxID;
+	
+	/**
+	* @Type:EntityProperty
+	* NotNullable
+	* @EdmType:Edm.String
+	* @MaxLength:50
+	* @FixedLength:false
+	*/
+	NSString *m_Picture_Filename;
+	
+	/**
+	* @Type:NavigationProperty
+	* @Relationship:FK_Pictures_Boxes
+	* @FromRole:Picture
+	* @ToRole:Box
+	*/
+	NSMutableArray *m_Box;
+	
+}
+
+@property ( nonatomic , retain , getter=getID , setter=setID )NSNumber *m_ID;
+@property ( nonatomic , retain , getter=getLinkedBoxID , setter=setLinkedBoxID )NSNumber *m_LinkedBoxID;
+@property ( nonatomic , retain , getter=getPicture_Filename , setter=setPicture_Filename ) NSString *m_Picture_Filename;
+@property ( nonatomic , retain , getter=getBox , setter=setBox )NSMutableArray *m_Box;
+
++ (id) CreatePictureWithid:(NSNumber *)aID linkedboxid:(NSNumber *)aLinkedBoxID picture_filename:(NSString *)aPicture_Filename;
+- (id) init;
+- (id) initWithUri:(NSString*)anUri;
+@end
+
+/**
  * Container interface DoveSiButtaEntities, Namespace: DoveSiButtaModel
  */
 @interface DoveSiButtaEntities : ObjectContext
@@ -266,12 +320,14 @@
 	 NSString *m_OData_etag;
 	 DataServiceQuery *m_Boxes;
 	 DataServiceQuery *m_Ratings;
+	 DataServiceQuery *m_Pictures;
 	
 }
 
 @property ( nonatomic , retain , getter=getEtag , setter=setEtag )NSString *m_OData_etag;
 @property ( nonatomic , retain , getter=getBoxes , setter=setBoxes ) DataServiceQuery *m_Boxes;
 @property ( nonatomic , retain , getter=getRatings , setter=setRatings ) DataServiceQuery *m_Ratings;
+@property ( nonatomic , retain , getter=getPictures , setter=setPictures ) DataServiceQuery *m_Pictures;
 
 - (id) init;
 - (id) initWithUri:(NSString*)anUri credential:(id)acredential;
@@ -279,14 +335,11 @@
 - (NSArray *) FindAllItems;
 - (NSArray *) ItemsNearMeWithplaceorzip:(NSString *)placeOrZip;
 - (NSArray *) ItemsNearMeByCoordinatesWithlatitude:(NSDecimalNumber *)latitude longitude:(NSDecimalNumber *)longitude;
-- (NSString *) CreateNewItemWithtitle:(NSString *)title description:(NSString *)description hostedby:(NSString *)hostedby latitude:(NSDecimalNumber *)latitude longitude:(NSDecimalNumber *)longitude address:(NSString *)address country:(NSString *)country boxtype:(NSString *)boxType contactphone:(NSString *)contactphone picture_filename:(NSString *)picture_filename;
-- (NSString *) SetFileWithitemid:(NSNumber *)itemID file:(NSData *)file;
-- (NSString *) SetFileBase64Withitemid:(NSNumber *)itemID filebase64:(NSString *)fileBase64;
-- (NSString *) GetFileWithitemid:(NSNumber *)itemID;
-- (NSString *) LoginWithusername:(NSString *)username password:(NSString *)password;
 - (id) boxes;
 - (id) ratings;
+- (id) pictures;
 - (void) addToBoxes:(id)anObject;
 - (void) addToRatings:(id)anObject;
+- (void) addToPictures:(id)anObject;
 
 @end

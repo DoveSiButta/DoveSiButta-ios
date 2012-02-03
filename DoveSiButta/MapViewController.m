@@ -202,7 +202,7 @@
 //            NSLog(@"Longitude..%@",[p getLongitude]);
 //            NSLog(@"==Fine Dinner==");
 //#endif   
-            if ([[p getBoxType] isEqualToString:self.selectedType]) //TODO: andrebbe filtrato nella query
+            if ([[p getBoxType] rangeOfString:self.selectedType].location != NSNotFound) //TODO: andrebbe filtrato nella query
             {
                 [results addObject:p];
             }
@@ -341,18 +341,21 @@
 -(void) addItem:(id)sender
 {
     LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
+     // [proxy CreateNewItemWithtitle:[newItem getTitle] latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] boxtype:[newItem getBoxType] picture_filename:[newItem getPicture_Filename]];
+    
     DoveSiButtaModel_Box *newItem = [[DoveSiButtaModel_Box alloc] init];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
 //    [dateFormat setDateFormat:@"yyyyMMdd_hhmmss"];
 //    [newItem setTitle:[dateFormat stringFromDate:[NSDate date]]];
 //    [dateFormat release];
     if( [self.address length] > 50)
     {
-        NSString *shortTitle = [self.address substringToIndex:50];
+        NSString *shortTitle = [self.address substringToIndex:49];
         [newItem setTitle:shortTitle ];
     }
     else
     {
+//        NSString *shortTitle = self.address;
         [newItem setTitle:self.address ];
     }
     
@@ -366,9 +369,14 @@
     CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
     NSLocale *locale = [NSLocale currentLocale];
     
+//    NSDecimalNumber *latitude = [NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale];
+//    NSDecimalNumber *longitude = [NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale];
     [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
     [newItem setLongitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale] ];
 
+//    DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
+//    DoveSiButtaModel_Box *newItem =  [DoveSiButtaModel_Box CreateBoxWithboxid:[NSNumber numberWithInt:50] title:@"title" eventdate:[NSDate date] description:@"description" hostedby:@"giovanni" contactphone:@"uuid" address:@"address" country:@"italy" latitude:latitude longitude:longitude boxtype:@"1;2;3;"]; //[DoveSiButtaModel_Box CreateNewItemWithtitle:@"title" description:@"" hostedby:@"" latitude:latitude longitude:longitude  address:self.address country:self.country boxtype:@"1" contactphone:@"uuid" picture_filename:@""];
+    
     addVC.newItem = newItem;
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];

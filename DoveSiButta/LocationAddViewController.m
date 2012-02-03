@@ -122,13 +122,112 @@
         [newItem setContactPhone:[udid substringToIndex:20]];
         [newItem setBoxType:boxType];
         [newItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
-        
+        [newItem setPicture_Filename:@""];
+//        [newItem setPicture_Filename:[self.pictureFile lastPathComponent]];
+//        NSLog(@"Il nome del file sarà %@", [newItem getPicture_Filename]);
 
         
         DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
         [proxy retain];
     //    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
     //    odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
+        NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
+        DoveSiButtaModel_Picture *newPicture = [[DoveSiButtaModel_Picture alloc] initWithUri:nil];
+        
+//        [newItem setPicture_File:pictureData];
+        
+        @try {
+            [proxy addToBoxes:newItem];
+//            NSLog(@"newitem boxid %@",[newItem getBoxID]);
+//            [proxy setSaveChangesOptions:Batch];
+//            NSString *aStr=@"This is a iPhone test Document";
+//            NSData* aData=[aStr dataUsingEncoding: NSASCIIStringEncoding];
+//            [proxy setSaveStream:newItem stream:pictureData closeStream:NO contentType:@"image/jpeg" slug:[self.pictureFile lastPathComponent]];
+            [proxy saveChanges];  //se faccio saveChanges qui e poi la query e l'update, genera errore. Ma scrive comunque 1 valore nuovo 
+//            [proxy saveChanges];
+//            [proxy updateObject:newItem];
+//            [proxy saveChanges];
+//            [proxy setSaveStream:newItem stream:pictureData closeStream:NO contentType:@"image/jpeg" slug:@"nuovofile.jpg"];
+//            [proxy addObject:@"Boxes" object:newItem];
+
+//            [proxy saveChanges];
+            
+            
+            
+//            [proxy updateObject:newItem];
+//            [proxy setSaveStream:newItem stream:pictureData closeStream:YES contentType:@"image/jpeg" slug:@"nuovofile.jpg"];
+//            [proxy saveChanges];
+//            DoveSiButtaModel_Box *aNewBox = [[DoveSiButtaModel_Box alloc] initWithUri:nil];
+//            [aNewBox setBoxID:[NSNumber numberWithInt:40]];
+//            [proxy addToBoxes:aNewBox];
+//
+//            [proxy setSaveStream:aNewBox stream:pictureData closeStream:YES contentType:@"image/jpeg" slug:@"nuovofile.jpg"];
+//            [proxy saveChanges];
+//            //          
+//            DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
+//            QueryOperationResponse *queryOperationResponse = [query execute];
+//            DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
+//            [aNewBox retain];
+//            NSLog(@"anewbox ID: %@", [aNewBox getBoxID]); 
+//            [newItem setBoxID:[aNewBox getBoxID]];
+//            [proxy updateObject:newItem];
+////            [proxy setSaveStream:aNewBox stream:aData closeStream:NO contentType:@"plain/text" slug:@"nuovofile.txt"];
+//            [proxy saveChanges];
+
+            [proxy addToPictures:newPicture];
+            DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
+            QueryOperationResponse *queryOperationResponse = [query execute];
+            DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
+            [aNewBox retain];
+            NSLog(@"anewbox ID: %@", [aNewBox getBoxID]); 
+            //            [newPicture setLinkedBoxID:[aNewBox getBoxID]];
+            //            [proxy updateObject:newItem];
+            //            [proxy addLink:newPicture sourceProperty:@"LinkedBoxID" targetObject:aNewBox];
+            [proxy setSaveStream:newPicture stream:pictureData closeStream:YES contentType:@"image/jpeg" slug:[NSString stringWithFormat:@"%@",[aNewBox getBoxID]]];
+            //            [proxy setSaveChangesOptions:Batch];
+            
+            
+            [proxy saveChanges];
+
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Errore: %@:%@",exception.name, exception.reason);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento della foto.(%@)", @""),[exception description]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+            [alert show];
+        }
+        @finally {
+            [HUD hide:YES afterDelay:1];
+            [self dismissModalViewControllerAnimated:YES];
+        }
+            
+        /*
+        @try {
+            [proxy addToPictures:newPicture];
+            DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
+            QueryOperationResponse *queryOperationResponse = [query execute];
+            DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
+            [aNewBox retain];
+                        NSLog(@"anewbox ID: %@", [aNewBox getBoxID]); 
+//            [newPicture setLinkedBoxID:[aNewBox getBoxID]];
+//            [proxy updateObject:newItem];
+//            [proxy addLink:newPicture sourceProperty:@"LinkedBoxID" targetObject:aNewBox];
+            [proxy setSaveStream:newPicture stream:pictureData closeStream:YES contentType:@"image/jpeg" slug:[NSString stringWithFormat:@"%@",[aNewBox getBoxID]]];
+//            [proxy setSaveChangesOptions:Batch];
+            
+
+            [proxy saveChanges];
+
+
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Errore: %@:%@",exception.name, exception.reason);
+        }
+        @finally {
+            [HUD hide:YES afterDelay:1];
+        }
+        */
+        
+        /*
         NSString *retString = [proxy CreateNewItemWithtitle:[newItem getTitle] description:[newItem getDescription] hostedby:@"" latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] country:[newItem getCountry] boxtype:[newItem getBoxType] contactphone:[newItem getContactPhone] picture_filename:@""]; // [proxy CreateNewItemWithtitle:[newItem getTitle] latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] boxtype:[newItem getBoxType] picture_filename:[newItem getPicture_Filename]];
         NSLog(@"Returned: %@", retString);
         
@@ -147,25 +246,40 @@
             //Vuole dire che ha funzionato
             NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
 
-//            NSString *base64PictureData = [pictureData base64EncodedString];
-            
+            NSString *base64PictureData = [pictureData base64EncodedString];
+            [pictureData retain];
+            @try{
             NSString *setFileReturn = [proxy SetFileWithitemid:[NSNumber numberWithInt:newBoxID] file:pictureData];
-            setFileReturn = [[setFileReturn stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
+            setFileReturn = [[setFileReturn stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""]; //Con il metodo POST è not found
             result = PerformXMLXPathQuery([setFileReturn dataUsingEncoding:NSUTF8StringEncoding], @"/SetFile");
+            }
+            @catch (NSException *exception) {
+                NSLog(@"exception %@", [exception description]);
+            }
+            [newItem setBoxID:[NSNumber numberWithInt:newBoxID]];
+//            [proxy setSaveStream:newItem stream:pictureData closeStream:YES contentType:@"" slug:@""];
+            //The context is not currently tracking the entity
             
-
             
             //prova con asi..
 //            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"192.168.138.2/Services/OData.svc/SetFile/"]];
-//            [request addPostValue:[NSString stringWithFormat:@"%d",newBoxID] forKey:@"id"];
+//            [request addPostValue:[NSString stringWithFormat:@"%d",newBoxID] forKey:@"itemID"];
 //            [request addData:pictureData forKey:@"picture_file"];
 //            [request start];
-            
-                //provo con base64...
-//            NSString* setFileReturn = [proxy SetFileBase64Withitemid:[NSNumber numberWithInt:newBoxID] filebase64:base64PictureData];
-//            setFileReturn = [[setFileReturn stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
-//            result = PerformXMLXPathQuery([setFileReturn dataUsingEncoding:NSUTF8StringEncoding], @"/SetFileBase64");
-            
+//            @try {
+//                NSString* setFileReturn = [proxy SetFileBase64Withitemid:[NSNumber numberWithInt:newBoxID] filebase64:base64PictureData];
+//                setFileReturn = [[setFileReturn stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
+//                result = PerformXMLXPathQuery([setFileReturn dataUsingEncoding:NSUTF8StringEncoding], @"/SetFileBase64");
+//                [result retain];
+//                NSLog(@"result: %@",result);
+                
+
+//            }
+//            @catch (NSException *exception) {
+//                
+//            }
+
+
             NSString *setFileResult = [[result objectAtIndex:0] objectForKey:@"nodeContent"];
             [setFileResult retain];
             NSLog(@"setfileresult %@", setFileResult);
@@ -191,7 +305,10 @@
 
         }
         
-//            http://192.168.138.2/Services/OData.svc/CreateNewItem?longitude=10.32752f&title='Nuovo'&latitude=45.51141f    
+//            http://192.168.138.2/Services/OData.svc/CreateNewItem?longitude=10.32752f&title='Nuovo'&latitude=45.51141f  
+         
+         */
+
 
     }
     else
@@ -274,11 +391,9 @@
         [rifiutiTypes addObject:i];
     }
     [rifiutiTypes retain];
-    NSLog(@"rifiutitypes: %@", rifiutiTypes);
-
+   
     
-    
-    
+    //Creazione TableView
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
@@ -389,7 +504,6 @@
                                    nil] 
                    withAnimation:UITableViewRowAnimationNone];
     }
-
     
 }
 
@@ -470,7 +584,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo {
     //Qui devo salvare l'immagine nella cache e resizarla
-    UIImage *scaledImage = [img imageByScalingProportionallyToMinimumSize:CGSizeMake(50.0f, 50.0f)]; //[img imageByScalingProportionallyToMinimumSize:CGSizeMake(640.0f, 480.0f)]; // [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
+    UIImage *scaledImage = [img imageByScalingProportionallyToMinimumSize:CGSizeMake(640.0f, 480.0f)]; // [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
     NSData* imageData = UIImageJPEGRepresentation(scaledImage, 0.9f);
     
     // Give a name to the file

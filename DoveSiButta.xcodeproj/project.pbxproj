@@ -62,6 +62,8 @@
 		AC66D08D14C37CA70098E1F1 /* vetro_300px.png in Resources */ = {isa = PBXBuildFile; fileRef = AC66D08114C37CA70098E1F1 /* vetro_300px.png */; };
 		AC66D09014C381B10098E1F1 /* LocationAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */; };
 		AC66D09214C3862E0098E1F1 /* IconForType.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D09114C3862D0098E1F1 /* IconForType.plist */; };
+		AC8E3F8D14DC984D0056648A /* NoPicture@2X.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */; };
+		AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8C14DC984D0056648A /* NoPicture.jpg */; };
 		AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC99992414D68AF6006229A8 /* UIImage+Extensions.m */; };
 		AC99992714D68E83006229A8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AC99992614D68E83006229A8 /* LICENSE */; };
 		ACD7D1E914D8A75600B1FE37 /* DoveSiButtaEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD7D1E814D8A75600B1FE37 /* DoveSiButtaEntities.m */; };
@@ -323,6 +325,8 @@
 		AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LocationAddViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AC66D08F14C381B10098E1F1 /* LocationAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LocationAddViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AC66D09114C3862D0098E1F1 /* IconForType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IconForType.plist; sourceTree = "<group>"; };
+		AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "NoPicture@2X.jpg"; path = "Images/NoPicture@2X.jpg"; sourceTree = "<group>"; };
+		AC8E3F8C14DC984D0056648A /* NoPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = NoPicture.jpg; path = Images/NoPicture.jpg; sourceTree = "<group>"; };
 		AC99992314D68AF6006229A8 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		AC99992414D68AF6006229A8 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		AC99992614D68E83006229A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -803,6 +807,8 @@
 		AC66CFF214C249A80098E1F1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */,
+				AC8E3F8C14DC984D0056648A /* NoPicture.jpg */,
 				ACE8853214CECE880004B9DF /* App_Icon */,
 				AC66D07514C37CA70098E1F1 /* icone */,
 				AC66D06414C24E840098E1F1 /* License.rtf */,
@@ -1403,6 +1409,8 @@
 				ACFC0D5614D4C7F9000265B8 /* Default@2X.png in Resources */,
 				ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */,
 				AC99992714D68E83006229A8 /* LICENSE in Resources */,
+				AC8E3F8D14DC984D0056648A /* NoPicture@2X.jpg in Resources */,
+				AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

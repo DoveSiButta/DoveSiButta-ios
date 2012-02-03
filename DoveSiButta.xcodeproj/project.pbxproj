@@ -514,7 +514,7 @@
 		ACE8853614CECE880004B9DF /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		ACE8853714CECE880004B9DF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		ACE8853814CECE880004B9DF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		ACE8853914CECE880004B9DF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		ACE8853914CECE880004B9DF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Images/App_Icon/iTunesArtwork; sourceTree = "<group>"; };
 		ACEE63D514CB707700B604C9 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
 		ACEE63D614CB707700B604C9 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
 		ACEE63D814CB70B900B604C9 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
@@ -807,6 +807,7 @@
 		AC66CFF214C249A80098E1F1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ACE8853914CECE880004B9DF /* iTunesArtwork */,
 				AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */,
 				AC8E3F8C14DC984D0056648A /* NoPicture.jpg */,
 				ACE8853214CECE880004B9DF /* App_Icon */,
@@ -1271,7 +1272,6 @@
 				ACE8853614CECE880004B9DF /* Icon-Small@2x.png */,
 				ACE8853714CECE880004B9DF /* Icon.png */,
 				ACE8853814CECE880004B9DF /* Icon@2x.png */,
-				ACE8853914CECE880004B9DF /* iTunesArtwork */,
 			);
 			name = App_Icon;
 			path = Images/App_Icon;

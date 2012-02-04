@@ -56,7 +56,7 @@
     storedVal = @"http://www.dovesibutta.com"; //@"http://192.168.138.2";
     key = @"appURI"; // the key for the base app uri
     [defaults setObject:storedVal forKey:key];    
-    storedVal = @"hhttp://www.dovesibutta.com/Pictures/";
+    storedVal = @"http://www.dovesibutta.com/Pictures/";
     key = @"picturesURI"; // the key for the pictures path
     [defaults setObject:storedVal forKey:key];
 #endif

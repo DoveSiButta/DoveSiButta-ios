@@ -83,6 +83,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+    
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
 
 - (void)saveItem:(id)sender
 {
@@ -101,7 +106,7 @@
         HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         HUD.delegate = self;
         HUD.labelText = @"Caricamento";
-        [self.view addSubview:HUD];
+        [self.navigationController.view addSubview:HUD];
         [HUD show:YES];
         
         NSString *boxType = [[NSString alloc] init];
@@ -132,6 +137,8 @@
     //    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
     //    odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
         NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
+        [pictureData retain];
+        NSLog(@"Data length: %d", [pictureData length]);
         DoveSiButtaModel_Picture *newPicture = [[DoveSiButtaModel_Picture alloc] initWithUri:nil];
         
 //        [newItem setPicture_File:pictureData];
@@ -188,16 +195,18 @@
             
             
             [proxy saveChanges];
+           
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Grazie!", @"") message:NSLocalizedString(@"Caricamento effettuato con successo", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+            [alert show];
 
         }
         @catch (NSException *exception) {
             NSLog(@"Errore: %@:%@",exception.name, exception.reason);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento della foto.(%@)", @""),[exception description]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento della foto.(%@)", @""),[exception reason]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
             [alert show];
         }
         @finally {
             [HUD hide:YES afterDelay:1];
-            [self dismissModalViewControllerAnimated:YES];
         }
             
         /*
@@ -602,7 +611,7 @@
     NSString* fullPathToFile = [cachesDirectory stringByAppendingPathComponent:imageName];
     
     // and then we write it out
-    [imageData writeToFile:fullPathToFile atomically:NO];
+    [imageData writeToFile:fullPathToFile atomically:YES];
     self.pictureFile = fullPathToFile;
     NSLog(@"Picture path: %@", fullPathToFile);
 //    [[picker parentViewController] dismissModalViewControllerAnimated:YES];

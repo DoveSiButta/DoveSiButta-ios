@@ -683,6 +683,13 @@
 }
 
 
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    // we have received our current location, so enable the "Get Current Address" button
+    NSLog(@"updated user location");
+    
+    //TODO: spostare qui il codice di didUpdateToLocation
+}
 
 #pragma mark -
 #pragma mark Reverse Geocoder Delegate
@@ -758,6 +765,7 @@
  }
  */
 
+/*
 //
 // locationFailedWithCode:
 //
@@ -846,6 +854,8 @@
         
 	}
 }
+*/
+
 
 //
 // locationManager:didFailWithError:
@@ -860,7 +870,7 @@
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-    [self locationFailedWithCode:[error code]];
+//    [self locationFailedWithCode:[error code]];
     if ([error domain] == kCLErrorDomain) {
         
         // We handle CoreLocation-related errors here
@@ -938,7 +948,7 @@
     
     
     
-    gpsLocationFailed = NO;
+//    gpsLocationFailed = NO;
     self.usingManualLocation = NO;
     self.gpsLocation = newLocation.coordinate;
     [locationManager stopUpdatingLocation]; //TODO: ok ma quando la faccio ripartire ? 
@@ -949,16 +959,16 @@
     self.country = placemark.country;
     self.postCode = placemark.postalCode;
     self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
-    NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
-    NSLog(@"Address of placemark: %@", ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO));
-    NSLog(@"street::::%@",[placemark thoroughfare]); //Via 
-    NSLog(@"street number::::%@",[placemark subThoroughfare]); //num civico
-    NSLog(@"postalcode %@", [placemark postalCode]);
-    NSLog(@"sublocality %@", [placemark subLocality]);  //Brescia
-    NSLog(@"locality %@", [placemark locality]); //Brescia
-    NSLog(@"administrative area::::%@",[placemark administrativeArea]); //Lombardy
-    
-    NSLog(@"streeteersub ::::%@",[placemark subAdministrativeArea]); //Province of Brescia
+//    NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
+//    NSLog(@"Address of placemark: %@", ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO));
+//    NSLog(@"street::::%@",[placemark thoroughfare]); //Via 
+//    NSLog(@"street number::::%@",[placemark subThoroughfare]); //num civico
+//    NSLog(@"postalcode %@", [placemark postalCode]);
+//    NSLog(@"sublocality %@", [placemark subLocality]);  //Brescia
+//    NSLog(@"locality %@", [placemark locality]); //Brescia
+//    NSLog(@"administrative area::::%@",[placemark administrativeArea]); //Lombardy
+//    
+//    NSLog(@"streeteersub ::::%@",[placemark subAdministrativeArea]); //Province of Brescia
         
         for(NSString *entry in self.comuniP2P)
         {
@@ -974,12 +984,8 @@
         HUD.delegate = self;
         HUD.labelText = @"Caricamento";
         [HUD show:YES];
-//        [self retrieveDinnersWithAddress:self.address];
-//        [self retrieveDinners];
         [self retrieveBoxesForType:self.selectedType];
-        
-        
-//        HUD.detailsLabelText = @"Loading...";
+
     }];
 
 

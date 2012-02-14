@@ -45,6 +45,7 @@
 @synthesize pictureFile;
 @synthesize selectedTypes;
 @synthesize setTypes;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -98,6 +99,7 @@
 {
     if (buttonIndex == 0) {
         [self dismissModalViewControllerAnimated:YES];
+        [self.delegate addLocationDidFinish];
     }
 }
 
@@ -204,6 +206,7 @@
 - (void)cancelNewItem:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
+    [self.delegate addLocationDidFinish];
 }
 
 

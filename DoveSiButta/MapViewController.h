@@ -20,11 +20,11 @@
 #import "LocationAddViewController.h"
 
 
-#ifdef __IPHONE_5_0
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> 
-#else
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate>
-#endif
+//#ifdef __IPHONE_5_0
+//@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> 
+//#else
+@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate, LocationAddViewControllerDelegate>
+//#endif
 
 {
     MKMapView *mapView;
@@ -43,8 +43,8 @@
     //For location
     CLLocationManager *locationManager;
 	CLLocationCoordinate2D gpsLocation;
-	BOOL gpsLocationFailed;
-	BOOL usingManualLocation;
+//	BOOL gpsLocationFailed;
+//	BOOL usingManualLocation;
 #ifdef __IPHONE_5_0
     CLGeocoder *geocoder; //!!!! iOS5.0
 #endif
@@ -61,6 +61,7 @@
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *buttonLat;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *buttonLon;
 @property (nonatomic,retain) NSDictionary *iconsDictionary;
+@property (nonatomic,retain) UIBarButtonItem *buttonAdd;
 
 //For comuni raccolta p2p
 @property (nonatomic, retain) NSDictionary *comuniP2P;
@@ -69,8 +70,8 @@
 @property (nonatomic, retain) NSString* selectedType;
 
 //For location
-@property (nonatomic, assign) BOOL usingManualLocation;
-@property (nonatomic, assign) CLLocationCoordinate2D gpsLocation;
+//@property (nonatomic, assign) BOOL usingManualLocation;
+//@property (nonatomic, assign) CLLocationCoordinate2D gpsLocation;
 @property (nonatomic, retain) NSString *address;
 @property (nonatomic, retain) NSString *postCode;
 @property (nonatomic, retain) NSString *country;

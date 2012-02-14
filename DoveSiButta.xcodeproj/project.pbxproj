@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */; };
 		AC66CEF214C246410098E1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF114C246410098E1F1 /* UIKit.framework */; };
 		AC66CEF414C246410098E1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF314C246410098E1F1 /* Foundation.framework */; };
 		AC66CEF614C246410098E1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF514C246410098E1F1 /* CoreGraphics.framework */; };
@@ -188,6 +189,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC3FE1FE14E8044B005CC256 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		AC66CEED14C246400098E1F1 /* DoveSiButta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoveSiButta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC66CEF114C246410098E1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AC66CEF314C246410098E1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -598,8 +601,7 @@
 		AC66CEF714C246410098E1F1 /* DoveSiButta */ = {
 			isa = PBXGroup;
 			children = (
-				AC99992314D68AF6006229A8 /* UIImage+Extensions.h */,
-				AC99992414D68AF6006229A8 /* UIImage+Extensions.m */,
+				ACCAA9F914EAE24E0067236F /* Extensions */,
 				ACEE63D414CB703000B604C9 /* Singleton */,
 				AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */,
 				ACC5830F14E462CA005C72D3 /* LocationAddViewController.m */,
@@ -877,6 +879,17 @@
 			);
 			name = icone;
 			path = Images/icone;
+			sourceTree = "<group>";
+		};
+		ACCAA9F914EAE24E0067236F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AC99992314D68AF6006229A8 /* UIImage+Extensions.h */,
+				AC99992414D68AF6006229A8 /* UIImage+Extensions.m */,
+				AC3FE1FE14E8044B005CC256 /* NSString+MD5.h */,
+				AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		ACE882B414CC728C0004B9DF /* ASIHttp */ = {
@@ -1555,6 +1568,7 @@
 				AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */,
 				ACD7D1E914D8A75600B1FE37 /* DoveSiButtaEntities.m in Sources */,
 				ACD7D1F614D8AFD700B1FE37 /* NSData+Base64.m in Sources */,
+				AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

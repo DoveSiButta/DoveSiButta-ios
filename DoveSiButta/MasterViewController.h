@@ -21,8 +21,7 @@
 @class DetailViewController;
 
 @interface MasterViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate>
-{    
-    UISegmentedControl *segmentedControlTopBar;
+{   
     
     UIBarButtonItem *configButton;
     UIBarButtonItem *addButton;
@@ -61,8 +60,6 @@
 @property (nonatomic) NSInteger savedScopeButtonIndex;
 @property (nonatomic) BOOL searchWasActive;
 
-//UI
-@property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControlTopBar; //!!! Non funziona
 
 //Cells
 @property (nonatomic, retain) IBOutlet ApplicationCell *tmpCell;

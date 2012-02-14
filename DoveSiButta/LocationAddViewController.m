@@ -32,6 +32,9 @@
 //NSdata
 #import "NSData+Base64.h"
 
+//MD5
+#import "NSString+MD5.h"
+
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 
@@ -142,8 +145,8 @@
     NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
 
     
-    NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
-    [newItem setContactPhone:[udid substringToIndex:20]];
+    NSString *udid = [[[UIDevice currentDevice] uniqueIdentifier] md5 ];
+    [newItem setContactPhone:udid ];
     [newItem setBoxType:boxType];
     [newItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
     [newItem setPicture_Filename:@""];

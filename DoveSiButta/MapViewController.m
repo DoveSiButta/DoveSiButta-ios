@@ -243,40 +243,13 @@
 {
     //TODO: inserire qui Reverse Geocode (?) //No perchè ci serve l'indirizzo prima, per indicare se comune fa raccolta P2P
     
-    LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
-
-    DoveSiButtaModel_Box *newItem = [[DoveSiButtaModel_Box alloc] init];
-    if( [self.address length] > 50)
-    {
-        NSString *shortTitle = [self.address substringToIndex:49];
-        [newItem setTitle:shortTitle ];
-    }
-    else
-    {
-        [newItem setTitle:self.address ];
-    }
+    
+    CLLocationCoordinate2D locationToLookup = self.mapView.userLocation.coordinate;
+    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
+    reverseGeocoder.delegate = self;
+    [reverseGeocoder start];
     
     
-    [newItem setAddress:self.address];
-    [newItem setCountry:self.country];
-    [newItem setHostedBy:@""];
-    [newItem setEventDate:[NSDate date]];
-
-   
-    CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
-    NSLocale *locale = [NSLocale currentLocale];
-    
-    [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
-    [newItem setLongitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale] ];
-
-    addVC.newItem = newItem;
-
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
-    
-    [self presentModalViewController:navController animated:YES];
-    [addVC setDelegate:self];
-    [addVC release];
-    [navController release];
 }
 
 
@@ -513,69 +486,7 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    // we have received our current location, so enable the "Get Current Address" button
-    NSLog(@"updated user location");
-    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([userLocation coordinate] ,1000,1000);        
-    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  
-    [self.mapView setRegion:adjustedRegion animated:YES];
-    self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", userLocation.coordinate.latitude];
-    self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", userLocation.coordinate.longitude];
-
-    
-    
-    //    gpsLocationFailed = NO;
-//    self.usingManualLocation = NO;
-//    self.gpsLocation = userLocation.coordinate;
-    //[locationManager stopUpdatingLocation]; //TODO: ok ma quando la faccio ripartire ? 
-    
-
-//#ifdef __IPHONE_5_0
-//    
-//    [geocoder reverseGeocodeLocation:userLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-//        CLPlacemark *placemark = [placemarks objectAtIndex:0];
-//        self.country = placemark.country;
-//        self.postCode = placemark.postalCode;
-//        self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
-//        //    NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
-//        //    NSLog(@"Address of placemark: %@", ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO));
-//        //    NSLog(@"street::::%@",[placemark thoroughfare]); //Via 
-//        //    NSLog(@"street number::::%@",[placemark subThoroughfare]); //num civico
-//        //    NSLog(@"postalcode %@", [placemark postalCode]);
-//        //    NSLog(@"sublocality %@", [placemark subLocality]);  //Brescia
-//        //    NSLog(@"locality %@", [placemark locality]); //Brescia
-//        //    NSLog(@"administrative area::::%@",[placemark administrativeArea]); //Lombardy
-//        //    
-//        //    NSLog(@"streeteersub ::::%@",[placemark subAdministrativeArea]); //Province of Brescia
-//        
-//        for(NSString *entry in self.comuniP2P)
-//        {
-//            NSArray *comune = [self.comuniP2P objectForKey:entry];
-//            if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [[placemark subAdministrativeArea] rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
-//                [alert show];
-//            }
-//        }
-//        
-//        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-//        [self.navigationController.view addSubview:HUD];
-//        HUD.delegate = self;
-//        HUD.labelText = @"Caricamento";
-//        [HUD show:YES];
-//        [self retrieveBoxesForType:self.selectedType];
-//        
-//    }];
-//    
-//    
-//#else
-    
-    CLLocationCoordinate2D locationToLookup = userLocation.coordinate;
-    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
-    reverseGeocoder.delegate = self;
-    [reverseGeocoder start];
-    
-//#endif
-
+   
 }
 
 #pragma mark -
@@ -587,6 +498,8 @@
     self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
 
     
+    
+    //TODO: dove metto la segnalazione del comune raccolta P2P ? 
     for(NSString *entry in self.comuniP2P)
     {
         NSArray *comune = [self.comuniP2P objectForKey:entry];
@@ -596,18 +509,43 @@
         }
     }
     
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    HUD.delegate = self;
-    HUD.labelText = @"Caricamento";
-    [HUD show:YES];
-    //        [self retrieveDinnersWithAddress:self.address];
-    //        [self retrieveDinners];
-    [self retrieveBoxesForType:self.selectedType];
+    LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
+    
+    DoveSiButtaModel_Box *newItem = [[DoveSiButtaModel_Box alloc] init];
+    if( [self.address length] > 50)
+    {
+        NSString *shortTitle = [self.address substringToIndex:49];
+        [newItem setTitle:shortTitle ];
+    }
+    else
+    {
+        [newItem setTitle:self.address ];
+    }
     
     
-    [buttonAdd setEnabled:YES];
+    [newItem setAddress:self.address];
+    [newItem setCountry:self.country];
+    [newItem setHostedBy:@""];
+    [newItem setEventDate:[NSDate date]];
     
+    
+    CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
+    NSLocale *locale = [NSLocale currentLocale];
+    
+    [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
+    [newItem setLongitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale] ];
+    
+    addVC.newItem = newItem;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
+    
+    [self presentModalViewController:navController animated:YES];
+    [addVC setDelegate:self];
+    [addVC release];
+    [navController release];
+
+    
+        
 
 //    if (reverseGeocoder != nil)
 //    {
@@ -827,10 +765,84 @@
 //
  - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    
-       
+    if(oldLocation.coordinate.latitude != newLocation.coordinate.latitude && oldLocation.coordinate.longitude != newLocation.coordinate.longitude)
+    {
+        // we have received our current location, so enable the "Get Current Address" button
+        NSLog(@"updated user location");
         
- }
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([newLocation coordinate] ,1000,1000);        
+        MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  
+        [self.mapView setRegion:adjustedRegion animated:YES];
+        self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", newLocation.coordinate.latitude];
+        self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", newLocation.coordinate.longitude];
+        
+        
+        
+        //    gpsLocationFailed = NO;
+        //    self.usingManualLocation = NO;
+        //    self.gpsLocation = userLocation.coordinate;
+        [locationManager stopUpdatingLocation]; //TODO: ok ma quando la faccio ripartire ? 
+        
+        
+        //#ifdef __IPHONE_5_0
+        //    
+        //    [geocoder reverseGeocodeLocation:userLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        //        CLPlacemark *placemark = [placemarks objectAtIndex:0];
+        //        self.country = placemark.country;
+        //        self.postCode = placemark.postalCode;
+        //        self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+        //        //    NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
+        //        //    NSLog(@"Address of placemark: %@", ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO));
+        //        //    NSLog(@"street::::%@",[placemark thoroughfare]); //Via 
+        //        //    NSLog(@"street number::::%@",[placemark subThoroughfare]); //num civico
+        //        //    NSLog(@"postalcode %@", [placemark postalCode]);
+        //        //    NSLog(@"sublocality %@", [placemark subLocality]);  //Brescia
+        //        //    NSLog(@"locality %@", [placemark locality]); //Brescia
+        //        //    NSLog(@"administrative area::::%@",[placemark administrativeArea]); //Lombardy
+        //        //    
+        //        //    NSLog(@"streeteersub ::::%@",[placemark subAdministrativeArea]); //Province of Brescia
+        //        
+        //        for(NSString *entry in self.comuniP2P)
+        //        {
+        //            NSArray *comune = [self.comuniP2P objectForKey:entry];
+        //            if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [[placemark subAdministrativeArea] rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
+        //                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+        //                [alert show];
+        //            }
+        //        }
+        //        
+        //        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        //        [self.navigationController.view addSubview:HUD];
+        //        HUD.delegate = self;
+        //        HUD.labelText = @"Caricamento";
+        //        [HUD show:YES];
+        //        [self retrieveBoxesForType:self.selectedType];
+        //        
+        //    }];
+        //    
+        //    
+        //#else
+        
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+        HUD.delegate = self;
+        HUD.labelText = @"Caricamento";
+        [HUD show:YES];
+        //        [self retrieveDinnersWithAddress:self.address];
+        //        [self retrieveDinners];
+        [self retrieveBoxesForType:self.selectedType];
+        
+        
+        [buttonAdd setEnabled:YES];
+        
+        
+        
+        
+        //#endif
+
+    }
+    
+}
  
 
 

@@ -32,6 +32,7 @@
 @synthesize address, postCode, country;
 @synthesize comuniP2P;
 @synthesize buttonAdd;
+@synthesize locationManager;
 
 
 - (void)didReceiveMemoryWarning
@@ -331,13 +332,14 @@
     
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
-	locationManager = [[CLLocationManager alloc] init];
+	self.locationManager = [[CLLocationManager alloc] init];
 
 
 //    usingManualLocation = NO;    
-    locationManager.delegate = self; 
-    locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-    [locationManager startUpdatingLocation];
+    self.locationManager.delegate = self; 
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters; //kCLLocationAccuracyBestForNavigation;
+    self.locationManager.distanceFilter = 100.0f; 
+    [self.locationManager startUpdatingLocation];
     
 //#ifdef __IPHONE_5_0
 //    geocoder = [[CLGeocoder alloc] init];
@@ -765,8 +767,8 @@
 //
  - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    if(oldLocation.coordinate.latitude != newLocation.coordinate.latitude && oldLocation.coordinate.longitude != newLocation.coordinate.longitude)
-    {
+//    if(lroundf(newLocation.coordinate.latitude) != 0.0f || lroundf(newLocation.coordinate.longitude) != 0.0f   )
+//    {
         // we have received our current location, so enable the "Get Current Address" button
         NSLog(@"updated user location");
         
@@ -781,7 +783,7 @@
         //    gpsLocationFailed = NO;
         //    self.usingManualLocation = NO;
         //    self.gpsLocation = userLocation.coordinate;
-        [locationManager stopUpdatingLocation]; //TODO: ok ma quando la faccio ripartire ? 
+        [self.locationManager stopUpdatingLocation]; //TODO: ok ma quando la faccio ripartire ? 
         
         
         //#ifdef __IPHONE_5_0
@@ -840,7 +842,7 @@
         
         //#endif
 
-    }
+//    }
     
 }
  

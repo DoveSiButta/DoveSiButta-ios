@@ -76,6 +76,8 @@
 @property (nonatomic, retain) NSString *postCode;
 @property (nonatomic, retain) NSString *country;
 
+@property (nonatomic, retain) CLLocationManager *locationManager;
+
 
 
 

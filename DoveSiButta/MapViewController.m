@@ -58,61 +58,6 @@
 	NSLog(@"http response = %@",[response getMessage]);
 }
 
-/*
--(void) retrieveBoxes
-{
-    @try{
-        
-#if DEBUG
-        NSLog(@"retriving dinners....");
-#endif
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
-        DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
-        
-        DataServiceQuery *query = [proxy boxes];
-        QueryOperationResponse *response = [query execute];
-        NSArray *resultArr =[[response getResult] retain];
-
-        results = [resultArr mutableCopy];
-    }
-    @catch (DataServiceRequestException * e) 
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
-        [alert show];
-        NSLog(@"exception = %@,  innerExceptiom= %@",[e name],[[e getResponse] getError]);
-    }	
-    @catch (ODataServiceException * e) 
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
-        [alert show];
-        NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
-        
-    }	
-    @catch (NSException * e) 
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
-        [alert show];
-        NSLog(@"exception = %@, %@",[e name],[e reason]);
-    }
-    
-    HUD.labelText = [NSString stringWithFormat: @"Completato"];
-    [HUD hide:YES afterDelay:1];
-    
-    for (DoveSiButtaModel_Box *aResult in results)
-	{
-
-        MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
-        resultAnnotation.item = aResult;
-        [resultAnnotation retain];
-        
-        [mapView addAnnotation:resultAnnotation];
-        
-	}
-    
-}
-*/
-
 -(void) retrieveBoxesForType:(NSString*)searchType
 {
     @try{
@@ -128,7 +73,7 @@
 //        QueryOperationResponse *response = [query execute];
         results = [[NSMutableArray alloc] init ];
 //        
-        CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
+        CLLocationCoordinate2D location = self.locationManager.location.coordinate;
         NSLocale *locale = [NSLocale currentLocale];
         
 //        results = [proxy ItemsNearMeByCoordinatesWithlatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude ]  descriptionWithLocale:locale] locale:locale] longitude:self.[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude ]  descriptionWithLocale:locale] locale:locale]];
@@ -166,6 +111,8 @@
         [alert show];
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
+    
+    self.boxesLoaded = YES;
     
     HUD.labelText = [NSString stringWithFormat: @"Completato"];
     [HUD hide:YES afterDelay:1];
@@ -242,14 +189,10 @@
 
 -(void) addItem:(id)sender
 {
-    //TODO: inserire qui Reverse Geocode (?) //No perchè ci serve l'indirizzo prima, per indicare se comune fa raccolta P2P
-    
-    
-    CLLocationCoordinate2D locationToLookup = self.mapView.userLocation.coordinate;
+    CLLocationCoordinate2D locationToLookup = self.locationManager.location.coordinate;
     MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
-    
     
 }
 
@@ -261,6 +204,13 @@
 }
 
 #pragma mark - View lifecycle
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.boxesLoaded = NO;
+    [super viewWillAppear:animated];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -337,8 +287,8 @@
 
 //    usingManualLocation = NO;    
     self.locationManager.delegate = self; 
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters; //kCLLocationAccuracyBestForNavigation;
-    self.locationManager.distanceFilter = 100.0f; 
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation; // kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 10.0f; 
     [self.locationManager startUpdatingLocation];
     
 //#ifdef __IPHONE_5_0
@@ -458,6 +408,8 @@
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
+    [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
+    
     MKPinAnnotationView *newAnnotationPin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"] autorelease];
     if([selectedResult getBoxID] == [annotation annotationid])
     {
@@ -531,7 +483,7 @@
     [newItem setEventDate:[NSDate date]];
     
     
-    CLLocationCoordinate2D location = mapView.userLocation.location.coordinate;
+    CLLocationCoordinate2D location = self.locationManager.location.coordinate;
     NSLocale *locale = [NSLocale currentLocale];
     
     [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
@@ -560,7 +512,7 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot obtain address."
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"")
 														message:errorMessage
 													   delegate:nil
 											  cancelButtonTitle:@"OK"
@@ -570,120 +522,8 @@
 }
 
 
-
-
-
 # pragma mark - Location
 
-/*
- //
- // qualifiedAddressStringForResultDictionary:
- //
- // Generate the fully qualified address string from a result dictionary
- //
- // Parameters:
- //    result - the result dictionary
- //
- // returns the address, location, WA, Australia.
- //
- + (NSString *)qualifiedAddressStringForResultDictionary:(NSDictionary *)result
- {
- return [NSString stringWithFormat:@"%@, %@, WA, Australia",
- [result objectForKey:@"address"],
- [result objectForKey:@"location"]];
- }
- */
-
-/*
-//
-// locationFailedWithCode:
-//
-// Handle an error from the GPS
-//
-// Parameters:
-//    errorCode - either an error from the gpsLocation manager or FVLocationFailedOutsideWA if gpsLocation
-//		is not in Western Australia
-//
-- (void)locationFailedWithCode:(NSInteger)errorCode
-{
-	if (!gpsLocationFailed)
-	{
-		gpsLocationFailed = YES;
-		
-		//
-		// Don't show an error or override the gpsLocation if we're using a manually
-		// entered gpsLocation
-		//
-		if (usingManualLocation)
-		{
-			return;
-		}
-		
-		//
-		// Deliberately set our own GPS Location to Brescia
-		//
-		self.gpsLocation = CLLocationCoordinate2DMake(45.53576534999999, 10.21160257);
-		
-		NSMutableString *errorString = [NSMutableString string];
-		switch (errorCode) 
-		{
-                //
-                // We shouldn't ever get an unknown error code, but just in case...
-                //
-                //			case FVLocationFailedOutsideWA:
-                //				[errorString appendString:NSLocalizedStringFromTable(@"The gpsLocation reported by the GPS is not in Western Australia.", @"ResultsView", @"Error detail")];
-                //				break;
-                //                
-                //
-                // This error code is usually returned whenever user taps "Don't Allow" in response to
-                // being told your app wants to access the current gpsLocation. Once this happens, you cannot
-                // attempt to get the gpsLocation again until the app has quit and relaunched.
-                //
-                // "Don't Allow" on two successive app launches is the same as saying "never allow". The user
-                // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
-                //
-			case kCLErrorDenied:
-				[errorString appendString:NSLocalizedStringFromTable(@"Location from GPS denied.", @"ResultsView", nil)];
-				break;
-                
-                //
-                // This error code is usually returned whenever the device has no data or WiFi connectivity,
-                // or when the gpsLocation cannot be determined for some other reason.
-                //
-                // CoreLocation will keep trying, so you can keep waiting, or prompt the user.
-                //
-			case kCLErrorLocationUnknown:
-				[errorString appendString:NSLocalizedStringFromTable(@"Location from GPS reported error.", @"ResultsView", nil)];
-				break;
-                //
-                // We shouldn't ever get an unknown error code, but just in case...
-                //
-			default:
-				[errorString appendString:NSLocalizedStringFromTable(@"Location from GPS failed.", @"ResultsView", nil)];
-				break;
-		}
-		
-		[errorString appendString:NSLocalizedStringFromTable(@"È stata impostata una posizione di default.", @"ResultsView", nil)];
-		
-		//
-		// Present the error dialog
-		//
-		UIAlertView *alert =
-        [[UIAlertView alloc]
-         initWithTitle:NSLocalizedStringFromTable(@"Errore GPS", @"ResultsView", nil)
-         message:errorString
-         delegate:self
-         cancelButtonTitle:NSLocalizedStringFromTable(@"OK", @"ResultsView", @"Chiudi.")
-         otherButtonTitles: nil];
-		[alert show];    
-		[alert release];
-        
-        //Imposto che stiamo usando location manualmente
-        self.usingManualLocation = YES;
-        
-	}
-}
-*/
 
 
 //
@@ -707,7 +547,12 @@
                 // "Don't Allow" on two successive app launches is the same as saying "never allow". The user
                 // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
             case kCLErrorDenied:
-//                self.usingManualLocation = YES; 
+            {
+                UIAlertView *a = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"DoveSiButta richiede l'utilizzo del GPS per poter funzionare", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                [a show];
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
                 break;
             case kCLErrorLocationUnknown:
 //                self.usingManualLocation = YES; 
@@ -723,37 +568,6 @@
     
 }
 
-/*
- //
- // setGpsLocation:
- //
- // When the gpsLocation changes, refresh the page at the new gpsLocation
- //
- // Parameters:
- //    newLocation - gpsLocation to apply
- //
- - (void)setGpsLocation:(CLLocationCoordinate2D)newGpsLocation
- {
- //TODO: questa funzione va rivista
- //	gpsLocation = newGpsLocation;
- //	
- //	if (usingManualLocation)
- //	{
- //		return;
- //	}
- //	
- //	if (!CLLocationCoordinate2DIsValid(gpsLocation))
- //	{
- //		self.location = nil;
- //		return;
- //	}
- //	
- //	self.location =
- //    [[PostcodesController sharedPostcodesController]
- //     postcodeClosestToLocation:gpsLocation];
- }
- */
-
 
 //
 // locationManager:didUpdateToLocation:fromLocation:
@@ -767,10 +581,11 @@
 //
  - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-//    if(lroundf(newLocation.coordinate.latitude) != 0.0f || lroundf(newLocation.coordinate.longitude) != 0.0f   )
-//    {
+    NSLog(@"updated user location: %f %f", roundf(newLocation.coordinate.latitude), roundf(newLocation.coordinate.longitude));
+    if((roundf(newLocation.coordinate.latitude) != 0.0f && roundf(newLocation.coordinate.longitude) != 0.0f ) && self.boxesLoaded == NO )
+    {
         // we have received our current location, so enable the "Get Current Address" button
-        NSLog(@"updated user location");
+        
         
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([newLocation coordinate] ,1000,1000);        
         MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  
@@ -783,7 +598,7 @@
         //    gpsLocationFailed = NO;
         //    self.usingManualLocation = NO;
         //    self.gpsLocation = userLocation.coordinate;
-        [self.locationManager stopUpdatingLocation]; //TODO: ok ma quando la faccio ripartire ? 
+//        [self.locationManager stopUpdatingLocation]; //TODO: ok ma quando la faccio ripartire ? 
         
         
         //#ifdef __IPHONE_5_0
@@ -842,7 +657,7 @@
         
         //#endif
 
-//    }
+    }
     
 }
  

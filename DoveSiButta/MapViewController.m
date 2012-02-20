@@ -211,11 +211,10 @@
 {
     [super viewWillAppear:animated];
     
-    [super viewWillAppear:animated];
-    CLLocationCoordinate2D coord = {latitude: 45.53189, longitude: 10.21727};
-    MKCoordinateSpan span = {latitudeDelta: 1, longitudeDelta: 1};
-    MKCoordinateRegion region = {coord, span};
-    [mapView setRegion:region];
+//    CLLocationCoordinate2D coord = {latitude: 45.53189, longitude: 10.21727};
+//    MKCoordinateSpan span = {latitudeDelta: 1, longitudeDelta: 1};
+//    MKCoordinateRegion region = {coord, span};
+//    [mapView setRegion:region];
 
 }
 
@@ -447,6 +446,7 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    NSLog(@"MapView updated userLocation");
 //    NSLog(@"updated user location: %f %f", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
 //    if((roundf(userLocation.coordinate.latitude) != 0.0f && roundf(userLocation.coordinate.longitude) != 0.0f ) && self.boxesLoaded == NO )
 //    {
@@ -614,11 +614,11 @@
     
     
     NSLog(@"updated user location: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    if( newLocation.horizontalAccuracy <= self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
+    if( newLocation.horizontalAccuracy >= self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
     {
         // we have received our current location, so enable the "Get Current Address" button
         [self.locationManager stopUpdatingLocation];
-//        self.locationManager = nil;
+        self.locationManager.delegate = nil;
         
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([newLocation coordinate] ,1000,1000);        
         MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  

@@ -60,6 +60,8 @@
 		AC66D08C14C37CA70098E1F1 /* rifiuti_300px.png in Resources */ = {isa = PBXBuildFile; fileRef = AC66D08014C37CA70098E1F1 /* rifiuti_300px.png */; };
 		AC66D08D14C37CA70098E1F1 /* vetro_300px.png in Resources */ = {isa = PBXBuildFile; fileRef = AC66D08114C37CA70098E1F1 /* vetro_300px.png */; };
 		AC66D09214C3862E0098E1F1 /* IconForType.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D09114C3862D0098E1F1 /* IconForType.plist */; };
+		AC69D0B714F2DDF600FE688B /* MapAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC69D0B514F2DDF600FE688B /* MapAddViewController.m */; };
+		AC69D0B814F2DDF600FE688B /* MapAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC69D0B614F2DDF600FE688B /* MapAddViewController.xib */; };
 		AC8780FC14E3BCCE004915C6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC8780FB14E3BCCE004915C6 /* Localizable.strings */; };
 		AC8E3F8D14DC984D0056648A /* NoPicture@2X.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */; };
 		AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8C14DC984D0056648A /* NoPicture.jpg */; };
@@ -316,6 +318,9 @@
 		AC66D08114C37CA70098E1F1 /* vetro_300px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vetro_300px.png; sourceTree = "<group>"; };
 		AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LocationAddViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		AC66D09114C3862D0098E1F1 /* IconForType.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IconForType.plist; sourceTree = "<group>"; };
+		AC69D0B414F2DDF600FE688B /* MapAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAddViewController.h; sourceTree = "<group>"; };
+		AC69D0B514F2DDF600FE688B /* MapAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAddViewController.m; sourceTree = "<group>"; };
+		AC69D0B614F2DDF600FE688B /* MapAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapAddViewController.xib; sourceTree = "<group>"; };
 		AC8780F214E3BBFE004915C6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = it; path = it.lproj/RifiutiTypes.plist; sourceTree = "<group>"; };
 		AC8780FB14E3BCCE004915C6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "NoPicture@2X.jpg"; path = "Images/NoPicture@2X.jpg"; sourceTree = "<group>"; };
@@ -599,6 +604,9 @@
 				ACC5830D14E462BD005C72D3 /* LocationDetailViewController.m */,
 				AC66D00B14C24B6C0098E1F1 /* MapAnnotationDefault.h */,
 				AC66D00C14C24B6C0098E1F1 /* MapAnnotationDefault.m */,
+				AC69D0B414F2DDF600FE688B /* MapAddViewController.h */,
+				AC69D0B514F2DDF600FE688B /* MapAddViewController.m */,
+				AC69D0B614F2DDF600FE688B /* MapAddViewController.xib */,
 				AC66D00D14C24B6C0098E1F1 /* MapViewController.h */,
 				AC66D00E14C24B6C0098E1F1 /* MapViewController.m */,
 				AC66D00F14C24B6C0098E1F1 /* MapViewController.xib */,
@@ -1396,6 +1404,7 @@
 				AC8E3F8D14DC984D0056648A /* NoPicture@2X.jpg in Resources */,
 				AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */,
 				AC8780FC14E3BCCE004915C6 /* Localizable.strings in Resources */,
+				AC69D0B814F2DDF600FE688B /* MapAddViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1535,6 +1544,7 @@
 				ACD7D1E914D8A75600B1FE37 /* DoveSiButtaEntities.m in Sources */,
 				ACD7D1F614D8AFD700B1FE37 /* NSData+Base64.m in Sources */,
 				AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */,
+				AC69D0B714F2DDF600FE688B /* MapAddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

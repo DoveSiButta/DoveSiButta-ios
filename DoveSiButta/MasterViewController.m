@@ -47,6 +47,7 @@
 @synthesize listContent, filteredListContent;
 @synthesize savedSearchTerm, savedScopeButtonIndex, searchWasActive;
 @synthesize tmpCell, cellNib;
+//@synthesize navigationController;
 
 
 
@@ -56,7 +57,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Cosa Butti?", @"");
+        self.title = NSLocalizedString(@"Trova", @"");
+        self.tabBarItem.image = [UIImage imageNamed:@"first"];
     }
     return self;
 }
@@ -277,7 +279,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:[NSBundle mainBundle]] autorelease];
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {

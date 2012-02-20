@@ -65,5 +65,6 @@
 @property (nonatomic, retain) IBOutlet ApplicationCell *tmpCell;
 @property (nonatomic, retain) UINib *cellNib;
 
+//@property (nonatomic, retain) UINavigationController *navigationController;
 
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */; };
+		AC5EE0DC14F23BDE00A98E36 /* libMSODataLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5EE0DB14F23BDE00A98E36 /* libMSODataLib.a */; };
 		AC66CEF214C246410098E1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF114C246410098E1F1 /* UIKit.framework */; };
 		AC66CEF414C246410098E1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF314C246410098E1F1 /* Foundation.framework */; };
 		AC66CEF614C246410098E1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF514C246410098E1F1 /* CoreGraphics.framework */; };
@@ -30,7 +31,6 @@
 		AC66CFEA14C2494F0098E1F1 /* PageCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFD914C2494F0098E1F1 /* PageCellBackground.m */; };
 		AC66CFEB14C2494F0098E1F1 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFDB14C2494F0098E1F1 /* PageViewController.m */; };
 		AC66CFEC14C2494F0098E1F1 /* RoundRect.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66CFDE14C2494F0098E1F1 /* RoundRect.m */; };
-		AC66CFED14C2498B0098E1F1 /* libMSODataLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CF4014C247ED0098E1F1 /* libMSODataLib.a */; };
 		AC66CFEF14C249920098E1F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CFEE14C249910098E1F1 /* MapKit.framework */; };
 		AC66CFF114C249980098E1F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CFF014C249980098E1F1 /* CoreLocation.framework */; };
 		AC66D01014C24B6C0098E1F1 /* MapAnnotationDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = AC66D00C14C24B6C0098E1F1 /* MapAnnotationDefault.m */; };
@@ -178,19 +178,10 @@
 		ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		AC66CF3F14C247ED0098E1F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AC66CF3814C247ED0098E1F1 /* MSODataLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D;
-			remoteInfo = MSODataLib;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		AC3FE1FE14E8044B005CC256 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		AC5EE0DB14F23BDE00A98E36 /* libMSODataLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMSODataLib.a; path = ../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release/libMSODataLib.a; sourceTree = "<group>"; };
 		AC66CEED14C246400098E1F1 /* DoveSiButta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoveSiButta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC66CEF114C246410098E1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AC66CEF314C246410098E1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -203,7 +194,6 @@
 		AC66CF0114C246410098E1F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AC66CF0314C246410098E1F1 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		AC66CF0414C246410098E1F1 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		AC66CF3814C247ED0098E1F1 /* MSODataLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MSODataLib.xcodeproj; path = ../../github/OData4ObjC/Framework/src/MSODataLib/MSODataLib.xcodeproj; sourceTree = "<group>"; };
 		AC66CF8214C248F90098E1F1 /* ACSCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACSCredential.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ACSCredential.h; sourceTree = "<group>"; };
 		AC66CF8314C248F90098E1F1 /* ACSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACSUtil.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ACSUtil.h; sourceTree = "<group>"; };
 		AC66CF8414C248F90098E1F1 /* ACSUtilException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACSUtilException.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ACSUtilException.h; sourceTree = "<group>"; };
@@ -534,6 +524,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC5EE0DC14F23BDE00A98E36 /* libMSODataLib.a in Frameworks */,
 				ACE8851214CDF5890004B9DF /* MessageUI.framework in Frameworks */,
 				ACE8851014CDF57E0004B9DF /* Security.framework in Frameworks */,
 				ACE882E314CCD2BA0004B9DF /* libz.1.2.5.dylib in Frameworks */,
@@ -543,7 +534,6 @@
 				ACE882AE14CC59C80004B9DF /* AddressBookUI.framework in Frameworks */,
 				AC66CFF114C249980098E1F1 /* CoreLocation.framework in Frameworks */,
 				AC66CFEF14C249920098E1F1 /* MapKit.framework in Frameworks */,
-				AC66CFED14C2498B0098E1F1 /* libMSODataLib.a in Frameworks */,
 				AC66CEF214C246410098E1F1 /* UIKit.framework in Frameworks */,
 				AC66CEF414C246410098E1F1 /* Foundation.framework in Frameworks */,
 				AC66CEF614C246410098E1F1 /* CoreGraphics.framework in Frameworks */,
@@ -557,7 +547,7 @@
 		AC66CEE214C246400098E1F1 = {
 			isa = PBXGroup;
 			children = (
-				AC66CF3814C247ED0098E1F1 /* MSODataLib.xcodeproj */,
+				AC5EE0DB14F23BDE00A98E36 /* libMSODataLib.a */,
 				ACE8843214CDF5670004B9DF /* ShareKit */,
 				ACE882B414CC728C0004B9DF /* ASIHttp */,
 				AC66D01814C24BC70098E1F1 /* CustomTableViewCells */,
@@ -636,14 +626,6 @@
 				AC66CEFF14C246410098E1F1 /* DoveSiButta-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AC66CF3914C247ED0098E1F1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AC66CF4014C247ED0098E1F1 /* libMSODataLib.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		AC66CF4614C248180098E1F1 /* OData */ = {
@@ -1347,28 +1329,12 @@
 			mainGroup = AC66CEE214C246400098E1F1;
 			productRefGroup = AC66CEEE14C246400098E1F1 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = AC66CF3914C247ED0098E1F1 /* Products */;
-					ProjectRef = AC66CF3814C247ED0098E1F1 /* MSODataLib.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				AC66CEEC14C246400098E1F1 /* DoveSiButta */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		AC66CF4014C247ED0098E1F1 /* libMSODataLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMSODataLib.a;
-			remoteRef = AC66CF3F14C247ED0098E1F1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AC66CEEB14C246400098E1F1 /* Resources */ = {
@@ -1654,7 +1620,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "DoveSiButta/DoveSiButta-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1665,7 +1636,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "DoveSiButta/DoveSiButta-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -33,6 +33,7 @@
 @synthesize comuniP2P;
 @synthesize buttonAdd;
 @synthesize locationManager;
+@synthesize boxesLoaded;
 
 
 - (void)didReceiveMemoryWarning
@@ -288,7 +289,7 @@
 //    usingManualLocation = NO;    
     self.locationManager.delegate = self; 
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation; // kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 10.0f; 
+    self.locationManager.distanceFilter = 100.0f; 
     [self.locationManager startUpdatingLocation];
     
 //#ifdef __IPHONE_5_0

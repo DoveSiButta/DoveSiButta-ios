@@ -33,7 +33,6 @@
 @synthesize comuniP2P;
 @synthesize buttonAdd;
 @synthesize locationManager;
-@synthesize boxesLoaded;
 
 
 - (void)didReceiveMemoryWarning
@@ -113,11 +112,11 @@
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
-    self.boxesLoaded = YES;
     
     HUD.labelText = [NSString stringWithFormat: @"Completato"];
     [HUD hide:YES afterDelay:1];
 
+    [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
     for (DoveSiButtaModel_Box *aResult in results)
 	{
 
@@ -172,6 +171,7 @@
     HUD.labelText = [NSString stringWithFormat: @"Completato"];
     [HUD hide:YES afterDelay:1];
     
+    [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
     for (DoveSiButtaModel_Box *aResult in results)
 	{
 
@@ -209,8 +209,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.boxesLoaded = NO;
     [super viewWillAppear:animated];
+    
+    [super viewWillAppear:animated];
+    CLLocationCoordinate2D coord = {latitude: 45.53189, longitude: 10.21727};
+    MKCoordinateSpan span = {latitudeDelta: 1, longitudeDelta: 1};
+    MKCoordinateRegion region = {coord, span};
+    [mapView setRegion:region];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -288,8 +294,9 @@
 
 //    usingManualLocation = NO;    
     self.locationManager.delegate = self; 
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation; // kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 100.0f; 
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.purpose = NSLocalizedString(@"Trovare il cassonetto più vicino", @"");
     [self.locationManager startUpdatingLocation];
     
 //#ifdef __IPHONE_5_0
@@ -408,8 +415,7 @@
     // if it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
-    
-    [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
+
     
     MKPinAnnotationView *newAnnotationPin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"] autorelease];
     if([selectedResult getBoxID] == [annotation annotationid])
@@ -441,7 +447,29 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-   
+//    NSLog(@"updated user location: %f %f", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+//    if((roundf(userLocation.coordinate.latitude) != 0.0f && roundf(userLocation.coordinate.longitude) != 0.0f ) && self.boxesLoaded == NO )
+//    {
+//        // we have received our current location, so enable the "Get Current Address" button
+//        
+//        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([userLocation coordinate] ,1000,1000);        
+//        MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  
+//        [self.mapView setRegion:adjustedRegion animated:YES];
+//        self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", userLocation.coordinate.latitude];
+//        self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", userLocation.coordinate.longitude];
+//  
+//        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+//        [self.navigationController.view addSubview:HUD];
+//        HUD.delegate = self;
+//        HUD.labelText = @"Caricamento";
+//        [HUD show:YES];
+//
+//        [self retrieveBoxesForType:self.selectedType];
+//        
+//        
+//        [buttonAdd setEnabled:YES];
+//        
+//    }
 }
 
 #pragma mark -
@@ -582,11 +610,15 @@
 //
  - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"updated user location: %f %f", roundf(newLocation.coordinate.latitude), roundf(newLocation.coordinate.longitude));
-    if((roundf(newLocation.coordinate.latitude) != 0.0f && roundf(newLocation.coordinate.longitude) != 0.0f ) && self.boxesLoaded == NO )
+    if(newLocation.horizontalAccuracy < 0 ) return;
+    
+    
+    NSLog(@"updated user location: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    if( newLocation.horizontalAccuracy <= self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
     {
         // we have received our current location, so enable the "Get Current Address" button
-        
+        [self.locationManager stopUpdatingLocation];
+//        self.locationManager = nil;
         
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([newLocation coordinate] ,1000,1000);        
         MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  

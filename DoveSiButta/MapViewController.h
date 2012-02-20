@@ -78,8 +78,6 @@
 
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
-@property (nonatomic) BOOL boxesLoaded;
-
 
 
 

@@ -43,6 +43,18 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        self.title = NSLocalizedString(@"Butta", @"");
+        self.tabBarItem.image = [UIImage imageNamed:@"103-map"];
+        
+    }
+    return self;
+}
+
 
 #pragma mark - Data
 
@@ -63,7 +75,7 @@
     @try{
         
 #if DEBUG
-        NSLog(@"retriving dinners....");
+        NSLog(@"retriving boxes....");
 #endif
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
@@ -133,7 +145,7 @@
 
 
 
--(void) retrieveDinnersWithAddress:(NSString*)searchAddress
+-(void) retrieveBoxesWithAddress:(NSString*)searchAddress
 {
     @try{
         
@@ -312,8 +324,7 @@
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
      */
 
-    
-    self.title = NSLocalizedString(@"Cassonetti vicini a te", @"");
+//    self.title = NSLocalizedString(@"Cassonetti vicini a te", @"");
     
     
 }

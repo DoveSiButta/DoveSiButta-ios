@@ -45,9 +45,9 @@
 	CLLocationCoordinate2D gpsLocation;
 //	BOOL gpsLocationFailed;
 //	BOOL usingManualLocation;
-#ifdef __IPHONE_5_0
-    CLGeocoder *geocoder; //!!!! iOS5.0
-#endif
+//#ifdef __IPHONE_5_0
+//    CLGeocoder *geocoder; //!!!! iOS5.0
+//#endif
     
 }
 

@@ -10,6 +10,7 @@
 
 #import "MasterViewController.h"
 #import "MapAddViewController.h"
+#import "ChiSiamoViewController.h"
 
 //#import "SHK.h"
 
@@ -42,8 +43,9 @@
     MasterViewController *viewController1 = [[[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil] autorelease];
     UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:viewController1] autorelease];
     UIViewController *viewController2 = [[[MapAddViewController alloc] initWithNibName:@"MapAddViewController" bundle:nil] autorelease];
+    ChiSiamoViewController *viewController3 = [[ChiSiamoViewController alloc] initWithNibName:@"ChiSiamoViewController" bundle:nil];
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, viewController2, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, viewController2, viewController3, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;

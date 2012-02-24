@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */; };
-		AC5EE0DC14F23BDE00A98E36 /* libMSODataLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5EE0DB14F23BDE00A98E36 /* libMSODataLib.a */; };
 		AC66CEF214C246410098E1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF114C246410098E1F1 /* UIKit.framework */; };
 		AC66CEF414C246410098E1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF314C246410098E1F1 /* Foundation.framework */; };
 		AC66CEF614C246410098E1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF514C246410098E1F1 /* CoreGraphics.framework */; };
@@ -67,6 +66,15 @@
 		AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8C14DC984D0056648A /* NoPicture.jpg */; };
 		AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC99992414D68AF6006229A8 /* UIImage+Extensions.m */; };
 		AC99992714D68E83006229A8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AC99992614D68E83006229A8 /* LICENSE */; };
+		ACB8F88E14F7724B0052B559 /* libMSODataLib4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB8F88D14F7724B0052B559 /* libMSODataLib4.1.a */; };
+		ACB8F89214F772A80052B559 /* ChiSiamoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */; };
+		ACB8F89314F772A80052B559 /* ChiSiamoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */; };
+		ACB8F89B14F773CE0052B559 /* 59-info.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89514F773CE0052B559 /* 59-info.png */; };
+		ACB8F89C14F773CE0052B559 /* 59-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89614F773CE0052B559 /* 59-info@2x.png */; };
+		ACB8F89D14F773CE0052B559 /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89714F773CE0052B559 /* 07-map-marker.png */; };
+		ACB8F89E14F773CE0052B559 /* 07-map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89814F773CE0052B559 /* 07-map-marker@2x.png */; };
+		ACB8F89F14F773CE0052B559 /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89914F773CE0052B559 /* 103-map.png */; };
+		ACB8F8A014F773CE0052B559 /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89A14F773CE0052B559 /* 103-map@2x.png */; };
 		ACC5830C14E462BD005C72D3 /* LocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC5830D14E462BD005C72D3 /* LocationDetailViewController.m */; };
 		ACC5830E14E462CA005C72D3 /* LocationAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC5830F14E462CA005C72D3 /* LocationAddViewController.m */; };
 		ACC5831014E462DE005C72D3 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC5831114E462DE005C72D3 /* MasterViewController.xib */; };
@@ -183,7 +191,6 @@
 /* Begin PBXFileReference section */
 		AC3FE1FE14E8044B005CC256 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-		AC5EE0DB14F23BDE00A98E36 /* libMSODataLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMSODataLib.a; path = ../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release/libMSODataLib.a; sourceTree = "<group>"; };
 		AC66CEED14C246400098E1F1 /* DoveSiButta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoveSiButta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC66CEF114C246410098E1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AC66CEF314C246410098E1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -328,6 +335,16 @@
 		AC99992314D68AF6006229A8 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		AC99992414D68AF6006229A8 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		AC99992614D68E83006229A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		ACB8F88D14F7724B0052B559 /* libMSODataLib4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMSODataLib4.1.a; path = ../../github/OData4ObjC/Framework/bin/odatalib/lib/libMSODataLib4.1.a; sourceTree = "<group>"; };
+		ACB8F88F14F772A80052B559 /* ChiSiamoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiSiamoViewController.h; sourceTree = "<group>"; };
+		ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiSiamoViewController.m; sourceTree = "<group>"; };
+		ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiSiamoViewController.xib; sourceTree = "<group>"; };
+		ACB8F89514F773CE0052B559 /* 59-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "59-info.png"; path = "TabIcons/59-info.png"; sourceTree = "<group>"; };
+		ACB8F89614F773CE0052B559 /* 59-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "59-info@2x.png"; path = "TabIcons/59-info@2x.png"; sourceTree = "<group>"; };
+		ACB8F89714F773CE0052B559 /* 07-map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "07-map-marker.png"; path = "TabIcons/07-map-marker.png"; sourceTree = "<group>"; };
+		ACB8F89814F773CE0052B559 /* 07-map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "07-map-marker@2x.png"; path = "TabIcons/07-map-marker@2x.png"; sourceTree = "<group>"; };
+		ACB8F89914F773CE0052B559 /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map.png"; path = "TabIcons/103-map.png"; sourceTree = "<group>"; };
+		ACB8F89A14F773CE0052B559 /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map@2x.png"; path = "TabIcons/103-map@2x.png"; sourceTree = "<group>"; };
 		ACC5830D14E462BD005C72D3 /* LocationDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationDetailViewController.m; sourceTree = "<group>"; };
 		ACC5830F14E462CA005C72D3 /* LocationAddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationAddViewController.m; sourceTree = "<group>"; };
 		ACC5831114E462DE005C72D3 /* MasterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MasterViewController.xib; sourceTree = "<group>"; };
@@ -529,7 +546,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC5EE0DC14F23BDE00A98E36 /* libMSODataLib.a in Frameworks */,
+				ACB8F88E14F7724B0052B559 /* libMSODataLib4.1.a in Frameworks */,
 				ACE8851214CDF5890004B9DF /* MessageUI.framework in Frameworks */,
 				ACE8851014CDF57E0004B9DF /* Security.framework in Frameworks */,
 				ACE882E314CCD2BA0004B9DF /* libz.1.2.5.dylib in Frameworks */,
@@ -552,7 +569,6 @@
 		AC66CEE214C246400098E1F1 = {
 			isa = PBXGroup;
 			children = (
-				AC5EE0DB14F23BDE00A98E36 /* libMSODataLib.a */,
 				ACE8843214CDF5670004B9DF /* ShareKit */,
 				ACE882B414CC728C0004B9DF /* ASIHttp */,
 				AC66D01814C24BC70098E1F1 /* CustomTableViewCells */,
@@ -576,6 +592,7 @@
 		AC66CEF014C246410098E1F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ACB8F88D14F7724B0052B559 /* libMSODataLib4.1.a */,
 				ACE8851114CDF5890004B9DF /* MessageUI.framework */,
 				ACE8850F14CDF57E0004B9DF /* Security.framework */,
 				ACE882E414CCD39F0004B9DF /* libxml2.dylib */,
@@ -618,6 +635,9 @@
 				ACE882AF14CC6D900004B9DF /* PictureFileViewController.h */,
 				ACE882B014CC6D910004B9DF /* PictureFileViewController.m */,
 				ACE882B114CC6D910004B9DF /* PictureFileViewController.xib */,
+				ACB8F88F14F772A80052B559 /* ChiSiamoViewController.h */,
+				ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */,
+				ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */,
 				AC66CFF214C249A80098E1F1 /* Resources */,
 				AC66CEF814C246410098E1F1 /* Supporting Files */,
 			);
@@ -803,6 +823,7 @@
 		AC66CFF214C249A80098E1F1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ACB8F89414F773C50052B559 /* TabIcons */,
 				ACE8853914CECE880004B9DF /* iTunesArtwork */,
 				AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */,
 				AC8E3F8C14DC984D0056648A /* NoPicture.jpg */,
@@ -869,6 +890,19 @@
 			);
 			name = icone;
 			path = Images/icone;
+			sourceTree = "<group>";
+		};
+		ACB8F89414F773C50052B559 /* TabIcons */ = {
+			isa = PBXGroup;
+			children = (
+				ACB8F89514F773CE0052B559 /* 59-info.png */,
+				ACB8F89614F773CE0052B559 /* 59-info@2x.png */,
+				ACB8F89714F773CE0052B559 /* 07-map-marker.png */,
+				ACB8F89814F773CE0052B559 /* 07-map-marker@2x.png */,
+				ACB8F89914F773CE0052B559 /* 103-map.png */,
+				ACB8F89A14F773CE0052B559 /* 103-map@2x.png */,
+			);
+			name = TabIcons;
 			sourceTree = "<group>";
 		};
 		ACCAA9F914EAE24E0067236F /* Extensions */ = {
@@ -1405,6 +1439,13 @@
 				AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */,
 				AC8780FC14E3BCCE004915C6 /* Localizable.strings in Resources */,
 				AC69D0B814F2DDF600FE688B /* MapAddViewController.xib in Resources */,
+				ACB8F89314F772A80052B559 /* ChiSiamoViewController.xib in Resources */,
+				ACB8F89B14F773CE0052B559 /* 59-info.png in Resources */,
+				ACB8F89C14F773CE0052B559 /* 59-info@2x.png in Resources */,
+				ACB8F89D14F773CE0052B559 /* 07-map-marker.png in Resources */,
+				ACB8F89E14F773CE0052B559 /* 07-map-marker@2x.png in Resources */,
+				ACB8F89F14F773CE0052B559 /* 103-map.png in Resources */,
+				ACB8F8A014F773CE0052B559 /* 103-map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1545,6 +1586,7 @@
 				ACD7D1F614D8AFD700B1FE37 /* NSData+Base64.m in Sources */,
 				AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */,
 				AC69D0B714F2DDF600FE688B /* MapAddViewController.m in Sources */,
+				ACB8F89214F772A80052B559 /* ChiSiamoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1635,6 +1677,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release\"",
+					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1651,6 +1694,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release\"",
+					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

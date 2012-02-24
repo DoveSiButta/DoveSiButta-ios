@@ -612,6 +612,8 @@
 {
     if(newLocation.horizontalAccuracy < 0 ) return;
     
+    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
+    if (locationAge > 5.0) return;
     
     NSLog(@"updated user location: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     if( newLocation.horizontalAccuracy >= self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE

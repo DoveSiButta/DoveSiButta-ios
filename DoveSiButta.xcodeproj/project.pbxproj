@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC1247DC14FD8CAF001A4256 /* Sfondo@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DA14FD8CAF001A4256 /* Sfondo@2X.png */; };
+		AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DB14FD8CAF001A4256 /* Sfondo.png */; };
+		AC1247E114FD8D9D001A4256 /* Logo@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DF14FD8D9D001A4256 /* Logo@2X.png */; };
+		AC1247E214FD8D9D001A4256 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247E014FD8D9D001A4256 /* Logo.png */; };
 		AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */; };
 		AC66CEF214C246410098E1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF114C246410098E1F1 /* UIKit.framework */; };
 		AC66CEF414C246410098E1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF314C246410098E1F1 /* Foundation.framework */; };
@@ -189,6 +193,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC1247DA14FD8CAF001A4256 /* Sfondo@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Sfondo@2X.png"; path = "Images/Sfondo@2X.png"; sourceTree = "<group>"; };
+		AC1247DB14FD8CAF001A4256 /* Sfondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sfondo.png; path = Images/Sfondo.png; sourceTree = "<group>"; };
+		AC1247DF14FD8D9D001A4256 /* Logo@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo@2X.png"; path = "Images/Logo@2X.png"; sourceTree = "<group>"; };
+		AC1247E014FD8D9D001A4256 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Images/Logo.png; sourceTree = "<group>"; };
 		AC3FE1FE14E8044B005CC256 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		AC66CEED14C246400098E1F1 /* DoveSiButta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoveSiButta.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -825,6 +833,10 @@
 			children = (
 				ACB8F89414F773C50052B559 /* TabIcons */,
 				ACE8853914CECE880004B9DF /* iTunesArtwork */,
+				AC1247DF14FD8D9D001A4256 /* Logo@2X.png */,
+				AC1247E014FD8D9D001A4256 /* Logo.png */,
+				AC1247DA14FD8CAF001A4256 /* Sfondo@2X.png */,
+				AC1247DB14FD8CAF001A4256 /* Sfondo.png */,
 				AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */,
 				AC8E3F8C14DC984D0056648A /* NoPicture.jpg */,
 				ACE8853214CECE880004B9DF /* App_Icon */,
@@ -1446,6 +1458,10 @@
 				ACB8F89E14F773CE0052B559 /* 07-map-marker@2x.png in Resources */,
 				ACB8F89F14F773CE0052B559 /* 103-map.png in Resources */,
 				ACB8F8A014F773CE0052B559 /* 103-map@2x.png in Resources */,
+				AC1247DC14FD8CAF001A4256 /* Sfondo@2X.png in Resources */,
+				AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */,
+				AC1247E114FD8D9D001A4256 /* Logo@2X.png in Resources */,
+				AC1247E214FD8D9D001A4256 /* Logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

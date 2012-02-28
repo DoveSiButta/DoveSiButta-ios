@@ -19,6 +19,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = NSLocalizedString(@"Chi siamo", @"");
+        self.tabBarItem.image = [UIImage imageNamed:@"59-info"];
     }
     return self;
 }

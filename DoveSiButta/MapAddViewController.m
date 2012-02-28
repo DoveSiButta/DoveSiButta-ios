@@ -32,8 +32,6 @@
 @synthesize buttonLat, buttonLon;
 @synthesize iconsDictionary;
 @synthesize selectedType;
-//@synthesize usingManualLocation, 
-//@synthesize gpsLocation;
 @synthesize address, postCode, country;
 @synthesize comuniP2P;
 @synthesize buttonAdd;
@@ -90,9 +88,7 @@
     
 #endif
     
-    
-    
-    
+
     //Eccezioni e comuni raccolta p2p
     NSString *path = [[NSBundle mainBundle] pathForResource:@"ComuniRaccoltaP2P" ofType:@"plist"];
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
@@ -113,8 +109,7 @@
         path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
         plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
         errorDesc = nil;
-        
-        
+    
         // convert static property list into dictionary object
         plistDictionary = (NSDictionary *)[NSPropertyListSerialization propertyListFromData:plistXML mutabilityOption:NSPropertyListMutableContainersAndLeaves format:&format errorDescription:&errorDesc];
         if (!plistDictionary) 
@@ -122,13 +117,11 @@
             NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
         }
         self.iconsDictionary = plistDictionary;
-        
     }
     
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
 	self.locationManager = [[CLLocationManager alloc] init];
-    
     
     //    usingManualLocation = NO;    
     self.locationManager.delegate = self; 
@@ -235,7 +228,6 @@
     MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
-    
 }
 
 
@@ -255,51 +247,6 @@
     LocationDetailViewController *detailvc = [[LocationDetailViewController alloc] initWithItem:[annotation dinner]];
     [self.navigationController pushViewController:detailvc animated:YES];
 }
-/*
- - (void)mapView:(MKMapView *)map regionDidChangeAnimated:(BOOL)animated
- {
- 
- NSArray *oldAnnotations = mapView.annotations;
- [mapView removeAnnotations:oldAnnotations];
- 
- NSArray *weatherItems = [weatherServer weatherItemsForMapRegion:mapView.region maximumCount:4];
- [mapView addAnnotations:weatherItems];
- 
- }
- */
-
-
-/*
- //Se si usa questo metodo, usare UNA SOLA ANNOTATION per l'intera mappa
- - (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views
- {    
- MKAnnotationView *annotationView = [views objectAtIndex:0];
- id<MKAnnotation> mp = [annotationView annotation];
- MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([mp coordinate] ,250,250);
- 
- [mv setRegion:region animated:YES];
- }
- */
-
-/*
- //
- // mapView:didSelectAnnotationView:
- //
- // Changes the selectedResult to the annotation of the selected view and updates
- // the table
- //
- // Parameters:
- //    aMapView - the map view
- //    aView - the selected annotation view
- //
- - (void)mapView:(MKMapView *)aMapView didSelectAnnotationView:(MKAnnotationView *)aView
- {
- [selectedResult autorelease];
- selectedResult = [(NSDictionary *)[aView annotation] retain];
- 
- [self updateTableForSelectedResult];
- }
- */
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
     MapAnnotationDefault *myAnnotation = (MapAnnotationDefault*)view.annotation;
@@ -309,14 +256,12 @@
     
 }
 
-
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <GMAnnotation>)annotation
 {
     
     // if it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
-    
     
     MKPinAnnotationView *newAnnotationPin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"] autorelease];
     if([selectedResult getBoxID] == [annotation annotationid])
@@ -429,15 +374,6 @@
     [addVC release];
     [navController release];
     
-    
-    
-    
-    //    if (reverseGeocoder != nil)
-    //    {
-    //        // release the existing reverse geocoder to stop it running
-    //        [reverseGeocoder release];
-    //    }
-    //    
     
 }
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
@@ -580,20 +516,13 @@
         HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
         [self.navigationController.view addSubview:HUD];
         HUD.delegate = self;
-        HUD.labelText = @"Caricamento";
+        HUD.labelText = NSLocalizedString(@"Caricamento", @"");
         [HUD show:YES];
-        //        [self retrieveDinnersWithAddress:self.address];
-        //        [self retrieveDinners];
         [self retrieveBoxesForType:self.selectedType];
-        
-        
+
         [buttonAdd setEnabled:YES];
         
-        
-        
-        
         //#endif
-        
     }
     
 }

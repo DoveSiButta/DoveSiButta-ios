@@ -177,8 +177,6 @@
             }
             
         }
-        
-        
     }
     @catch (DataServiceRequestException * e) 
     {
@@ -191,7 +189,6 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"") message:NSLocalizedString(@"Si è verificato un problema durante il caricamento.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
         [alert show];
         NSLog(@"exception = %@,  \nDetailedError = %@",[e name],[e getDetailedError]);
-        
     }	
     @catch (NSException * e) 
     {
@@ -513,8 +510,8 @@
         //    
         //#else
         
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:HUD];
+        HUD = [[MBProgressHUD alloc] initWithView:self.mapView];
+        [self.mapView addSubview:HUD];
         HUD.delegate = self;
         HUD.labelText = NSLocalizedString(@"Caricamento", @"");
         [HUD show:YES];

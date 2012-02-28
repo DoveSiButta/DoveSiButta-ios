@@ -37,56 +37,59 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBMKMapView" id="806906826">
+					<object class="IBMKMapView" id="980665758">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 411}</string>
+						<string key="NSFrameSize">{320, 323}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="728148146"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIToolbar" id="573623472">
+					<object class="IBUIToolbar" id="728148146">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{0, 367}, {320, 44}}</string>
+						<string key="NSFrame">{{0, 323}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<array class="NSMutableArray" key="IBUIItems">
-							<object class="IBUIBarButtonItem" id="282196821">
+							<object class="IBUIBarButtonItem" id="994757277">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIToolbar" ref="573623472"/>
+								<reference key="IBUIToolbar" ref="728148146"/>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
-							<object class="IBUIBarButtonItem" id="898868623">
+							<object class="IBUIBarButtonItem" id="957669612">
 								<bool key="IBUIEnabled">NO</bool>
 								<string key="IBUITitle">Item</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIToolbar" ref="573623472"/>
+								<reference key="IBUIToolbar" ref="728148146"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="67304310">
+							<object class="IBUIBarButtonItem" id="6367979">
 								<bool key="IBUIEnabled">NO</bool>
 								<string key="IBUITitle">Item</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIToolbar" ref="573623472"/>
+								<reference key="IBUIToolbar" ref="728148146"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="679372762">
+							<object class="IBUIBarButtonItem" id="397047987">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIToolbar" ref="573623472"/>
+								<reference key="IBUIToolbar" ref="728148146"/>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 						</array>
 					</object>
 				</array>
-				<string key="NSFrame">{{0, 20}, {320, 411}}</string>
+				<string key="NSFrame">{{0, 64}, {320, 367}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -95,6 +98,9 @@
 					</object>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
+					<bool key="IBUIPrompted">NO</bool>
+				</object>
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -113,7 +119,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">mapView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="806906826"/>
+						<reference key="destination" ref="980665758"/>
 					</object>
 					<int key="connectionID">7</int>
 				</object>
@@ -121,7 +127,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">buttonLat</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="898868623"/>
+						<reference key="destination" ref="957669612"/>
 					</object>
 					<int key="connectionID">13</int>
 				</object>
@@ -129,14 +135,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">buttonLon</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="67304310"/>
+						<reference key="destination" ref="6367979"/>
 					</object>
 					<int key="connectionID">14</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="806906826"/>
+						<reference key="source" ref="980665758"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">8</int>
@@ -154,8 +160,8 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="806906826"/>
-							<reference ref="573623472"/>
+							<reference ref="728148146"/>
+							<reference ref="980665758"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -172,39 +178,39 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
-						<reference key="object" ref="806906826"/>
+						<reference key="object" ref="980665758"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
-						<reference key="object" ref="573623472"/>
+						<reference key="object" ref="728148146"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="282196821"/>
-							<reference ref="679372762"/>
-							<reference ref="898868623"/>
-							<reference ref="67304310"/>
+							<reference ref="994757277"/>
+							<reference ref="397047987"/>
+							<reference ref="957669612"/>
+							<reference ref="6367979"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
-						<reference key="object" ref="282196821"/>
-						<reference key="parent" ref="573623472"/>
+						<reference key="object" ref="994757277"/>
+						<reference key="parent" ref="728148146"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
-						<reference key="object" ref="679372762"/>
-						<reference key="parent" ref="573623472"/>
+						<reference key="object" ref="397047987"/>
+						<reference key="parent" ref="728148146"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
-						<reference key="object" ref="898868623"/>
-						<reference key="parent" ref="573623472"/>
+						<reference key="object" ref="957669612"/>
+						<reference key="parent" ref="728148146"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="67304310"/>
-						<reference key="parent" ref="573623472"/>
+						<reference key="object" ref="6367979"/>
+						<reference key="parent" ref="728148146"/>
 					</object>
 				</array>
 			</object>
@@ -225,7 +231,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">14</int>
+			<int key="maxID">20</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

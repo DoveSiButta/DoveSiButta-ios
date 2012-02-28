@@ -59,6 +59,13 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //TODO: mettere qui un refresh
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -87,6 +94,16 @@
     }
     
 #endif
+        //Add button solo se in presenza di camera (no vecchi iPod e iPad)
+        UIBarButtonItem *buttonRefresh =
+        [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+          target:self
+          action:@selector(refresh:)]  //TODO: aggiungere buttn refresh
+         autorelease];
+        self.navigationItem.leftBarButtonItem = buttonRefresh;
+ 
+    
     
 
     //Eccezioni e comuni raccolta p2p

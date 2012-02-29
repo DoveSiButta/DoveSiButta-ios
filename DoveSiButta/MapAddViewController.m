@@ -188,10 +188,10 @@
         for (int i =0;i<[resultArr count]; i++) {
             
             DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
-            if ([[p getBoxType] rangeOfString:self.selectedType].location != NSNotFound) //TODO: andrebbe filtrato nella query
-            {
+//            if ([[p getBoxType] rangeOfString:self.selectedType].location != NSNotFound) //TODO: andrebbe filtrato nella query
+//            {
                 [results addObject:p];
-            }
+//            }
             
         }
     }

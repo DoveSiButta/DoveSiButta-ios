@@ -51,6 +51,7 @@
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *buttonLon;
 @property (nonatomic,retain) NSDictionary *iconsDictionary;
 @property (nonatomic,retain) UIBarButtonItem *buttonAdd;
+@property (nonatomic,retain) UIBarButtonItem *buttonRefresh;
 
 //For comuni raccolta p2p
 @property (nonatomic, retain) NSDictionary *comuniP2P;
@@ -67,6 +68,7 @@
 
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
+-(void) getLocation;
 
 
 

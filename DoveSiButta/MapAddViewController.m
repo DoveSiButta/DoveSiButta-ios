@@ -34,7 +34,7 @@
 @synthesize selectedType;
 @synthesize address, postCode, country;
 @synthesize comuniP2P;
-@synthesize buttonAdd;
+@synthesize buttonAdd, buttonRefresh;
 @synthesize locationManager;
 
 
@@ -95,13 +95,13 @@
     
 #endif
         //Add button solo se in presenza di camera (no vecchi iPod e iPad)
-        UIBarButtonItem *buttonRefresh =
+        self.buttonRefresh =
         [[[UIBarButtonItem alloc]
           initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
           target:self
           action:@selector(refresh:)]  //TODO: aggiungere buttn refresh
          autorelease];
-        self.navigationItem.leftBarButtonItem = buttonRefresh;
+        self.navigationItem.leftBarButtonItem = self.buttonRefresh;
  
     
     
@@ -136,17 +136,9 @@
         self.iconsDictionary = plistDictionary;
     }
     
-    // Start the gpsLocation manager
-	// We start it *after* startup so that the UI is ready to display errors, if needed.
-	self.locationManager = [[CLLocationManager alloc] init];
+    [self getLocation];
     
-    //    usingManualLocation = NO;    
-    self.locationManager.delegate = self; 
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.purpose = NSLocalizedString(@"Trovare il cassonetto più vicino", @"");
-    [self.locationManager startUpdatingLocation];
-}
+   }
 
 - (void)viewDidUnload
 {
@@ -158,6 +150,26 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+-(void)getLocation
+{
+    
+    // Start the gpsLocation manager
+	// We start it *after* startup so that the UI is ready to display errors, if needed.
+    if(self.locationManager == nil)
+	self.locationManager = [[CLLocationManager alloc] init];
+    
+    //    usingManualLocation = NO;    
+    self.locationManager.delegate = self; 
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.purpose = NSLocalizedString(@"Trovare il cassonetto più vicino", @"");
+    [self.locationManager startUpdatingLocation];
+    
+    [self.buttonRefresh setEnabled:NO];
+
 }
 
 
@@ -249,6 +261,12 @@
 {
     //    [self dismissModalViewControllerAnimated:YES];
     [self retrieveBoxesForType:self.selectedType];
+}
+
+
+-(void) refresh:(id)sender
+{
+    [self getLocation];
 }
 
 
@@ -535,6 +553,7 @@
         [self retrieveBoxesForType:self.selectedType];
 
         [buttonAdd setEnabled:YES];
+        [self.buttonRefresh setEnabled:YES];
         
         //#endif
     }

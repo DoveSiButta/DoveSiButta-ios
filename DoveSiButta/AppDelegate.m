@@ -49,7 +49,7 @@
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
-    return YES;
+
     
     
     //questo è un buon momento per spedire tutti gli elementi sharati che la app non è riuscita a spedire se era senza connettività. http://getsharekit.com/install/

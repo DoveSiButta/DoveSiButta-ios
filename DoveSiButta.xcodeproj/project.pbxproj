@@ -623,6 +623,8 @@
 			children = (
 				ACCAA9F914EAE24E0067236F /* Extensions */,
 				ACEE63D414CB703000B604C9 /* Singleton */,
+				AC66CF0014C246410098E1F1 /* AppDelegate.h */,
+				AC66CF0114C246410098E1F1 /* AppDelegate.m */,
 				AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */,
 				ACC5830F14E462CA005C72D3 /* LocationAddViewController.m */,
 				AC66D04814C24CFA0098E1F1 /* LocationDetailViewController.h */,
@@ -635,8 +637,6 @@
 				AC66D00D14C24B6C0098E1F1 /* MapViewController.h */,
 				AC66D00E14C24B6C0098E1F1 /* MapViewController.m */,
 				AC66D00F14C24B6C0098E1F1 /* MapViewController.xib */,
-				AC66CF0014C246410098E1F1 /* AppDelegate.h */,
-				AC66CF0114C246410098E1F1 /* AppDelegate.m */,
 				AC66CF0314C246410098E1F1 /* MasterViewController.h */,
 				AC66CF0414C246410098E1F1 /* MasterViewController.m */,
 				ACC5831114E462DE005C72D3 /* MasterViewController.xib */,

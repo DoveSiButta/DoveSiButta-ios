@@ -621,24 +621,24 @@
 //
  - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    if(newLocation.horizontalAccuracy < 0 ) return;
     
     NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
     if (locationAge > 5.0) return;
     
+    if(newLocation.horizontalAccuracy < 0 ) return;
+    
+    
     NSLog(@"updated user location: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    if( newLocation.horizontalAccuracy >= self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
+    if( newLocation.horizontalAccuracy <= self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
     {
-        // we have received our current location, so enable the "Get Current Address" button
-        [self.locationManager stopUpdatingLocation];
-        self.locationManager.delegate = nil;
+
         
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([newLocation coordinate] ,1000,1000);        
         MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  
         [self.mapView setRegion:adjustedRegion animated:YES];
         self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", newLocation.coordinate.latitude];
         self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", newLocation.coordinate.longitude];
-        
+               
         
         
         //    gpsLocationFailed = NO;
@@ -695,10 +695,13 @@
         //        [self retrieveDinners];
         [self retrieveBoxesForType:self.selectedType];
         
+        // we have received our current location, so enable the "Get Current Address" button
         
         [buttonAdd setEnabled:YES];
         
-        
+        //Turn off location update
+        [self.locationManager stopUpdatingLocation];
+        self.locationManager.delegate = nil;
         
         
         //#endif

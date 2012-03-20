@@ -629,7 +629,7 @@
     
     
     NSLog(@"updated user location: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    if( newLocation.horizontalAccuracy <= self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
+    if( newLocation.horizontalAccuracy > self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
     {
 
         

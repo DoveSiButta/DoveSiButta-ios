@@ -457,7 +457,10 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+#if DEBUG
     NSLog(@"MapView updated userLocation");
+#endif
+    
 //    NSLog(@"updated user location: %f %f", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
 //    if((roundf(userLocation.coordinate.latitude) != 0.0f && roundf(userLocation.coordinate.longitude) != 0.0f ) && self.boxesLoaded == NO )
 //    {
@@ -487,76 +490,86 @@
 #pragma mark Reverse Geocoder Delegate
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
 {
-    self.country = placemark.country;
-    self.postCode = placemark.postalCode;
-    self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
-
-    
-    
-    //TODO: dove metto la segnalazione del comune raccolta P2P ? 
-    for(NSString *entry in self.comuniP2P)
-    {
-        NSArray *comune = [self.comuniP2P objectForKey:entry];
-        if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [self.address rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
-            [alert show];
+    @try {
+        self.country = placemark.country;
+        self.postCode = placemark.postalCode;
+        self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
+        
+        //TODO: dove metto la segnalazione del comune raccolta P2P ? 
+        for(NSString *entry in self.comuniP2P)
+        {
+            NSArray *comune = [self.comuniP2P objectForKey:entry];
+            if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [self.address rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+                [alert show];
+            }
         }
-    }
-    
-    LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
-    
-    DoveSiButtaModel_Box *newItem = [[DoveSiButtaModel_Box alloc] init];
-    if( [self.address length] > 50)
-    {
-        NSString *shortTitle = [self.address substringToIndex:49];
-        [newItem setTitle:shortTitle ];
-    }
-    else
-    {
-        [newItem setTitle:self.address ];
-    }
-    
-    
-    [newItem setAddress:self.address];
-    [newItem setCountry:self.country];
-    [newItem setHostedBy:@""];
-    [newItem setEventDate:[NSDate date]];
-    
-    
-    CLLocationCoordinate2D location = self.locationManager.location.coordinate;
-    NSLocale *locale = [NSLocale currentLocale];
-    
-    [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
-    [newItem setLongitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale] ];
-    
-    addVC.newItem = newItem;
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
-    
-    [self presentModalViewController:navController animated:YES];
-    [addVC setDelegate:self];
-    [addVC release];
-    [navController release];
-
-    
+        
+        LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
+        
+        DoveSiButtaModel_Box *newItem = [[DoveSiButtaModel_Box alloc] init];
+        if( [self.address length] > 50)
+        {
+            NSString *shortTitle = [self.address substringToIndex:49];
+            [newItem setTitle:shortTitle ];
+        }
+        else
+        {
+            [newItem setTitle:self.address ];
+        }
+        
+        
+        [newItem setAddress:self.address];
+        [newItem setCountry:self.country];
+        [newItem setHostedBy:@""];
+        [newItem setEventDate:[NSDate date]];
+        
+        
+        CLLocationCoordinate2D location = self.locationManager.location.coordinate;
+        NSLocale *locale = [NSLocale currentLocale];
+        
+        [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
+        [newItem setLongitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale] ];
+        
+        addVC.newItem = newItem;
+        
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
+        
+        [self presentModalViewController:navController animated:YES];
+        [addVC setDelegate:self];
+        [addVC release];
+        [navController release];
+        
+        if (geocoder != nil)
+        {
+            // release the existing reverse geocoder to stop it running
+            [geocoder release];
+        }
         
 
-//    if (reverseGeocoder != nil)
-//    {
-//        // release the existing reverse geocoder to stop it running
-//        [reverseGeocoder release];
-//    }
-//    
+    }
+    @catch (NSException *exception) {
+        NSString *errorMessage = [exception description];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"")
+                                                            message:errorMessage
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    }
+
+ 
 
 }
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"")
-														message:errorMessage
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
+                                                        message:errorMessage
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
     [alertView show];
     [alertView release];
 }
@@ -627,8 +640,9 @@
     
     if(newLocation.horizontalAccuracy < 0 ) return;
     
-    
+#if DEBUG
     NSLog(@"updated user location: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+#endif
     if( newLocation.horizontalAccuracy > self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
     {
 
@@ -638,8 +652,7 @@
         [self.mapView setRegion:adjustedRegion animated:YES];
         self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", newLocation.coordinate.latitude];
         self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", newLocation.coordinate.longitude];
-               
-        
+                       
         
         //    gpsLocationFailed = NO;
         //    self.usingManualLocation = NO;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC0437711524481500B09A6E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC04376F1524481500B09A6E /* HelpViewController.m */; };
+		AC0437721524481500B09A6E /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0437701524481500B09A6E /* HelpViewController.xib */; };
 		AC1247DC14FD8CAF001A4256 /* Sfondo@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DA14FD8CAF001A4256 /* Sfondo@2X.png */; };
 		AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DB14FD8CAF001A4256 /* Sfondo.png */; };
 		AC1247E114FD8D9D001A4256 /* Logo@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DF14FD8D9D001A4256 /* Logo@2X.png */; };
@@ -193,6 +195,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC04376E1524481500B09A6E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		AC04376F1524481500B09A6E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		AC0437701524481500B09A6E /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
 		AC1247DA14FD8CAF001A4256 /* Sfondo@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Sfondo@2X.png"; path = "Images/Sfondo@2X.png"; sourceTree = "<group>"; };
 		AC1247DB14FD8CAF001A4256 /* Sfondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sfondo.png; path = Images/Sfondo.png; sourceTree = "<group>"; };
 		AC1247DF14FD8D9D001A4256 /* Logo@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Logo@2X.png"; path = "Images/Logo@2X.png"; sourceTree = "<group>"; };
@@ -646,6 +651,9 @@
 				ACB8F88F14F772A80052B559 /* ChiSiamoViewController.h */,
 				ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */,
 				ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */,
+				AC04376E1524481500B09A6E /* HelpViewController.h */,
+				AC04376F1524481500B09A6E /* HelpViewController.m */,
+				AC0437701524481500B09A6E /* HelpViewController.xib */,
 				AC66CFF214C249A80098E1F1 /* Resources */,
 				AC66CEF814C246410098E1F1 /* Supporting Files */,
 			);
@@ -1462,6 +1470,7 @@
 				AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */,
 				AC1247E114FD8D9D001A4256 /* Logo@2X.png in Resources */,
 				AC1247E214FD8D9D001A4256 /* Logo.png in Resources */,
+				AC0437721524481500B09A6E /* HelpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1603,6 +1612,7 @@
 				AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */,
 				AC69D0B714F2DDF600FE688B /* MapAddViewController.m in Sources */,
 				ACB8F89214F772A80052B559 /* ChiSiamoViewController.m in Sources */,
+				AC0437711524481500B09A6E /* HelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

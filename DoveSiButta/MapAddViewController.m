@@ -251,7 +251,7 @@
 -(void) addItem:(id)sender
 {
     CLLocationCoordinate2D locationToLookup = self.locationManager.location.coordinate;
-    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
+    MKReverseGeocoder *reverseGeocoder = [[[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup] autorelease];
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
 }

@@ -203,7 +203,7 @@
 -(void) addItem:(id)sender
 {
     CLLocationCoordinate2D locationToLookup = self.locationManager.location.coordinate;
-    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
+    MKReverseGeocoder *reverseGeocoder = [[[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup] autorelease];
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
     
@@ -540,11 +540,11 @@
         [addVC release];
         [navController release];
         
-        if (geocoder != nil)
-        {
-            // release the existing reverse geocoder to stop it running
-            [geocoder release];
-        }
+//        if (geocoder != nil)
+//        {
+//            // release the existing reverse geocoder to stop it running
+//            [geocoder autorelease];
+//        }
         
 
     }

@@ -40,6 +40,11 @@
 
 #define radians( degrees ) ( degrees * M_PI / 180 ) 
 
+#define AlertViewMissingTypeSelection 0
+#define AlertViewMissingPicture 1
+#define AlertViewGeneralError 2
+#define AlertViewOk 3
+
 @implementation LocationAddViewController
 @synthesize newItem;
 @synthesize pictureFile;
@@ -97,7 +102,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
+    if (alertView.tag == AlertViewOk || alertView.tag == AlertViewGeneralError) {
         [self dismissModalViewControllerAnimated:YES];
         [self.delegate addLocationDidFinish];
     }
@@ -115,6 +120,7 @@
     {
         //avviso che non può creare un cestino senza almeno un tipo!
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Devi selezionare almeno una tipologia dei cassonetti in foto!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+        [alert setTag:AlertViewMissingTypeSelection];
         [alert show];
         return;
     }
@@ -122,7 +128,8 @@
     if( ([newItem getLatitude] == [NSDecimalNumber zero] || [newItem getLongitude]  ==  [NSDecimalNumber zero] ) || [self.pictureFile length] < 1)
     {
         //avviso che non può creare un cestino senza foto!
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"È necessario scattare una fotografia!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"È necessario scattare una fotografia! Scattarla ora?", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert setTag:AlertViewMissingPicture];
         [alert show];
         return;
     }
@@ -155,8 +162,6 @@
 
     DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
     [proxy retain];
-//    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
-//    odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
     NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
     [pictureData retain];
     NSLog(@"Data length: %d", [pictureData length]);
@@ -185,6 +190,7 @@
        
         [HUD hide:YES afterDelay:1];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Grazie!", @"") message:NSLocalizedString(@"Caricamento effettuato con successo", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert setTag:AlertViewOk];
         [alert show];
         
 
@@ -193,6 +199,8 @@
         [HUD hide:YES];
         NSLog(@"Errore: %@:%@",exception.name, exception.reason);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento della foto.(%@)", @""),[exception reason]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        NSLog(@"%@", [exception description]);
+        [alert setTag:AlertViewGeneralError];
         [alert show];
     }
     @finally {

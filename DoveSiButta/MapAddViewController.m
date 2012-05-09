@@ -158,9 +158,11 @@
     
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
-    if(self.locationManager == nil)
-	self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager release];
+    self.locationManager = nil;
     
+	self.locationManager = [[CLLocationManager alloc] init];
+
     //    usingManualLocation = NO;    
     self.locationManager.delegate = self; 
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
@@ -241,6 +243,7 @@
         [mapView addAnnotation:resultAnnotation];
         
 	}
+    [self.mapView setShowsUserLocation:YES];
     
 }
 
@@ -411,11 +414,7 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"")
-														message:errorMessage
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"") message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
     [alertView release];
 }
@@ -488,9 +487,14 @@
     NSLog(@"updated user location: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     if( newLocation.horizontalAccuracy >= self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
     {
+#if DEBUG
+        NSLog(@"Stop updating location");  
+#endif
         // we have received our current location, so enable the "Get Current Address" button
         [self.locationManager stopUpdatingLocation];
+        [locationManager stopUpdatingLocation];
         self.locationManager.delegate = nil;
+        locationManager.delegate = nil;
         
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([newLocation coordinate] ,1000,1000);        
         MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  

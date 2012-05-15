@@ -32,7 +32,7 @@
     // Do any additional setup after loading the view from its nib.
     NSBundle *bundle = [NSBundle mainBundle];
     NSDictionary *info = [bundle infoDictionary];
-    self.labelProdName.text = [NSString stringWithFormat:@"DoveSiButta v. %@ Build n. %@",[info objectForKey:@"CFBundleShortVersionString"],[info objectForKey:@"CFBundleVersion"]] ;
+    self.labelProdName.text = [NSString stringWithFormat:@"DoveSiButta v. %@ Build #%@",[info objectForKey:@"CFBundleShortVersionString"],[info objectForKey:@"CFBundleVersion"]] ;
 }
 
 - (void)viewDidUnload

@@ -13,6 +13,7 @@
 @end
 
 @implementation ChiSiamoViewController
+@synthesize labelProdName;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,10 +30,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSDictionary *info = [bundle infoDictionary];
+    self.labelProdName.text = [NSString stringWithFormat:@"DoveSiButta v. %@ Build n. %@",[info objectForKey:@"CFBundleShortVersionString"],[info objectForKey:@"CFBundleVersion"]] ;
 }
 
 - (void)viewDidUnload
 {
+    [self setLabelProdName:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -43,4 +48,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [labelProdName release];
+    [super dealloc];
+}
 @end

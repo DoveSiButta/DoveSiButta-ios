@@ -210,6 +210,9 @@
                 [results addObject:p];
 //            }
             
+            //TODO: se non c'è nessun cestino, visualizzare il messaggio "come mai non c'è nessun cestino?" e quindi spiegare come funziona la app
+            
+            
         }
     }
     @catch (DataServiceRequestException * e) 
@@ -365,6 +368,7 @@
     self.postCode = placemark.postalCode;
     self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
     
+    //TODO: se la country != Italy --- > non abilitare il tasto "aggiungi" !!!
     
     
     //TODO: dove metto la segnalazione del comune raccolta P2P ? 
@@ -376,6 +380,7 @@
             [alert show];
         }
     }
+    
     
     LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
     

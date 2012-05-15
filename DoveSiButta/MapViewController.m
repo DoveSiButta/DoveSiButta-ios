@@ -210,10 +210,13 @@
 }
 
 
-- (void)addLocationDidFinish
+- (void)addLocationDidFinishWithCode:(int)finishCode
 {
 //    [self dismissModalViewControllerAnimated:YES];
-    [self retrieveBoxesForType:self.selectedType];
+    if(finishCode == 0)
+    {
+        [self retrieveBoxesForType:self.selectedType];
+    }
 }
 
 #pragma mark - View lifecycle

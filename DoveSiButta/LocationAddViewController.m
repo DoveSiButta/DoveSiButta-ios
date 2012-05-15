@@ -104,7 +104,7 @@
 {
     if (alertView.tag == AlertViewOk || alertView.tag == AlertViewGeneralError) {
         [self dismissModalViewControllerAnimated:YES];
-        [self.delegate addLocationDidFinish];
+        [self.delegate addLocationDidFinishWithCode:1];
     }
 }
 
@@ -214,7 +214,7 @@
 - (void)cancelNewItem:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
-    [self.delegate addLocationDidFinish];
+    [self.delegate addLocationDidFinishWithCode:1];
 }
 
 

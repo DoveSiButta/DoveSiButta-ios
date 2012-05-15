@@ -13,7 +13,7 @@
 
 
 @protocol LocationAddViewControllerDelegate
--(void) addLocationDidFinish;
+- (void)addLocationDidFinishWithCode:(int)finishCode;
 @end
 
 @interface LocationAddViewController : PageViewController <MBProgressHUDDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>

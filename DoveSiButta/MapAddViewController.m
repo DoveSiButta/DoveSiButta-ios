@@ -63,7 +63,9 @@
 {
     [super viewWillAppear:animated];
     
-    //TODO: mettere qui un refresh
+    //TODO: mettere qui un refresh (ho messo getLocation: andrà bene?)
+    
+    [self getLocation];
 }
 
 - (void)viewDidLoad
@@ -135,8 +137,7 @@
         }
         self.iconsDictionary = plistDictionary;
     }
-    
-    [self getLocation];
+
     
    }
 
@@ -155,6 +156,8 @@
 
 -(void)getLocation
 {
+    //TODO: check if we can use GPS!!!!!!!!
+    
     
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.

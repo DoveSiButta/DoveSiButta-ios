@@ -51,4 +51,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (IBAction)buttonOkTapped:(id)sender {
+    [self closeHelp:sender];
+}
 @end

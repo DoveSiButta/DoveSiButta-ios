@@ -298,6 +298,8 @@
 
     }
     
+    //TODO: CHECK IF WE CAN USE GPS!!!!
+    
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
 	self.locationManager = [[CLLocationManager alloc] init];

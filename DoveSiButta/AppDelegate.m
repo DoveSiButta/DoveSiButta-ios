@@ -9,30 +9,48 @@
 #import "AppDelegate.h"
 
 #import "MasterViewController.h"
+#import "MapAddViewController.h"
+#import "ChiSiamoViewController.h"
 
 //#import "SHK.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize navigationController = _navigationController;
+//@synthesize navigationController = _navigationController;
+@synthesize tabBarController = _tabBarController;
 
 - (void)dealloc
 {
     [_window release];
-    [_navigationController release];
+//    [_navigationController release];
+    [_tabBarController release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+//    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
 
-    MasterViewController *masterViewController = [[[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil] autorelease];
-    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
-    self.window.rootViewController = self.navigationController;
+//    MasterViewController *masterViewController = [[[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil] autorelease];
+//    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
+//    self.window.rootViewController = self.navigationController;
+//    [self.window makeKeyAndVisible];
+
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    // Override point for customization after application launch.
+    MasterViewController *viewController1 = [[[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil] autorelease];
+    UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:viewController1] autorelease];
+    UIViewController *viewController2 = [[[MapAddViewController alloc] initWithNibName:@"MapAddViewController" bundle:nil] autorelease];
+    UINavigationController *navigationControllerAdd = [[[UINavigationController alloc] initWithRootViewController:viewController2] autorelease];
+    ChiSiamoViewController *viewController3 = [[ChiSiamoViewController alloc] initWithNibName:@"ChiSiamoViewController" bundle:nil];
+    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+
+    
     
     //questo è un buon momento per spedire tutti gli elementi sharati che la app non è riuscita a spedire se era senza connettività. http://getsharekit.com/install/
 //    [SHK flushOfflineQueue];
@@ -56,7 +74,7 @@
     storedVal = @"http://www.dovesibutta.com"; //@"http://192.168.138.2";
     key = @"appURI"; // the key for the base app uri
     [defaults setObject:storedVal forKey:key];    
-    storedVal = @"hhttp://www.dovesibutta.com/Pictures/";
+    storedVal = @"http://www.dovesibutta.com/Pictures/";
     key = @"picturesURI"; // the key for the pictures path
     [defaults setObject:storedVal forKey:key];
 #endif

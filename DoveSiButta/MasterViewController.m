@@ -10,6 +10,7 @@
 
 #import "MapViewController.h"
 #import "LocationAddViewController.h"
+#import "HelpViewController.h"
 
 //OData
 #import "WindowsCredential.h"
@@ -46,8 +47,8 @@
 @synthesize mapViewController = _mapViewController;
 @synthesize listContent, filteredListContent;
 @synthesize savedSearchTerm, savedScopeButtonIndex, searchWasActive;
-@synthesize segmentedControlTopBar;
 @synthesize tmpCell, cellNib;
+//@synthesize navigationController;
 
 
 
@@ -57,7 +58,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Cosa Butti?", @"");
+        self.title = NSLocalizedString(@"Trova", @"");
+        self.tabBarItem.image = [UIImage imageNamed:@"103-map"];
     }
     return self;
 }
@@ -84,10 +86,10 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     //Buttons
-    /*
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)] autorelease];
+    
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"?" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp:)] autorelease];
      //Per creare un nuovo elemento da questo schermo dovrei per forza avere iOS5. Dato che solo con iOS5 posso fare il reverse geocode della posizione dell'utente senza dover avere una MKMapView da cui prendere la posizione attuale
-     */
+
     /*
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle: @"Configura"                                                                               style: UIBarButtonItemStyleBordered                                                                              target: self        action: @selector(configuration:)] autorelease];
      */
@@ -103,9 +105,6 @@
     self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     */
      
-    //TODO: check functioning
-    segmentedControlTopBar = [[UISegmentedControl alloc ] init];
-    [self.navigationController.navigationBar addSubview:segmentedControlTopBar];
     
     // create our UINib instance which will later help us load and instanciate the
 	// UITableViewCells's UI via a xib file.
@@ -263,6 +262,8 @@
     cell.textLabel.text = NSLocalizedString([cellDict objectForKey:@"type"], @"Detail");
 
     cell.imageView.image = [UIImage imageNamed:[iconsDictionary objectForKey:[cellDict objectForKey:@"id"]] ];
+    cell.imageView.highlightedImage =  [UIImage imageNamed:[iconsDictionary objectForKey:[cellDict objectForKey:@"id"]] ];
+    //TODO: aggiungere immagine quando selezionato
 
     return cell;
 
@@ -276,73 +277,10 @@
 }
 */
  
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    if (!self.detailViewController) {
-        self.detailViewController = [[[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil] autorelease];
-    }
-    
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
-     */
-    
-    /*
-    NerdDinnerModel_Dinner *dinner = nil;
-    NSArray *allresults;
-    if (tableView == self.searchDisplayController.searchResultsTableView)
-	{
-        dinner = [self.filteredListContent objectAtIndex:indexPath.row];
-        allresults = self.filteredListContent;
-    }
-	else
-	{
-        dinner = [self.listContent objectAtIndex:indexPath.row];
-        allresults = self.listContent;
-    }
-    self.mapViewController = [[[MapViewController alloc] initWithSelectedResult:dinner allResults:allresults] autorelease];
-    self.mapViewController.iconsDictionary = iconsDictionary;
-    [self.navigationController pushViewController:self.mapViewController animated:YES];
-     */
-
-
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:[NSBundle mainBundle]] autorelease];
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
@@ -374,7 +312,7 @@
 	 */
 	for (DoveSiButtaModel_Box *dinner in listContent)
 	{
-        
+        //TODO: check il filtro
         if([[dinner getTitle] rangeOfString:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)].location != NSNotFound)
         {
             [self.filteredListContent addObject:dinner];
@@ -443,5 +381,14 @@
 {
     //TODO: display config
 }
+
+-(IBAction)showHelp:(id)sender
+{
+    HelpViewController *hvc = [[HelpViewController alloc] init];
+    [self presentModalViewController:hvc animated:YES];
+    [hvc release];
+    
+}
+
 
 @end

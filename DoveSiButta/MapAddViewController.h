@@ -1,9 +1,9 @@
 //
-//  MapViewController.h
+//  MapAddViewController.h
 //  DoveSiButta
 //
-//  Created by Giovanni Maggini on 22/12/11.
-//  Copyright (c) 2011 Giovanni Maggini. All rights reserved.
+//  Created by Giovanni Maggini on 20/02/12.
+//  Copyright (c) 2012 Giovanni Maggini. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -19,37 +19,26 @@
 //For adding
 #import "LocationAddViewController.h"
 
-
-//#ifdef __IPHONE_5_0
-//@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> 
-//#else
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate, LocationAddViewControllerDelegate>
-//#endif
-
+@interface MapAddViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate, LocationAddViewControllerDelegate>
 {
-    MKMapView *mapView;
     NSMutableArray *results;
     DoveSiButtaModel_Box *selectedResult;
-
+    
     //for debug.
     NSDictionary *comuniP2P;
-    
     
     NSString* selectedType;
     
     //HUD
     MBProgressHUD *HUD;
-
+    
     //For location
     CLLocationManager *locationManager;
 	CLLocationCoordinate2D gpsLocation;
-//	BOOL gpsLocationFailed;
-//	BOOL usingManualLocation;
-//#ifdef __IPHONE_5_0
-//    CLGeocoder *geocoder; //!!!! iOS5.0
-//#endif
-    
+    //	BOOL gpsLocationFailed;
+    //	BOOL usingManualLocation;
 }
+
 
 //MapView
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -62,6 +51,7 @@
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *buttonLon;
 @property (nonatomic,retain) NSDictionary *iconsDictionary;
 @property (nonatomic,retain) UIBarButtonItem *buttonAdd;
+@property (nonatomic,retain) UIBarButtonItem *buttonRefresh;
 
 //For comuni raccolta p2p
 @property (nonatomic, retain) NSDictionary *comuniP2P;
@@ -78,6 +68,7 @@
 
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
+-(void) getLocation;
 
 
 

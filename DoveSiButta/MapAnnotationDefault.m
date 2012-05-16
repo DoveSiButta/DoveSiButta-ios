@@ -17,9 +17,7 @@
     CLLocationCoordinate2D theCoordinate;
     theCoordinate.latitude = [[self.item getLatitude] floatValue] ;
     theCoordinate.longitude = [[self.item getLongitude] floatValue] ;
-//    theCoordinate.latitude = 37.786996;
-//    theCoordinate.longitude = -122.419281;   
-    NSLog(@"Latitude: %f, Longitude: %f", theCoordinate.latitude, theCoordinate.longitude);
+//    NSLog(@"Latitude: %f, Longitude: %f", theCoordinate.latitude, theCoordinate.longitude);
     return theCoordinate; 
 }
 

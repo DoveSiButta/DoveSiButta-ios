@@ -60,7 +60,7 @@
 -(void)addRSVP:(id)sender;
 {
     NSLog(@"Work in progress to add RSVP");
-    //Può essere usato in 2 modi: per dare un "voto" al cassonetto o per riportare un errore
+    //TODO: Può essere usato in 2 modi: per dare un "voto" al cassonetto o per riportare un errore
 }
 */
 
@@ -68,7 +68,7 @@
 - (void)shareItem:(id)sender
 {
     // Create the item to share (in this example, a url)
-	NSURL *url = [NSURL URLWithString:@"http://dovesibutta.cloudapp.net/"]; //TODO: metterci l'ID della cena/cestino
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.dovesibutta.com/%@",[self.selectedBox getBoxID]]]; 
 	SHKItem *item = [SHKItem URL:url title:@"Ho appena trovato il cestino della raccolta differenziata che stavo cercando grazie a DoveSiButta!"];
     
 	// Get the ShareKit action sheet
@@ -191,18 +191,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
-    [self appendRowToSection:1 cellClass:[TextFieldCell class] 
-                    cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              NSLocalizedString(@"Hosted by ID", @""),
-                              @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getHostedById] ], @"value",
-                              NSLocalizedString(@"Value goes here", @""),
-                              @"placeholder", 
-                              NO, 
-                              @"editable",
-                              nil]
-               withAnimation:UITableViewRowAnimationNone];
-     */
+*/
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Address", @""),
@@ -313,6 +302,8 @@ titleForHeaderInSection:(NSInteger)section
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [self.selectedBox release];
+
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

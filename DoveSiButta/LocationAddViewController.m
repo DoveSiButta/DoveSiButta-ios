@@ -32,16 +32,25 @@
 //NSdata
 #import "NSData+Base64.h"
 
+//MD5
+#import "NSString+MD5.h"
+
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 
 #define radians( degrees ) ( degrees * M_PI / 180 ) 
+
+#define AlertViewMissingTypeSelection 0
+#define AlertViewMissingPicture 1
+#define AlertViewGeneralError 2
+#define AlertViewOk 3
 
 @implementation LocationAddViewController
 @synthesize newItem;
 @synthesize pictureFile;
 @synthesize selectedTypes;
 @synthesize setTypes;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,6 +82,14 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+//    [self.newItem release];
+//    [self.pictureFile release];
+//    [self.selectedTypes release];
+//    [self.setTypes release];
+//    self.newItem = nil;
+//    self.pictureFile = nil;
+//    self.selectedTypes = nil;
+//    self.setTypes = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -83,6 +100,18 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == AlertViewOk || alertView.tag == AlertViewGeneralError) {
+        [self dismissModalViewControllerAnimated:YES];
+        [self.delegate addLocationDidFinishWithCode:1];
+    }
+}
+
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+    
+}
 
 - (void)saveItem:(id)sender
 {
@@ -91,239 +120,101 @@
     {
         //avviso che non può creare un cestino senza almeno un tipo!
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Devi selezionare almeno una tipologia dei cassonetti in foto!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+        [alert setTag:AlertViewMissingTypeSelection];
         [alert show];
         return;
     }
     
-    if( ([newItem getLatitude] != [NSDecimalNumber zero] || [newItem getLongitude]  !=  [NSDecimalNumber zero] ) && [self.pictureFile length] > 0)
-    {
-        
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        HUD.delegate = self;
-        HUD.labelText = @"Caricamento";
-        [self.view addSubview:HUD];
-        [HUD show:YES];
-        
-        NSString *boxType = [[NSString alloc] init];
-        for(NSString *s in self.setTypes)
-        {
-            boxType = [boxType stringByAppendingFormat:@"%@;",s];
-        }
-        
-        [boxType retain];
-//        NSLog(@"boxtype: %@", boxType);
-        
-        //1- Get item with ID
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
-
-        
-        NSString *udid = [[UIDevice currentDevice] uniqueIdentifier];
-        [newItem setContactPhone:[udid substringToIndex:20]];
-        [newItem setBoxType:boxType];
-        [newItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
-        [newItem setPicture_Filename:@""];
-//        [newItem setPicture_Filename:[self.pictureFile lastPathComponent]];
-//        NSLog(@"Il nome del file sarà %@", [newItem getPicture_Filename]);
-
-        
-        DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
-        [proxy retain];
-    //    NSString *odataResult = [[proxy GetFileWithdinnerid:self.selectedItem] retain];
-    //    odataResult = [[odataResult stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
-        NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
-        DoveSiButtaModel_Picture *newPicture = [[DoveSiButtaModel_Picture alloc] initWithUri:nil];
-        
-//        [newItem setPicture_File:pictureData];
-        
-        @try {
-            [proxy addToBoxes:newItem];
-//            NSLog(@"newitem boxid %@",[newItem getBoxID]);
-//            [proxy setSaveChangesOptions:Batch];
-//            NSString *aStr=@"This is a iPhone test Document";
-//            NSData* aData=[aStr dataUsingEncoding: NSASCIIStringEncoding];
-//            [proxy setSaveStream:newItem stream:pictureData closeStream:NO contentType:@"image/jpeg" slug:[self.pictureFile lastPathComponent]];
-            [proxy saveChanges];  //se faccio saveChanges qui e poi la query e l'update, genera errore. Ma scrive comunque 1 valore nuovo 
-//            [proxy saveChanges];
-//            [proxy updateObject:newItem];
-//            [proxy saveChanges];
-//            [proxy setSaveStream:newItem stream:pictureData closeStream:NO contentType:@"image/jpeg" slug:@"nuovofile.jpg"];
-//            [proxy addObject:@"Boxes" object:newItem];
-
-//            [proxy saveChanges];
-            
-            
-            
-//            [proxy updateObject:newItem];
-//            [proxy setSaveStream:newItem stream:pictureData closeStream:YES contentType:@"image/jpeg" slug:@"nuovofile.jpg"];
-//            [proxy saveChanges];
-//            DoveSiButtaModel_Box *aNewBox = [[DoveSiButtaModel_Box alloc] initWithUri:nil];
-//            [aNewBox setBoxID:[NSNumber numberWithInt:40]];
-//            [proxy addToBoxes:aNewBox];
-//
-//            [proxy setSaveStream:aNewBox stream:pictureData closeStream:YES contentType:@"image/jpeg" slug:@"nuovofile.jpg"];
-//            [proxy saveChanges];
-//            //          
-//            DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
-//            QueryOperationResponse *queryOperationResponse = [query execute];
-//            DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
-//            [aNewBox retain];
-//            NSLog(@"anewbox ID: %@", [aNewBox getBoxID]); 
-//            [newItem setBoxID:[aNewBox getBoxID]];
-//            [proxy updateObject:newItem];
-////            [proxy setSaveStream:aNewBox stream:aData closeStream:NO contentType:@"plain/text" slug:@"nuovofile.txt"];
-//            [proxy saveChanges];
-
-            [proxy addToPictures:newPicture];
-            DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
-            QueryOperationResponse *queryOperationResponse = [query execute];
-            DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
-            [aNewBox retain];
-            NSLog(@"anewbox ID: %@", [aNewBox getBoxID]); 
-            //            [newPicture setLinkedBoxID:[aNewBox getBoxID]];
-            //            [proxy updateObject:newItem];
-            //            [proxy addLink:newPicture sourceProperty:@"LinkedBoxID" targetObject:aNewBox];
-            [proxy setSaveStream:newPicture stream:pictureData closeStream:YES contentType:@"image/jpeg" slug:[NSString stringWithFormat:@"%@",[aNewBox getBoxID]]];
-            //            [proxy setSaveChangesOptions:Batch];
-            
-            
-            [proxy saveChanges];
-
-        }
-        @catch (NSException *exception) {
-            NSLog(@"Errore: %@:%@",exception.name, exception.reason);
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento della foto.(%@)", @""),[exception description]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
-            [alert show];
-        }
-        @finally {
-            [HUD hide:YES afterDelay:1];
-            [self dismissModalViewControllerAnimated:YES];
-        }
-            
-        /*
-        @try {
-            [proxy addToPictures:newPicture];
-            DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
-            QueryOperationResponse *queryOperationResponse = [query execute];
-            DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
-            [aNewBox retain];
-                        NSLog(@"anewbox ID: %@", [aNewBox getBoxID]); 
-//            [newPicture setLinkedBoxID:[aNewBox getBoxID]];
-//            [proxy updateObject:newItem];
-//            [proxy addLink:newPicture sourceProperty:@"LinkedBoxID" targetObject:aNewBox];
-            [proxy setSaveStream:newPicture stream:pictureData closeStream:YES contentType:@"image/jpeg" slug:[NSString stringWithFormat:@"%@",[aNewBox getBoxID]]];
-//            [proxy setSaveChangesOptions:Batch];
-            
-
-            [proxy saveChanges];
-
-
-        }
-        @catch (NSException *exception) {
-            NSLog(@"Errore: %@:%@",exception.name, exception.reason);
-        }
-        @finally {
-            [HUD hide:YES afterDelay:1];
-        }
-        */
-        
-        /*
-        NSString *retString = [proxy CreateNewItemWithtitle:[newItem getTitle] description:[newItem getDescription] hostedby:@"" latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] country:[newItem getCountry] boxtype:[newItem getBoxType] contactphone:[newItem getContactPhone] picture_filename:@""]; // [proxy CreateNewItemWithtitle:[newItem getTitle] latitude:[newItem getLatitude] longitude:[newItem getLongitude] address:[newItem getAddress] boxtype:[newItem getBoxType] picture_filename:[newItem getPicture_Filename]];
-        NSLog(@"Returned: %@", retString);
-        
-        retString = [[retString stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
-        NSArray *result = PerformXMLXPathQuery([retString dataUsingEncoding:NSUTF8StringEncoding], @"/CreateNewItem");
-
-        //Dovrebbe contenere solo il numero dell'ID della box
-        int newBoxID = 0;//NSNumber *newBoxID = [[NSNumber alloc] init];
-        @try {
-            newBoxID = [[[result objectAtIndex:0] objectForKey:@"nodeContent"] integerValue];
-        }
-        @catch (NSException *exception) {
-            newBoxID = -1;
-        }
-        if (newBoxID > 0) {
-            //Vuole dire che ha funzionato
-            NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
-
-            NSString *base64PictureData = [pictureData base64EncodedString];
-            [pictureData retain];
-            @try{
-            NSString *setFileReturn = [proxy SetFileWithitemid:[NSNumber numberWithInt:newBoxID] file:pictureData];
-            setFileReturn = [[setFileReturn stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""]; //Con il metodo POST è not found
-            result = PerformXMLXPathQuery([setFileReturn dataUsingEncoding:NSUTF8StringEncoding], @"/SetFile");
-            }
-            @catch (NSException *exception) {
-                NSLog(@"exception %@", [exception description]);
-            }
-            [newItem setBoxID:[NSNumber numberWithInt:newBoxID]];
-//            [proxy setSaveStream:newItem stream:pictureData closeStream:YES contentType:@"" slug:@""];
-            //The context is not currently tracking the entity
-            
-            
-            //prova con asi..
-//            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:@"192.168.138.2/Services/OData.svc/SetFile/"]];
-//            [request addPostValue:[NSString stringWithFormat:@"%d",newBoxID] forKey:@"itemID"];
-//            [request addData:pictureData forKey:@"picture_file"];
-//            [request start];
-//            @try {
-//                NSString* setFileReturn = [proxy SetFileBase64Withitemid:[NSNumber numberWithInt:newBoxID] filebase64:base64PictureData];
-//                setFileReturn = [[setFileReturn stringByReplacingOccurrencesOfString:@"xmlns=\"http://schemas.microsoft.com/ado/2007/08/dataservices\"" withString:@"" ] stringByReplacingOccurrencesOfString:@"standalone=\"true\"" withString:@""];
-//                result = PerformXMLXPathQuery([setFileReturn dataUsingEncoding:NSUTF8StringEncoding], @"/SetFileBase64");
-//                [result retain];
-//                NSLog(@"result: %@",result);
-                
-
-//            }
-//            @catch (NSException *exception) {
-//                
-//            }
-
-
-            NSString *setFileResult = [[result objectAtIndex:0] objectForKey:@"nodeContent"];
-            [setFileResult retain];
-            NSLog(@"setfileresult %@", setFileResult);
-            int resultNumber = 0;//NSNumber *resultNumber = [[NSNumber alloc] init];
-            @try {
-                resultNumber = [setFileResult integerValue];
-            }
-            @catch (NSException *exception) {
-                resultNumber = -1;
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Si è verificato un problema. Errore nel caricamento della foto.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
-                [alert show];
-            }
-            @finally {
-                [HUD hide:YES afterDelay:1];
-            }
-            
-        }
-        else
-        {
-            [HUD hide:YES afterDelay:1];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Si è verificato un problema. La segnalazione non è andata a buon fine!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
-            [alert show];
-
-        }
-        
-//            http://192.168.138.2/Services/OData.svc/CreateNewItem?longitude=10.32752f&title='Nuovo'&latitude=45.51141f  
-         
-         */
-
-
-    }
-    else
+    if( ([newItem getLatitude] == [NSDecimalNumber zero] || [newItem getLongitude]  ==  [NSDecimalNumber zero] ) || [self.pictureFile length] < 1)
     {
         //avviso che non può creare un cestino senza foto!
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"È necessario scattare una fotografia!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"È necessario scattare una fotografia! Scattarla ora?", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert setTag:AlertViewMissingPicture];
+        [alert show];
+        return;
+    }
+            
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    HUD.delegate = self;
+    HUD.labelText = @"Caricamento";
+    [self.navigationController.view addSubview:HUD];
+    [HUD show:YES];
+    
+    NSString *boxType = [[NSString alloc] init];
+    for(NSString *s in self.setTypes)
+    {
+        boxType = [boxType stringByAppendingFormat:@"%@;",s];
+    }
+    
+    [boxType retain];
+//        NSLog(@"boxtype: %@", boxType);
+    
+    //1- Get item with ID
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
+
+    
+    NSString *udid = [[[UIDevice currentDevice] uniqueIdentifier] md5 ];
+    [newItem setContactPhone:udid ];
+    [newItem setBoxType:boxType];
+    [newItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
+    [newItem setPicture_Filename:@""];
+
+    DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
+    [proxy retain];
+    NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
+    [pictureData retain];
+    NSLog(@"Data length: %d", [pictureData length]);
+    DoveSiButtaModel_Picture *newPicture = [[DoveSiButtaModel_Picture alloc] initWithUri:nil];
+    
+    
+    @try {
+        
+        [proxy addToBoxes:newItem];
+
+        [proxy saveChanges];  
+        
+        [proxy addToPictures:newPicture];
+        DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
+        QueryOperationResponse *queryOperationResponse = [query execute];
+        DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
+        [aNewBox retain];
+        NSLog(@"anewbox ID: %@", [aNewBox getBoxID]); 
+        //            [newPicture setLinkedBoxID:[aNewBox getBoxID]];
+        //            [proxy updateObject:newItem];
+        //            [proxy addLink:newPicture sourceProperty:@"LinkedBoxID" targetObject:aNewBox];
+        //Addlink non funziona
+        [proxy setSaveStream:newPicture stream:pictureData closeStream:YES contentType:@"image/jpeg" slug:[NSString stringWithFormat:@"%@",[aNewBox getBoxID]]];
+        
+        [proxy saveChanges];
+       
+        [HUD hide:YES afterDelay:1];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Grazie!", @"") message:NSLocalizedString(@"Caricamento effettuato con successo", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        [alert setTag:AlertViewOk];
         [alert show];
         
+
     }
+    @catch (NSException *exception) {
+        [HUD hide:YES];
+        NSLog(@"Errore: %@:%@",exception.name, exception.reason);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento della foto.(%@)", @""),[exception reason]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        NSLog(@"%@", [exception description]);
+        [alert setTag:AlertViewGeneralError];
+        [alert show];
+    }
+    @finally {
+        [HUD hide:YES afterDelay:1];
+    }
+        
+
 }
 
 
 - (void)cancelNewItem:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
+    [self.delegate addLocationDidFinishWithCode:1];
 }
 
 
@@ -484,9 +375,7 @@
                                @"action", 
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
-    
-    //TODO: qui ci vanno le celle (che sono poi delle normali LabelCell ma con accanto il checkbox
-    
+
     [dateFormat release];
 
     
@@ -528,7 +417,7 @@
         LabelCell *cell = (LabelCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
         if([cell.action isEqualToString:@"addPicture"])
         {
-            UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+            UIImagePickerController *imgPicker = [[[UIImagePickerController alloc] init] autorelease];
             [imgPicker setAllowsEditing:YES];
             imgPicker.delegate = self;
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -602,12 +491,14 @@
     NSString* fullPathToFile = [cachesDirectory stringByAppendingPathComponent:imageName];
     
     // and then we write it out
-    [imageData writeToFile:fullPathToFile atomically:NO];
+    [imageData writeToFile:fullPathToFile atomically:YES];
     self.pictureFile = fullPathToFile;
     NSLog(@"Picture path: %@", fullPathToFile);
 //    [[picker parentViewController] dismissModalViewControllerAnimated:YES];
 //    [picker dismissModalViewControllerAnimated:YES];
     [self dismissModalViewControllerAnimated:YES];
+    [dateFormat release];
+
 }
 
 /*

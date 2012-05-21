@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HelpViewController : UIViewController
-- (IBAction)buttonOkTapped:(id)sender;
 
 @end

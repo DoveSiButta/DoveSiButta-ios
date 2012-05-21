@@ -385,7 +385,10 @@
 -(IBAction)showHelp:(id)sender
 {
     HelpViewController *hvc = [[HelpViewController alloc] init];
-    [self presentModalViewController:hvc animated:YES];
+    UINavigationController *helpNVC = [[UINavigationController alloc] initWithRootViewController:hvc];
+    
+    [self presentModalViewController:helpNVC animated:YES];
+    [helpNVC release];
     [hvc release];
     
 }

@@ -80,7 +80,13 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIEditable">NO</bool>
-						<string key="IBUIText">DoveSiButta mira a costruire un database geolocalizzato dei cassonetti per la raccolta differenziata, aiutando i cittadini a individuare quelli più vicini a loro.  Tutte le info su www.dovesibutta.com</string>
+						<object class="NSMutableString" key="IBUIText">
+							<bytes key="NS.bytes">RG92ZVNpQnV0dGEgbWlyYSBhIGNvc3RydWlyZSB1biBkYXRhYmFzZSBnZW9sb2NhbGl6emF0byBkZWkg
+Y2Fzc29uZXR0aSBwZXIgbGEgcmFjY29sdGEgZGlmZmVyZW56aWF0YSwgYWl1dGFuZG8gaSBjaXR0YWRp
+bmkgYSBpbmRpdmlkdWFyZSBxdWVsbGkgcGnDuSB2aWNpbmkgYSBsb3JvLuKAqOKAqFRyb3ZhIHR1dHRl
+IGxlIGluZm9ybWF6aW9uaSBlIGNvbGxhYm9yYSBzdSB3d3cuZG92ZXNpYnV0dGEuY29tIG9wcHVyZSBz
+ZWd1aSBARG92ZVNpQnV0dGEgc3UgVHdpdHRlciE</bytes>
+						</object>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -98,7 +104,7 @@
 					</object>
 					<object class="IBUILabel" id="1064774523">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{30, 340}, {261, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -178,8 +184,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="207479175"/>
 							<reference ref="30357792"/>
-							<reference ref="978513957"/>
 							<reference ref="1064774523"/>
+							<reference ref="978513957"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

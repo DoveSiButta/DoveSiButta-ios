@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Come funziona", @"");
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStyleBordered target:self action:@selector(closeHelp:)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Ok" style:UIBarButtonItemStyleBordered target:self action:@selector(closeHelp:)] autorelease];
 
 }
 
@@ -51,7 +51,4 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)buttonOkTapped:(id)sender {
-    [self closeHelp:sender];
-}
 @end

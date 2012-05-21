@@ -212,10 +212,9 @@
 
 - (void)addLocationDidFinishWithCode:(int)finishCode
 {
-//    [self dismissModalViewControllerAnimated:YES];
     if(finishCode == 0)
     {
-        [self retrieveBoxesForType:self.selectedType];
+//        [self retrieveBoxesForType:self.selectedType];
     }
 }
 
@@ -573,8 +572,8 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"")
                                                         message:errorMessage
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
+                                              cancelButtonTitle:NSLocalizedString(@"Lascia perdere", nil)
+                                              otherButtonTitles:NSLocalizedString(@"Riprova",nil)]; //TODO: fargli ricaricare la posizione
     [alertView show];
     [alertView release];
 }

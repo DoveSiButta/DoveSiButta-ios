@@ -270,8 +270,7 @@
 {
     if(finishCode == 0)
     {
-    //    [self dismissModalViewControllerAnimated:YES];
-    [self retrieveBoxesForType:self.selectedType];
+//        [self retrieveBoxesForType:self.selectedType];
     }
     else {
         

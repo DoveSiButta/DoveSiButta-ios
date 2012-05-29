@@ -22,6 +22,8 @@
 //Service
 #import "DoveSiButtaEntities.h"
 
+#define ALERTVIEW_GEOCODEFAIL 1
+#define ALERTVIEW_COMUNEP2P 2
 
 @interface MapAddViewController ()
 
@@ -101,7 +103,7 @@
         [[[UIBarButtonItem alloc]
           initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
           target:self
-          action:@selector(refresh:)]  //TODO: aggiungere buttn refresh
+          action:@selector(refresh:)] 
          autorelease];
         self.navigationItem.leftBarButtonItem = self.buttonRefresh;
  
@@ -259,12 +261,16 @@
 
 -(void) addItem:(id)sender
 {
+    [self startReverseGeocode];
+}
+
+-(void) startReverseGeocode
+{
     CLLocationCoordinate2D locationToLookup = self.locationManager.location.coordinate;
     MKReverseGeocoder *reverseGeocoder = [[[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup] autorelease];
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
 }
-
 
 - (void)addLocationDidFinishWithCode:(int)finishCode
 {
@@ -284,8 +290,23 @@
 }
 
 
+#pragma mark AlertView Delegate Methods
 
-#pragma mark Map View Delegate methods
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == ALERTVIEW_GEOCODEFAIL) {
+        switch (buttonIndex) {
+            case 1:
+                [self startReverseGeocode];
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+#pragma mark Map View Delegate Methods
 
 - (void)showDetails:(id)sender forAnnotation:(MKAnnotationView <GMAnnotation> *)annotation
 {
@@ -382,6 +403,7 @@
         NSArray *comune = [self.comuniP2P objectForKey:entry];
         if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [self.address rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+            [alert setTag:ALERTVIEW_COMUNEP2P]
             [alert show];
         }
     }
@@ -427,7 +449,8 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"") message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"") message:errorMessage delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:NSLocalizedString(@"Riprova", nil)];
+    [alertView setTag:ALERTVIEW_GEOCODEFAIL];
     [alertView show];
     [alertView release];
 }

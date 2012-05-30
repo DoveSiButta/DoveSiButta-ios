@@ -12,5 +12,16 @@
 		<string>Ghedi</string>
 		<string>Brescia</string>
 	</array>
+	<key>Erbusco (BS)</key>
+	<array>
+		<string>Erbusco</string>
+		<string>Brescia</string>
+	</array>
+	<key>Passirano (BS)</key>
+	<array/>
+	<key>Castiglione delle Stiviere (MN)</key>
+	<array/>
+	<key>Paderno Franciacorta (BS)</key>
+	<array/>
 </dict>
 </plist>

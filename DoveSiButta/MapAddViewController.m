@@ -159,7 +159,8 @@
 -(void)getLocation
 {
     //TODO: check if we can use GPS!!!!!!!!
-    
+
+    [self.buttonRefresh setEnabled:NO];
     
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
@@ -175,7 +176,7 @@
     self.locationManager.purpose = NSLocalizedString(@"Trovare il cassonetto più vicino", @"");
     [self.locationManager startUpdatingLocation];
     
-    [self.buttonRefresh setEnabled:NO];
+
 
 }
 

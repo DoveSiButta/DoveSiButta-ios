@@ -569,11 +569,10 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"")
-                                                        message:errorMessage
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"Lascia perdere", nil)
-                                              otherButtonTitles:NSLocalizedString(@"Riprova",nil)]; //TODO: fargli ricaricare la posizione
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"")  message:errorMessage
+                           delegate:nil
+                  cancelButtonTitle:NSLocalizedString(@"Lascia perdere", nil)
+                  otherButtonTitles:NSLocalizedString(@"Riprova",nil),nil]; //TODO: fargli ricaricare la posizione
     [alertView show];
     [alertView release];
 }

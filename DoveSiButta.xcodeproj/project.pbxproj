@@ -73,6 +73,8 @@
 		AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8C14DC984D0056648A /* NoPicture.jpg */; };
 		AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC99992414D68AF6006229A8 /* UIImage+Extensions.m */; };
 		AC99992714D68E83006229A8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AC99992614D68E83006229A8 /* LICENSE */; };
+		ACA0C1F91580A3F800237C53 /* CDeviceSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0C1F81580A3F800237C53 /* CDeviceSupport.m */; };
+		ACA0C1FC1580A41A00237C53 /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0C1FB1580A41A00237C53 /* UIDeviceHardware.m */; };
 		ACB8F89214F772A80052B559 /* ChiSiamoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */; };
 		ACB8F89314F772A80052B559 /* ChiSiamoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */; };
 		ACB8F89B14F773CE0052B559 /* 59-info.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89514F773CE0052B559 /* 59-info.png */; };
@@ -354,6 +356,10 @@
 		AC99992314D68AF6006229A8 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		AC99992414D68AF6006229A8 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		AC99992614D68E83006229A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		ACA0C1F71580A3F800237C53 /* CDeviceSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDeviceSupport.h; sourceTree = "<group>"; };
+		ACA0C1F81580A3F800237C53 /* CDeviceSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDeviceSupport.m; sourceTree = "<group>"; };
+		ACA0C1FA1580A41A00237C53 /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
+		ACA0C1FB1580A41A00237C53 /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 		ACB8F88F14F772A80052B559 /* ChiSiamoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiSiamoViewController.h; sourceTree = "<group>"; };
 		ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiSiamoViewController.m; sourceTree = "<group>"; };
 		ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiSiamoViewController.xib; sourceTree = "<group>"; };
@@ -592,6 +598,7 @@
 		AC66CEE214C246400098E1F1 = {
 			isa = PBXGroup;
 			children = (
+				ACA0C1F51580A3DC00237C53 /* Utility */,
 				ACEC31671576152C001158D7 /* DropdownView */,
 				ACE8843214CDF5670004B9DF /* ShareKit */,
 				ACE882B414CC728C0004B9DF /* ASIHttp */,
@@ -921,6 +928,17 @@
 			);
 			name = icone;
 			path = Images/icone;
+			sourceTree = "<group>";
+		};
+		ACA0C1F51580A3DC00237C53 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				ACA0C1F71580A3F800237C53 /* CDeviceSupport.h */,
+				ACA0C1F81580A3F800237C53 /* CDeviceSupport.m */,
+				ACA0C1FA1580A41A00237C53 /* UIDeviceHardware.h */,
+				ACA0C1FB1580A41A00237C53 /* UIDeviceHardware.m */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		ACB8F89414F773C50052B559 /* TabIcons */ = {
@@ -1642,6 +1660,8 @@
 				ACEC316F15761553001158D7 /* YRDropdownView.m in Sources */,
 				AC01692D157CBE4D00B87343 /* MBProgressHUD.m in Sources */,
 				AC016930157CBF0D00B87343 /* GradientButton.m in Sources */,
+				ACA0C1F91580A3F800237C53 /* CDeviceSupport.m in Sources */,
+				ACA0C1FC1580A41A00237C53 /* UIDeviceHardware.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

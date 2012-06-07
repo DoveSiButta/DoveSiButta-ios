@@ -22,6 +22,7 @@
 //Service
 #import "DoveSiButtaEntities.h"
 
+
 #define ALERTVIEW_GEOCODEFAIL 1
 #define ALERTVIEW_COMUNEP2P 2
 
@@ -85,6 +86,12 @@
     self.navigationItem.rightBarButtonItem = buttonAdd;
     
 #else
+    //TODO: avvisare l'utente! Con un messaggio e un'icona di assenza della camera.
+    //E nel caso di un iPad con camera ma senza GPS ?!?!?!
+    UIDeviceHardware *h=[[UIDeviceHardware alloc] init];
+//    [self setDeviceModel:[h platformString]];   
+    NSLog(@"DeviceModel: %@", [h platformString]);
+
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ]) {
         //Add button solo se in presenza di camera (no vecchi iPod e iPad)
         buttonAdd =
@@ -166,7 +173,8 @@
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
     [self.locationManager release];
     self.locationManager = nil;
-    
+    //TODO: e se l'utente ci ha impedito di usare la location?!?!?!
+//    http://developer.apple.com/library/ios/#documentation/CoreLocation/Reference/CLLocationManager_Class/CLLocationManager/CLLocationManager.html#//apple_ref/occ/clm/CLLocationManager/authorizationStatus
 	self.locationManager = [[CLLocationManager alloc] init];
 
     //    usingManualLocation = NO;    

@@ -69,6 +69,7 @@
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
 -(void) getLocation;
+-(void) startReverseGeocode;
 
 
 

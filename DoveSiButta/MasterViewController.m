@@ -87,7 +87,7 @@
     
     //Buttons
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"?" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp:)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp:)] autorelease];
      //Per creare un nuovo elemento da questo schermo dovrei per forza avere iOS5. Dato che solo con iOS5 posso fare il reverse geocode della posizione dell'utente senza dover avere una MKMapView da cui prendere la posizione attuale
 
     /*

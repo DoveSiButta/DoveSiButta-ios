@@ -404,7 +404,7 @@
         NSArray *comune = [self.comuniP2P objectForKey:entry];
         if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [self.address rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
-            [alert setTag:ALERTVIEW_COMUNEP2P]
+            [alert setTag:ALERTVIEW_COMUNEP2P];
             [alert show];
         }
     }
@@ -450,7 +450,7 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"") message:errorMessage delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:NSLocalizedString(@"Riprova", nil)];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", nil) message:errorMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:NSLocalizedString(@"Riprova", nil),nil];
     [alertView setTag:ALERTVIEW_GEOCODEFAIL];
     [alertView show];
     [alertView release];

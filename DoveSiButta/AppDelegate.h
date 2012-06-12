@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NoConnectionViewController.h"
+
+@class Reachability;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
-
+{
+    Reachability* hostReach;
+}
 /*  For LLVM 3.0
 @property (strong, nonatomic) UIWindow *window;
 
@@ -21,5 +26,7 @@
 //@property (nonatomic, retain) UINavigationController *navigationController;
 
 @property (nonatomic, retain) UITabBarController *tabBarController;
+
+@property (nonatomic, retain) NoConnectionViewController *noConnectionViewController;
 
 @end

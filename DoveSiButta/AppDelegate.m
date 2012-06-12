@@ -19,6 +19,7 @@
 @synthesize window = _window;
 //@synthesize navigationController = _navigationController;
 @synthesize tabBarController = _tabBarController;
+@synthesize noConnectionViewController = _noConnectionViewController;
 
 - (void)dealloc
 {
@@ -38,38 +39,46 @@
 //    self.window.rootViewController = self.navigationController;
 //    [self.window makeKeyAndVisible];
 
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-    MasterViewController *viewController1 = [[[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil] autorelease];
-    UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:viewController1] autorelease];
-    UIViewController *viewController2 = [[[MapAddViewController alloc] initWithNibName:@"MapAddViewController" bundle:nil] autorelease];
-    UINavigationController *navigationControllerAdd = [[[UINavigationController alloc] initWithRootViewController:viewController2] autorelease];
-    ChiSiamoViewController *viewController3 = [[ChiSiamoViewController alloc] initWithNibName:@"ChiSiamoViewController" bundle:nil];
-    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
-    self.window.rootViewController = self.tabBarController;
-    [self.window makeKeyAndVisible];
-
     
     
     //questo è un buon momento per spedire tutti gli elementi sharati che la app non è riuscita a spedire se era senza connettività. http://getsharekit.com/install/
-//    [SHK flushOfflineQueue];
+    //    [SHK flushOfflineQueue];
     
+    
+    //DEFAULTS SETUP START
     //Imposto l'URL del servizio una volta sola nella app
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 #if TARGET_IPHONE_SIMULATOR
-    NSString *storedVal = @"http://192.168.138.2/Services/OData.svc/"; 
+//    NSString *storedVal = @"http://192.168.138.2/Services/OData.svc/"; 
+//    NSString *key = @"serviceURI"; // the key for the data
+//    [defaults setObject:storedVal forKey:key];
+//    storedVal = @"192.168.138.2";  //@"http://192.168.138.2/Services/OData.svc/"; 
+//    key = @"serviceHost"; // the key for the data
+//    [defaults setObject:storedVal forKey:key];
+//    storedVal = @"http://192.168.138.2";
+//    key = @"appURI"; // the key for the base app uri
+//    [defaults setObject:storedVal forKey:key];
+//    storedVal = @"http://192.168.138.2/Pictures/";
+//    key = @"picturesURI"; // the key for the pictures path
+//    [defaults setObject:storedVal forKey:key];
+    NSString *storedVal = @"http://www.dovesibutta.com/Services/OData.svc/";  //@"http://192.168.138.2/Services/OData.svc/"; 
     NSString *key = @"serviceURI"; // the key for the data
     [defaults setObject:storedVal forKey:key];
-    storedVal = @"http://192.168.138.2";
-    key = @"appURI"; // the key for the base app uri
+    storedVal = @"www.dovesibutta.com";  //@"http://192.168.138.2/Services/OData.svc/"; 
+    key = @"serviceHost"; // the key for the data
     [defaults setObject:storedVal forKey:key];
-    storedVal = @"http://192.168.138.2/Pictures/";
+    storedVal = @"http://www.dovesibutta.com"; //@"http://192.168.138.2";
+    key = @"appURI"; // the key for the base app uri
+    [defaults setObject:storedVal forKey:key];    
+    storedVal = @"http://www.dovesibutta.com/Pictures/";
     key = @"picturesURI"; // the key for the pictures path
     [defaults setObject:storedVal forKey:key];
 #else
     NSString *storedVal = @"http://www.dovesibutta.com/Services/OData.svc/";  //@"http://192.168.138.2/Services/OData.svc/"; 
     NSString *key = @"serviceURI"; // the key for the data
+    [defaults setObject:storedVal forKey:key];
+    storedVal = @"www.dovesibutta.com";  //@"http://192.168.138.2/Services/OData.svc/"; 
+    key = @"serviceHost"; // the key for the data
     [defaults setObject:storedVal forKey:key];
     storedVal = @"http://www.dovesibutta.com"; //@"http://192.168.138.2";
     key = @"appURI"; // the key for the base app uri
@@ -80,10 +89,118 @@
 #endif
     
     [defaults synchronize]; // this method is optional
+    //DEFAULTS SETUP END    
+    
+#if !TARGET_IPHONE_SIMULATOR    
+    // Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
+    // method "reachabilityChanged" will be called. 
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+    hostReach = [[Reachability reachabilityWithHostName: [defaults objectForKey:@"serviceHost"]] retain];
+    NSLog(@"serviceHost %@ ",[defaults objectForKey:@"serviceHost"]);
+    [hostReach startNotifier];
+    NetworkStatus netStatus = [hostReach currentReachabilityStatus];
+    BOOL isReachable = [hostReach isReachable];
+    
+#else
+    NetworkStatus netStatus = ReachableViaWiFi;
+    BOOL isReachable = YES;
+#endif
 
     
+    self.noConnectionViewController = [[NoConnectionViewController alloc] initWithNibName:@"NoConnectionViewController" bundle:nil];
+    
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    // Override point for customization after application launch.
+    MasterViewController *viewController1 = [[[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil] autorelease];
+    UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:viewController1] autorelease];
+    UIViewController *viewController2 = [[[MapAddViewController alloc] initWithNibName:@"MapAddViewController" bundle:nil] autorelease];
+    UINavigationController *navigationControllerAdd = [[[UINavigationController alloc] initWithRootViewController:viewController2] autorelease];
+    ChiSiamoViewController *viewController3 = [[ChiSiamoViewController alloc] initWithNibName:@"ChiSiamoViewController" bundle:nil];
+    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
+    
+
+    if(netStatus == NotReachable || !isReachable )
+    {
+        self.window.rootViewController = self.noConnectionViewController;
+    }
+    else {
+        self.window.rootViewController = self.tabBarController;
+    }
+    
+    [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+
+
+- (void) updateInterfaceWithReachability: (Reachability*) curReach
+{
+    if(curReach == hostReach)
+	{
+//		[self configureTextField: remoteHostStatusField imageView: remoteHostIcon reachability: curReach];
+//        NetworkStatus netStatus = [curReach currentReachabilityStatus];
+//        BOOL connectionRequired= [curReach connectionRequired];
+//        
+//        summaryLabel.hidden = (netStatus != ReachableViaWWAN);
+//        NSString* baseLabel=  @"";
+//        if(connectionRequired)
+//        {
+//            baseLabel=  @"Cellular data network is available.\n  Internet traffic will be routed through it after a connection is established.";
+//        }
+//        else
+//        {
+//            baseLabel=  @"Cellular data network is active.\n  Internet traffic will be routed through it.";
+//        }
+//        summaryLabel.text= baseLabel;
+        
+        NetworkStatus netStatus = [curReach currentReachabilityStatus];
+        BOOL connectionRequired= [curReach connectionRequired];
+
+        switch (netStatus)
+        {
+            case NotReachable:
+            {
+//                statusString = @"Access Not Available";
+//                imageView.image = [UIImage imageNamed: @"stop-32.png"] ;
+//                //Minor interface detail- connectionRequired may return yes, even when the host is unreachable.  We cover that up here...
+//                connectionRequired= NO;  
+                
+                self.window.rootViewController = self.noConnectionViewController;
+                [self.window makeKeyAndVisible];
+                break;
+            }
+                
+            default:
+                self.window.rootViewController = self.tabBarController;
+                [self.window makeKeyAndVisible];
+                break;
+        }
+        if(connectionRequired)
+        {
+            self.window.rootViewController = self.noConnectionViewController;
+            [self.window makeKeyAndVisible];
+        }
+        
+    }
+//	if(curReach == internetReach)
+//	{	
+//		[self configureTextField: internetConnectionStatusField imageView: internetConnectionIcon reachability: curReach];
+//	}
+//	if(curReach == wifiReach)
+//	{	
+//		[self configureTextField: localWiFiConnectionStatusField imageView: localWiFiConnectionIcon reachability: curReach];
+//	}
+	
+}
+
+//Called by Reachability whenever status changes.
+- (void) reachabilityChanged: (NSNotification* )note
+{
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	[self updateInterfaceWithReachability: curReach];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

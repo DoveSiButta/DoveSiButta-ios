@@ -15,6 +15,7 @@
     #import "UIDeviceHardware.h"
     #import <CoreData/CoreData.h>
     #import "CoreData+MagicalRecord.h"
+    #import "Reachability.h"
 #endif
 
 

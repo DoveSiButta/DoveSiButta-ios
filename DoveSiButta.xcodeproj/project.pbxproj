@@ -17,6 +17,8 @@
 		AC1247E214FD8D9D001A4256 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247E014FD8D9D001A4256 /* Logo.png */; };
 		AC2CED4915075DE2001C1280 /* libMSODataLib4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */; };
 		AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */; };
+		AC521A301587AF1800CF8CB1 /* NoConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC521A2E1587AF1800CF8CB1 /* NoConnectionViewController.m */; };
+		AC521A311587AF1800CF8CB1 /* NoConnectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC521A2F1587AF1800CF8CB1 /* NoConnectionViewController.xib */; };
 		AC66CEF214C246410098E1F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF114C246410098E1F1 /* UIKit.framework */; };
 		AC66CEF414C246410098E1F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF314C246410098E1F1 /* Foundation.framework */; };
 		AC66CEF614C246410098E1F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC66CEF514C246410098E1F1 /* CoreGraphics.framework */; };
@@ -231,6 +233,9 @@
 		AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMSODataLib4.1.a; path = DoveSiButta/libMSODataLib4.1.a; sourceTree = "<group>"; };
 		AC3FE1FE14E8044B005CC256 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		AC521A2D1587AF1800CF8CB1 /* NoConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoConnectionViewController.h; sourceTree = "<group>"; };
+		AC521A2E1587AF1800CF8CB1 /* NoConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoConnectionViewController.m; sourceTree = "<group>"; };
+		AC521A2F1587AF1800CF8CB1 /* NoConnectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoConnectionViewController.xib; sourceTree = "<group>"; };
 		AC66CEED14C246400098E1F1 /* DoveSiButta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoveSiButta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC66CEF114C246410098E1F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AC66CEF314C246410098E1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -406,6 +411,7 @@
 		ACA0C22B1580DC4900237C53 /* MRCoreDataAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MRCoreDataAction.h; path = ../../github/MagicalRecord/Source/MRCoreDataAction.h; sourceTree = "<group>"; };
 		ACA0C22C1580DC4900237C53 /* MRCoreDataAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MRCoreDataAction.m; path = ../../github/MagicalRecord/Source/MRCoreDataAction.m; sourceTree = "<group>"; };
 		ACA0C23B1580DCAD00237C53 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		ACB074EF158702B0002ED6C7 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		ACB8F88F14F772A80052B559 /* ChiSiamoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiSiamoViewController.h; sourceTree = "<group>"; };
 		ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiSiamoViewController.m; sourceTree = "<group>"; };
 		ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiSiamoViewController.xib; sourceTree = "<group>"; };
@@ -645,6 +651,7 @@
 		AC66CEE214C246400098E1F1 = {
 			isa = PBXGroup;
 			children = (
+				ACB074EF158702B0002ED6C7 /* Location.gpx */,
 				ACA0C20B1580DC2300237C53 /* MagicalRecord */,
 				ACA0C1F51580A3DC00237C53 /* Utility */,
 				ACEC31671576152C001158D7 /* DropdownView */,
@@ -721,6 +728,9 @@
 				AC04376E1524481500B09A6E /* HelpViewController.h */,
 				AC04376F1524481500B09A6E /* HelpViewController.m */,
 				AC0437701524481500B09A6E /* HelpViewController.xib */,
+				AC521A2D1587AF1800CF8CB1 /* NoConnectionViewController.h */,
+				AC521A2E1587AF1800CF8CB1 /* NoConnectionViewController.m */,
+				AC521A2F1587AF1800CF8CB1 /* NoConnectionViewController.xib */,
 				AC66CFF214C249A80098E1F1 /* Resources */,
 				AC66CEF814C246410098E1F1 /* Supporting Files */,
 			);
@@ -1620,6 +1630,7 @@
 				ACEC316E15761553001158D7 /* bg-yellow@2x.png in Resources */,
 				ACEC31721576155B001158D7 /* dropdown-alert.png in Resources */,
 				ACEC31731576155B001158D7 /* dropdown-alert@2x.png in Resources */,
+				AC521A311587AF1800CF8CB1 /* NoConnectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1779,6 +1790,7 @@
 				ACA0C2381580DC4900237C53 /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				ACA0C2391580DC4900237C53 /* MagicalRecordHelpers.m in Sources */,
 				ACA0C23A1580DC4900237C53 /* MRCoreDataAction.m in Sources */,
+				AC521A301587AF1800CF8CB1 /* NoConnectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

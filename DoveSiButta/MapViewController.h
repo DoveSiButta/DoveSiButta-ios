@@ -27,22 +27,22 @@
 //#endif
 
 {
-    MKMapView * mapView;
-    NSMutableArray *results;
-    DoveSiButtaModel_Box *selectedResult;
-
-    //for debug.
-    NSDictionary * comuniP2P;
-    
-    
-    NSString*  selectedType;
-    
-    //HUD
-    MBProgressHUD *HUD;
-
-    //For location
-    CLLocationManager * locationManager;
-	CLLocationCoordinate2D gpsLocation;
+//    MKMapView * mapView;
+//    NSMutableArray *results;
+//    DoveSiButtaModel_Box *selectedResult;
+//
+//    //for debug.
+//    NSDictionary * comuniP2P;
+//    
+//    
+////    NSString*  selectedType;
+//    
+//    //HUD
+////    MBProgressHUD *HUD;
+//
+//    //For location
+//    CLLocationManager * locationManager;
+//	CLLocationCoordinate2D gpsLocation;
 //	BOOL gpsLocationFailed;
 //	BOOL usingManualLocation;
 //#ifdef __IPHONE_5_0

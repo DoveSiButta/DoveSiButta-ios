@@ -28,6 +28,11 @@
 
 @interface MapAddViewController ()
 
+@property (nonatomic, strong) MBProgressHUD *HUD;
+@property (nonatomic, strong) MKReverseGeocoder* reverseGeocoder;
+@property (nonatomic, strong) NSMutableArray* results;
+@property (nonatomic, strong) DoveSiButtaModel_Box *selectedResult;
+
 @end
 
 @implementation MapAddViewController
@@ -39,6 +44,11 @@
 @synthesize comuniP2P;
 @synthesize buttonAdd, buttonRefresh;
 @synthesize locationManager;
+
+@synthesize HUD;
+@synthesize reverseGeocoder;
+@synthesize results;
+@synthesize selectedResult;
 
 
 - (void)didReceiveMemoryWarning
@@ -78,11 +88,10 @@
     
 #if TARGET_IPHONE_SIMULATOR
     //Add button sempre, per testing
-    buttonAdd = [[[UIBarButtonItem alloc]
+    buttonAdd = [[UIBarButtonItem alloc]
                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                   target:self
-                  action:@selector(addItem:)]
-                 autorelease];
+                  action:@selector(addItem:)];
     self.navigationItem.rightBarButtonItem = buttonAdd;
     
 #else
@@ -169,7 +178,6 @@
     
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
-    self.locationManager;
     self.locationManager = nil;
     //TODO: e se l'utente ci ha impedito di usare la location?!?!?!
 //    http://developer.apple.com/library/ios/#documentation/CoreLocation/Reference/CLLocationManager_Class/CLLocationManager/CLLocationManager.html#//apple_ref/occ/clm/CLLocationManager/authorizationStatus
@@ -216,7 +224,7 @@
             DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
 //            if ([[p getBoxType] rangeOfString:self.selectedType].location != NSNotFound) //TODO: andrebbe filtrato nella query
 //            {
-                [results addObject:p];
+                [self.results addObject:p];
 //            }
             
             //TODO: se non c'è nessun cestino, visualizzare il messaggio "come mai non c'è nessun cestino?" e quindi spiegare come funziona la app
@@ -244,8 +252,8 @@
     }
     
     
-    HUD.labelText = [NSString stringWithFormat: @"Completato"];
-    [HUD hide:YES afterDelay:1];
+    self.HUD.labelText = [NSString stringWithFormat: @"Completato"];
+    [self.HUD hide:YES afterDelay:1];
     
     [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
     for (DoveSiButtaModel_Box *aResult in results)
@@ -257,6 +265,12 @@
         [mapView addAnnotation:resultAnnotation];
         
 	}
+    
+        //At last we enable buttons
+    [buttonAdd setEnabled:YES];
+    [self.buttonRefresh setEnabled:YES];
+    
+    //Show user location
     [self.mapView setShowsUserLocation:YES];
     
 }
@@ -273,9 +287,9 @@
 -(void) startReverseGeocode
 {
     CLLocationCoordinate2D locationToLookup = self.locationManager.location.coordinate;
-    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
-    reverseGeocoder.delegate = self;
-    [reverseGeocoder start];
+    self.reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
+    self.reverseGeocoder.delegate = self;
+    [self.reverseGeocoder start];
 }
 
 - (void)addLocationDidFinishWithCode:(int)finishCode
@@ -337,7 +351,7 @@
         return nil;
     
     MKPinAnnotationView *newAnnotationPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"];
-    if([selectedResult getBoxID] == [annotation annotationid])
+    if([self.selectedResult getBoxID] == [annotation annotationid])
     {
         newAnnotationPin.pinColor = MKPinAnnotationColorRed;
     }
@@ -402,16 +416,16 @@
     //TODO: se la country != Italy --- > non abilitare il tasto "aggiungi" !!!
     
     
-    //TODO: dove metto la segnalazione del comune raccolta P2P ? 
-    for(NSString *entry in self.comuniP2P)
-    {
-        NSArray *comune = [self.comuniP2P objectForKey:entry];
-        if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [self.address rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
-            [alert setTag:ALERTVIEW_COMUNEP2P];
-            [alert show];
-        }
-    }
+    //TODO: dove metto la segnalazione del comune raccolta P2P ? E rifare questo codice
+//    for(NSString *entry in self.comuniP2P)
+//    {
+//        NSArray *comune = [self.comuniP2P objectForKey:entry];
+//        if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [self.address rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+//            [alert setTag:ALERTVIEW_COMUNEP2P];
+//            [alert show];
+//        }
+//    }
     
     
     LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
@@ -530,9 +544,9 @@
 #endif
         // we have received our current location, so enable the "Get Current Address" button
         [self.locationManager stopUpdatingLocation];
-        [locationManager stopUpdatingLocation];
+//        [locationManager stopUpdatingLocation];
         self.locationManager.delegate = nil;
-        locationManager.delegate = nil;
+//        locationManager.delegate = nil;
         
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([newLocation coordinate] ,1000,1000);        
         MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  
@@ -594,10 +608,6 @@
         [HUD show:YES];
         [self retrieveBoxesForType:self.selectedType];
 
-        [buttonAdd setEnabled:YES];
-        [self.buttonRefresh setEnabled:YES];
-        
-        //#endif
     }
     
 }

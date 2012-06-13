@@ -21,20 +21,20 @@
 
 @interface MapAddViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate, LocationAddViewControllerDelegate>
 {
-    NSMutableArray *results;
-    DoveSiButtaModel_Box *selectedResult;
+//    NSMutableArray *results;
+//    DoveSiButtaModel_Box *selectedResult;
     
     //for debug.
-    NSDictionary * comuniP2P;
+//    NSDictionary * comuniP2P;
     
-    NSString*  selectedType;
+//    NSString*  selectedType;
     
     //HUD
-    MBProgressHUD *HUD;
+//    MBProgressHUD *HUD;
     
     //For location
-    CLLocationManager * locationManager;
-	CLLocationCoordinate2D gpsLocation;
+//    CLLocationManager * locationManager;
+//	CLLocationCoordinate2D gpsLocation;
     //	BOOL gpsLocationFailed;
     //	BOOL usingManualLocation;
 }

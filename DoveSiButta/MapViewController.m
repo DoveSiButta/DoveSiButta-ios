@@ -22,17 +22,36 @@
 //Service
 #import "DoveSiButtaEntities.h"
 
+@interface MapViewController ()
+
+
+@property(nonatomic, strong) NSMutableArray *results;
+@property(nonatomic, strong) DoveSiButtaModel_Box *selectedResult;
+
+@property(nonatomic, strong)MBProgressHUD *HUD;
+
+//For location
+@property (nonatomic) CLLocationCoordinate2D gpsLocation;
+
+@property (nonatomic, strong) MKReverseGeocoder *reverseGeocoder;
+
+@end
+
 @implementation MapViewController
 @synthesize mapView;
 @synthesize buttonLat, buttonLon;
 @synthesize iconsDictionary;
 @synthesize selectedType;
 //@synthesize usingManualLocation, 
-//@synthesize gpsLocation;
+@synthesize gpsLocation;
 @synthesize address, postCode, country;
 @synthesize comuniP2P;
 @synthesize buttonAdd;
 @synthesize locationManager;
+
+@synthesize results;
+@synthesize HUD;
+@synthesize reverseGeocoder;
 
 
 - (void)didReceiveMemoryWarning
@@ -144,6 +163,12 @@
         [mapView addAnnotation:resultAnnotation];
     
 	}
+
+    //At last we enable button
+    [buttonAdd setEnabled:YES];
+    
+    //Show user location    
+    [self.mapView setShowsUserLocation:YES];
     
 }
 
@@ -207,7 +232,7 @@
 -(void) addItem:(id)sender
 {
     CLLocationCoordinate2D locationToLookup = self.locationManager.location.coordinate;
-    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup] ;
+    self.reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup] ;
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
     
@@ -247,11 +272,10 @@
 
 #if TARGET_IPHONE_SIMULATOR
         //Add button sempre, per testing
-        buttonAdd = [[[UIBarButtonItem alloc]
+        buttonAdd = [[UIBarButtonItem alloc]
           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
           target:self
-          action:@selector(addItem:)]
-         autorelease];
+          action:@selector(addItem:)];
         self.navigationItem.rightBarButtonItem = buttonAdd;
 
 #else
@@ -314,7 +338,7 @@
     self.locationManager.delegate = self; 
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
-
+    self.locationManager.purpose = NSLocalizedString(@"Trovare il cassonetto più vicino", @"");
     [self.locationManager startUpdatingLocation];
     
 //#ifdef __IPHONE_5_0
@@ -339,12 +363,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-//    mapView = nil;
-//    buttonLat = nil;
-//    buttonLon = nil;
-//    buttonAdd = nil;
 
 }
 
@@ -431,7 +449,7 @@
 
     
     MKPinAnnotationView *newAnnotationPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"];
-    if([selectedResult getBoxID] == [annotation annotationid])
+    if([self.selectedResult getBoxID] == [annotation annotationid])
     {
         newAnnotationPin.pinColor = MKPinAnnotationColorRed;
     }
@@ -498,14 +516,15 @@
         self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
         
         //TODO: dove metto la segnalazione del comune raccolta P2P ? 
-        for(NSString *entry in self.comuniP2P)
-        {
-            NSArray *comune = [self.comuniP2P objectForKey:entry];
-            if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [self.address rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
-                [alert show];
-            }
-        }
+        //E riscrivere questo codice
+//        for(NSString *entry in self.comuniP2P)
+//        {
+//            NSArray *comune = [self.comuniP2P objectForKey:entry];
+//            if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [self.address rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
+//                [alert show];
+//            }
+//        }
         
         LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
         
@@ -701,19 +720,15 @@
         HUD.delegate = self;
         HUD.labelText = @"Caricamento";
         [HUD show:YES];
-        //        [self retrieveDinnersWithAddress:self.address];
-        //        [self retrieveDinners];
-        [self retrieveBoxesForType:self.selectedType];
-        
-        // we have received our current location, so enable the "Get Current Address" button
-        
-        [buttonAdd setEnabled:YES];
-        
+
+
         //Turn off location update
+        // we have received our current location, so enable the "Get Current Address" button
         [self.locationManager stopUpdatingLocation];
         self.locationManager.delegate = nil;
         
-        
+        [self retrieveBoxesForType:self.selectedType];
+
         //#endif
 
     }

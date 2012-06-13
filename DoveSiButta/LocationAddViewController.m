@@ -46,7 +46,7 @@
 #define AlertViewOk 3
 
 @implementation LocationAddViewController
-@synthesize newItem;
+@synthesize myNewItem;
 @synthesize pictureFile;
 @synthesize selectedTypes;
 @synthesize setTypes;
@@ -125,7 +125,7 @@
         return;
     }
     
-    if( ([newItem getLatitude] == [NSDecimalNumber zero] || [newItem getLongitude]  ==  [NSDecimalNumber zero] ) || [self.pictureFile length] < 1)
+    if( ([myNewItem getLatitude] == [NSDecimalNumber zero] || [myNewItem getLongitude]  ==  [NSDecimalNumber zero] ) || [self.pictureFile length] < 1)
     {
         //avviso che non può creare un cestino senza foto!
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"È necessario scattare una fotografia! Scattarla ora?", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
@@ -155,10 +155,10 @@
 
     
     NSString *udid = [[[UIDevice currentDevice] uniqueIdentifier] md5 ];
-    [newItem setContactPhone:udid ];
-    [newItem setBoxType:boxType];
-    [newItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
-    [newItem setPicture_Filename:@""];
+    [myNewItem setContactPhone:udid ];
+    [myNewItem setBoxType:boxType];
+    [myNewItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
+    [myNewItem setPicture_Filename:@""];
 
     DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
     [proxy retain];
@@ -170,7 +170,7 @@
     
     @try {
         
-        [proxy addToBoxes:newItem];
+        [proxy addToBoxes:myNewItem];
 
         [proxy saveChanges];  
         
@@ -293,7 +293,7 @@
     
     [self appendRowToSection:0 cellClass:[NibLoadedCell class] 
                     cellData:[NSDictionary dictionaryWithObjectsAndKeys:
-                              [newItem getTitle],@"labelText",
+                              [myNewItem getTitle],@"labelText",
                               [NSString stringWithString:@"indifferenziata_300px"],@"imageName",                               NSLocalizedString(@"Nuovo Cestino", @"Title Label"),@"titleLabelText", 
                               nil] 
                withAnimation:UITableViewRowAnimationNone];
@@ -303,7 +303,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Dove", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[newItem getAddress] ], @"value",
+                              [NSString stringWithFormat:@"%@",[myNewItem getAddress] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -314,7 +314,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"When", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[newItem getEventDate] ], @"value",
+                              [NSString stringWithFormat:@"%@",[myNewItem getEventDate] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -325,7 +325,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Latitude", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[newItem getLatitude] ], @"value",
+                              [NSString stringWithFormat:@"%@",[myNewItem getLatitude] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -336,7 +336,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Longitude", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[newItem getLongitude] ], @"value",
+                              [NSString stringWithFormat:@"%@",[myNewItem getLongitude] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -348,7 +348,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Address", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[newItem getAddress] ], @"value",
+                              [NSString stringWithFormat:@"%@",[myNewItem getAddress] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 
@@ -359,7 +359,7 @@
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Country", @""),
                               @"label",
-                              [NSString stringWithFormat:@"%@",[newItem getCountry] ], @"value",
+                              [NSString stringWithFormat:@"%@",[myNewItem getCountry] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
                               @"placeholder", 
                               [NSNumber numberWithBool:NO], 

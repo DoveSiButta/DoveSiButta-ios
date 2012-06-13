@@ -22,7 +22,7 @@
     id <LocationAddViewControllerDelegate> delegate;
 }
 
-@property (nonatomic, retain) DoveSiButtaModel_Box *newItem;
+@property (nonatomic, retain) DoveSiButtaModel_Box *myNewItem;
 @property (nonatomic, retain) NSString* pictureFile; //se non c'è la foto, non posso procedere!
 @property (nonatomic, retain) NSMutableArray* selectedTypes;
 @property (nonatomic, retain) NSMutableSet* setTypes;

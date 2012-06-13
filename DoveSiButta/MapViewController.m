@@ -561,7 +561,7 @@
         [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
         [newItem setLongitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale] ];
         
-        addVC.newItem = newItem;
+        addVC.myNewItem = newItem;
         
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
         

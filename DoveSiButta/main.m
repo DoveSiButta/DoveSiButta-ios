@@ -10,20 +10,20 @@
 
 #import "AppDelegate.h"
 
-/* For LLVM 3.0
+// For LLVM 3.0
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
- */
 
-int main(int argc, char *argv[]) {
-    
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
-    [pool release];
-    return retVal;
-}
 
+//int main(int argc, char *argv[]) {
+//    
+//    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+//    int retVal = UIApplicationMain(argc, argv, nil, @"AppDelegate");
+//    [pool release];
+//    return retVal;
+//}
+//

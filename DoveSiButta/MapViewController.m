@@ -103,11 +103,11 @@
                 
         }
         
-        [proxy release];
-        [resultArr release];
-        [locale release];
-        [serviceURI release];
-        [defaults release];
+//        [proxy release];
+//        [resultArr release];
+//        [locale release];
+//        [serviceURI release];
+//        [defaults release];
 
     }
     @catch (DataServiceRequestException * e) 
@@ -209,7 +209,7 @@
 -(void) addItem:(id)sender
 {
     CLLocationCoordinate2D locationToLookup = self.locationManager.location.coordinate;
-    MKReverseGeocoder *reverseGeocoder = [[[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup] autorelease];
+    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup] ;
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
     
@@ -344,35 +344,35 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    mapView = nil;
-    buttonLat = nil;
-    buttonLon = nil;
-    buttonAdd = nil;
+//    mapView = nil;
+//    buttonLat = nil;
+//    buttonLon = nil;
+//    buttonAdd = nil;
 
 }
 
 - (void)dealloc
 {
-    [mapView release];
-    mapView.delegate = nil;
-    [selectedResult release];
-    selectedResult = nil;
-	[results release];
-    results = nil;
-    [iconsDictionary release];
-    iconsDictionary = nil;
-    [address release];
-    address = nil;
-    [postCode release];
-    postCode = nil;
-    [country release];
-    country = nil;
-    [comuniP2P release];
-    comuniP2P = nil;
-    [locationManager release];
-    locationManager =nil;
-    
-	
+//    [mapView release];
+//    mapView.delegate = nil;
+//    [selectedResult release];
+//    selectedResult = nil;
+//	[results release];
+//    results = nil;
+//    [iconsDictionary release];
+//    iconsDictionary = nil;
+//    [address release];
+//    address = nil;
+//    [postCode release];
+//    postCode = nil;
+//    [country release];
+//    country = nil;
+//    [comuniP2P release];
+//    comuniP2P = nil;
+//    [locationManager release];
+//    locationManager =nil;
+//    
+//	
 	[super dealloc];
 }
 

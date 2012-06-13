@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AC01692D157CBE4D00B87343 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AC01692C157CBE4D00B87343 /* MBProgressHUD.m */; };
-		AC016930157CBF0D00B87343 /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC01692F157CBF0D00B87343 /* GradientButton.m */; };
 		AC0437711524481500B09A6E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC04376F1524481500B09A6E /* HelpViewController.m */; };
 		AC0437721524481500B09A6E /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0437701524481500B09A6E /* HelpViewController.xib */; };
 		AC1247DC14FD8CAF001A4256 /* Sfondo@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DA14FD8CAF001A4256 /* Sfondo@2X.png */; };
@@ -75,6 +73,7 @@
 		AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8C14DC984D0056648A /* NoPicture.jpg */; };
 		AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC99992414D68AF6006229A8 /* UIImage+Extensions.m */; };
 		AC99992714D68E83006229A8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AC99992614D68E83006229A8 /* LICENSE */; };
+		AC9FDA0715882F1200389594 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9FDA0615882F1200389594 /* MBProgressHUD.m */; };
 		ACA0C1F91580A3F800237C53 /* CDeviceSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0C1F81580A3F800237C53 /* CDeviceSupport.m */; };
 		ACA0C1FC1580A41A00237C53 /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0C1FB1580A41A00237C53 /* UIDeviceHardware.m */; };
 		ACA0C22D1580DC4900237C53 /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0C2101580DC4900237C53 /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -218,10 +217,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AC01692B157CBE4D00B87343 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		AC01692C157CBE4D00B87343 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		AC01692E157CBF0D00B87343 /* GradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientButton.h; sourceTree = "<group>"; };
-		AC01692F157CBF0D00B87343 /* GradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientButton.m; sourceTree = "<group>"; };
 		AC04376E1524481500B09A6E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		AC04376F1524481500B09A6E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		AC0437701524481500B09A6E /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
@@ -375,6 +370,8 @@
 		AC99992314D68AF6006229A8 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		AC99992414D68AF6006229A8 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		AC99992614D68E83006229A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		AC9FDA0515882F1200389594 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		AC9FDA0615882F1200389594 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		ACA076D81588152E002D3E63 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		ACA0C1F71580A3F800237C53 /* CDeviceSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDeviceSupport.h; sourceTree = "<group>"; };
 		ACA0C1F81580A3F800237C53 /* CDeviceSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDeviceSupport.m; sourceTree = "<group>"; };
@@ -761,10 +758,8 @@
 		AC66CF4714C248230098E1F1 /* ProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				AC01692E157CBF0D00B87343 /* GradientButton.h */,
-				AC01692F157CBF0D00B87343 /* GradientButton.m */,
-				AC01692B157CBE4D00B87343 /* MBProgressHUD.h */,
-				AC01692C157CBE4D00B87343 /* MBProgressHUD.m */,
+				AC9FDA0515882F1200389594 /* MBProgressHUD.h */,
+				AC9FDA0615882F1200389594 /* MBProgressHUD.m */,
 			);
 			name = ProgressHUD;
 			sourceTree = "<group>";
@@ -1756,8 +1751,6 @@
 				ACB8F89214F772A80052B559 /* ChiSiamoViewController.m in Sources */,
 				AC0437711524481500B09A6E /* HelpViewController.m in Sources */,
 				ACEC316F15761553001158D7 /* YRDropdownView.m in Sources */,
-				AC01692D157CBE4D00B87343 /* MBProgressHUD.m in Sources */,
-				AC016930157CBF0D00B87343 /* GradientButton.m in Sources */,
 				ACA0C1F91580A3F800237C53 /* CDeviceSupport.m in Sources */,
 				ACA0C1FC1580A41A00237C53 /* UIDeviceHardware.m in Sources */,
 				ACA0C22D1580DC4900237C53 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
@@ -1775,6 +1768,7 @@
 				ACA0C2391580DC4900237C53 /* MagicalRecordHelpers.m in Sources */,
 				ACA0C23A1580DC4900237C53 /* MRCoreDataAction.m in Sources */,
 				AC521A301587AF1800CF8CB1 /* NoConnectionViewController.m in Sources */,
+				AC9FDA0715882F1200389594 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

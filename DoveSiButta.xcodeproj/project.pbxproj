@@ -212,7 +212,6 @@
 		ACEC316F15761553001158D7 /* YRDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEC316C15761553001158D7 /* YRDropdownView.m */; };
 		ACEC31721576155B001158D7 /* dropdown-alert.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC31701576155B001158D7 /* dropdown-alert.png */; };
 		ACEC31731576155B001158D7 /* dropdown-alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC31711576155B001158D7 /* dropdown-alert@2x.png */; };
-		ACEE63D714CB707700B604C9 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEE63D614CB707700B604C9 /* Manager.m */; };
 		ACFC0D5514D4C7F9000265B8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5314D4C7F9000265B8 /* Default.png */; };
 		ACFC0D5614D4C7F9000265B8 /* Default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5414D4C7F9000265B8 /* Default@2X.png */; };
 		ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */; };
@@ -376,6 +375,7 @@
 		AC99992314D68AF6006229A8 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		AC99992414D68AF6006229A8 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		AC99992614D68E83006229A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		ACA076D81588152E002D3E63 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		ACA0C1F71580A3F800237C53 /* CDeviceSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDeviceSupport.h; sourceTree = "<group>"; };
 		ACA0C1F81580A3F800237C53 /* CDeviceSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDeviceSupport.m; sourceTree = "<group>"; };
 		ACA0C1FA1580A41A00237C53 /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
@@ -411,7 +411,6 @@
 		ACA0C22B1580DC4900237C53 /* MRCoreDataAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MRCoreDataAction.h; path = ../../github/MagicalRecord/Source/MRCoreDataAction.h; sourceTree = "<group>"; };
 		ACA0C22C1580DC4900237C53 /* MRCoreDataAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MRCoreDataAction.m; path = ../../github/MagicalRecord/Source/MRCoreDataAction.m; sourceTree = "<group>"; };
 		ACA0C23B1580DCAD00237C53 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		ACB074EF158702B0002ED6C7 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		ACB8F88F14F772A80052B559 /* ChiSiamoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiSiamoViewController.h; sourceTree = "<group>"; };
 		ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiSiamoViewController.m; sourceTree = "<group>"; };
 		ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiSiamoViewController.xib; sourceTree = "<group>"; };
@@ -614,9 +613,6 @@
 		ACEC316C15761553001158D7 /* YRDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRDropdownView.m; path = ../../github/YRDropdownView/YRDropdownView/YRDropdownView.m; sourceTree = "<group>"; };
 		ACEC31701576155B001158D7 /* dropdown-alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dropdown-alert.png"; path = "../../github/YRDropdownView/YRDropdownExample/dropdown-alert.png"; sourceTree = "<group>"; };
 		ACEC31711576155B001158D7 /* dropdown-alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dropdown-alert@2x.png"; path = "../../github/YRDropdownView/YRDropdownExample/dropdown-alert@2x.png"; sourceTree = "<group>"; };
-		ACEE63D514CB707700B604C9 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
-		ACEE63D614CB707700B604C9 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
-		ACEE63D814CB70B900B604C9 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		ACFC0D5314D4C7F9000265B8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = DoveSiButta/Images/Default.png; sourceTree = SOURCE_ROOT; };
 		ACFC0D5414D4C7F9000265B8 /* Default@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2X.png"; path = "DoveSiButta/Images/Default@2X.png"; sourceTree = SOURCE_ROOT; };
 		ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ComuniRaccoltaP2P.plist; sourceTree = "<group>"; };
@@ -651,7 +647,7 @@
 		AC66CEE214C246400098E1F1 = {
 			isa = PBXGroup;
 			children = (
-				ACB074EF158702B0002ED6C7 /* Location.gpx */,
+				ACA076D81588152E002D3E63 /* Location.gpx */,
 				ACA0C20B1580DC2300237C53 /* MagicalRecord */,
 				ACA0C1F51580A3DC00237C53 /* Utility */,
 				ACEC31671576152C001158D7 /* DropdownView */,
@@ -701,7 +697,6 @@
 			isa = PBXGroup;
 			children = (
 				ACCAA9F914EAE24E0067236F /* Extensions */,
-				ACEE63D414CB703000B604C9 /* Singleton */,
 				AC66CF0014C246410098E1F1 /* AppDelegate.h */,
 				AC66CF0114C246410098E1F1 /* AppDelegate.m */,
 				AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */,
@@ -1493,16 +1488,6 @@
 			name = DropdownView;
 			sourceTree = "<group>";
 		};
-		ACEE63D414CB703000B604C9 /* Singleton */ = {
-			isa = PBXGroup;
-			children = (
-				ACEE63D814CB70B900B604C9 /* SynthesizeSingleton.h */,
-				ACEE63D514CB707700B604C9 /* Manager.h */,
-				ACEE63D614CB707700B604C9 /* Manager.m */,
-			);
-			name = Singleton;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1693,7 +1678,6 @@
 				AC66D02F14C24BD60098E1F1 /* RatingView.m in Sources */,
 				ACC5830C14E462BD005C72D3 /* LocationDetailViewController.m in Sources */,
 				ACC5830E14E462CA005C72D3 /* LocationAddViewController.m in Sources */,
-				ACEE63D714CB707700B604C9 /* Manager.m in Sources */,
 				ACE882B214CC6D910004B9DF /* PictureFileViewController.m in Sources */,
 				ACE882C914CC72A90004B9DF /* ASIAuthenticationDialog.m in Sources */,
 				ACE882CA14CC72A90004B9DF /* ASIDataCompressor.m in Sources */,
@@ -1843,7 +1827,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1864,7 +1848,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Giovanni Maggini";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1882,7 +1866,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "DoveSiButta/DoveSiButta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -1902,7 +1886,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "DoveSiButta/DoveSiButta-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (

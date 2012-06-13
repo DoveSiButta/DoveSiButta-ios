@@ -79,7 +79,7 @@
 #endif
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
-        DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
+        DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc] initWithUri:serviceURI credential:nil];
 
 //        DataServiceQuery *query = [proxy boxes];
 //        QueryOperationResponse *response = [query execute];
@@ -92,6 +92,7 @@
         NSArray *resultArr = [proxy ItemsNearMeByCoordinatesWithlatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude ]  descriptionWithLocale:locale] locale:locale] longitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude ]  descriptionWithLocale:locale] locale:locale]];
         //[[response getResult] retain];
 
+        
         for (int i =0;i<[resultArr count]; i++) {
             
             DoveSiButtaModel_Box *p = [resultArr objectAtIndex:i];
@@ -102,6 +103,11 @@
                 
         }
         
+        [proxy release];
+        [resultArr release];
+        [locale release];
+        [serviceURI release];
+        [defaults release];
 
     }
     @catch (DataServiceRequestException * e) 
@@ -311,7 +317,7 @@
     self.locationManager.delegate = self; 
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.purpose = NSLocalizedString(@"Trovare il cassonetto più vicino", @"");
+
     [self.locationManager startUpdatingLocation];
     
 //#ifdef __IPHONE_5_0
@@ -339,13 +345,33 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     mapView = nil;
+    buttonLat = nil;
+    buttonLon = nil;
+    buttonAdd = nil;
+
 }
 
 - (void)dealloc
 {
+    [mapView release];
     mapView.delegate = nil;
     [selectedResult release];
+    selectedResult = nil;
 	[results release];
+    results = nil;
+    [iconsDictionary release];
+    iconsDictionary = nil;
+    [address release];
+    address = nil;
+    [postCode release];
+    postCode = nil;
+    [country release];
+    country = nil;
+    [comuniP2P release];
+    comuniP2P = nil;
+    [locationManager release];
+    locationManager =nil;
+    
 	
 	[super dealloc];
 }

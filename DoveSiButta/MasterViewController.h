@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MapViewController.h"
 
-//Manager
-#import "Manager.h"
 
 //ProgressHUD
 #import "MBProgressHUD.h"

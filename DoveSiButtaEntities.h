@@ -171,21 +171,21 @@
 	
 }
 
-@property ( nonatomic , retain , getter=getBoxID , setter=setBoxID )NSNumber *m_BoxID;
-@property ( nonatomic , retain , getter=getTitle , setter=setTitle ) NSString *m_Title;
-@property ( nonatomic , retain , getter=getEventDate , setter=setEventDate )NSDate *m_EventDate;
-@property ( nonatomic , retain , getter=getDescription , setter=setDescription ) NSString *m_Description;
-@property ( nonatomic , retain , getter=getHostedById , setter=setHostedById ) NSString *m_HostedById;
-@property ( nonatomic , retain , getter=getHostedBy , setter=setHostedBy ) NSString *m_HostedBy;
-@property ( nonatomic , retain , getter=getContactPhone , setter=setContactPhone ) NSString *m_ContactPhone;
-@property ( nonatomic , retain , getter=getAddress , setter=setAddress ) NSString *m_Address;
-@property ( nonatomic , retain , getter=getCountry , setter=setCountry ) NSString *m_Country;
-@property ( nonatomic , retain , getter=getLatitude , setter=setLatitude )NSDecimalNumber *m_Latitude;
-@property ( nonatomic , retain , getter=getLongitude , setter=setLongitude )NSDecimalNumber *m_Longitude;
-@property ( nonatomic , retain , getter=getBoxType , setter=setBoxType ) NSString *m_BoxType;
-@property ( nonatomic , retain , getter=getPicture_Filename , setter=setPicture_Filename ) NSString *m_Picture_Filename;
-@property ( nonatomic , retain , getter=getRatings , setter=setRatings )NSMutableArray *m_Ratings;
-@property ( nonatomic , retain , getter=getPictures , setter=setPictures )NSMutableArray *m_Pictures;
+@property ( nonatomic , retain , getter=getBoxID , setter=setBoxID: )NSNumber *m_BoxID;
+@property ( nonatomic , retain , getter=getTitle , setter=setTitle: ) NSString *m_Title;
+@property ( nonatomic , retain , getter=getEventDate , setter=setEventDate: )NSDate *m_EventDate;
+@property ( nonatomic , retain , getter=getDescription , setter=setDescription: ) NSString *m_Description;
+@property ( nonatomic , retain , getter=getHostedById , setter=setHostedById: ) NSString *m_HostedById;
+@property ( nonatomic , retain , getter=getHostedBy , setter=setHostedBy: ) NSString *m_HostedBy;
+@property ( nonatomic , retain , getter=getContactPhone , setter=setContactPhone: ) NSString *m_ContactPhone;
+@property ( nonatomic , retain , getter=getAddress , setter=setAddress: ) NSString *m_Address;
+@property ( nonatomic , retain , getter=getCountry , setter=setCountry: ) NSString *m_Country;
+@property ( nonatomic , retain , getter=getLatitude , setter=setLatitude: )NSDecimalNumber *m_Latitude;
+@property ( nonatomic , retain , getter=getLongitude , setter=setLongitude: )NSDecimalNumber *m_Longitude;
+@property ( nonatomic , retain , getter=getBoxType , setter=setBoxType: ) NSString *m_BoxType;
+@property ( nonatomic , retain , getter=getPicture_Filename , setter=setPicture_Filename: ) NSString *m_Picture_Filename;
+@property ( nonatomic , retain , getter=getRatings , setter=setRatings: )NSMutableArray *m_Ratings;
+@property ( nonatomic , retain , getter=getPictures , setter=setPictures: )NSMutableArray *m_Pictures;
 
 + (id) CreateBoxWithboxid:(NSNumber *)aBoxID title:(NSString *)aTitle eventdate:(NSDate *)aEventDate description:(NSString *)aDescription hostedby:(NSString *)aHostedBy contactphone:(NSString *)aContactPhone address:(NSString *)aAddress country:(NSString *)aCountry latitude:(NSDecimalNumber *)aLatitude longitude:(NSDecimalNumber *)aLongitude boxtype:(NSString *)aBoxType;
 - (id) init;
@@ -248,12 +248,12 @@
 	
 }
 
-@property ( nonatomic , retain , getter=getRatingID , setter=setRatingID )NSNumber *m_RatingID;
-@property ( nonatomic , retain , getter=getBoxID , setter=setBoxID )NSNumber *m_BoxID;
-@property ( nonatomic , retain , getter=getAttendeeName , setter=setAttendeeName ) NSString *m_AttendeeName;
-@property ( nonatomic , retain , getter=getAttendeeNameId , setter=setAttendeeNameId ) NSString *m_AttendeeNameId;
-@property ( nonatomic , retain , getter=getRatingValue , setter=setRatingValue )NSNumber *m_RatingValue;
-@property ( nonatomic , retain , getter=getBox , setter=setBox )NSMutableArray *m_Box;
+@property ( nonatomic , retain , getter=getRatingID , setter=setRatingID: )NSNumber *m_RatingID;
+@property ( nonatomic , retain , getter=getBoxID , setter=setBoxID: )NSNumber *m_BoxID;
+@property ( nonatomic , retain , getter=getAttendeeName , setter=setAttendeeName: ) NSString *m_AttendeeName;
+@property ( nonatomic , retain , getter=getAttendeeNameId , setter=setAttendeeNameId: ) NSString *m_AttendeeNameId;
+@property ( nonatomic , retain , getter=getRatingValue , setter=setRatingValue: )NSNumber *m_RatingValue;
+@property ( nonatomic , retain , getter=getBox , setter=setBox: )NSMutableArray *m_Box;
 
 + (id) CreateRatingWithratingid:(NSNumber *)aRatingID boxid:(NSNumber *)aBoxID attendeename:(NSString *)aAttendeeName;
 - (id) init;
@@ -302,10 +302,10 @@
 	
 }
 
-@property ( nonatomic , retain , getter=getID , setter=setID )NSNumber *m_ID;
-@property ( nonatomic , retain , getter=getLinkedBoxID , setter=setLinkedBoxID )NSNumber *m_LinkedBoxID;
-@property ( nonatomic , retain , getter=getPicture_Filename , setter=setPicture_Filename ) NSString *m_Picture_Filename;
-@property ( nonatomic , retain , getter=getBox , setter=setBox )NSMutableArray *m_Box;
+@property ( nonatomic , retain , getter=getID , setter=setID: )NSNumber *m_ID;
+@property ( nonatomic , retain , getter=getLinkedBoxID , setter=setLinkedBoxID: )NSNumber *m_LinkedBoxID;
+@property ( nonatomic , retain , getter=getPicture_Filename , setter=setPicture_Filename: ) NSString *m_Picture_Filename;
+@property ( nonatomic , retain , getter=getBox , setter=setBox: )NSMutableArray *m_Box;
 
 + (id) CreatePictureWithid:(NSNumber *)aID linkedboxid:(NSNumber *)aLinkedBoxID picture_filename:(NSString *)aPicture_Filename;
 - (id) init;
@@ -324,10 +324,10 @@
 	
 }
 
-@property ( nonatomic , retain , getter=getEtag , setter=setEtag )NSString *m_OData_etag;
-@property ( nonatomic , retain , getter=getBoxes , setter=setBoxes ) DataServiceQuery *m_Boxes;
-@property ( nonatomic , retain , getter=getRatings , setter=setRatings ) DataServiceQuery *m_Ratings;
-@property ( nonatomic , retain , getter=getPictures , setter=setPictures ) DataServiceQuery *m_Pictures;
+@property ( nonatomic , retain , getter=getEtag , setter=setEtag: )NSString *m_OData_etag;
+@property ( nonatomic , retain , getter=getBoxes , setter=setBoxes: ) DataServiceQuery *m_Boxes;
+@property ( nonatomic , retain , getter=getRatings , setter=setRatings: ) DataServiceQuery *m_Ratings;
+@property ( nonatomic , retain , getter=getPictures , setter=setPictures: ) DataServiceQuery *m_Pictures;
 
 - (id) init;
 - (id) initWithUri:(NSString*)anUri credential:(id)acredential;

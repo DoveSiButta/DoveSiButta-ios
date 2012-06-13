@@ -99,7 +99,7 @@
           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
           target:self
           action:@selector(addItem:)]
-         autorelease];
+         autorelease]; 
         self.navigationItem.rightBarButtonItem = buttonAdd;
         [buttonAdd setEnabled:NO];
     }

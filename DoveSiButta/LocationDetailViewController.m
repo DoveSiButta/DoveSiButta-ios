@@ -88,11 +88,10 @@
 
      //Tasto ShareKit
     UIBarButtonItem *shareButton =
-    [[[UIBarButtonItem alloc]
+    [[UIBarButtonItem alloc]
       initWithBarButtonSystemItem:UIBarButtonSystemItemAction
       target:self
-      action:@selector(shareItem:)]
-     autorelease];
+      action:@selector(shareItem:)];
     self.navigationItem.rightBarButtonItem = shareButton;
 
     
@@ -233,7 +232,6 @@
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
 
-    [dateFormat release];
 
 }
 
@@ -302,7 +300,6 @@ titleForHeaderInSection:(NSInteger)section
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [self.selectedBox release];
 
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

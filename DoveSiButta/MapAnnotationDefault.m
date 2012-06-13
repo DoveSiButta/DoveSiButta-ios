@@ -43,11 +43,6 @@
     return [self.item getBoxType];
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-    [self.item release];
-    
-}
+
 
 @end

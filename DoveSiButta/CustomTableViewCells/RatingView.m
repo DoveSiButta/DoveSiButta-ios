@@ -93,12 +93,5 @@
     return rating;
 }
 
-- (void)dealloc
-{
-    [backgroundImageView release];
-    [foregroundImageView release];
-
-    [super dealloc];
-}
 
 @end

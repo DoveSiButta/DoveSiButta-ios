@@ -10,6 +10,6 @@
 
 @interface ChiSiamoViewController : UIViewController
 
-@property (retain, nonatomic) IBOutlet UILabel *labelProdName;
+@property ( strong, nonatomic) IBOutlet UILabel *labelProdName;
 
 @end

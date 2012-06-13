@@ -64,13 +64,6 @@
     return self;
 }
 							
-- (void)dealloc
-{
-    [_mapViewController release];
-    [listContent release];
-	[filteredListContent release];
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -87,7 +80,7 @@
     
     //Buttons
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp:)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp:)];
      //Per creare un nuovo elemento da questo schermo dovrei per forza avere iOS5. Dato che solo con iOS5 posso fare il reverse geocode della posizione dell'utente senza dover avere una MKMapView da cui prendere la posizione attuale
 
     /*
@@ -146,7 +139,6 @@
         NSLog(@"Error reading plist: %@, format: %d", error, format);
     }
     iconsDictionary = plistDictionary;
-    [iconsDictionary retain];
     
     //Types
     path = [[NSBundle mainBundle] pathForResource:@"RifiutiTypes" ofType:@"plist"];
@@ -164,7 +156,6 @@
         NSDictionary *i = [plistDictionary objectForKey:dic];
         [rifiutiTypes addObject:i];
     }
-    [rifiutiTypes retain];
     NSLog(@"rifiutitypes: %@", rifiutiTypes);
     self.listContent = rifiutiTypes;
     self.filteredListContent = [self.listContent mutableCopy];
@@ -178,9 +169,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    [listContent release];
 	listContent = nil;
-    [filteredListContent release];
     filteredListContent = nil;
 }
 
@@ -244,7 +233,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
@@ -281,7 +270,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:[NSBundle mainBundle]] autorelease];
+    self.mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:[NSBundle mainBundle]];
     if (tableView == self.searchDisplayController.searchResultsTableView)
     {
         self.mapViewController.selectedType = [[filteredListContent objectAtIndex:indexPath.row] objectForKey:@"id"];
@@ -373,8 +362,6 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
     
     [self presentModalViewController:navController animated:YES];
-    [addVC release];
-    [navController release];
 }
 
 -(IBAction)configuration:(id)sender
@@ -388,8 +375,6 @@
     UINavigationController *helpNVC = [[UINavigationController alloc] initWithRootViewController:hvc];
     
     [self presentModalViewController:helpNVC animated:YES];
-    [helpNVC release];
-    [hvc release];
     
 }
 

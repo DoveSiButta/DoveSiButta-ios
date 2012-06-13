@@ -14,7 +14,7 @@
 {
     MBProgressHUD *HUD;
 }
-@property (nonatomic, retain) NSNumber* selectedItem;
-@property (nonatomic, retain) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) NSNumber* selectedItem;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

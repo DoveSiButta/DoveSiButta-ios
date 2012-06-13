@@ -52,21 +52,21 @@
 {
     BOOL useDarkBackground;
 
-    UIImage *icon;
-    NSString *itemTitle;
-    NSString *name;
+    UIImage *__unsafe_unretained icon;
+    NSString *__unsafe_unretained itemTitle;
+    NSString *__unsafe_unretained name;
     float rating;
     NSInteger numRSVPs;
-    NSString *date;
+    NSString *__unsafe_unretained date;
 }
 
 @property(nonatomic) BOOL useDarkBackground;
 
-@property(retain) UIImage *icon;
-@property(retain) NSString *itemTitle;
-@property(retain) NSString *name;
+@property (unsafe_unretained) UIImage *icon;
+@property (unsafe_unretained) NSString *itemTitle;
+@property (unsafe_unretained) NSString *name;
 @property float rating;
 @property NSInteger numRSVPs;
-@property(retain) NSString *date;
+@property (unsafe_unretained) NSString *date;
 
 @end

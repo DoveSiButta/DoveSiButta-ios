@@ -26,7 +26,7 @@
 
 }
 
-@property (nonatomic, retain) DoveSiButtaModel_Box *item;
+@property (strong, nonatomic) DoveSiButtaModel_Box *item;
 
 
 

@@ -146,7 +146,6 @@
         boxType = [boxType stringByAppendingFormat:@"%@;",s];
     }
     
-    [boxType retain];
 //        NSLog(@"boxtype: %@", boxType);
     
     //1- Get item with ID
@@ -161,9 +160,7 @@
     [myNewItem setPicture_Filename:@""];
 
     DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
-    [proxy retain];
     NSData *pictureData = [NSData dataWithContentsOfFile:self.pictureFile];
-    [pictureData retain];
     NSLog(@"Data length: %d", [pictureData length]);
     DoveSiButtaModel_Picture *newPicture = [[DoveSiButtaModel_Picture alloc] initWithUri:nil];
     
@@ -178,7 +175,6 @@
         DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
         QueryOperationResponse *queryOperationResponse = [query execute];
         DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
-        [aNewBox retain];
         NSLog(@"anewbox ID: %@", [aNewBox getBoxID]); 
         //            [newPicture setLinkedBoxID:[aNewBox getBoxID]];
         //            [proxy updateObject:newItem];
@@ -229,20 +225,18 @@
     
     //Tasto Cancel
     UIBarButtonItem *cancelButton =
-    [[[UIBarButtonItem alloc]
+    [[UIBarButtonItem alloc]
       initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
       target:self
-      action:@selector(cancelNewItem:)]
-     autorelease];
+      action:@selector(cancelNewItem:)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
     //Tasto Salva
     UIBarButtonItem *saveButton =
-    [[[UIBarButtonItem alloc]
+    [[UIBarButtonItem alloc]
       initWithBarButtonSystemItem:UIBarButtonSystemItemSave
       target:self
-      action:@selector(saveItem:)]
-     autorelease];
+      action:@selector(saveItem:)];
     self.navigationItem.rightBarButtonItem = saveButton;
     
     //TODO: fare in modo che le celle assomiglino a quelle di CoreDataBooks
@@ -263,7 +257,6 @@
         NSLog(@"Error reading plist: %@, format: %d", error, format);
     }
     NSDictionary *iconsDictionary = [plistDictionary copy ];
-    [iconsDictionary retain];
     
     //Types
     path = [[NSBundle mainBundle] pathForResource:@"RifiutiTypes" ofType:@"plist"];
@@ -281,7 +274,6 @@
         NSDictionary *i = [plistDictionary objectForKey:dic];
         [rifiutiTypes addObject:i];
     }
-    [rifiutiTypes retain];
    
     
     //Creazione TableView
@@ -376,7 +368,6 @@
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
 
-    [dateFormat release];
 
     
     [self addSectionAtIndex:2 withAnimation:UITableViewRowAnimationNone];
@@ -417,7 +408,7 @@
         LabelCell *cell = (LabelCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
         if([cell.action isEqualToString:@"addPicture"])
         {
-            UIImagePickerController *imgPicker = [[[UIImagePickerController alloc] init] autorelease];
+            UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
             [imgPicker setAllowsEditing:YES];
             imgPicker.delegate = self;
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -497,7 +488,6 @@
 //    [[picker parentViewController] dismissModalViewControllerAnimated:YES];
 //    [picker dismissModalViewControllerAnimated:YES];
     [self dismissModalViewControllerAnimated:YES];
-    [dateFormat release];
 
 }
 

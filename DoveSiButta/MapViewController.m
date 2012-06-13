@@ -140,7 +140,6 @@
 
         MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
         resultAnnotation.item = aResult;
-        [resultAnnotation retain];
         
         [mapView addAnnotation:resultAnnotation];
     
@@ -162,7 +161,7 @@
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
         DoveSiButtaEntities *proxy=[[DoveSiButtaEntities alloc]initWithUri:serviceURI credential:nil];
 
-        NSArray *resultArr = [[proxy ItemsNearMeWithplaceorzip:[searchAddress stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]] retain];
+        NSArray *resultArr = [proxy ItemsNearMeWithplaceorzip:[searchAddress stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
 
         results = [resultArr mutableCopy];
     }
@@ -195,7 +194,6 @@
 
         MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
         resultAnnotation.item = aResult;
-        [resultAnnotation retain];
         
         [mapView addAnnotation:resultAnnotation];
         
@@ -260,11 +258,10 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ]) {
         //Add button solo se in presenza di camera (no vecchi iPod e iPad)
         buttonAdd =
-        [[[UIBarButtonItem alloc]
+        [[UIBarButtonItem alloc]
           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
           target:self
-          action:@selector(addItem:)]
-         autorelease];
+          action:@selector(addItem:)];
         self.navigationItem.rightBarButtonItem = buttonAdd;
         [buttonAdd setEnabled:NO];
     }
@@ -351,30 +348,6 @@
 
 }
 
-- (void)dealloc
-{
-//    [mapView release];
-//    mapView.delegate = nil;
-//    [selectedResult release];
-//    selectedResult = nil;
-//	[results release];
-//    results = nil;
-//    [iconsDictionary release];
-//    iconsDictionary = nil;
-//    [address release];
-//    address = nil;
-//    [postCode release];
-//    postCode = nil;
-//    [country release];
-//    country = nil;
-//    [comuniP2P release];
-//    comuniP2P = nil;
-//    [locationManager release];
-//    locationManager =nil;
-//    
-//	
-	[super dealloc];
-}
 
 
 
@@ -457,7 +430,7 @@
         return nil;
 
     
-    MKPinAnnotationView *newAnnotationPin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"] autorelease];
+    MKPinAnnotationView *newAnnotationPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"];
     if([selectedResult getBoxID] == [annotation annotationid])
     {
         newAnnotationPin.pinColor = MKPinAnnotationColorRed;
@@ -476,7 +449,6 @@
     UIImageView *dinnerIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[self.iconsDictionary objectForKey:annotation.type]]];
     [dinnerIconView setFrame:CGRectMake(0, 0, 30, 30)];
     newAnnotationPin.leftCalloutAccessoryView = dinnerIconView; 
-    [dinnerIconView release];    
     
     newAnnotationPin.rightCalloutAccessoryView = rightButton;
 
@@ -567,8 +539,6 @@
         
         [self presentModalViewController:navController animated:YES];
         [addVC setDelegate:self];
-        [addVC release];
-        [navController release];
         
 //        if (geocoder != nil)
 //        {
@@ -586,7 +556,6 @@
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
         [alertView show];
-        [alertView release];
     }
 
  
@@ -600,7 +569,6 @@
                   cancelButtonTitle:NSLocalizedString(@"Lascia perdere", nil)
                   otherButtonTitles:NSLocalizedString(@"Riprova",nil),nil]; //TODO: fargli ricaricare la posizione
     [alertView show];
-    [alertView release];
 }
 
 

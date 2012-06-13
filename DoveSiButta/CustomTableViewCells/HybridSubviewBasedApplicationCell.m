@@ -144,12 +144,5 @@
     priceLabel.text = newPrice;
 }
 
-- (void)dealloc
-{
-    [cellContentView release];
-    [priceLabel release];
-    
-    [super dealloc];
-}
 
 @end

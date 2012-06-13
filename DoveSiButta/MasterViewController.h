@@ -25,8 +25,8 @@
     UIBarButtonItem *addButton;
         
     //data sources
-    NSArray			*listContent;			// The master content.
-	NSMutableArray	*filteredListContent;	// The content filtered as a result of a search.
+    NSArray			* listContent;			// The master content.
+	NSMutableArray	* filteredListContent;	// The content filtered as a result of a search.
     
     // The saved state of the search UI if a memory warning removed the view.
     NSString		*savedSearchTerm;
@@ -37,9 +37,9 @@
     MBProgressHUD *HUD;
     
     //Cells
-  	ApplicationCell *tmpCell;
+  	ApplicationCell * tmpCell;
     // referring to our xib-based UITableViewCell ('IndividualSubviewsBasedApplicationCell')
-	UINib *cellNib;
+	UINib * cellNib;
     
     //Icons
     NSDictionary *iconsDictionary;
@@ -47,11 +47,11 @@
 }
 
 //detail
-@property (nonatomic, retain) MapViewController *mapViewController;
+@property (strong, nonatomic) MapViewController *mapViewController;
 
 //tableview data sources
-@property (nonatomic, retain) NSArray *listContent;
-@property (nonatomic, retain) NSMutableArray *filteredListContent;
+@property (strong, nonatomic) NSArray *listContent;
+@property (strong, nonatomic) NSMutableArray *filteredListContent;
 
 //saved state
 @property (nonatomic, copy) NSString *savedSearchTerm;
@@ -60,8 +60,8 @@
 
 
 //Cells
-@property (nonatomic, retain) IBOutlet ApplicationCell *tmpCell;
-@property (nonatomic, retain) UINib *cellNib;
+@property (strong, nonatomic) IBOutlet ApplicationCell *tmpCell;
+@property (strong, nonatomic) UINib *cellNib;
 
 //@property (nonatomic, retain) UINavigationController *navigationController;
 

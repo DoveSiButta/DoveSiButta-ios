@@ -95,11 +95,10 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ]) {
         //Add button solo se in presenza di camera (no vecchi iPod e iPad)
         buttonAdd =
-        [[[UIBarButtonItem alloc]
+        [[UIBarButtonItem alloc]
           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
           target:self
-          action:@selector(addItem:)]
-         autorelease]; 
+          action:@selector(addItem:)]; 
         self.navigationItem.rightBarButtonItem = buttonAdd;
         [buttonAdd setEnabled:NO];
     }
@@ -107,11 +106,10 @@
 #endif
         //Add button solo se in presenza di camera (no vecchi iPod e iPad)
         self.buttonRefresh =
-        [[[UIBarButtonItem alloc]
+        [[UIBarButtonItem alloc]
           initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
           target:self
-          action:@selector(refresh:)] 
-         autorelease];
+          action:@selector(refresh:)];
         self.navigationItem.leftBarButtonItem = self.buttonRefresh;
  
     
@@ -171,7 +169,7 @@
     
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
-    [self.locationManager release];
+    self.locationManager;
     self.locationManager = nil;
     //TODO: e se l'utente ci ha impedito di usare la location?!?!?!
 //    http://developer.apple.com/library/ios/#documentation/CoreLocation/Reference/CLLocationManager_Class/CLLocationManager/CLLocationManager.html#//apple_ref/occ/clm/CLLocationManager/authorizationStatus
@@ -255,7 +253,6 @@
         
         MapAnnotationDefault *resultAnnotation = [[MapAnnotationDefault alloc] init] ;
         resultAnnotation.item = aResult;
-        [resultAnnotation retain];
         
         [mapView addAnnotation:resultAnnotation];
         
@@ -276,7 +273,7 @@
 -(void) startReverseGeocode
 {
     CLLocationCoordinate2D locationToLookup = self.locationManager.location.coordinate;
-    MKReverseGeocoder *reverseGeocoder = [[[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup] autorelease];
+    MKReverseGeocoder *reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
     reverseGeocoder.delegate = self;
     [reverseGeocoder start];
 }
@@ -339,7 +336,7 @@
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
-    MKPinAnnotationView *newAnnotationPin = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"] autorelease];
+    MKPinAnnotationView *newAnnotationPin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"simpleAnnotation"];
     if([selectedResult getBoxID] == [annotation annotationid])
     {
         newAnnotationPin.pinColor = MKPinAnnotationColorRed;
@@ -358,7 +355,6 @@
     UIImageView *dinnerIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[self.iconsDictionary objectForKey:annotation.type]]];
     [dinnerIconView setFrame:CGRectMake(0, 0, 30, 30)];
     newAnnotationPin.leftCalloutAccessoryView = dinnerIconView; 
-    [dinnerIconView release];    
     
     newAnnotationPin.rightCalloutAccessoryView = rightButton;
     
@@ -450,8 +446,6 @@
     
     [self presentModalViewController:navController animated:YES];
     [addVC setDelegate:self];
-    [addVC release];
-    [navController release];
     
     
 }
@@ -461,7 +455,6 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", nil) message:errorMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:NSLocalizedString(@"Riprova", nil),nil];
     [alertView setTag:ALERTVIEW_GEOCODEFAIL];
     [alertView show];
-    [alertView release];
 }
 
 

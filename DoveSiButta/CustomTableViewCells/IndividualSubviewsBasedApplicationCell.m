@@ -98,16 +98,5 @@
     priceLabel.text = newPrice;
 }
 
-- (void)dealloc
-{
-    [iconView release];
-    [publisherLabel release];
-    [nameLabel release];
-    [ratingView release];
-    [numRatingsLabel release];
-    [priceLabel release];
-
-    [super dealloc];
-}
 
 @end

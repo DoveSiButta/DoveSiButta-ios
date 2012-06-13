@@ -206,7 +206,6 @@
         QueryOperationResponse *queryOperationResponse = [query execute];
 
         DoveSiButtaModel_Picture *thePicture =[[queryOperationResponse getResult] objectAtIndex:0];
-        [thePicture retain];
         NSLog(@"pictureID ID: %@", [thePicture getID]); 
         
         if([[thePicture getPicture_Filename] length ] >0)

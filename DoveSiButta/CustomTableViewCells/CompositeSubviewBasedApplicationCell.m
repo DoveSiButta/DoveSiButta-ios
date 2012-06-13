@@ -141,11 +141,5 @@
     cellContentView.backgroundColor = backgroundColor;
 }
 
-- (void)dealloc
-{
-    [cellContentView release];
-    
-    [super dealloc];
-}
 
 @end

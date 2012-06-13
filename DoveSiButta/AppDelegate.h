@@ -21,12 +21,12 @@
 @property (strong, nonatomic) UINavigationController *navigationController;
 */
 
-@property (nonatomic, retain) UIWindow *window;
+@property (strong, nonatomic) UIWindow *window;
 
 //@property (nonatomic, retain) UINavigationController *navigationController;
 
-@property (nonatomic, retain) UITabBarController *tabBarController;
+@property (strong, nonatomic) UITabBarController *tabBarController;
 
-@property (nonatomic, retain) NoConnectionViewController *noConnectionViewController;
+@property (strong, nonatomic) NoConnectionViewController *noConnectionViewController;
 
 @end

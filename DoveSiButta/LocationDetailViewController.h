@@ -11,7 +11,7 @@
 
 @interface LocationDetailViewController : PageViewController
 
-@property (nonatomic, retain) DoveSiButtaModel_Box *selectedBox;
+@property (strong, nonatomic) DoveSiButtaModel_Box *selectedBox;
 
 - (id)initWithItem:(DoveSiButtaModel_Box*)dinner;
 //- (void)addRSVP:(id)sender;;

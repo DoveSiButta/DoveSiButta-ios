@@ -31,7 +31,7 @@
     [super viewDidLoad];
     
     //Top button (Help button)
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"?" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp:)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"?" style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp:)];
     
     //Bundle info
     NSBundle *bundle = [NSBundle mainBundle];
@@ -52,8 +52,4 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)dealloc {
-    [labelProdName release];
-    [super dealloc];
-}
 @end

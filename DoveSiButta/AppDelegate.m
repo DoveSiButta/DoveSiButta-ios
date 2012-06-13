@@ -21,13 +21,6 @@
 @synthesize tabBarController = _tabBarController;
 @synthesize noConnectionViewController = _noConnectionViewController;
 
-- (void)dealloc
-{
-    [_window release];
-//    [_navigationController release];
-    [_tabBarController release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -95,7 +88,7 @@
     // Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
     // method "reachabilityChanged" will be called. 
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-    hostReach = [[Reachability reachabilityWithHostName: [defaults objectForKey:@"serviceHost"]] retain];
+    hostReach = [Reachability reachabilityWithHostName: [defaults objectForKey:@"serviceHost"]];
     NSLog(@"serviceHost %@ ",[defaults objectForKey:@"serviceHost"]);
     [hostReach startNotifier];
     NetworkStatus netStatus = [hostReach currentReachabilityStatus];
@@ -109,14 +102,14 @@
     
     self.noConnectionViewController = [[NoConnectionViewController alloc] initWithNibName:@"NoConnectionViewController" bundle:nil];
     
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    MasterViewController *viewController1 = [[[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil] autorelease];
-    UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:viewController1] autorelease];
-    UIViewController *viewController2 = [[[MapAddViewController alloc] initWithNibName:@"MapAddViewController" bundle:nil] autorelease];
-    UINavigationController *navigationControllerAdd = [[[UINavigationController alloc] initWithRootViewController:viewController2] autorelease];
+    MasterViewController *viewController1 = [[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController1];
+    UIViewController *viewController2 = [[MapAddViewController alloc] initWithNibName:@"MapAddViewController" bundle:nil];
+    UINavigationController *navigationControllerAdd = [[UINavigationController alloc] initWithRootViewController:viewController2];
     ChiSiamoViewController *viewController3 = [[ChiSiamoViewController alloc] initWithNibName:@"ChiSiamoViewController" bundle:nil];
-    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
+    self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
     
 

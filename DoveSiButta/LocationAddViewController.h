@@ -19,15 +19,15 @@
 @interface LocationAddViewController : PageViewController <MBProgressHUDDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 {
     MBProgressHUD *HUD;
-    id <LocationAddViewControllerDelegate> delegate;
+    id <LocationAddViewControllerDelegate>  delegate;
 }
 
-@property (nonatomic, retain) DoveSiButtaModel_Box *myNewItem;
-@property (nonatomic, retain) NSString* pictureFile; //se non c'è la foto, non posso procedere!
-@property (nonatomic, retain) NSMutableArray* selectedTypes;
-@property (nonatomic, retain) NSMutableSet* setTypes;
+@property (strong, nonatomic) DoveSiButtaModel_Box *myNewItem;
+@property (strong, nonatomic) NSString* pictureFile; //se non c'è la foto, non posso procedere!
+@property (strong, nonatomic) NSMutableArray* selectedTypes;
+@property (strong, nonatomic) NSMutableSet* setTypes;
 
 //- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize;
-@property (nonatomic, assign) id <LocationAddViewControllerDelegate> delegate;
+@property (nonatomic, strong) id <LocationAddViewControllerDelegate> delegate;
 
 @end

@@ -84,20 +84,20 @@
     [defaults synchronize]; // this method is optional
     //DEFAULTS SETUP END    
     
-#if !TARGET_IPHONE_SIMULATOR    
+//#if !TARGET_IPHONE_SIMULATOR    
     // Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
     // method "reachabilityChanged" will be called. 
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
     hostReach = [Reachability reachabilityWithHostName: [defaults objectForKey:@"serviceHost"]];
     NSLog(@"serviceHost %@ ",[defaults objectForKey:@"serviceHost"]);
     [hostReach startNotifier];
-    NetworkStatus netStatus = [hostReach currentReachabilityStatus];
-    BOOL isReachable = [hostReach isReachable];
+//    NetworkStatus netStatus = [hostReach currentReachabilityStatus];
+//    BOOL isReachable = [hostReach isReachable];
     
-#else
-    NetworkStatus netStatus = ReachableViaWiFi;
-    BOOL isReachable = YES;
-#endif
+//#else
+//    NetworkStatus netStatus = ReachableViaWiFi;
+//    BOOL isReachable = YES;
+//#endif
 
     
     self.noConnectionViewController = [[NoConnectionViewController alloc] initWithNibName:@"NoConnectionViewController" bundle:nil];
@@ -110,17 +110,28 @@
     UINavigationController *navigationControllerAdd = [[UINavigationController alloc] initWithRootViewController:viewController2];
     ChiSiamoViewController *viewController3 = [[ChiSiamoViewController alloc] initWithNibName:@"ChiSiamoViewController" bundle:nil];
     self.tabBarController = [[UITabBarController alloc] init];
+#if TARGET_IPHONE_SIMULATOR
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
-    
-
-    if(netStatus == NotReachable || !isReachable )
+#else
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ])
     {
-        self.window.rootViewController = self.noConnectionViewController;
+        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
     }
     else {
-        self.window.rootViewController = self.tabBarController;
+        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, viewController3, nil];
     }
+#endif
     
+
+//    if(netStatus == NotReachable || !isReachable )
+//    {
+//        self.window.rootViewController = self.noConnectionViewController;
+//    }
+//    else {
+//        self.window.rootViewController = self.tabBarController;
+//    }
+    
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
     return YES;

@@ -315,43 +315,28 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == ALERTVIEW_GEOCODEFAIL) {
-        switch (buttonIndex) {
-            case 1:
-                [self startReverseGeocode];
-                break;
-                
-            default:
-                break;
-        }
-    }
-    else if(alertView.tag == ALERTVIEW_LOCATIONFORBIDDEN)
-    {
-        switch (buttonIndex) {
-            case 1:
-            {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"]];
-                //            // A system version of 3.1 or greater is required to use CADisplayLink. The NSTimer
-                //            // class is used as fallback when it isn't available.
-                //            NSString *reqSysVer = @"5.0";
-                //            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-                //            if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
-                //            {
-                //               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"]];
-                //            }
-                //            else {
-                //                NSURL*url=[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
-                //                [[UIApplication sharedApplication] openURL:url];
-                //            }
+    switch (alertView.tag) {
+        case ALERTVIEW_GEOCODEFAIL:
+        {
+            switch (buttonIndex) {
+                case 1:
+                    [self startReverseGeocode];
+                    break;
+                    
+                default:
+                    break;
             }
-                break;
-                
-            default:
-                break;
         }
-
+            break;
+        case ALERTVIEW_LOCATIONFORBIDDEN:
+            [self.buttonAdd setEnabled:NO];
+            break;
+        default:
+            break;
     }
+        
 }
+
 
 #pragma mark Map View Delegate Methods
 
@@ -525,10 +510,10 @@
                 // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
             case kCLErrorDenied:
             {
-                UIAlertView *a = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"REQUIRES_POSITION", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-                a.tag = ALERTVIEW_LOCATIONFORBIDDEN; 
+                UIAlertView *a = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"DoveSiButta necessita della tua posizione per cercare i cassonetti più vicini. Puoi abilitare o disabilitare questa scelta nelle impostazioni.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok",nil) otherButtonTitles: nil];
+                a.tag = ALERTVIEW_LOCATIONFORBIDDEN;
                 [a show];
-                [self.navigationController popViewControllerAnimated:YES];
+//                [self.navigationController popViewControllerAnimated:YES];
                 
             }
                 break;

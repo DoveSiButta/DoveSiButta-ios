@@ -22,6 +22,10 @@
 //Service
 #import "DoveSiButtaEntities.h"
 
+#define ALERTVIEW_GEOCODEFAIL 1
+#define ALERTVIEW_COMUNEP2P 2
+#define ALERTVIEW_LOCATIONFORBIDDEN 3
+
 @interface MapViewController ()
 
 
@@ -376,6 +380,19 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - AlertView Delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (alertView.tag) {
+        case ALERTVIEW_LOCATIONFORBIDDEN:
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+            
+        default:
+            break;
+    }
+}
 
 
 #pragma mark Map View Delegate methods
@@ -618,9 +635,10 @@
                 // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
             case kCLErrorDenied:
             {
-                UIAlertView *a = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"REQUIRES_POSITION", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: NSLocalizedString(@"Impostazioni", nil), nil];
+                UIAlertView *a = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"DoveSiButta necessita della tua posizione per cercare i cassonetti più vicini. Puoi abilitare o disabilitare questa scelta nelle impostazioni.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok",nil) otherButtonTitles: nil];
+                a.tag = ALERTVIEW_LOCATIONFORBIDDEN;
                 [a show];
-                [self.navigationController popViewControllerAnimated:YES];
+//                [self.navigationController popViewControllerAnimated:YES];
                 
             }
                 break;
@@ -638,11 +656,13 @@
     
 }
 
+/*
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
         case 1:
         {
+            //This no longer works in iOS 5.1 !!!
            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"]];
 //            // A system version of 3.1 or greater is required to use CADisplayLink. The NSTimer
 //            // class is used as fallback when it isn't available.
@@ -663,6 +683,7 @@
             break;
     }
 }
+*/
 
 //
 // locationManager:didUpdateToLocation:fromLocation:

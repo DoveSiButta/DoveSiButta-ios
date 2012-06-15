@@ -1,0 +1,3 @@
+[submodule "OData4ObjC"]
+	path = OData4ObjC
+	url = https://github.com/maggix/OData4ObjC.git

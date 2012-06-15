@@ -68,7 +68,6 @@
 		AC66D09214C3862E0098E1F1 /* IconForType.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D09114C3862D0098E1F1 /* IconForType.plist */; };
 		AC69D0B714F2DDF600FE688B /* MapAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC69D0B514F2DDF600FE688B /* MapAddViewController.m */; };
 		AC69D0B814F2DDF600FE688B /* MapAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC69D0B614F2DDF600FE688B /* MapAddViewController.xib */; };
-		AC8780FC14E3BCCE004915C6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC8780FB14E3BCCE004915C6 /* Localizable.strings */; };
 		AC8E3F8D14DC984D0056648A /* NoPicture@2X.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */; };
 		AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8C14DC984D0056648A /* NoPicture.jpg */; };
 		AC94A90C158A4FCD00689EFA /* mailicon@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A908158A4FCD00689EFA /* mailicon@2X.png */; };
@@ -80,6 +79,7 @@
 		AC94A915158A540E00689EFA /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A914158A540E00689EFA /* Default-Landscape~ipad.png */; };
 		AC94A917158A541600689EFA /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A916158A541600689EFA /* Default-Landscape@2x~ipad.png */; };
 		AC94A919158A547500689EFA /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A918158A547500689EFA /* icon144.png */; };
+		AC94A92F158AF58D00689EFA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC94A931158AF58D00689EFA /* Localizable.strings */; };
 		AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC99992414D68AF6006229A8 /* UIImage+Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AC99992714D68E83006229A8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AC99992614D68E83006229A8 /* LICENSE */; };
 		AC9FDA0715882F1200389594 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9FDA0615882F1200389594 /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -251,62 +251,6 @@
 		AC66CF0114C246410098E1F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AC66CF0314C246410098E1F1 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		AC66CF0414C246410098E1F1 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		AC66CF8214C248F90098E1F1 /* ACSCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACSCredential.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ACSCredential.h; sourceTree = "<group>"; };
-		AC66CF8314C248F90098E1F1 /* ACSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACSUtil.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ACSUtil.h; sourceTree = "<group>"; };
-		AC66CF8414C248F90098E1F1 /* ACSUtilException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACSUtilException.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ACSUtilException.h; sourceTree = "<group>"; };
-		AC66CF8514C248F90098E1F1 /* AtomEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AtomEntry.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/AtomEntry.h; sourceTree = "<group>"; };
-		AC66CF8614C248F90098E1F1 /* AtomParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AtomParser.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/AtomParser.h; sourceTree = "<group>"; };
-		AC66CF8714C248F90098E1F1 /* AzureTableCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AzureTableCredential.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/AzureTableCredential.h; sourceTree = "<group>"; };
-		AC66CF8814C248F90098E1F1 /* AzureTableUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AzureTableUtil.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/AzureTableUtil.h; sourceTree = "<group>"; };
-		AC66CF8914C248F90098E1F1 /* ClientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClientType.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ClientType.h; sourceTree = "<group>"; };
-		AC66CF8A14C248F90098E1F1 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = constants.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/constants.h; sourceTree = "<group>"; };
-		AC66CF8B14C248F90098E1F1 /* ContentStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentStream.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ContentStream.h; sourceTree = "<group>"; };
-		AC66CF8C14C248F90098E1F1 /* CredentialBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CredentialBase.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/CredentialBase.h; sourceTree = "<group>"; };
-		AC66CF8D14C248F90098E1F1 /* CredentialType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CredentialType.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/CredentialType.h; sourceTree = "<group>"; };
-		AC66CF8E14C248F90098E1F1 /* DataServiceQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataServiceQuery.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/DataServiceQuery.h; sourceTree = "<group>"; };
-		AC66CF8F14C248F90098E1F1 /* DataServiceQueryContinuation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataServiceQueryContinuation.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/DataServiceQueryContinuation.h; sourceTree = "<group>"; };
-		AC66CF9014C248F90098E1F1 /* DataServiceRequestArgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataServiceRequestArgs.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/DataServiceRequestArgs.h; sourceTree = "<group>"; };
-		AC66CF9114C248F90098E1F1 /* DataServiceRequestException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataServiceRequestException.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/DataServiceRequestException.h; sourceTree = "<group>"; };
-		AC66CF9214C248F90098E1F1 /* DataServiceResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataServiceResponse.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/DataServiceResponse.h; sourceTree = "<group>"; };
-		AC66CF9314C248F90098E1F1 /* DataServiceSaveStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataServiceSaveStream.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/DataServiceSaveStream.h; sourceTree = "<group>"; };
-		AC66CF9414C248F90098E1F1 /* DataServiceStreamResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataServiceStreamResponse.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/DataServiceStreamResponse.h; sourceTree = "<group>"; };
-		AC66CF9514C248F90098E1F1 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Dictionary.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/Dictionary.h; sourceTree = "<group>"; };
-		AC66CF9614C248F90098E1F1 /* HttpBatchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpBatchRequest.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/HttpBatchRequest.h; sourceTree = "<group>"; };
-		AC66CF9714C248F90098E1F1 /* HttpBatchResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpBatchResponse.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/HttpBatchResponse.h; sourceTree = "<group>"; };
-		AC66CF9814C248F90098E1F1 /* HTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPHandler.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/HTTPHandler.h; sourceTree = "<group>"; };
-		AC66CF9914C248F90098E1F1 /* HTTPHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPHeaders.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/HTTPHeaders.h; sourceTree = "<group>"; };
-		AC66CF9A14C248F90098E1F1 /* HttpProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpProxy.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/HttpProxy.h; sourceTree = "<group>"; };
-		AC66CF9B14C248F90098E1F1 /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpRequest.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/HttpRequest.h; sourceTree = "<group>"; };
-		AC66CF9C14C248F90098E1F1 /* HttpResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpResponse.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/HttpResponse.h; sourceTree = "<group>"; };
-		AC66CF9D14C248F90098E1F1 /* Microsoft_Http_Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Microsoft_Http_Response.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/Microsoft_Http_Response.h; sourceTree = "<group>"; };
-		AC66CF9E14C248F90098E1F1 /* mProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mProperties.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/mProperties.h; sourceTree = "<group>"; };
-		AC66CF9F14C248F90098E1F1 /* MSODataResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSODataResponseDelegate.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/MSODataResponseDelegate.h; sourceTree = "<group>"; };
-		AC66CFA014C248F90098E1F1 /* ObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectContext.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ObjectContext.h; sourceTree = "<group>"; };
-		AC66CFA114C248F90098E1F1 /* ObjectContextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectContextDelegate.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ObjectContextDelegate.h; sourceTree = "<group>"; };
-		AC66CFA214C248F90098E1F1 /* ODataBool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataBool.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataBool.h; sourceTree = "<group>"; };
-		AC66CFA314C248F90098E1F1 /* ODataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataDelegate.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataDelegate.h; sourceTree = "<group>"; };
-		AC66CFA414C248F90098E1F1 /* ODataEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataEntity.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataEntity.h; sourceTree = "<group>"; };
-		AC66CFA514C248F90098E1F1 /* ODataGUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataGUID.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataGUID.h; sourceTree = "<group>"; };
-		AC66CFA614C248F90098E1F1 /* ODataNameSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataNameSpace.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataNameSpace.h; sourceTree = "<group>"; };
-		AC66CFA714C248F90098E1F1 /* ODataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataObject.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataObject.h; sourceTree = "<group>"; };
-		AC66CFA814C248F90098E1F1 /* ODataRTTI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataRTTI.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataRTTI.h; sourceTree = "<group>"; };
-		AC66CFA914C248F90098E1F1 /* ODataServiceException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataServiceException.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataServiceException.h; sourceTree = "<group>"; };
-		AC66CFAA14C248F90098E1F1 /* ODataSVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataSVC.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataSVC.h; sourceTree = "<group>"; };
-		AC66CFAB14C248F90098E1F1 /* ODataXMLElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataXMLElements.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataXMLElements.h; sourceTree = "<group>"; };
-		AC66CFAC14C248F90098E1F1 /* ODataXMlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODataXMlParser.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ODataXMlParser.h; sourceTree = "<group>"; };
-		AC66CFAD14C248F90098E1F1 /* OperationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OperationResponse.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/OperationResponse.h; sourceTree = "<group>"; };
-		AC66CFAE14C248F90098E1F1 /* Pair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pair.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/Pair.h; sourceTree = "<group>"; };
-		AC66CFAF14C248F90098E1F1 /* QueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryComponents.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/QueryComponents.h; sourceTree = "<group>"; };
-		AC66CFB014C248F90098E1F1 /* QueryOperationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryOperationResponse.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/QueryOperationResponse.h; sourceTree = "<group>"; };
-		AC66CFB114C248F90098E1F1 /* RelatedEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RelatedEnd.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/RelatedEnd.h; sourceTree = "<group>"; };
-		AC66CFB214C248F90098E1F1 /* ResourceBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceBox.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/ResourceBox.h; sourceTree = "<group>"; };
-		AC66CFB314C248F90098E1F1 /* SaveResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaveResult.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/SaveResult.h; sourceTree = "<group>"; };
-		AC66CFB414C248F90098E1F1 /* TableEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableEntry.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/TableEntry.h; sourceTree = "<group>"; };
-		AC66CFB514C248F90098E1F1 /* Tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tables.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/Tables.h; sourceTree = "<group>"; };
-		AC66CFB614C248F90098E1F1 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/Utility.h; sourceTree = "<group>"; };
-		AC66CFB714C248F90098E1F1 /* WindowsCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WindowsCredential.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/WindowsCredential.h; sourceTree = "<group>"; };
-		AC66CFB814C248F90098E1F1 /* XMLBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLBuilder.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/XMLBuilder.h; sourceTree = "<group>"; };
-		AC66CFB914C248F90098E1F1 /* XMLGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLGenerator.h; path = ../../github/OData4ObjC/Framework/bin/odatalib/include/XMLGenerator.h; sourceTree = "<group>"; };
 		AC66CFC114C2494F0098E1F1 /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
 		AC66CFC214C2494F0098E1F1 /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		AC66CFC314C2494F0098E1F1 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
@@ -373,7 +317,6 @@
 		AC69D0B514F2DDF600FE688B /* MapAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAddViewController.m; sourceTree = "<group>"; };
 		AC69D0B614F2DDF600FE688B /* MapAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapAddViewController.xib; sourceTree = "<group>"; };
 		AC8780F214E3BBFE004915C6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = it; path = it.lproj/RifiutiTypes.plist; sourceTree = "<group>"; };
-		AC8780FB14E3BCCE004915C6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		AC8E3F8B14DC984D0056648A /* NoPicture@2X.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "NoPicture@2X.jpg"; path = "Images/NoPicture@2X.jpg"; sourceTree = "<group>"; };
 		AC8E3F8C14DC984D0056648A /* NoPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = NoPicture.jpg; path = Images/NoPicture.jpg; sourceTree = "<group>"; };
 		AC94A908158A4FCD00689EFA /* mailicon@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mailicon@2X.png"; path = "Images/mailicon@2X.png"; sourceTree = "<group>"; };
@@ -385,6 +328,64 @@
 		AC94A914158A540E00689EFA /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../../../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		AC94A916158A541600689EFA /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../../../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		AC94A918158A547500689EFA /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon144.png; path = ../../../icon144.png; sourceTree = "<group>"; };
+		AC94A930158AF58D00689EFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AC94A933158AF59900689EFA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AC94A942158B0C3F00689EFA /* ACSCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSCredential.h; sourceTree = "<group>"; };
+		AC94A943158B0C3F00689EFA /* ACSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSUtil.h; sourceTree = "<group>"; };
+		AC94A944158B0C3F00689EFA /* ACSUtilException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACSUtilException.h; sourceTree = "<group>"; };
+		AC94A945158B0C3F00689EFA /* AtomEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomEntry.h; sourceTree = "<group>"; };
+		AC94A946158B0C3F00689EFA /* AtomParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomParser.h; sourceTree = "<group>"; };
+		AC94A947158B0C3F00689EFA /* AzureTableCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AzureTableCredential.h; sourceTree = "<group>"; };
+		AC94A948158B0C3F00689EFA /* AzureTableUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AzureTableUtil.h; sourceTree = "<group>"; };
+		AC94A949158B0C3F00689EFA /* ClientType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientType.h; sourceTree = "<group>"; };
+		AC94A94A158B0C3F00689EFA /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		AC94A94B158B0C3F00689EFA /* ContentStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentStream.h; sourceTree = "<group>"; };
+		AC94A94C158B0C3F00689EFA /* CredentialBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialBase.h; sourceTree = "<group>"; };
+		AC94A94D158B0C3F00689EFA /* CredentialType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialType.h; sourceTree = "<group>"; };
+		AC94A94E158B0C3F00689EFA /* DataServiceQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataServiceQuery.h; sourceTree = "<group>"; };
+		AC94A94F158B0C3F00689EFA /* DataServiceQueryContinuation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataServiceQueryContinuation.h; sourceTree = "<group>"; };
+		AC94A950158B0C3F00689EFA /* DataServiceRequestArgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataServiceRequestArgs.h; sourceTree = "<group>"; };
+		AC94A951158B0C3F00689EFA /* DataServiceRequestException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataServiceRequestException.h; sourceTree = "<group>"; };
+		AC94A952158B0C3F00689EFA /* DataServiceResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataServiceResponse.h; sourceTree = "<group>"; };
+		AC94A953158B0C3F00689EFA /* DataServiceSaveStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataServiceSaveStream.h; sourceTree = "<group>"; };
+		AC94A954158B0C3F00689EFA /* DataServiceStreamResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataServiceStreamResponse.h; sourceTree = "<group>"; };
+		AC94A955158B0C3F00689EFA /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
+		AC94A956158B0C3F00689EFA /* HttpBatchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpBatchRequest.h; sourceTree = "<group>"; };
+		AC94A957158B0C3F00689EFA /* HttpBatchResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpBatchResponse.h; sourceTree = "<group>"; };
+		AC94A958158B0C3F00689EFA /* HTTPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPHandler.h; sourceTree = "<group>"; };
+		AC94A959158B0C3F00689EFA /* HTTPHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPHeaders.h; sourceTree = "<group>"; };
+		AC94A95A158B0C3F00689EFA /* HttpProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpProxy.h; sourceTree = "<group>"; };
+		AC94A95B158B0C3F00689EFA /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
+		AC94A95C158B0C3F00689EFA /* HttpResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpResponse.h; sourceTree = "<group>"; };
+		AC94A95D158B0C3F00689EFA /* Microsoft_Http_Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Microsoft_Http_Response.h; sourceTree = "<group>"; };
+		AC94A95E158B0C3F00689EFA /* mProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mProperties.h; sourceTree = "<group>"; };
+		AC94A95F158B0C3F00689EFA /* MSODataResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSODataResponseDelegate.h; sourceTree = "<group>"; };
+		AC94A960158B0C3F00689EFA /* ObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectContext.h; sourceTree = "<group>"; };
+		AC94A961158B0C3F00689EFA /* ObjectContextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectContextDelegate.h; sourceTree = "<group>"; };
+		AC94A962158B0C3F00689EFA /* ODataBool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataBool.h; sourceTree = "<group>"; };
+		AC94A963158B0C3F00689EFA /* ODataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataDelegate.h; sourceTree = "<group>"; };
+		AC94A964158B0C3F00689EFA /* ODataEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataEntity.h; sourceTree = "<group>"; };
+		AC94A965158B0C3F00689EFA /* ODataGUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataGUID.h; sourceTree = "<group>"; };
+		AC94A966158B0C3F00689EFA /* ODataNameSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataNameSpace.h; sourceTree = "<group>"; };
+		AC94A967158B0C3F00689EFA /* ODataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataObject.h; sourceTree = "<group>"; };
+		AC94A968158B0C3F00689EFA /* ODataRTTI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataRTTI.h; sourceTree = "<group>"; };
+		AC94A969158B0C3F00689EFA /* ODataServiceException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataServiceException.h; sourceTree = "<group>"; };
+		AC94A96A158B0C3F00689EFA /* ODataSVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataSVC.h; sourceTree = "<group>"; };
+		AC94A96B158B0C3F00689EFA /* ODataXMLElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataXMLElements.h; sourceTree = "<group>"; };
+		AC94A96C158B0C3F00689EFA /* ODataXMlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODataXMlParser.h; sourceTree = "<group>"; };
+		AC94A96D158B0C3F00689EFA /* OperationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationResponse.h; sourceTree = "<group>"; };
+		AC94A96E158B0C3F00689EFA /* Pair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pair.h; sourceTree = "<group>"; };
+		AC94A96F158B0C3F00689EFA /* QueryComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryComponents.h; sourceTree = "<group>"; };
+		AC94A970158B0C3F00689EFA /* QueryOperationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryOperationResponse.h; sourceTree = "<group>"; };
+		AC94A971158B0C3F00689EFA /* RelatedEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelatedEnd.h; sourceTree = "<group>"; };
+		AC94A972158B0C3F00689EFA /* ResourceBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceBox.h; sourceTree = "<group>"; };
+		AC94A973158B0C3F00689EFA /* SaveResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveResult.h; sourceTree = "<group>"; };
+		AC94A974158B0C3F00689EFA /* TableEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableEntry.h; sourceTree = "<group>"; };
+		AC94A975158B0C3F00689EFA /* Tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tables.h; sourceTree = "<group>"; };
+		AC94A976158B0C3F00689EFA /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		AC94A977158B0C3F00689EFA /* WindowsCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsCredential.h; sourceTree = "<group>"; };
+		AC94A978158B0C3F00689EFA /* XMLBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLBuilder.h; sourceTree = "<group>"; };
+		AC94A979158B0C3F00689EFA /* XMLGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLGenerator.h; sourceTree = "<group>"; };
 		AC99992314D68AF6006229A8 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
 		AC99992414D68AF6006229A8 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		AC99992614D68E83006229A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -752,7 +753,7 @@
 			children = (
 				AC66CEF914C246410098E1F1 /* DoveSiButta-Info.plist */,
 				AC66CEFA14C246410098E1F1 /* InfoPlist.strings */,
-				AC8780FB14E3BCCE004915C6 /* Localizable.strings */,
+				AC94A931158AF58D00689EFA /* Localizable.strings */,
 				AC66CEFD14C246410098E1F1 /* main.m */,
 				AC66CEFF14C246410098E1F1 /* DoveSiButta-Prefix.pch */,
 			);
@@ -762,13 +763,13 @@
 		AC66CF4614C248180098E1F1 /* OData */ = {
 			isa = PBXGroup;
 			children = (
+				AC94A941158B0C3F00689EFA /* OData4ObjCinclude */,
 				ACD7D1F414D8AFD700B1FE37 /* NSData+Base64.h */,
 				ACD7D1F514D8AFD700B1FE37 /* NSData+Base64.m */,
 				ACD7D1E714D8A75600B1FE37 /* DoveSiButtaEntities.h */,
 				ACD7D1E814D8A75600B1FE37 /* DoveSiButtaEntities.m */,
 				ACE882DD14CCD1710004B9DF /* XPathQuery.h */,
 				ACE882DE14CCD1710004B9DF /* XPathQuery.m */,
-				AC66CF4C14C248610098E1F1 /* include */,
 			);
 			name = OData;
 			sourceTree = "<group>";
@@ -792,69 +793,6 @@
 				AC66CFDC14C2494F0098E1F1 /* Utility */,
 			);
 			name = PageView;
-			sourceTree = "<group>";
-		};
-		AC66CF4C14C248610098E1F1 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				AC66CF8214C248F90098E1F1 /* ACSCredential.h */,
-				AC66CF8314C248F90098E1F1 /* ACSUtil.h */,
-				AC66CF8414C248F90098E1F1 /* ACSUtilException.h */,
-				AC66CF8514C248F90098E1F1 /* AtomEntry.h */,
-				AC66CF8614C248F90098E1F1 /* AtomParser.h */,
-				AC66CF8714C248F90098E1F1 /* AzureTableCredential.h */,
-				AC66CF8814C248F90098E1F1 /* AzureTableUtil.h */,
-				AC66CF8914C248F90098E1F1 /* ClientType.h */,
-				AC66CF8A14C248F90098E1F1 /* constants.h */,
-				AC66CF8B14C248F90098E1F1 /* ContentStream.h */,
-				AC66CF8C14C248F90098E1F1 /* CredentialBase.h */,
-				AC66CF8D14C248F90098E1F1 /* CredentialType.h */,
-				AC66CF8E14C248F90098E1F1 /* DataServiceQuery.h */,
-				AC66CF8F14C248F90098E1F1 /* DataServiceQueryContinuation.h */,
-				AC66CF9014C248F90098E1F1 /* DataServiceRequestArgs.h */,
-				AC66CF9114C248F90098E1F1 /* DataServiceRequestException.h */,
-				AC66CF9214C248F90098E1F1 /* DataServiceResponse.h */,
-				AC66CF9314C248F90098E1F1 /* DataServiceSaveStream.h */,
-				AC66CF9414C248F90098E1F1 /* DataServiceStreamResponse.h */,
-				AC66CF9514C248F90098E1F1 /* Dictionary.h */,
-				AC66CF9614C248F90098E1F1 /* HttpBatchRequest.h */,
-				AC66CF9714C248F90098E1F1 /* HttpBatchResponse.h */,
-				AC66CF9814C248F90098E1F1 /* HTTPHandler.h */,
-				AC66CF9914C248F90098E1F1 /* HTTPHeaders.h */,
-				AC66CF9A14C248F90098E1F1 /* HttpProxy.h */,
-				AC66CF9B14C248F90098E1F1 /* HttpRequest.h */,
-				AC66CF9C14C248F90098E1F1 /* HttpResponse.h */,
-				AC66CF9D14C248F90098E1F1 /* Microsoft_Http_Response.h */,
-				AC66CF9E14C248F90098E1F1 /* mProperties.h */,
-				AC66CF9F14C248F90098E1F1 /* MSODataResponseDelegate.h */,
-				AC66CFA014C248F90098E1F1 /* ObjectContext.h */,
-				AC66CFA114C248F90098E1F1 /* ObjectContextDelegate.h */,
-				AC66CFA214C248F90098E1F1 /* ODataBool.h */,
-				AC66CFA314C248F90098E1F1 /* ODataDelegate.h */,
-				AC66CFA414C248F90098E1F1 /* ODataEntity.h */,
-				AC66CFA514C248F90098E1F1 /* ODataGUID.h */,
-				AC66CFA614C248F90098E1F1 /* ODataNameSpace.h */,
-				AC66CFA714C248F90098E1F1 /* ODataObject.h */,
-				AC66CFA814C248F90098E1F1 /* ODataRTTI.h */,
-				AC66CFA914C248F90098E1F1 /* ODataServiceException.h */,
-				AC66CFAA14C248F90098E1F1 /* ODataSVC.h */,
-				AC66CFAB14C248F90098E1F1 /* ODataXMLElements.h */,
-				AC66CFAC14C248F90098E1F1 /* ODataXMlParser.h */,
-				AC66CFAD14C248F90098E1F1 /* OperationResponse.h */,
-				AC66CFAE14C248F90098E1F1 /* Pair.h */,
-				AC66CFAF14C248F90098E1F1 /* QueryComponents.h */,
-				AC66CFB014C248F90098E1F1 /* QueryOperationResponse.h */,
-				AC66CFB114C248F90098E1F1 /* RelatedEnd.h */,
-				AC66CFB214C248F90098E1F1 /* ResourceBox.h */,
-				AC66CFB314C248F90098E1F1 /* SaveResult.h */,
-				AC66CFB414C248F90098E1F1 /* TableEntry.h */,
-				AC66CFB514C248F90098E1F1 /* Tables.h */,
-				AC66CFB614C248F90098E1F1 /* Utility.h */,
-				AC66CFB714C248F90098E1F1 /* WindowsCredential.h */,
-				AC66CFB814C248F90098E1F1 /* XMLBuilder.h */,
-				AC66CFB914C248F90098E1F1 /* XMLGenerator.h */,
-			);
-			name = include;
 			sourceTree = "<group>";
 		};
 		AC66CFC014C2494F0098E1F1 /* Custom Cells */ = {
@@ -999,6 +937,69 @@
 			);
 			name = icone;
 			path = Images/icone;
+			sourceTree = "<group>";
+		};
+		AC94A941158B0C3F00689EFA /* OData4ObjCinclude */ = {
+			isa = PBXGroup;
+			children = (
+				AC94A942158B0C3F00689EFA /* ACSCredential.h */,
+				AC94A943158B0C3F00689EFA /* ACSUtil.h */,
+				AC94A944158B0C3F00689EFA /* ACSUtilException.h */,
+				AC94A945158B0C3F00689EFA /* AtomEntry.h */,
+				AC94A946158B0C3F00689EFA /* AtomParser.h */,
+				AC94A947158B0C3F00689EFA /* AzureTableCredential.h */,
+				AC94A948158B0C3F00689EFA /* AzureTableUtil.h */,
+				AC94A949158B0C3F00689EFA /* ClientType.h */,
+				AC94A94A158B0C3F00689EFA /* constants.h */,
+				AC94A94B158B0C3F00689EFA /* ContentStream.h */,
+				AC94A94C158B0C3F00689EFA /* CredentialBase.h */,
+				AC94A94D158B0C3F00689EFA /* CredentialType.h */,
+				AC94A94E158B0C3F00689EFA /* DataServiceQuery.h */,
+				AC94A94F158B0C3F00689EFA /* DataServiceQueryContinuation.h */,
+				AC94A950158B0C3F00689EFA /* DataServiceRequestArgs.h */,
+				AC94A951158B0C3F00689EFA /* DataServiceRequestException.h */,
+				AC94A952158B0C3F00689EFA /* DataServiceResponse.h */,
+				AC94A953158B0C3F00689EFA /* DataServiceSaveStream.h */,
+				AC94A954158B0C3F00689EFA /* DataServiceStreamResponse.h */,
+				AC94A955158B0C3F00689EFA /* Dictionary.h */,
+				AC94A956158B0C3F00689EFA /* HttpBatchRequest.h */,
+				AC94A957158B0C3F00689EFA /* HttpBatchResponse.h */,
+				AC94A958158B0C3F00689EFA /* HTTPHandler.h */,
+				AC94A959158B0C3F00689EFA /* HTTPHeaders.h */,
+				AC94A95A158B0C3F00689EFA /* HttpProxy.h */,
+				AC94A95B158B0C3F00689EFA /* HttpRequest.h */,
+				AC94A95C158B0C3F00689EFA /* HttpResponse.h */,
+				AC94A95D158B0C3F00689EFA /* Microsoft_Http_Response.h */,
+				AC94A95E158B0C3F00689EFA /* mProperties.h */,
+				AC94A95F158B0C3F00689EFA /* MSODataResponseDelegate.h */,
+				AC94A960158B0C3F00689EFA /* ObjectContext.h */,
+				AC94A961158B0C3F00689EFA /* ObjectContextDelegate.h */,
+				AC94A962158B0C3F00689EFA /* ODataBool.h */,
+				AC94A963158B0C3F00689EFA /* ODataDelegate.h */,
+				AC94A964158B0C3F00689EFA /* ODataEntity.h */,
+				AC94A965158B0C3F00689EFA /* ODataGUID.h */,
+				AC94A966158B0C3F00689EFA /* ODataNameSpace.h */,
+				AC94A967158B0C3F00689EFA /* ODataObject.h */,
+				AC94A968158B0C3F00689EFA /* ODataRTTI.h */,
+				AC94A969158B0C3F00689EFA /* ODataServiceException.h */,
+				AC94A96A158B0C3F00689EFA /* ODataSVC.h */,
+				AC94A96B158B0C3F00689EFA /* ODataXMLElements.h */,
+				AC94A96C158B0C3F00689EFA /* ODataXMlParser.h */,
+				AC94A96D158B0C3F00689EFA /* OperationResponse.h */,
+				AC94A96E158B0C3F00689EFA /* Pair.h */,
+				AC94A96F158B0C3F00689EFA /* QueryComponents.h */,
+				AC94A970158B0C3F00689EFA /* QueryOperationResponse.h */,
+				AC94A971158B0C3F00689EFA /* RelatedEnd.h */,
+				AC94A972158B0C3F00689EFA /* ResourceBox.h */,
+				AC94A973158B0C3F00689EFA /* SaveResult.h */,
+				AC94A974158B0C3F00689EFA /* TableEntry.h */,
+				AC94A975158B0C3F00689EFA /* Tables.h */,
+				AC94A976158B0C3F00689EFA /* Utility.h */,
+				AC94A977158B0C3F00689EFA /* WindowsCredential.h */,
+				AC94A978158B0C3F00689EFA /* XMLBuilder.h */,
+				AC94A979158B0C3F00689EFA /* XMLGenerator.h */,
+			);
+			path = OData4ObjCinclude;
 			sourceTree = "<group>";
 		};
 		ACA0C1F51580A3DC00237C53 /* Utility */ = {
@@ -1619,7 +1620,7 @@
 				AC99992714D68E83006229A8 /* LICENSE in Resources */,
 				AC8E3F8D14DC984D0056648A /* NoPicture@2X.jpg in Resources */,
 				AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */,
-				AC8780FC14E3BCCE004915C6 /* Localizable.strings in Resources */,
+				AC94A92F158AF58D00689EFA /* Localizable.strings in Resources */,
 				AC69D0B814F2DDF600FE688B /* MapAddViewController.xib in Resources */,
 				ACB8F89314F772A80052B559 /* ChiSiamoViewController.xib in Resources */,
 				ACB8F89B14F773CE0052B559 /* 59-info.png in Resources */,
@@ -1826,6 +1827,15 @@
 				AC8780F214E3BBFE004915C6 /* it */,
 			);
 			name = RifiutiTypes.plist;
+			sourceTree = "<group>";
+		};
+		AC94A931158AF58D00689EFA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC94A930158AF58D00689EFA /* en */,
+				AC94A933158AF59900689EFA /* it */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		ACE8847614CDF5680004B9DF /* Localizable.strings */ = {

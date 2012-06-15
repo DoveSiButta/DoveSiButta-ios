@@ -25,6 +25,7 @@
 
 #define ALERTVIEW_GEOCODEFAIL 1
 #define ALERTVIEW_COMUNEP2P 2
+#define ALERTVIEW_LOCATIONFORBIDDEN 3
 
 @interface MapAddViewController ()
 
@@ -324,6 +325,32 @@
                 break;
         }
     }
+    else if(alertView.tag == ALERTVIEW_LOCATIONFORBIDDEN)
+    {
+        switch (buttonIndex) {
+            case 1:
+            {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"]];
+                //            // A system version of 3.1 or greater is required to use CADisplayLink. The NSTimer
+                //            // class is used as fallback when it isn't available.
+                //            NSString *reqSysVer = @"5.0";
+                //            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+                //            if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+                //            {
+                //               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"]];
+                //            }
+                //            else {
+                //                NSURL*url=[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
+                //                [[UIApplication sharedApplication] openURL:url];
+                //            }
+            }
+                break;
+                
+            default:
+                break;
+        }
+
+    }
 }
 
 #pragma mark Map View Delegate Methods
@@ -498,7 +525,8 @@
                 // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
             case kCLErrorDenied:
             {
-                UIAlertView *a = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"DoveSiButta richiede l'utilizzo del GPS per poter funzionare", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                UIAlertView *a = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"REQUIRES_POSITION", @"") delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                a.tag = ALERTVIEW_LOCATIONFORBIDDEN; 
                 [a show];
                 [self.navigationController popViewControllerAnimated:YES];
                 

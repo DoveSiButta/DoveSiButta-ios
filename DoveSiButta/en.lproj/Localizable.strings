@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  DoveSiButta
+
+  Created by Giovanni Maggini on 09/02/12.
+  Copyright (c) 2012 Giovanni Maggini. All rights reserved.
+*/
+"Grazie!" = "Thank you!";
+"Ok, grazie" = "Ok thanks";
+"Attenzione" = "Notice";
+"Quando" = "When";
+"Dove" = "Where";
+"Caricamento effettuato con successo" = "Upload success";
+"Aggiorno dati" = "Updating";
+"Non sono riuscito a ottenere l'indirizzo" = "Cannot obtain address";
+"Trovare il cassonetto più vicino" = "Find the closest recycle bin";
+"Posizione ottenuta" = "Location acquired";
+"Come funziona" = "How it works";
+"REQUIRES_POSITION" = "DoveSiButta necessita della tua posizione per cercare i cassonetti più vicini. Puoi abilitare questa scelta nelle impostazioni.";

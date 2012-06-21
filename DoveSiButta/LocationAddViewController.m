@@ -175,7 +175,9 @@
         DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
         QueryOperationResponse *queryOperationResponse = [query execute];
         DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
+#if DEBUG
         NSLog(@"anewbox ID: %@", [aNewBox getBoxID]); 
+#endif
         //            [newPicture setLinkedBoxID:[aNewBox getBoxID]];
         //            [proxy updateObject:newItem];
         //            [proxy addLink:newPicture sourceProperty:@"LinkedBoxID" targetObject:aNewBox];
@@ -462,7 +464,39 @@
 
 #pragma mark - ImagePicker Delegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo {
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //Qui devo salvare l'immagine nella cache e resizarla
+    UIImage *scaledImage = [[info objectForKey:UIImagePickerControllerOriginalImage] imageByScalingProportionallyToMinimumSize:CGSizeMake(640.0f, 480.0f)]; // [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
+    NSData* imageData = UIImageJPEGRepresentation(scaledImage, 0.9f);
+    
+    // Give a name to the file
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyyMMdd_hhmmss"];
+    NSString* imageName = [[dateFormat stringFromDate:[NSDate date]] stringByAppendingString:@".jpg"];
+    
+    // Now, we have to find the documents directory so we can save it
+    // Note that you might want to save it elsewhere, like the cache directory,
+    // or something similar.
+    //    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //    NSString* documentsDirectory = [paths objectAtIndex:0];
+    NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    // Now we get the full path to the file
+    NSString* fullPathToFile = [cachesDirectory stringByAppendingPathComponent:imageName];
+    
+    // and then we write it out
+    [imageData writeToFile:fullPathToFile atomically:YES];
+    self.pictureFile = fullPathToFile;
+#if DEBUG
+    NSLog(@"Picture path: %@", fullPathToFile);
+#endif
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+/*
+//Deprecated in iOS 3.2
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo 
+{
     //Qui devo salvare l'immagine nella cache e resizarla
     UIImage *scaledImage = [img imageByScalingProportionallyToMinimumSize:CGSizeMake(640.0f, 480.0f)]; // [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
     NSData* imageData = UIImageJPEGRepresentation(scaledImage, 0.9f);
@@ -484,12 +518,15 @@
     // and then we write it out
     [imageData writeToFile:fullPathToFile atomically:YES];
     self.pictureFile = fullPathToFile;
+#if DEBUG
     NSLog(@"Picture path: %@", fullPathToFile);
+#endif
 //    [[picker parentViewController] dismissModalViewControllerAnimated:YES];
 //    [picker dismissModalViewControllerAnimated:YES];
     [self dismissModalViewControllerAnimated:YES];
 
 }
+*/
 
 /*
 - (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize

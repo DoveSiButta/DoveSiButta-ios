@@ -75,8 +75,6 @@
 		AC94A917158A541600689EFA /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A916158A541600689EFA /* Default-Landscape@2x~ipad.png */; };
 		AC94A919158A547500689EFA /* icon144.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A918158A547500689EFA /* icon144.png */; };
 		AC94A92F158AF58D00689EFA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC94A931158AF58D00689EFA /* Localizable.strings */; };
-		AC94A98D158B9F0600689EFA /* questionmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A98B158B9F0600689EFA /* questionmark@2x.png */; };
-		AC94A98E158B9F0600689EFA /* questionmark.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A98C158B9F0600689EFA /* questionmark.png */; };
 		AC94A992158BA13D00689EFA /* icon_help.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A990158BA13D00689EFA /* icon_help.png */; };
 		AC94A993158BA13D00689EFA /* icon_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A991158BA13D00689EFA /* icon_help@2x.png */; };
 		AC94A996158BA1C000689EFA /* mailicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A994158BA1C000689EFA /* mailicon@2x.png */; };
@@ -385,8 +383,6 @@
 		AC94A977158B0C3F00689EFA /* WindowsCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsCredential.h; sourceTree = "<group>"; };
 		AC94A978158B0C3F00689EFA /* XMLBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLBuilder.h; sourceTree = "<group>"; };
 		AC94A979158B0C3F00689EFA /* XMLGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLGenerator.h; sourceTree = "<group>"; };
-		AC94A98B158B9F0600689EFA /* questionmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "questionmark@2x.png"; path = "TabIcons/questionmark@2x.png"; sourceTree = "<group>"; };
-		AC94A98C158B9F0600689EFA /* questionmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = questionmark.png; path = TabIcons/questionmark.png; sourceTree = "<group>"; };
 		AC94A990158BA13D00689EFA /* icon_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_help.png; path = TabIcons/icon_help.png; sourceTree = "<group>"; };
 		AC94A991158BA13D00689EFA /* icon_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_help@2x.png"; path = "TabIcons/icon_help@2x.png"; sourceTree = "<group>"; };
 		AC94A994158BA1C000689EFA /* mailicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mailicon@2x.png"; path = "Images/mailicon@2x.png"; sourceTree = "<group>"; };
@@ -1080,8 +1076,6 @@
 			children = (
 				AC94A990158BA13D00689EFA /* icon_help.png */,
 				AC94A991158BA13D00689EFA /* icon_help@2x.png */,
-				AC94A98B158B9F0600689EFA /* questionmark@2x.png */,
-				AC94A98C158B9F0600689EFA /* questionmark.png */,
 				ACB8F89514F773CE0052B559 /* 59-info.png */,
 				ACB8F89614F773CE0052B559 /* 59-info@2x.png */,
 				ACB8F89714F773CE0052B559 /* 07-map-marker.png */,
@@ -1655,8 +1649,6 @@
 				AC94A915158A540E00689EFA /* Default-Landscape~ipad.png in Resources */,
 				AC94A917158A541600689EFA /* Default-Landscape@2x~ipad.png in Resources */,
 				AC94A919158A547500689EFA /* icon144.png in Resources */,
-				AC94A98D158B9F0600689EFA /* questionmark@2x.png in Resources */,
-				AC94A98E158B9F0600689EFA /* questionmark.png in Resources */,
 				AC94A992158BA13D00689EFA /* icon_help.png in Resources */,
 				AC94A993158BA13D00689EFA /* icon_help@2x.png in Resources */,
 				AC94A996158BA1C000689EFA /* mailicon@2x.png in Resources */,

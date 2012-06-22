@@ -66,6 +66,7 @@
 		AC66D09214C3862E0098E1F1 /* IconForType.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC66D09114C3862D0098E1F1 /* IconForType.plist */; };
 		AC69D0B714F2DDF600FE688B /* MapAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC69D0B514F2DDF600FE688B /* MapAddViewController.m */; };
 		AC69D0B814F2DDF600FE688B /* MapAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC69D0B614F2DDF600FE688B /* MapAddViewController.xib */; };
+		AC7240691594A0E000976056 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7240681594A0D500976056 /* libQuickDialog.a */; };
 		AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8C14DC984D0056648A /* NoPicture.jpg */; };
 		AC94A90D158A4FCD00689EFA /* mailicon.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A909158A4FCD00689EFA /* mailicon.png */; };
 		AC94A90F158A4FCD00689EFA /* twittericon.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A90B158A4FCD00689EFA /* twittericon.png */; };
@@ -227,6 +228,23 @@
 		ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AC7240651594A0D500976056 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
+			remoteInfo = QuickDialogExample;
+		};
+		AC7240671594A0D500976056 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C542393145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		AC04376E1524481500B09A6E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		AC04376F1524481500B09A6E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
@@ -316,6 +334,7 @@
 		AC69D0B414F2DDF600FE688B /* MapAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAddViewController.h; sourceTree = "<group>"; };
 		AC69D0B514F2DDF600FE688B /* MapAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAddViewController.m; sourceTree = "<group>"; };
 		AC69D0B614F2DDF600FE688B /* MapAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapAddViewController.xib; sourceTree = "<group>"; };
+		AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		AC8780F214E3BBFE004915C6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = it; path = it.lproj/RifiutiTypes.plist; sourceTree = "<group>"; };
 		AC8E3F8C14DC984D0056648A /* NoPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = NoPicture.jpg; path = Images/NoPicture.jpg; sourceTree = "<group>"; };
 		AC94A909158A4FCD00689EFA /* mailicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mailicon.png; path = Images/mailicon.png; sourceTree = "<group>"; };
@@ -643,6 +662,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC7240691594A0E000976056 /* libQuickDialog.a in Frameworks */,
 				ACA0C23C1580DCAD00237C53 /* CoreData.framework in Frameworks */,
 				AC2CED4915075DE2001C1280 /* libMSODataLib4.1.a in Frameworks */,
 				ACE8851214CDF5890004B9DF /* MessageUI.framework in Frameworks */,
@@ -667,6 +687,7 @@
 		AC66CEE214C246400098E1F1 = {
 			isa = PBXGroup;
 			children = (
+				AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */,
 				ACA076D81588152E002D3E63 /* Location.gpx */,
 				ACA0C20B1580DC2300237C53 /* MagicalRecord */,
 				ACA0C1F51580A3DC00237C53 /* Utility */,
@@ -941,6 +962,15 @@
 			);
 			name = icone;
 			path = Images/icone;
+			sourceTree = "<group>";
+		};
+		AC72405D1594A0D400976056 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC7240661594A0D500976056 /* QuickDialogExample.app */,
+				AC7240681594A0D500976056 /* libQuickDialog.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		AC94A941158B0C3F00689EFA /* OData4ObjCinclude */ = {
@@ -1560,12 +1590,35 @@
 			mainGroup = AC66CEE214C246400098E1F1;
 			productRefGroup = AC66CEEE14C246400098E1F1 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AC72405D1594A0D400976056 /* Products */;
+					ProjectRef = AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				AC66CEEC14C246400098E1F1 /* DoveSiButta */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AC7240661594A0D500976056 /* QuickDialogExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = QuickDialogExample.app;
+			remoteRef = AC7240651594A0D500976056 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AC7240681594A0D500976056 /* libQuickDialog.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQuickDialog.a;
+			remoteRef = AC7240671594A0D500976056 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AC66CEEB14C246400098E1F1 /* Resources */ = {
@@ -1879,7 +1932,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"\"${PROJECT_DIR}/QuickDialog\"/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				SDKROOT = iphoneos;
 			};
@@ -1900,7 +1956,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"\"${PROJECT_DIR}/QuickDialog\"/**",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1AD59C23-8029-4C8A-A35A-14616FF3E747";
@@ -1917,7 +1976,7 @@
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "DoveSiButta/DoveSiButta-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release\"",
@@ -1938,7 +1997,7 @@
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "DoveSiButta/DoveSiButta-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release\"",

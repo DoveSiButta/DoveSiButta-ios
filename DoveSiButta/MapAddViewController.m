@@ -344,12 +344,14 @@
 {
     // the detail view does not want a toolbar so hide it
     LocationDetailViewController *detailvc = [[LocationDetailViewController alloc] initWithItem:[annotation dinner]];
+    detailvc.coordinate = self.locationManager.location.coordinate;
     [self.navigationController pushViewController:detailvc animated:YES];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
     MapAnnotationDefault *myAnnotation = (MapAnnotationDefault*)view.annotation;
     LocationDetailViewController *ldvc = [[LocationDetailViewController alloc] initWithItem:myAnnotation.item];
+    ldvc.coordinate = self.locationManager.location.coordinate;
     //[myAnnotation loadDetailView];
     [self.navigationController pushViewController:ldvc animated:YES];
     

@@ -224,6 +224,7 @@
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
      */
+    [self addSectionAtIndex:2 withAnimation:UITableViewRowAnimationNone];
     [self appendRowToSection:2 cellClass:[DetailDisclosureCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
                                NSLocalizedString(@"Guarda la foto",@""),
@@ -232,6 +233,8 @@
                                @"action", 
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
+    
+    [self addSectionAtIndex:3 withAnimation:UITableViewRowAnimationNone];
     [self appendRowToSection:3 cellClass:[DetailDisclosureCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
                                NSLocalizedString(@"Trova direzione",@""),

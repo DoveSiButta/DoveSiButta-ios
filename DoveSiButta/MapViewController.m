@@ -453,6 +453,7 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
     MapAnnotationDefault *myAnnotation = (MapAnnotationDefault*)view.annotation;
     LocationDetailViewController *ldvc = [[LocationDetailViewController alloc] initWithItem:myAnnotation.item];
+    ldvc.coordinate = self.locationManager.location.coordinate;
     //[myAnnotation loadDetailView];
     [self.navigationController pushViewController:ldvc animated:YES];
     

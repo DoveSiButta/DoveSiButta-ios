@@ -18,6 +18,7 @@
 
 @implementation LocationDetailViewController
 @synthesize selectedBox;
+@synthesize coordinate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -223,11 +224,19 @@
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
      */
-    [self appendRowToSection:1 cellClass:[DetailDisclosureCell class] 
+    [self appendRowToSection:2 cellClass:[DetailDisclosureCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
-                               NSLocalizedString(@"Immagine",@""),
+                               NSLocalizedString(@"Guarda la foto",@""),
                                @"label",
                                @"showPicture", 
+                               @"action", 
+                               nil] 
+               withAnimation:UITableViewRowAnimationNone]; 
+    [self appendRowToSection:3 cellClass:[DetailDisclosureCell class] 
+                    cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+                               NSLocalizedString(@"Trova direzione",@""),
+                               @"label",
+                               @"findDirection", 
                                @"action", 
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
@@ -248,7 +257,11 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	else if (section == 2)
 	{
-		return NSLocalizedString(@"Some editable text fields", nil);
+		return NSLocalizedString(@"", nil);
+	}
+    else if (section == 3)
+	{
+		return NSLocalizedString(@"", nil);
 	}
     
 	return nil;
@@ -273,16 +286,43 @@ titleForHeaderInSection:(NSInteger)section
 	
     if ([[aTableView cellForRowAtIndexPath:anIndexPath] isKindOfClass:[DetailDisclosureCell class]]) {
         DetailDisclosureCell *cell = (DetailDisclosureCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
+        [cell handleSelectionInTableView:aTableView];
         if([cell.action isEqualToString:@"showPicture"])
         {
-            [cell handleSelectionInTableView:aTableView];
+            
             PictureFileViewController *pvc = [[PictureFileViewController alloc] initWithNibName:@"PictureFileViewController" bundle:[NSBundle mainBundle]];
             pvc.selectedItem = [self.selectedBox getBoxID];
             [self.navigationController pushViewController:pvc animated:YES];
         }
+        else if([cell.action isEqualToString:@"findDirection"])
+        {
+            NSString *sourceLocation;
+            NSString *queryType;
+            
+            queryType = @"daddr";
+            sourceLocation =
+            [NSString stringWithFormat:@"&saddr=%f,+%f",
+            self.coordinate.latitude,
+            self.coordinate.longitude];
+            
+            
+            NSString *urlString =
+            [NSString stringWithFormat:
+            @"http://maps.google.com/maps?%@=%@%@",
+            queryType,
+            (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                              nil,
+                                              (__bridge CFStringRef)[selectedBox getAddress],
+                                              nil,
+                                              (__bridge CFStringRef)@"&=",
+                                              kCFStringEncodingUTF8)
+            ,
+            sourceLocation];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        }
         else if ([cell.action isEqualToString:@"showRSVP"])
         {
-            [cell handleSelectionInTableView:aTableView];
+            
         }
         
         return;

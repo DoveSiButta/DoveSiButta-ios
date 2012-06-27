@@ -35,7 +35,7 @@
 @property(nonatomic, strong)MBProgressHUD *HUD;
 
 //For location
-@property (nonatomic) CLLocationCoordinate2D gpsLocation;
+//@property (nonatomic) CLLocationCoordinate2D gpsLocation;
 
 @property (nonatomic, strong) MKReverseGeocoder *reverseGeocoder;
 
@@ -47,7 +47,7 @@
 @synthesize iconsDictionary;
 @synthesize selectedType;
 //@synthesize usingManualLocation, 
-@synthesize gpsLocation;
+//@synthesize gpsLocation;
 @synthesize address, postCode, country;
 @synthesize comuniP2P;
 @synthesize buttonAdd;
@@ -401,6 +401,7 @@
 {
     // the detail view does not want a toolbar so hide it
     LocationDetailViewController *detailvc = [[LocationDetailViewController alloc] initWithItem:[annotation dinner]];
+    detailvc.coordinate = self.locationManager.location.coordinate;
     [self.navigationController pushViewController:detailvc animated:YES];
 }
     /*

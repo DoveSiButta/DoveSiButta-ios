@@ -12,6 +12,7 @@
 @interface LocationDetailViewController : PageViewController
 
 @property (strong, nonatomic) DoveSiButtaModel_Box *selectedBox;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
 
 - (id)initWithItem:(DoveSiButtaModel_Box*)dinner;
 //- (void)addRSVP:(id)sender;;

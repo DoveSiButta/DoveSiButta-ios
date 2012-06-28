@@ -486,7 +486,8 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", nil) message:errorMessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:NSLocalizedString(@"Riprova", nil),nil];
+    NSLog(@"Reverse Geocoder Error in MapAddViewController: %@", errorMessage);
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", nil) message:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", nil) delegate:self cancelButtonTitle:@"Lascia perdere" otherButtonTitles:NSLocalizedString(@"Riprova", nil),nil];
     [alertView setTag:ALERTVIEW_GEOCODEFAIL];
     [alertView show];
 }

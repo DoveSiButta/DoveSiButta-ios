@@ -608,10 +608,11 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", @"")  message:errorMessage
+    NSLog(@"Reverse Geocoder Error: %@", errorMessage);
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Avviso", @"")  message:NSLocalizedString(@"Non sono riuscito a ottenere l'indirizzo", nil)
                            delegate:nil
                   cancelButtonTitle:NSLocalizedString(@"Lascia perdere", nil)
-                  otherButtonTitles:NSLocalizedString(@"Riprova",nil),nil]; //TODO: fargli ricaricare la posizione
+                  otherButtonTitles:NSLocalizedString(@"Riprova",nil),nil]; 
     [alertView show];
 }
 

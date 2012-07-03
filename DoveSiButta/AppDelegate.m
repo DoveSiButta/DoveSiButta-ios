@@ -33,6 +33,8 @@
 	                    environmentName:ABNotifierAutomaticEnvironment
 	                             useSSL:NO
 	                           delegate:self];
+    //TEST
+//    [ABNotifier writeTestNotice];
     
     
     //DEFAULTS SETUP START

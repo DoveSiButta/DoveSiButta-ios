@@ -24,18 +24,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
-
-//    MasterViewController *masterViewController = [[[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil] autorelease];
-//    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:masterViewController] autorelease];
-//    self.window.rootViewController = self.navigationController;
-//    [self.window makeKeyAndVisible];
-
-    
-    
     //questo è un buon momento per spedire tutti gli elementi sharati che la app non è riuscita a spedire se era senza connettività. http://getsharekit.com/install/
     //    [SHK flushOfflineQueue];
+    
+    
+    //AirBrake Notifier
+    [ABNotifier startNotifierWithAPIKey:@"404d80e80c9c9b1152ef7d91e51d2397"
+	                    environmentName:ABNotifierAutomaticEnvironment
+	                             useSSL:NO
+	                           delegate:self];
     
     
     //DEFAULTS SETUP START

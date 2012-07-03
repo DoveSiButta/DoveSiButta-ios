@@ -223,6 +223,16 @@
 		ACEC316F15761553001158D7 /* YRDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEC316C15761553001158D7 /* YRDropdownView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ACEC31721576155B001158D7 /* dropdown-alert.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC31701576155B001158D7 /* dropdown-alert.png */; };
 		ACEC31731576155B001158D7 /* dropdown-alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC31711576155B001158D7 /* dropdown-alert@2x.png */; };
+		ACF7EEC315A34BE2000E7001 /* GCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEA915A34BE2000E7001 /* GCAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ACF7EEC415A34BE2000E7001 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEAD15A34BE2000E7001 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ACF7EEC515A34BE2000E7001 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB015A34BE2000E7001 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ACF7EEC615A34BE2000E7001 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB315A34BE2000E7001 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ACF7EEC715A34BE2000E7001 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB515A34BE2000E7001 /* DDXMLElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ACF7EEC815A34BE2000E7001 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB715A34BE2000E7001 /* DDXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ACF7EEC915A34BE2000E7001 /* ABNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEBC15A34BE2000E7001 /* ABNotice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ACF7EECA15A34BE2000E7001 /* ABNotifier.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ACF7EEBD15A34BE2000E7001 /* ABNotifier.bundle */; };
+		ACF7EECB15A34BE2000E7001 /* ABNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEBF15A34BE2000E7001 /* ABNotifier.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		ACF7EECC15A34BE2000E7001 /* ABNotifierFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEC215A34BE2000E7001 /* ABNotifierFunctions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ACFC0D5514D4C7F9000265B8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5314D4C7F9000265B8 /* Default.png */; };
 		ACFC0D5614D4C7F9000265B8 /* Default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5414D4C7F9000265B8 /* Default@2X.png */; };
 		ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */; };
@@ -652,6 +662,28 @@
 		ACEC316C15761553001158D7 /* YRDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRDropdownView.m; path = ../../github/YRDropdownView/YRDropdownView/YRDropdownView.m; sourceTree = "<group>"; };
 		ACEC31701576155B001158D7 /* dropdown-alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dropdown-alert.png"; path = "../../github/YRDropdownView/YRDropdownExample/dropdown-alert.png"; sourceTree = "<group>"; };
 		ACEC31711576155B001158D7 /* dropdown-alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dropdown-alert@2x.png"; path = "../../github/YRDropdownView/YRDropdownExample/dropdown-alert@2x.png"; sourceTree = "<group>"; };
+		ACF7EEA815A34BE2000E7001 /* GCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAlertView.h; sourceTree = "<group>"; };
+		ACF7EEA915A34BE2000E7001 /* GCAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAlertView.m; sourceTree = "<group>"; };
+		ACF7EEAC15A34BE2000E7001 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
+		ACF7EEAD15A34BE2000E7001 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
+		ACF7EEAF15A34BE2000E7001 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
+		ACF7EEB015A34BE2000E7001 /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
+		ACF7EEB115A34BE2000E7001 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
+		ACF7EEB215A34BE2000E7001 /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
+		ACF7EEB315A34BE2000E7001 /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
+		ACF7EEB415A34BE2000E7001 /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
+		ACF7EEB515A34BE2000E7001 /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
+		ACF7EEB615A34BE2000E7001 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
+		ACF7EEB715A34BE2000E7001 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
+		ACF7EEB915A34BE2000E7001 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
+		ACF7EEBB15A34BE2000E7001 /* ABNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotice.h; sourceTree = "<group>"; };
+		ACF7EEBC15A34BE2000E7001 /* ABNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotice.m; sourceTree = "<group>"; };
+		ACF7EEBD15A34BE2000E7001 /* ABNotifier.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ABNotifier.bundle; sourceTree = "<group>"; };
+		ACF7EEBE15A34BE2000E7001 /* ABNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotifier.h; sourceTree = "<group>"; };
+		ACF7EEBF15A34BE2000E7001 /* ABNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotifier.m; sourceTree = "<group>"; };
+		ACF7EEC015A34BE2000E7001 /* ABNotifierDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotifierDelegate.h; sourceTree = "<group>"; };
+		ACF7EEC115A34BE2000E7001 /* ABNotifierFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotifierFunctions.h; sourceTree = "<group>"; };
+		ACF7EEC215A34BE2000E7001 /* ABNotifierFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotifierFunctions.m; sourceTree = "<group>"; };
 		ACFC0D5314D4C7F9000265B8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = DoveSiButta/Images/Default.png; sourceTree = SOURCE_ROOT; };
 		ACFC0D5414D4C7F9000265B8 /* Default@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2X.png"; path = "DoveSiButta/Images/Default@2X.png"; sourceTree = SOURCE_ROOT; };
 		ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ComuniRaccoltaP2P.plist; sourceTree = "<group>"; };
@@ -689,6 +721,7 @@
 			children = (
 				AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */,
 				ACA076D81588152E002D3E63 /* Location.gpx */,
+				ACF7EEA615A34BE2000E7001 /* Airbrake */,
 				ACA0C20B1580DC2300237C53 /* MagicalRecord */,
 				ACA0C1F51580A3DC00237C53 /* Utility */,
 				ACEC31671576152C001158D7 /* DropdownView */,
@@ -1547,6 +1580,84 @@
 			name = DropdownView;
 			sourceTree = "<group>";
 		};
+		ACF7EEA615A34BE2000E7001 /* Airbrake */ = {
+			isa = PBXGroup;
+			children = (
+				ACF7EEA715A34BE2000E7001 /* gcalertview */,
+				ACF7EEAA15A34BE2000E7001 /* kissxml */,
+				ACF7EEBA15A34BE2000E7001 /* notifier */,
+			);
+			name = Airbrake;
+			path = "hoptoad-ios/Airbrake";
+			sourceTree = "<group>";
+		};
+		ACF7EEA715A34BE2000E7001 /* gcalertview */ = {
+			isa = PBXGroup;
+			children = (
+				ACF7EEA815A34BE2000E7001 /* GCAlertView.h */,
+				ACF7EEA915A34BE2000E7001 /* GCAlertView.m */,
+			);
+			path = gcalertview;
+			sourceTree = "<group>";
+		};
+		ACF7EEAA15A34BE2000E7001 /* kissxml */ = {
+			isa = PBXGroup;
+			children = (
+				ACF7EEAB15A34BE2000E7001 /* Additions */,
+				ACF7EEAE15A34BE2000E7001 /* Categories */,
+				ACF7EEB115A34BE2000E7001 /* DDXML.h */,
+				ACF7EEB215A34BE2000E7001 /* DDXMLDocument.h */,
+				ACF7EEB315A34BE2000E7001 /* DDXMLDocument.m */,
+				ACF7EEB415A34BE2000E7001 /* DDXMLElement.h */,
+				ACF7EEB515A34BE2000E7001 /* DDXMLElement.m */,
+				ACF7EEB615A34BE2000E7001 /* DDXMLNode.h */,
+				ACF7EEB715A34BE2000E7001 /* DDXMLNode.m */,
+				ACF7EEB815A34BE2000E7001 /* Private */,
+			);
+			path = kissxml;
+			sourceTree = "<group>";
+		};
+		ACF7EEAB15A34BE2000E7001 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				ACF7EEAC15A34BE2000E7001 /* DDXMLElementAdditions.h */,
+				ACF7EEAD15A34BE2000E7001 /* DDXMLElementAdditions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		ACF7EEAE15A34BE2000E7001 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				ACF7EEAF15A34BE2000E7001 /* NSString+DDXML.h */,
+				ACF7EEB015A34BE2000E7001 /* NSString+DDXML.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		ACF7EEB815A34BE2000E7001 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				ACF7EEB915A34BE2000E7001 /* DDXMLPrivate.h */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		ACF7EEBA15A34BE2000E7001 /* notifier */ = {
+			isa = PBXGroup;
+			children = (
+				ACF7EEBB15A34BE2000E7001 /* ABNotice.h */,
+				ACF7EEBC15A34BE2000E7001 /* ABNotice.m */,
+				ACF7EEBD15A34BE2000E7001 /* ABNotifier.bundle */,
+				ACF7EEBE15A34BE2000E7001 /* ABNotifier.h */,
+				ACF7EEBF15A34BE2000E7001 /* ABNotifier.m */,
+				ACF7EEC015A34BE2000E7001 /* ABNotifierDelegate.h */,
+				ACF7EEC115A34BE2000E7001 /* ABNotifierFunctions.h */,
+				ACF7EEC215A34BE2000E7001 /* ABNotifierFunctions.m */,
+			);
+			path = notifier;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1709,6 +1820,7 @@
 				AC94A99B158BA1C800689EFA /* Default@2X.png in Resources */,
 				AC94A99C158BA1C800689EFA /* NoPicture@2x.jpg in Resources */,
 				AC94A99D158BA1C800689EFA /* Sfondo@2x.png in Resources */,
+				ACF7EECA15A34BE2000E7001 /* ABNotifier.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1867,6 +1979,15 @@
 				ACA0C23A1580DC4900237C53 /* MRCoreDataAction.m in Sources */,
 				AC521A301587AF1800CF8CB1 /* NoConnectionViewController.m in Sources */,
 				AC9FDA0715882F1200389594 /* MBProgressHUD.m in Sources */,
+				ACF7EEC315A34BE2000E7001 /* GCAlertView.m in Sources */,
+				ACF7EEC415A34BE2000E7001 /* DDXMLElementAdditions.m in Sources */,
+				ACF7EEC515A34BE2000E7001 /* NSString+DDXML.m in Sources */,
+				ACF7EEC615A34BE2000E7001 /* DDXMLDocument.m in Sources */,
+				ACF7EEC715A34BE2000E7001 /* DDXMLElement.m in Sources */,
+				ACF7EEC815A34BE2000E7001 /* DDXMLNode.m in Sources */,
+				ACF7EEC915A34BE2000E7001 /* ABNotice.m in Sources */,
+				ACF7EECB15A34BE2000E7001 /* ABNotifier.m in Sources */,
+				ACF7EECC15A34BE2000E7001 /* ABNotifierFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

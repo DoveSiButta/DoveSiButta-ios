@@ -4,3 +4,6 @@
 [submodule "QuickDialog"]
 	path = QuickDialog
 	url = git@github.com:escoz/QuickDialog.git
+[submodule "hoptoad-ios"]
+	path = hoptoad-ios
+	url = https://github.com/guicocoa/hoptoad-ios.git

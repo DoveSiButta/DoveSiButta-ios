@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "NoConnectionViewController.h"
+#import "ABNotifier.h"
 
 @class Reachability;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,ABNotifierDelegate>
 {
     Reachability* hostReach;
 }

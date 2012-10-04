@@ -2137,8 +2137,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
-					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
 				);
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -2159,6 +2159,7 @@
 					"\"${PROJECT_DIR}/QuickDialog\"/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2183,6 +2184,7 @@
 					"\"${PROJECT_DIR}/QuickDialog\"/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1AD59C23-8029-4C8A-A35A-14616FF3E747";
 				SDKROOT = iphoneos;

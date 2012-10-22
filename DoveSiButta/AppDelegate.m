@@ -12,6 +12,7 @@
 #import "MapAddViewController.h"
 #import "ChiSiamoViewController.h"
 
+
 //#import "SHK.h"
 
 @implementation AppDelegate
@@ -27,6 +28,8 @@
     //questo è un buon momento per spedire tutti gli elementi sharati che la app non è riuscita a spedire se era senza connettività. http://getsharekit.com/install/
     //    [SHK flushOfflineQueue];
     
+    [Flurry startSession:@"W297JC2CFCS9XPNX995X"];
+    //your code
     
     //AirBrake Notifier
     [ABNotifier startNotifierWithAPIKey:@"404d80e80c9c9b1152ef7d91e51d2397"

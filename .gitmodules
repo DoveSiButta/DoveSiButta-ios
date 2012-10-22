@@ -7,3 +7,6 @@
 [submodule "hoptoad-ios"]
 	path = hoptoad-ios
 	url = https://github.com/guicocoa/hoptoad-ios.git
+[submodule "foursquare-ios-api"]
+	path = foursquare-ios-api
+	url = https://github.com/baztokyo/foursquare-ios-api.git

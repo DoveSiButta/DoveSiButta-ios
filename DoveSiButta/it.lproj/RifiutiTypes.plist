@@ -65,5 +65,12 @@
 		<key>type</key>
 		<string>Plastica</string>
 	</dict>
+	<key>10</key>
+	<dict>
+		<key>id</key>
+		<string>10</string>
+		<key>type</key>
+		<string>Cartucce/Toner Stampanti</string>
+	</dict>
 </dict>
 </plist>

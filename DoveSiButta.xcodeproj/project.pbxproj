@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AC0437711524481500B09A6E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC04376F1524481500B09A6E /* HelpViewController.m */; };
 		AC0437721524481500B09A6E /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0437701524481500B09A6E /* HelpViewController.xib */; };
+		AC0BF95E1635E6D800ED0B51 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0BF95D1635E6D800ED0B51 /* libFlurry.a */; };
 		AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DB14FD8CAF001A4256 /* Sfondo.png */; };
 		AC1247E214FD8D9D001A4256 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247E014FD8D9D001A4256 /* Logo.png */; };
 		AC2CED4915075DE2001C1280 /* libMSODataLib4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */; };
@@ -272,6 +273,8 @@
 		AC04376E1524481500B09A6E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		AC04376F1524481500B09A6E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		AC0437701524481500B09A6E /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		AC0BF95C1635E6C500ED0B51 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = "Flurry iPhone SDK v4.0.6/Flurry/Flurry.h"; sourceTree = "<group>"; };
+		AC0BF95D1635E6D800ED0B51 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry.a; path = "Flurry iPhone SDK v4.0.6/Flurry/libFlurry.a"; sourceTree = "<group>"; };
 		AC1247DB14FD8CAF001A4256 /* Sfondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sfondo.png; path = Images/Sfondo.png; sourceTree = "<group>"; };
 		AC1247E014FD8D9D001A4256 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Images/Logo.png; sourceTree = "<group>"; };
 		AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMSODataLib4.1.a; path = DoveSiButta/libMSODataLib4.1.a; sourceTree = "<group>"; };
@@ -732,6 +735,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC0BF95E1635E6D800ED0B51 /* libFlurry.a in Frameworks */,
 				AC7240691594A0E000976056 /* libQuickDialog.a in Frameworks */,
 				ACA0C23C1580DCAD00237C53 /* CoreData.framework in Frameworks */,
 				AC2CED4915075DE2001C1280 /* libMSODataLib4.1.a in Frameworks */,
@@ -760,6 +764,7 @@
 				ACA627FD1603446D00135221 /* Default-568h@2x.png */,
 				AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */,
 				ACA076D81588152E002D3E63 /* Location.gpx */,
+				AC0BF95C1635E6C500ED0B51 /* Flurry.h */,
 				ACF7EEA615A34BE2000E7001 /* Airbrake */,
 				ACA0C20B1580DC2300237C53 /* MagicalRecord */,
 				ACA0C1F51580A3DC00237C53 /* Utility */,
@@ -787,6 +792,7 @@
 		AC66CEF014C246410098E1F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC0BF95D1635E6D800ED0B51 /* libFlurry.a */,
 				ACA0C23B1580DCAD00237C53 /* CoreData.framework */,
 				AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */,
 				ACE8851114CDF5890004B9DF /* MessageUI.framework */,
@@ -2206,6 +2212,7 @@
 					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release\"",
 					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib\"",
 					"\"$(SRCROOT)/DoveSiButta\"",
+					"\"$(SRCROOT)/Flurry iPhone SDK v4.0.6/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2227,6 +2234,7 @@
 					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib/iPhoneDeviceLibs/iPhone_Device_4.1/release\"",
 					"\"$(SRCROOT)/../../github/OData4ObjC/Framework/bin/odatalib/lib\"",
 					"\"$(SRCROOT)/DoveSiButta\"",
+					"\"$(SRCROOT)/Flurry iPhone SDK v4.0.6/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

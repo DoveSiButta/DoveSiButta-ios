@@ -232,11 +232,6 @@
 		ACE8853E14CECE880004B9DF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853714CECE880004B9DF /* Icon.png */; };
 		ACE8853F14CECE880004B9DF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853814CECE880004B9DF /* Icon@2x.png */; };
 		ACE8854014CECE880004B9DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853914CECE880004B9DF /* iTunesArtwork */; };
-		ACEC316D15761553001158D7 /* bg-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC316915761553001158D7 /* bg-yellow.png */; };
-		ACEC316E15761553001158D7 /* bg-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC316A15761553001158D7 /* bg-yellow@2x.png */; };
-		ACEC316F15761553001158D7 /* YRDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACEC316C15761553001158D7 /* YRDropdownView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		ACEC31721576155B001158D7 /* dropdown-alert.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC31701576155B001158D7 /* dropdown-alert.png */; };
-		ACEC31731576155B001158D7 /* dropdown-alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC31711576155B001158D7 /* dropdown-alert@2x.png */; };
 		ACF7EEC315A34BE2000E7001 /* GCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEA915A34BE2000E7001 /* GCAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ACF7EEC415A34BE2000E7001 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEAD15A34BE2000E7001 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ACF7EEC515A34BE2000E7001 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB015A34BE2000E7001 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -500,7 +495,7 @@
 		ACA595D615B6AB6100A7B539 /* NSPersistentStore+MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPersistentStore+MagicalRecord.m"; sourceTree = "<group>"; };
 		ACA595D715B6AB6100A7B539 /* NSPersistentStoreCoordinator+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPersistentStoreCoordinator+MagicalRecord.h"; sourceTree = "<group>"; };
 		ACA595D815B6AB6100A7B539 /* NSPersistentStoreCoordinator+MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPersistentStoreCoordinator+MagicalRecord.m"; sourceTree = "<group>"; };
-		ACA627FD1603446D00135221 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		ACA627FD1603446D00135221 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		ACB8F88F14F772A80052B559 /* ChiSiamoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiSiamoViewController.h; sourceTree = "<group>"; };
 		ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiSiamoViewController.m; sourceTree = "<group>"; };
 		ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiSiamoViewController.xib; sourceTree = "<group>"; };
@@ -697,12 +692,6 @@
 		ACE8853714CECE880004B9DF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		ACE8853814CECE880004B9DF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		ACE8853914CECE880004B9DF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Images/App_Icon/iTunesArtwork; sourceTree = "<group>"; };
-		ACEC316915761553001158D7 /* bg-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg-yellow.png"; path = "../../github/YRDropdownView/YRDropdownView/bg-yellow.png"; sourceTree = "<group>"; };
-		ACEC316A15761553001158D7 /* bg-yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg-yellow@2x.png"; path = "../../github/YRDropdownView/YRDropdownView/bg-yellow@2x.png"; sourceTree = "<group>"; };
-		ACEC316B15761553001158D7 /* YRDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YRDropdownView.h; path = ../../github/YRDropdownView/YRDropdownView/YRDropdownView.h; sourceTree = "<group>"; };
-		ACEC316C15761553001158D7 /* YRDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YRDropdownView.m; path = ../../github/YRDropdownView/YRDropdownView/YRDropdownView.m; sourceTree = "<group>"; };
-		ACEC31701576155B001158D7 /* dropdown-alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dropdown-alert.png"; path = "../../github/YRDropdownView/YRDropdownExample/dropdown-alert.png"; sourceTree = "<group>"; };
-		ACEC31711576155B001158D7 /* dropdown-alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dropdown-alert@2x.png"; path = "../../github/YRDropdownView/YRDropdownExample/dropdown-alert@2x.png"; sourceTree = "<group>"; };
 		ACF7EEA815A34BE2000E7001 /* GCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAlertView.h; sourceTree = "<group>"; };
 		ACF7EEA915A34BE2000E7001 /* GCAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAlertView.m; sourceTree = "<group>"; };
 		ACF7EEAC15A34BE2000E7001 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
@@ -761,14 +750,12 @@
 		AC66CEE214C246400098E1F1 = {
 			isa = PBXGroup;
 			children = (
-				ACA627FD1603446D00135221 /* Default-568h@2x.png */,
 				AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */,
 				ACA076D81588152E002D3E63 /* Location.gpx */,
 				AC0BF95C1635E6C500ED0B51 /* Flurry.h */,
 				ACF7EEA615A34BE2000E7001 /* Airbrake */,
 				ACA0C20B1580DC2300237C53 /* MagicalRecord */,
 				ACA0C1F51580A3DC00237C53 /* Utility */,
-				ACEC31671576152C001158D7 /* DropdownView */,
 				ACE8843214CDF5670004B9DF /* ShareKit */,
 				ACE882B414CC728C0004B9DF /* ASIHttp */,
 				AC66D01814C24BC70098E1F1 /* CustomTableViewCells */,
@@ -967,6 +954,7 @@
 			children = (
 				ACB8F89414F773C50052B559 /* TabIcons */,
 				AC94A998158BA1C800689EFA /* Default@2X.png */,
+				ACA627FD1603446D00135221 /* Default-568h@2x.png */,
 				AC94A999158BA1C800689EFA /* NoPicture@2x.jpg */,
 				AC94A99A158BA1C800689EFA /* Sfondo@2x.png */,
 				AC94A994158BA1C000689EFA /* mailicon@2x.png */,
@@ -1661,19 +1649,6 @@
 			path = Images/App_Icon;
 			sourceTree = "<group>";
 		};
-		ACEC31671576152C001158D7 /* DropdownView */ = {
-			isa = PBXGroup;
-			children = (
-				ACEC31701576155B001158D7 /* dropdown-alert.png */,
-				ACEC31711576155B001158D7 /* dropdown-alert@2x.png */,
-				ACEC316915761553001158D7 /* bg-yellow.png */,
-				ACEC316A15761553001158D7 /* bg-yellow@2x.png */,
-				ACEC316B15761553001158D7 /* YRDropdownView.h */,
-				ACEC316C15761553001158D7 /* YRDropdownView.m */,
-			);
-			name = DropdownView;
-			sourceTree = "<group>";
-		};
 		ACF7EEA615A34BE2000E7001 /* Airbrake */ = {
 			isa = PBXGroup;
 			children = (
@@ -1895,10 +1870,6 @@
 				AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */,
 				AC1247E214FD8D9D001A4256 /* Logo.png in Resources */,
 				AC0437721524481500B09A6E /* HelpViewController.xib in Resources */,
-				ACEC316D15761553001158D7 /* bg-yellow.png in Resources */,
-				ACEC316E15761553001158D7 /* bg-yellow@2x.png in Resources */,
-				ACEC31721576155B001158D7 /* dropdown-alert.png in Resources */,
-				ACEC31731576155B001158D7 /* dropdown-alert@2x.png in Resources */,
 				AC521A311587AF1800CF8CB1 /* NoConnectionViewController.xib in Resources */,
 				AC94A90D158A4FCD00689EFA /* mailicon.png in Resources */,
 				AC94A90F158A4FCD00689EFA /* twittericon.png in Resources */,
@@ -2055,7 +2026,6 @@
 				AC69D0B714F2DDF600FE688B /* MapAddViewController.m in Sources */,
 				ACB8F89214F772A80052B559 /* ChiSiamoViewController.m in Sources */,
 				AC0437711524481500B09A6E /* HelpViewController.m in Sources */,
-				ACEC316F15761553001158D7 /* YRDropdownView.m in Sources */,
 				ACA0C1F91580A3F800237C53 /* CDeviceSupport.m in Sources */,
 				ACA0C1FC1580A41A00237C53 /* UIDeviceHardware.m in Sources */,
 				AC521A301587AF1800CF8CB1 /* NoConnectionViewController.m in Sources */,
@@ -2164,7 +2134,7 @@
 					/usr/include/libxml2,
 					"\"${PROJECT_DIR}/QuickDialog\"/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -2189,7 +2159,7 @@
 					/usr/include/libxml2,
 					"\"${PROJECT_DIR}/QuickDialog\"/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1AD59C23-8029-4C8A-A35A-14616FF3E747";

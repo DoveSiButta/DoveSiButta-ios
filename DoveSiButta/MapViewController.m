@@ -177,8 +177,10 @@
     
     if([results count] < 1)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Nessun cassonetto?!", @"") message:NSLocalizedString(@"Se non c'è nessun punto raccolta nella mappa, è perchè nessuno li ha ancora aggiunti.\n Tu puoi essere il primo, fai tap sul tasto \"+\"!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, vado!", @"") otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Nessun punto raccolta!", @"") message:NSLocalizedString(@"Se non c'è nessun punto raccolta nella mappa, è perchè nessuno li ha ancora aggiunti.\n Tu puoi essere il primo, fai tap su \"Segnala\"!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, vado!", @"") otherButtonTitles: nil];
         [alert show];
+        //TODO: aggiungere YRDropDownView
+        
     }
     
 }
@@ -191,7 +193,7 @@
     @try{
         
 #if DEBUG
-        NSLog(@"retriving dinners....");
+        NSLog(@"retriving boxes...");
 #endif
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *serviceURI= [defaults objectForKey:@"serviceURI"];

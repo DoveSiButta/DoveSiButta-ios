@@ -626,7 +626,8 @@
         HUD = [[MBProgressHUD alloc] initWithView:self.mapView];
         [self.mapView addSubview:HUD];
         HUD.delegate = self;
-        HUD.labelText = NSLocalizedString(@"Caricamento", @"");
+        HUD.labelText = NSLocalizedString(@"Cerco...", @"");
+        HUD.detailsLabelText = NSLocalizedString(@"Mostro sulla mappa i cestini già inseriti", nil);
         [HUD show:YES];
         [self retrieveBoxesForType:self.selectedType];
 

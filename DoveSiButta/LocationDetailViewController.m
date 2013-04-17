@@ -308,7 +308,7 @@ titleForHeaderInSection:(NSInteger)section
             self.coordinate.latitude,
             self.coordinate.longitude];
             
-            
+            //TODO: per iOS6 http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Articles/MapLinks.html
             NSString *urlString =
             [NSString stringWithFormat:
             @"http://maps.google.com/maps?%@=%@%@",

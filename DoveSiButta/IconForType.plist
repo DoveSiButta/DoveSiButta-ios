@@ -3,22 +3,28 @@
 <plist version="1.0">
 <dict>
 	<key>1</key>
-	<string>plastica_300px</string>
+	<string>plastica_black</string>
 	<key>2</key>
-	<string>vetro_300px</string>
+	<string>vetro_black</string>
 	<key>3</key>
-	<string>lattina_300px</string>
+	<string>lattina_black</string>
 	<key>4</key>
-	<string>indifferenziata_300px</string>
+	<string>indifferenziata_black</string>
 	<key>5</key>
-	<string>organici_300px</string>
+	<string>organici_black</string>
 	<key>6</key>
-	<string>batterie2_300px</string>
+	<string>batterie2_black</string>
 	<key>7</key>
-	<string>farmaci_300</string>
+	<string>farmaci_black</string>
 	<key>8</key>
-	<string>nettezzaurbana_300px</string>
+	<string>nettezzaurbana_black</string>
 	<key>9</key>
-	<string>carta_300px</string>
+	<string>carta_black</string>
+	<key>10</key>
+	<string>cartuccia_black</string>
+	<key>11</key>
+	<string>vestiti_black</string>
+	<key>12</key>
+	<string>lampadina_black</string>
 </dict>
 </plist>

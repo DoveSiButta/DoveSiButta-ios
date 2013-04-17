@@ -11,6 +11,7 @@
 #import "MasterViewController.h"
 #import "MapAddViewController.h"
 #import "ChiSiamoViewController.h"
+#import "LoginViewController.h"
 
 
 //#import "SHK.h"
@@ -112,16 +113,26 @@
     UIViewController *viewController2 = [[MapAddViewController alloc] initWithNibName:@"MapAddViewController" bundle:nil];
     UINavigationController *navigationControllerAdd = [[UINavigationController alloc] initWithRootViewController:viewController2];
     ChiSiamoViewController *viewController3 = [[ChiSiamoViewController alloc] initWithNibName:@"ChiSiamoViewController" bundle:nil];
+    LoginViewController *viewController4 = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+
+//#TODO: viewController4 to check if I can login to ASP.NET
+    
     self.tabBarController = [[UITabBarController alloc] init];
 #if TARGET_IPHONE_SIMULATOR
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
+
+//    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, viewController4, nil];
 #else
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ])
     {
         self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
+
+//        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, viewController4, nil];
     }
     else {
         self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, viewController3, nil];
+
+//        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, viewController3, viewController4, nil];
     }
 #endif
     

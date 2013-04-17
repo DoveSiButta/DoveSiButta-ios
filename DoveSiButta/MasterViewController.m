@@ -262,8 +262,7 @@
     cell.textLabel.text = NSLocalizedString([cellDict objectForKey:@"type"], @"Detail");
 
     cell.imageView.image = [UIImage imageNamed:[iconsDictionary objectForKey:[cellDict objectForKey:@"id"]] ];
-    cell.imageView.highlightedImage =  [UIImage imageNamed:[iconsDictionary objectForKey:[cellDict objectForKey:@"id"]] ];
-    //TODO: aggiungere immagine quando selezionato
+    cell.imageView.highlightedImage =  [UIImage imageNamed:[NSString stringWithFormat:@"%@-pressed", [iconsDictionary objectForKey:[cellDict objectForKey:@"id"]]] ];
 
     return cell;
 

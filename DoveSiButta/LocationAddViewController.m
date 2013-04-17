@@ -33,7 +33,12 @@
 #import "NSData+Base64.h"
 
 //MD5
-#import "NSString+MD5.h"
+//#import "NSString+MD5.h"
+
+//UUID deprecated for iOS5
+//https://github.com/gekitz/UIDevice-with-UniqueIdentifier-for-iOS-5
+#import "UIDevice+IdentifierAddition.h"
+#import "NSString+MD5Addition.h"
 
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
@@ -158,7 +163,7 @@
     NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
 
     
-    NSString *udid = [[[UIDevice currentDevice] uniqueIdentifier] md5 ];
+    NSString *udid = [[UIDevice currentDevice] uniqueDeviceIdentifier]; //Already hashed
     [myNewItem setContactPhone:udid ];
     [myNewItem setBoxType:boxType];
     [myNewItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
@@ -248,29 +253,32 @@
     
     //TODO: fare in modo che le celle assomiglino a quelle di CoreDataBooks
          
-    //Icons
+//    //Icons
+//    
+//    // read property list into memory as an NSData object
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
+//    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+//    NSError *error = [[NSError alloc] init];
+//    NSPropertyListFormat format;
+//    
+//    // convert static property list into dictionary object
+//    NSDictionary *plistDictionary = (NSDictionary*)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
+//    
+//    if (!plistDictionary) 
+//    {
+//        NSLog(@"Error reading plist: %@, format: %d", error, format);
+//    }
+//    NSDictionary *iconsDictionary = [plistDictionary copy ];
     
-    // read property list into memory as an NSData object
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"IconForType" ofType:@"plist"];
-    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+    //Types
     NSError *error = [[NSError alloc] init];
     NSPropertyListFormat format;
     
-    // convert static property list into dictionary object
-    NSDictionary *plistDictionary = (NSDictionary*)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
-    
-    if (!plistDictionary) 
-    {
-        NSLog(@"Error reading plist: %@, format: %d", error, format);
-    }
-    NSDictionary *iconsDictionary = [plistDictionary copy ];
-    
-    //Types
-    path = [[NSBundle mainBundle] pathForResource:@"RifiutiTypes" ofType:@"plist"];
-    plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"RifiutiTypes" ofType:@"plist"];
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:path];
     
     // convert static property list into dictionary object
-    plistDictionary =(NSDictionary*)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error]; 
+    NSDictionary *plistDictionary =(NSDictionary*)[NSPropertyListSerialization propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:&error];
     if (!plistDictionary) 
     {
         NSLog(@"Error reading plist: %@, format: %d", error, format);
@@ -293,7 +301,7 @@
     [self appendRowToSection:0 cellClass:[NibLoadedCell class] 
                     cellData:[NSDictionary dictionaryWithObjectsAndKeys:
                               [myNewItem getTitle],@"labelText",
-                              [NSString stringWithString:@"indifferenziata_300px"],@"imageName",                               NSLocalizedString(@"Nuovo Cestino", @"Title Label"),@"titleLabelText", 
+                               @"indifferenziata_black",@"imageName",                               NSLocalizedString(@"Nuovo Cestino", @"Title Label"),@"titleLabelText", 
                               nil] 
                withAnimation:UITableViewRowAnimationNone];
     

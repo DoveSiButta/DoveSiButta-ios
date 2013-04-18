@@ -144,6 +144,8 @@
 		AC69D0B814F2DDF600FE688B /* MapAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC69D0B614F2DDF600FE688B /* MapAddViewController.xib */; };
 		AC7240691594A0E000976056 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7240681594A0D500976056 /* libQuickDialog.a */; };
 		AC8E3F8E14DC984D0056648A /* NoPicture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC8E3F8C14DC984D0056648A /* NoPicture.jpg */; };
+		AC9308BB171FF45400141533 /* TileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9308B8171FF45400141533 /* TileOverlay.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		AC9308BC171FF45400141533 /* TileOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9308BA171FF45400141533 /* TileOverlayView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AC94A90D158A4FCD00689EFA /* mailicon.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A909158A4FCD00689EFA /* mailicon.png */; };
 		AC94A90F158A4FCD00689EFA /* twittericon.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A90B158A4FCD00689EFA /* twittericon.png */; };
 		AC94A911158A540300689EFA /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A910158A540300689EFA /* Default-Portrait~ipad.png */; };
@@ -505,6 +507,10 @@
 		AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		AC8780F214E3BBFE004915C6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = it; path = it.lproj/RifiutiTypes.plist; sourceTree = "<group>"; };
 		AC8E3F8C14DC984D0056648A /* NoPicture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = NoPicture.jpg; path = Images/NoPicture.jpg; sourceTree = "<group>"; };
+		AC9308B7171FF45400141533 /* TileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileOverlay.h; sourceTree = "<group>"; };
+		AC9308B8171FF45400141533 /* TileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileOverlay.m; sourceTree = "<group>"; };
+		AC9308B9171FF45400141533 /* TileOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileOverlayView.h; sourceTree = "<group>"; };
+		AC9308BA171FF45400141533 /* TileOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileOverlayView.m; sourceTree = "<group>"; };
 		AC94A909158A4FCD00689EFA /* mailicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mailicon.png; path = Images/mailicon.png; sourceTree = "<group>"; };
 		AC94A90B158A4FCD00689EFA /* twittericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twittericon.png; path = Images/twittericon.png; sourceTree = "<group>"; };
 		AC94A910158A540300689EFA /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../../../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -1002,6 +1008,7 @@
 				AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */,
 				ACA076D81588152E002D3E63 /* Location.gpx */,
 				AC508C8E171E080E009EDADC /* Flurry.h */,
+				AC9308B6171FF45400141533 /* OSM */,
 				AC508C85171E0543009EDADC /* UIDevice-with-UniqueIdentifier */,
 				AC5A25BB16826B010072537E /* MagicalRecord */,
 				ACF7EEA615A34BE2000E7001 /* Airbrake */,
@@ -1250,6 +1257,17 @@
 				AC7240681594A0D500976056 /* libQuickDialog.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AC9308B6171FF45400141533 /* OSM */ = {
+			isa = PBXGroup;
+			children = (
+				AC9308B7171FF45400141533 /* TileOverlay.h */,
+				AC9308B8171FF45400141533 /* TileOverlay.m */,
+				AC9308B9171FF45400141533 /* TileOverlayView.h */,
+				AC9308BA171FF45400141533 /* TileOverlayView.m */,
+			);
+			path = OSM;
 			sourceTree = "<group>";
 		};
 		AC94A941158B0C3F00689EFA /* OData4ObjCinclude */ = {
@@ -2194,6 +2212,8 @@
 				AC5A260F16826B010072537E /* MagicalRecord+ShorthandSupport.m in Sources */,
 				AC5A261016826B010072537E /* MagicalRecord.m in Sources */,
 				ACA1A98D16E50C1800430B47 /* LoginViewController.m in Sources */,
+				AC9308BB171FF45400141533 /* TileOverlay.m in Sources */,
+				AC9308BC171FF45400141533 /* TileOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

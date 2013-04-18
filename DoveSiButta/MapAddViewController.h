@@ -19,6 +19,10 @@
 //For adding
 #import "LocationAddViewController.h"
 
+//OSM
+#import "TileOverlay.h"
+#import "TileOverlayView.h"
+
 @interface MapAddViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate, LocationAddViewControllerDelegate>
 {
 //    NSMutableArray *results;
@@ -67,6 +71,9 @@
 @property (strong, nonatomic) NSString *country;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
+
+//OSM
+@property (nonatomic, retain) TileOverlay *overlay;
 
 -(void) getLocation;
 -(void) startReverseGeocode;

@@ -19,6 +19,9 @@
 //For adding
 #import "LocationAddViewController.h"
 
+//OSM
+#import "TileOverlay.h"
+#import "TileOverlayView.h"
 
 //#ifdef __IPHONE_5_0
 //@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> 
@@ -78,7 +81,8 @@
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
-
+//OSM
+@property (nonatomic, strong) TileOverlay *overlay;
 
 
 

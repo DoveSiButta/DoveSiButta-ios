@@ -32,14 +32,6 @@
 //NSdata
 #import "NSData+Base64.h"
 
-//MD5
-//#import "NSString+MD5.h"
-
-//UUID deprecated for iOS5
-//https://github.com/gekitz/UIDevice-with-UniqueIdentifier-for-iOS-5
-#import "UIDevice+IdentifierAddition.h"
-#import "NSString+MD5Addition.h"
-
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 
@@ -163,7 +155,7 @@
     NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
 
     
-    NSString *udid = [[UIDevice currentDevice] uniqueDeviceIdentifier]; //Already hashed
+    NSString *udid = [[AppState sharedInstance] uniqueIdentifier]; //[[UIDevice currentDevice] uniqueDeviceIdentifier]; //Already hashed
     [myNewItem setContactPhone:udid ];
     [myNewItem setBoxType:boxType];
     [myNewItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
@@ -250,9 +242,7 @@
       target:self
       action:@selector(saveItem:)];
     self.navigationItem.rightBarButtonItem = saveButton;
-    
-    //TODO: fare in modo che le celle assomiglino a quelle di CoreDataBooks
-         
+             
 //    //Icons
 //    
 //    // read property list into memory as an NSData object

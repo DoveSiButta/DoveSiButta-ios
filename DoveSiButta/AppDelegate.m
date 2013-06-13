@@ -29,11 +29,11 @@
     //questo è un buon momento per spedire tutti gli elementi sharati che la app non è riuscita a spedire se era senza connettività. http://getsharekit.com/install/
     //    [SHK flushOfflineQueue];
     
-    [Flurry startSession:@"W297JC2CFCS9XPNX995X"];
+    [Flurry startSession:kFLURRY_APIKEY];
     //your code
     
     //AirBrake Notifier
-    [ABNotifier startNotifierWithAPIKey:@"404d80e80c9c9b1152ef7d91e51d2397"
+    [ABNotifier startNotifierWithAPIKey:kABNOTIFIER_APIKEY
 	                    environmentName:ABNotifierAutomaticEnvironment
 	                             useSSL:NO
 	                           delegate:self];
@@ -119,20 +119,21 @@
     
     self.tabBarController = [[UITabBarController alloc] init];
 #if TARGET_IPHONE_SIMULATOR
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
 
-//    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, viewController4, nil];
+//    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
+
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, viewController4, nil];
 #else
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ])
     {
-        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
+//        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, nil];
 
-//        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, viewController4, nil];
+        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, navigationControllerAdd, viewController3, viewController4, nil];
     }
     else {
-        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, viewController3, nil];
+//        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, viewController3, nil];
 
-//        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, viewController3, viewController4, nil];
+        self.tabBarController.viewControllers = [NSArray arrayWithObjects:navigationController, viewController3, viewController4, nil];
     }
 #endif
     
@@ -258,6 +259,24 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+#pragma mark -- Network Activity Indicator
+
+- (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible {
+    static NSInteger NumberOfCallsToSetVisible = 0;
+    if (setVisible)
+        NumberOfCallsToSetVisible++;
+    else
+        NumberOfCallsToSetVisible--;
+    
+    // The assertion helps to find programmer errors in activity indicator management.
+    // Since a negative NumberOfCallsToSetVisible is not a fatal error,
+    // it should probably be removed from production code.
+    NSAssert(NumberOfCallsToSetVisible >= 0, @"Network Activity Indicator was asked to hide more often than shown");
+    
+    // Display the indicator as long as our static counter is > 0.
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(NumberOfCallsToSetVisible > 0)];
 }
 
 @end

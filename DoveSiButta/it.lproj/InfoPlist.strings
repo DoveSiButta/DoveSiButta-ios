@@ -1,0 +1,3 @@
+/* Localized versions of Info.plist keys */
+
+"NSLocationUsageDescription" = "Per consentire di trovare il cassonetto più vicino";

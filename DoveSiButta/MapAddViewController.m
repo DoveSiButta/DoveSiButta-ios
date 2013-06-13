@@ -205,7 +205,6 @@
     self.locationManager.delegate = self; 
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.purpose = NSLocalizedString(@"Trovare il cassonetto più vicino", @"");
     [self.locationManager startUpdatingLocation];
     
 

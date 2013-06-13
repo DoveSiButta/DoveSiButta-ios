@@ -349,8 +349,7 @@
 
     }
     
-    //TODO: CHECK IF WE CAN USE GPS!!!!
-    
+   
     // Start the gpsLocation manager
 	// We start it *after* startup so that the UI is ready to display errors, if needed.
 	self.locationManager = [[CLLocationManager alloc] init];
@@ -360,7 +359,6 @@
     self.locationManager.delegate = self; 
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.purpose = NSLocalizedString(@"Trovare il cassonetto più vicino", @"");
     [self.locationManager startUpdatingLocation];
     
 //#ifdef __IPHONE_5_0

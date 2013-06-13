@@ -13,9 +13,6 @@
 #import "NibLoadedCell.h"
 #import "PictureFileViewController.h"
 
-
-#import "SHK.h"
-
 @implementation LocationDetailViewController
 @synthesize selectedBox;
 @synthesize coordinate;
@@ -69,14 +66,15 @@
 - (void)shareItem:(id)sender
 {
     // Create the item to share (in this example, a url)
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.dovesibutta.com/%@",[self.selectedBox getBoxID]]]; 
-	SHKItem *item = [SHKItem URL:url title:@"Ho appena trovato il cestino della raccolta differenziata che stavo cercando grazie a DoveSiButta!"];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.dovesibutta.com/%@",[self.selectedBox getBoxID]]];
+    //TODO: share with iOS5 twitter integrated feature
+	//SHKItem *item = [SHKItem URL:url title:@"Ho appena trovato il cestino della raccolta differenziata che stavo cercando grazie a DoveSiButta!"];
     
 	// Get the ShareKit action sheet
-	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+//	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
     
 	// Display the action sheet
-	[actionSheet showFromToolbar:self.navigationController.toolbar];
+//	[actionSheet showFromToolbar:self.navigationController.toolbar];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -87,13 +85,13 @@
     self.title = NSLocalizedString(@"Dettagli", @"");
     
 
-     //Tasto ShareKit
-    UIBarButtonItem *shareButton =
-    [[UIBarButtonItem alloc]
-      initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-      target:self
-      action:@selector(shareItem:)];
-    self.navigationItem.rightBarButtonItem = shareButton;
+    //Share Button
+//    UIBarButtonItem *shareButton =
+//    [[UIBarButtonItem alloc]
+//      initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+//      target:self
+//      action:@selector(shareItem:)];
+//    self.navigationItem.rightBarButtonItem = shareButton;
 
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -309,19 +307,31 @@ titleForHeaderInSection:(NSInteger)section
             self.coordinate.longitude];
             
             //TODO: per iOS6 http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Articles/MapLinks.html
-            NSString *urlString =
-            [NSString stringWithFormat:
-            @"http://maps.google.com/maps?%@=%@%@",
-            queryType,
-            (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
-                                              nil,
-                                              (__bridge CFStringRef)[selectedBox getAddress],
-                                              nil,
-                                              (__bridge CFStringRef)@"&=",
-                                              kCFStringEncodingUTF8)
-            ,
-            sourceLocation];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+//            NSString *urlString =
+//            [NSString stringWithFormat:
+//            @"http://maps.google.com/maps?%@=%@%@",
+//            queryType,
+//            (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+//                                              nil,
+//                                              (__bridge CFStringRef)[selectedBox getAddress],
+//                                              nil,
+//                                              (__bridge CFStringRef)@"&=",
+//                                              kCFStringEncodingUTF8)
+//            ,
+//            sourceLocation];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+            
+            
+            CLLocation* fromLocation = [[CLLocation alloc] initWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+            
+            // Create a region centered on the starting point with a 10km span
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(fromLocation.coordinate, 10000, 10000);
+            
+            [MKMapItem openMapsWithItems:[NSArray arrayWithObject:fromLocation]
+                           launchOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                          [NSValue valueWithMKCoordinate:region.center], MKLaunchOptionsMapCenterKey,
+                                          [NSValue valueWithMKCoordinateSpan:region.span], MKLaunchOptionsMapSpanKey, nil]];
+            
         }
         else if ([cell.action isEqualToString:@"showRSVP"])
         {

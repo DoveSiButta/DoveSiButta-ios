@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  DoveSiButta
-
-  Created by Giovanni Maggini on 09/02/12.
-  Copyright (c) 2012 Giovanni Maggini. All rights reserved.
-*/
+/*
+ Localizable.strings
+ DoveSiButta
+ 
+ Created by Giovanni Maggini on 09/02/12.
+ Copyright (c) 2012 Giovanni Maggini. All rights reserved.
+ */
 "Grazie!" = "Thank you!";
 "Ok, grazie" = "Ok thanks";
 "Attenzione" = "Notice";

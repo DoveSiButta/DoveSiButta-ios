@@ -8,6 +8,7 @@
 
 #import "PageViewController.h"
 #import "DoveSiButtaEntities.h"
+#import <MapKit/MapKit.h>
 
 @interface LocationDetailViewController : PageViewController
 

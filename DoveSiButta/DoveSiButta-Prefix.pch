@@ -17,6 +17,8 @@
     #import "CoreData+MagicalRecord.h"
     #import "Reachability.h"
     #import <QuickDialog/QuickDialog.h>
+    #import "Secret.h"
+    #import "AppState.h"
 #endif
 
 

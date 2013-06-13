@@ -31,4 +31,7 @@
 
 @property (strong, nonatomic) NoConnectionViewController *noConnectionViewController;
 
+
+- (void)setNetworkActivityIndicatorVisible:(BOOL)setVisible;
+
 @end

@@ -13,6 +13,8 @@
 #import "NibLoadedCell.h"
 #import "PictureFileViewController.h"
 
+#import "SHK.h"
+
 @implementation LocationDetailViewController
 @synthesize selectedBox;
 @synthesize coordinate;
@@ -58,7 +60,7 @@
 -(void)addRSVP:(id)sender;
 {
     NSLog(@"Work in progress to add RSVP");
-    //TODO: Può essere usato in 2 modi: per dare un "voto" al cassonetto o per riportare un errore
+    //Può essere usato in 2 modi: per dare un "voto" al cassonetto o per riportare un errore
 }
 */
 
@@ -67,14 +69,14 @@
 {
     // Create the item to share (in this example, a url)
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.dovesibutta.com/%@",[self.selectedBox getBoxID]]];
-    //TODO: share with iOS5 twitter integrated feature
-	//SHKItem *item = [SHKItem URL:url title:@"Ho appena trovato il cestino della raccolta differenziata che stavo cercando grazie a DoveSiButta!"];
+
+	SHKItem *item = [SHKItem URL:url title:@"Ho appena trovato il cestino della raccolta differenziata che stavo cercando grazie a DoveSiButta!"];
     
 	// Get the ShareKit action sheet
-//	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
     
 	// Display the action sheet
-//	[actionSheet showFromToolbar:self.navigationController.toolbar];
+	[actionSheet showFromToolbar:self.navigationController.toolbar];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -86,12 +88,12 @@
     
 
     //Share Button
-//    UIBarButtonItem *shareButton =
-//    [[UIBarButtonItem alloc]
-//      initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-//      target:self
-//      action:@selector(shareItem:)];
-//    self.navigationItem.rightBarButtonItem = shareButton;
+    UIBarButtonItem *shareButton =
+    [[UIBarButtonItem alloc]
+      initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+      target:self
+      action:@selector(shareItem:)];
+    self.navigationItem.rightBarButtonItem = shareButton;
 
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];

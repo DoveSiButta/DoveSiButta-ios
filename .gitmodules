@@ -19,3 +19,6 @@
 [submodule "sskeychain"]
 	path = sskeychain
 	url = https://github.com/samsoffes/sskeychain.git
+[submodule "ShareKit"]
+	path = ShareKit
+	url = https://github.com/ShareKit/ShareKit.git

@@ -12,8 +12,8 @@
 		AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DB14FD8CAF001A4256 /* Sfondo.png */; };
 		AC1247E214FD8D9D001A4256 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247E014FD8D9D001A4256 /* Logo.png */; };
 		AC2CED4915075DE2001C1280 /* libMSODataLib4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */; };
+		AC303F7B17C4DE5800875910 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC303F7A17C4DE5800875910 /* libFlurry_4.2.3.a */; };
 		AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		AC508C8D171E07FD009EDADC /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC508C8C171E07FD009EDADC /* libFlurry.a */; };
 		AC508CAF171E0844009EDADC /* batterie2_black-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = AC508C8F171E0844009EDADC /* batterie2_black-pressed.png */; };
 		AC508CB0171E0844009EDADC /* batterie2_black-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC508C90171E0844009EDADC /* batterie2_black-pressed@2x.png */; };
 		AC508CB1171E0844009EDADC /* batterie2_black.png in Resources */ = {isa = PBXBuildFile; fileRef = AC508C91171E0844009EDADC /* batterie2_black.png */; };
@@ -184,6 +184,10 @@
 		ACB8F89E14F773CE0052B559 /* 07-map-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89814F773CE0052B559 /* 07-map-marker@2x.png */; };
 		ACB8F89F14F773CE0052B559 /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89914F773CE0052B559 /* 103-map.png */; };
 		ACB8F8A014F773CE0052B559 /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89A14F773CE0052B559 /* 103-map@2x.png */; };
+		ACBC5654176FBE5500C9993B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5653176FBE5500C9993B /* Accelerate.framework */; };
+		ACBC5656176FBE5D00C9993B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5655176FBE5D00C9993B /* AssetsLibrary.framework */; };
+		ACBC5658176FBE6300C9993B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5657176FBE6300C9993B /* ImageIO.framework */; };
+		ACBC565A176FBE6C00C9993B /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5659176FBE6C00C9993B /* CoreImage.framework */; };
 		ACC019531769E0B300E8886D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC019521769E0B300E8886D /* AVFoundation.framework */; };
 		ACC019551769E0BE00E8886D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC019541769E0BE00E8886D /* AdSupport.framework */; };
 		ACC019571769E0C700E8886D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC019561769E0C700E8886D /* Social.framework */; };
@@ -562,6 +566,13 @@
 			remoteGlobalIDString = 7AB5360E1552E26800171BCE;
 			remoteInfo = "Resource Bundle";
 		};
+		ACBC5625176FBE4A00C9993B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACBC5621176FBE4800C9993B /* NYXImagesKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E0289D7144EF32200B6B6D5;
+			remoteInfo = NYXImagesKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -571,9 +582,9 @@
 		AC1247DB14FD8CAF001A4256 /* Sfondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sfondo.png; path = Images/Sfondo.png; sourceTree = "<group>"; };
 		AC1247E014FD8D9D001A4256 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Images/Logo.png; sourceTree = "<group>"; };
 		AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMSODataLib4.1.a; path = DoveSiButta/libMSODataLib4.1.a; sourceTree = "<group>"; };
+		AC303F7A17C4DE5800875910 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.3.a; path = Flurry/libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		AC3FE1FE14E8044B005CC256 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-		AC508C8C171E07FD009EDADC /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry.a; path = Flurry/libFlurry.a; sourceTree = "<group>"; };
 		AC508C8E171E080E009EDADC /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Flurry/Flurry.h; sourceTree = "<group>"; };
 		AC508C8F171E0844009EDADC /* batterie2_black-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batterie2_black-pressed.png"; sourceTree = "<group>"; };
 		AC508C90171E0844009EDADC /* batterie2_black-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batterie2_black-pressed@2x.png"; sourceTree = "<group>"; };
@@ -885,6 +896,11 @@
 		ACB8F89814F773CE0052B559 /* 07-map-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "07-map-marker@2x.png"; path = "TabIcons/07-map-marker@2x.png"; sourceTree = "<group>"; };
 		ACB8F89914F773CE0052B559 /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map.png"; path = "TabIcons/103-map.png"; sourceTree = "<group>"; };
 		ACB8F89A14F773CE0052B559 /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map@2x.png"; path = "TabIcons/103-map@2x.png"; sourceTree = "<group>"; };
+		ACBC5621176FBE4800C9993B /* NYXImagesKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NYXImagesKit.xcodeproj; path = "NYXImagesKit-master/NYXImagesKit.xcodeproj"; sourceTree = "<group>"; };
+		ACBC5653176FBE5500C9993B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		ACBC5655176FBE5D00C9993B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		ACBC5657176FBE6300C9993B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		ACBC5659176FBE6C00C9993B /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		ACC019521769E0B300E8886D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		ACC019541769E0BE00E8886D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		ACC019561769E0C700E8886D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -945,6 +961,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACBC565A176FBE6C00C9993B /* CoreImage.framework in Frameworks */,
+				ACBC5658176FBE6300C9993B /* ImageIO.framework in Frameworks */,
+				ACBC5656176FBE5D00C9993B /* AssetsLibrary.framework in Frameworks */,
+				ACBC5654176FBE5500C9993B /* Accelerate.framework in Frameworks */,
 				ACC0195D1769E0F200E8886D /* CoreMedia.framework in Frameworks */,
 				ACC0195B1769E0DF00E8886D /* QuartzCore.framework in Frameworks */,
 				ACC019591769E0CD00E8886D /* StoreKit.framework in Frameworks */,
@@ -969,7 +989,7 @@
 				AC2CED4915075DE2001C1280 /* libMSODataLib4.1.a in Frameworks */,
 				AC97D95E1769D4E60069F779 /* libShareKit.a in Frameworks */,
 				ACE882E514CCD39F0004B9DF /* libxml2.dylib in Frameworks */,
-				AC508C8D171E07FD009EDADC /* libFlurry.a in Frameworks */,
+				AC303F7B17C4DE5800875910 /* libFlurry_4.2.3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,12 +1176,6 @@
 		AC66CEE214C246400098E1F1 = {
 			isa = PBXGroup;
 			children = (
-				ACC0195C1769E0F200E8886D /* CoreMedia.framework */,
-				ACC0195A1769E0DF00E8886D /* QuartzCore.framework */,
-				ACC019581769E0CD00E8886D /* StoreKit.framework */,
-				ACC019561769E0C700E8886D /* Social.framework */,
-				ACC019541769E0BE00E8886D /* AdSupport.framework */,
-				ACC019521769E0B300E8886D /* AVFoundation.framework */,
 				AC97D5DB1769CD360069F779 /* ThirdParty */,
 				ACF80E741766723400D37EB3 /* Secret.h */,
 				ACA076D81588152E002D3E63 /* Location.gpx */,
@@ -1185,11 +1199,13 @@
 		AC66CEF014C246410098E1F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC303F7A17C4DE5800875910 /* libFlurry_4.2.3.a */,
+				ACC0195A1769E0DF00E8886D /* QuartzCore.framework */,
+				ACBC565C176FBE8600C9993B /* For NYXImageKit */,
+				ACBC565B176FBE7600C9993B /* For Sharekit */,
 				AC97D9601769D5320069F779 /* Twitter.framework */,
-				AC508C8C171E07FD009EDADC /* libFlurry.a */,
 				AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */,
 				ACA0C23B1580DCAD00237C53 /* CoreData.framework */,
-				ACE8851114CDF5890004B9DF /* MessageUI.framework */,
 				ACE8850F14CDF57E0004B9DF /* Security.framework */,
 				ACE882E414CCD39F0004B9DF /* libxml2.dylib */,
 				ACE882E214CCD2BA0004B9DF /* libz.1.2.5.dylib */,
@@ -1419,6 +1435,7 @@
 		AC97D5DB1769CD360069F779 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				ACBC5621176FBE4800C9993B /* NYXImagesKit.xcodeproj */,
 				AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */,
 				AC97D8CF1769D4A50069F779 /* ShareKit.xcodeproj */,
 				AC97D61F1769CF730069F779 /* SSKeychain.h */,
@@ -1585,6 +1602,38 @@
 				ACB8F89A14F773CE0052B559 /* 103-map@2x.png */,
 			);
 			name = TabIcons;
+			sourceTree = "<group>";
+		};
+		ACBC5622176FBE4800C9993B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACBC5626176FBE4A00C9993B /* libNYXImagesKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACBC565B176FBE7600C9993B /* For Sharekit */ = {
+			isa = PBXGroup;
+			children = (
+				ACE8851114CDF5890004B9DF /* MessageUI.framework */,
+				ACC0195C1769E0F200E8886D /* CoreMedia.framework */,
+				ACC019581769E0CD00E8886D /* StoreKit.framework */,
+				ACC019561769E0C700E8886D /* Social.framework */,
+				ACC019541769E0BE00E8886D /* AdSupport.framework */,
+				ACC019521769E0B300E8886D /* AVFoundation.framework */,
+			);
+			name = "For Sharekit";
+			sourceTree = "<group>";
+		};
+		ACBC565C176FBE8600C9993B /* For NYXImageKit */ = {
+			isa = PBXGroup;
+			children = (
+				ACBC5659176FBE6C00C9993B /* CoreImage.framework */,
+				ACBC5657176FBE6300C9993B /* ImageIO.framework */,
+				ACBC5655176FBE5D00C9993B /* AssetsLibrary.framework */,
+				ACBC5653176FBE5500C9993B /* Accelerate.framework */,
+			);
+			name = "For NYXImageKit";
 			sourceTree = "<group>";
 		};
 		ACCAA9F914EAE24E0067236F /* Extensions */ = {
@@ -1772,6 +1821,10 @@
 			productRefGroup = AC66CEEE14C246400098E1F1 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = ACBC5622176FBE4800C9993B /* Products */;
+					ProjectRef = ACBC5621176FBE4800C9993B /* NYXImagesKit.xcodeproj */;
+				},
 				{
 					ProductGroup = AC72405D1594A0D400976056 /* Products */;
 					ProjectRef = AC72405C1594A0D400976056 /* QuickDialog.xcodeproj */;
@@ -2109,6 +2162,13 @@
 			fileType = archive.ar;
 			path = "libPocket SDK.a";
 			remoteRef = AC97D9581769D4A80069F779 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		ACBC5626176FBE4A00C9993B /* libNYXImagesKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNYXImagesKit.a;
+			remoteRef = ACBC5625176FBE4A00C9993B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

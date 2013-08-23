@@ -1,9 +1,6 @@
 [submodule "OData4ObjC"]
 	path = OData4ObjC
 	url = https://github.com/maggix/OData4ObjC.git
-[submodule "QuickDialog"]
-	path = QuickDialog
-	url = git@github.com:escoz/QuickDialog.git
 [submodule "hoptoad-ios"]
 	path = hoptoad-ios
 	url = https://github.com/guicocoa/hoptoad-ios.git

@@ -7,11 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface AppState : NSObject
+extern NSString* const kLocationServicesFailure;
+extern NSString* const kLocationServicesGotBestAccuracyLocation;
+
+
+@interface AppState : NSObject <CLLocationManagerDelegate>
+
+
+//Location
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *currentLocation;
 
 +(AppState *)sharedInstance;
 
 -(NSString*)uniqueIdentifier;
+
+//Location
+- (void) startLocationServices;
+- (void) stopLocationServices;
 
 @end

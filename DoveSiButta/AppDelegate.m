@@ -30,15 +30,12 @@
     //    [SHK flushOfflineQueue];
     
     [Flurry startSession:kFLURRY_APIKEY];
-    //your code
     
     //AirBrake Notifier
     [ABNotifier startNotifierWithAPIKey:kABNOTIFIER_APIKEY
 	                    environmentName:ABNotifierAutomaticEnvironment
 	                             useSSL:NO
 	                           delegate:self];
-    //TEST
-//    [ABNotifier writeTestNotice];
     
     
     //DEFAULTS SETUP START
@@ -85,22 +82,20 @@
 #endif
     
     [defaults synchronize]; // this method is optional
-    //DEFAULTS SETUP END    
+    //DEFAULTS SETUP END
+
     
-//#if !TARGET_IPHONE_SIMULATOR    
     // Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
     // method "reachabilityChanged" will be called. 
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
     hostReach = [Reachability reachabilityWithHostName: [defaults objectForKey:@"serviceHost"]];
     NSLog(@"serviceHost %@ ",[defaults objectForKey:@"serviceHost"]);
     [hostReach startNotifier];
-//    NetworkStatus netStatus = [hostReach currentReachabilityStatus];
-//    BOOL isReachable = [hostReach isReachable];
     
-//#else
-//    NetworkStatus netStatus = ReachableViaWiFi;
-//    BOOL isReachable = YES;
-//#endif
+    
+    //Start location services
+    [[AppState sharedInstance] stopLocationServices];
+
 
     
     self.noConnectionViewController = [[NoConnectionViewController alloc] initWithNibName:@"NoConnectionViewController" bundle:nil];
@@ -137,14 +132,6 @@
     }
 #endif
     
-
-//    if(netStatus == NotReachable || !isReachable )
-//    {
-//        self.window.rootViewController = self.noConnectionViewController;
-//    }
-//    else {
-//        self.window.rootViewController = self.tabBarController;
-//    }
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
@@ -158,21 +145,6 @@
 {
     if(curReach == hostReach)
 	{
-//		[self configureTextField: remoteHostStatusField imageView: remoteHostIcon reachability: curReach];
-//        NetworkStatus netStatus = [curReach currentReachabilityStatus];
-//        BOOL connectionRequired= [curReach connectionRequired];
-//        
-//        summaryLabel.hidden = (netStatus != ReachableViaWWAN);
-//        NSString* baseLabel=  @"";
-//        if(connectionRequired)
-//        {
-//            baseLabel=  @"Cellular data network is available.\n  Internet traffic will be routed through it after a connection is established.";
-//        }
-//        else
-//        {
-//            baseLabel=  @"Cellular data network is active.\n  Internet traffic will be routed through it.";
-//        }
-//        summaryLabel.text= baseLabel;
         
         NetworkStatus netStatus = [curReach currentReachabilityStatus];
         BOOL connectionRequired= [curReach connectionRequired];
@@ -181,11 +153,6 @@
         {
             case NotReachable:
             {
-//                statusString = @"Access Not Available";
-//                imageView.image = [UIImage imageNamed: @"stop-32.png"] ;
-//                //Minor interface detail- connectionRequired may return yes, even when the host is unreachable.  We cover that up here...
-//                connectionRequired= NO;  
-                
                 self.window.rootViewController = self.noConnectionViewController;
                 [self.window makeKeyAndVisible];
                 break;
@@ -203,14 +170,6 @@
         }
         
     }
-//	if(curReach == internetReach)
-//	{	
-//		[self configureTextField: internetConnectionStatusField imageView: internetConnectionIcon reachability: curReach];
-//	}
-//	if(curReach == wifiReach)
-//	{	
-//		[self configureTextField: localWiFiConnectionStatusField imageView: localWiFiConnectionIcon reachability: curReach];
-//	}
 	
 }
 
@@ -236,6 +195,8 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    
+    [[AppState sharedInstance] stopLocationServices];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -250,6 +211,9 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    
+    [[AppState sharedInstance] startLocationServices];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -259,6 +223,8 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    [[AppState sharedInstance] stopLocationServices];
+
 }
 
 #pragma mark -- Network Activity Indicator

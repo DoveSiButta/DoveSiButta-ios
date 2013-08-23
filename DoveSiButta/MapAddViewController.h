@@ -70,8 +70,6 @@
 @property (strong, nonatomic) NSString *postCode;
 @property (strong, nonatomic) NSString *country;
 
-@property (strong, nonatomic) CLLocationManager *locationManager;
-
 //OSM
 @property (nonatomic, retain) TileOverlay *overlay;
 

@@ -17,7 +17,7 @@
 
 @implementation LocationDetailViewController
 @synthesize selectedBox;
-@synthesize coordinate;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -301,30 +301,16 @@ titleForHeaderInSection:(NSInteger)section
         {
             NSString *sourceLocation;
             NSString *queryType;
+            CLLocation *location = [[AppState sharedInstance] currentLocation];
             
             queryType = @"daddr";
             sourceLocation =
             [NSString stringWithFormat:@"&saddr=%f,+%f",
-            self.coordinate.latitude,
-            self.coordinate.longitude];
+            location.coordinate.latitude,
+            location.coordinate.longitude];
+                        
             
-            //TODO: per iOS6 http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Articles/MapLinks.html
-//            NSString *urlString =
-//            [NSString stringWithFormat:
-//            @"http://maps.google.com/maps?%@=%@%@",
-//            queryType,
-//            (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
-//                                              nil,
-//                                              (__bridge CFStringRef)[selectedBox getAddress],
-//                                              nil,
-//                                              (__bridge CFStringRef)@"&=",
-//                                              kCFStringEncodingUTF8)
-//            ,
-//            sourceLocation];
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
-            
-            
-            CLLocation* fromLocation = [[CLLocation alloc] initWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+            CLLocation* fromLocation = [[AppState sharedInstance] currentLocation];
             
             // Create a region centered on the starting point with a 10km span
             MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(fromLocation.coordinate, 10000, 10000);

@@ -44,7 +44,6 @@
 @synthesize address, postCode, country;
 @synthesize comuniP2P;
 @synthesize buttonAdd, buttonRefresh;
-@synthesize locationManager;
 
 @synthesize HUD;
 @synthesize reverseGeocoder;
@@ -97,8 +96,6 @@
     self.navigationItem.rightBarButtonItem = buttonAdd;
     
 #else
-    //TODO: avvisare l'utente! Con un messaggio e un'icona di assenza della camera.
-    //E nel caso di un iPad con camera ma senza GPS ?!?!?!
     UIDeviceHardware *h=[[UIDeviceHardware alloc] init];
 //    [self setDeviceModel:[h platformString]];   
     NSLog(@"DeviceModel: %@", [h platformString]);
@@ -190,25 +187,11 @@
 
 -(void)getLocation
 {
-    //TODO: check if we can use GPS!!!!!!!!
-
     [self.buttonRefresh setEnabled:NO];
     
-    // Start the gpsLocation manager
-	// We start it *after* startup so that the UI is ready to display errors, if needed.
-    self.locationManager = nil;
-    //TODO: e se l'utente ci ha impedito di usare la location?!?!?!
-//    http://developer.apple.com/library/ios/#documentation/CoreLocation/Reference/CLLocationManager_Class/CLLocationManager/CLLocationManager.html#//apple_ref/occ/clm/CLLocationManager/authorizationStatus
-	self.locationManager = [[CLLocationManager alloc] init];
-
-    //    usingManualLocation = NO;    
-    self.locationManager.delegate = self; 
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    [self.locationManager startUpdatingLocation];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLocationServiceFailure:) name:kLocationServicesFailure object:nil];
     
-
-
+    [self loadBoxes];
 }
 
 
@@ -229,7 +212,7 @@
         //        QueryOperationResponse *response = [query execute];
         results = [[NSMutableArray alloc] init ];
         //        
-        CLLocationCoordinate2D location = self.locationManager.location.coordinate;
+        CLLocationCoordinate2D location = [[AppState sharedInstance] currentLocation].coordinate;
         NSLocale *locale = [NSLocale currentLocale];
         
         //        results = [proxy ItemsNearMeByCoordinatesWithlatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude ]  descriptionWithLocale:locale] locale:locale] longitude:self.[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude ]  descriptionWithLocale:locale] locale:locale]];
@@ -303,7 +286,7 @@
 
 -(void) startReverseGeocode
 {
-    CLLocationCoordinate2D locationToLookup = self.locationManager.location.coordinate;
+    CLLocationCoordinate2D locationToLookup = [[AppState sharedInstance] currentLocation].coordinate;
     self.reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:locationToLookup];
     self.reverseGeocoder.delegate = self;
     [self.reverseGeocoder start];
@@ -360,14 +343,12 @@
 {
     // the detail view does not want a toolbar so hide it
     LocationDetailViewController *detailvc = [[LocationDetailViewController alloc] initWithItem:[annotation dinner]];
-    detailvc.coordinate = self.locationManager.location.coordinate;
     [self.navigationController pushViewController:detailvc animated:YES];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
     MapAnnotationDefault *myAnnotation = (MapAnnotationDefault*)view.annotation;
     LocationDetailViewController *ldvc = [[LocationDetailViewController alloc] initWithItem:myAnnotation.item];
-    ldvc.coordinate = self.locationManager.location.coordinate;
     //[myAnnotation loadDetailView];
     [self.navigationController pushViewController:ldvc animated:YES];
     
@@ -478,7 +459,7 @@
     [newItem setEventDate:[NSDate date]];
     
     
-    CLLocationCoordinate2D location = self.locationManager.location.coordinate;
+    CLLocationCoordinate2D location = [[AppState sharedInstance] currentLocation].coordinate;
     NSLocale *locale = [NSLocale currentLocale];
     
     [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
@@ -506,142 +487,33 @@
 # pragma mark - Location
 
 
-
-//
-// locationManager:didFailWithError:
-//
-// Handle an error from the gpsLocation manager by calling the locationFailed
-// method
-//
-// Parameters:
-//    manager - the gpsLocation manager
-//    error - the error assocated with this notification
-//
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error
+- (void)handleLocationServiceFailure:(NSNotification*)notification
 {
-    //    [self locationFailedWithCode:[error code]];
-    if ([error domain] == kCLErrorDomain) {
-        
-        // We handle CoreLocation-related errors here
-        switch ([error code]) {
-                // "Don't Allow" on two successive app launches is the same as saying "never allow". The user
-                // can reset this for all apps by going to Settings > General > Reset > Reset Location Warnings.
-            case kCLErrorDenied:
-            {
-                UIAlertView *a = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"DoveSiButta necessita della tua posizione per cercare i cassonetti più vicini. Puoi abilitare o disabilitare questa scelta nelle impostazioni.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok",nil) otherButtonTitles: nil];
-                a.tag = ALERTVIEW_LOCATIONFORBIDDEN;
-                [a show];
-//                [self.navigationController popViewControllerAnimated:YES];
-                
-            }
-                break;
-            case kCLErrorLocationUnknown:
-                //                self.usingManualLocation = YES; 
-                break;
-            default:
-                break;
-        }
-        
-    } else {
-        // We handle all non-CoreLocation errors here
-        NSLog(@"Errore Sconosciuto");
-    }
-    
+    UIAlertView *a = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"DoveSiButta necessita della tua posizione per cercare i cassonetti più vicini. Puoi abilitare o disabilitare questa scelta nelle impostazioni.", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok",nil) otherButtonTitles: nil];
+    a.tag = ALERTVIEW_LOCATIONFORBIDDEN;
+    [a show];
 }
 
-
-//
-// locationManager:didUpdateToLocation:fromLocation:
-//
-// Receives gpsLocation updates
-//
-// Parameters:
-//    manager - our gpsLocation manager
-//    newLocation - the new gpsLocation
-//    oldLocation - gpsLocation previously reported
-//
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+- (void)loadBoxes
 {
-    if(newLocation.horizontalAccuracy < 0 ) return;
+    //TODO: ensure we have the best location possible!
     
-    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
-    if (locationAge > 5.0) return;
+    CLLocation *location = [[AppState sharedInstance] currentLocation];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([location coordinate] ,1000,1000);
+    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];
+    [self.mapView setRegion:adjustedRegion animated:YES];
+    self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", location.coordinate.latitude];
+    self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", location.coordinate.longitude];
     
-    NSLog(@"updated user location: %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    if( newLocation.horizontalAccuracy >= self.locationManager.desiredAccuracy ) //TODO: MORE WORK HERE
-    {
-#if DEBUG
-        NSLog(@"Stop updating location");  
-#endif
-        // we have received our current location, so enable the "Get Current Address" button
-        [self.locationManager stopUpdatingLocation];
-//        [locationManager stopUpdatingLocation];
-        self.locationManager.delegate = nil;
-//        locationManager.delegate = nil;
-        
-        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([newLocation coordinate] ,1000,1000);        
-        MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:region];  
-        [self.mapView setRegion:adjustedRegion animated:YES];
-        self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", newLocation.coordinate.latitude];
-        self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", newLocation.coordinate.longitude];
-        
-        
-        
-        //    gpsLocationFailed = NO;
-        //    self.usingManualLocation = NO;
-        //    self.gpsLocation = userLocation.coordinate;
-        //        [self.locationManager stopUpdatingLocation]; //TODO: ok ma quando la faccio ripartire ? 
-        
-        
-        //#ifdef __IPHONE_5_0
-        //    
-        //    [geocoder reverseGeocodeLocation:userLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        //        CLPlacemark *placemark = [placemarks objectAtIndex:0];
-        //        self.country = placemark.country;
-        //        self.postCode = placemark.postalCode;
-        //        self.address = ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO);
-        //        //    NSLog(@"Address: %@, postcode %@, country %@", self.address, self.postCode, self.country);
-        //        //    NSLog(@"Address of placemark: %@", ABCreateStringWithAddressDictionary(placemark.addressDictionary, NO));
-        //        //    NSLog(@"street::::%@",[placemark thoroughfare]); //Via 
-        //        //    NSLog(@"street number::::%@",[placemark subThoroughfare]); //num civico
-        //        //    NSLog(@"postalcode %@", [placemark postalCode]);
-        //        //    NSLog(@"sublocality %@", [placemark subLocality]);  //Brescia
-        //        //    NSLog(@"locality %@", [placemark locality]); //Brescia
-        //        //    NSLog(@"administrative area::::%@",[placemark administrativeArea]); //Lombardy
-        //        //    
-        //        //    NSLog(@"streeteersub ::::%@",[placemark subAdministrativeArea]); //Province of Brescia
-        //        
-        //        for(NSString *entry in self.comuniP2P)
-        //        {
-        //            NSArray *comune = [self.comuniP2P objectForKey:entry];
-        //            if ([self.address rangeOfString:[comune objectAtIndex:0]].location != NSNotFound && [[placemark subAdministrativeArea] rangeOfString:[comune objectAtIndex:1]].location != NSNotFound) {
-        //                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:NSLocalizedString(@"Il comune in cui ti trovi effettua la raccolta differenziata porta a porta!", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok, grazie", @"") otherButtonTitles: nil];
-        //                [alert show];
-        //            }
-        //        }
-        //        
-        //        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        //        [self.navigationController.view addSubview:HUD];
-        //        HUD.delegate = self;
-        //        HUD.labelText = @"Caricamento";
-        //        [HUD show:YES];
-        //        [self retrieveBoxesForType:self.selectedType];
-        //        
-        //    }];
-        //    
-        //    
-        //#else
-        
-        HUD = [[MBProgressHUD alloc] initWithView:self.mapView];
-        [self.mapView addSubview:HUD];
-        HUD.delegate = self;
-        HUD.labelText = NSLocalizedString(@"Cerco...", @"");
-        HUD.detailsLabelText = NSLocalizedString(@"Mostro sulla mappa i cestini già inseriti", nil);
-        [HUD show:YES];
-        [self retrieveBoxesForType:self.selectedType];
-
-    }
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.mapView];
+    [self.mapView addSubview:HUD];
+    HUD.delegate = self;
+    HUD.labelText = NSLocalizedString(@"Cerco...", @"");
+    HUD.detailsLabelText = NSLocalizedString(@"Mostro sulla mappa i cestini già inseriti", nil);
+    [HUD show:YES];
+    [self retrieveBoxesForType:self.selectedType];
+    
     
 }
 

@@ -152,7 +152,6 @@
 		AC94A993158BA13D00689EFA /* icon_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A991158BA13D00689EFA /* icon_help@2x.png */; };
 		AC94A996158BA1C000689EFA /* mailicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A994158BA1C000689EFA /* mailicon@2x.png */; };
 		AC94A997158BA1C000689EFA /* twittericon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A995158BA1C000689EFA /* twittericon@2x.png */; };
-		AC94A99B158BA1C800689EFA /* Default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A998158BA1C800689EFA /* Default@2X.png */; };
 		AC94A99C158BA1C800689EFA /* NoPicture@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC94A999158BA1C800689EFA /* NoPicture@2x.jpg */; };
 		AC94A99D158BA1C800689EFA /* Sfondo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC94A99A158BA1C800689EFA /* Sfondo@2x.png */; };
 		AC97D5C81769CCAE0069F779 /* AppState.m in Sources */ = {isa = PBXBuildFile; fileRef = AC97D5C71769CCAE0069F779 /* AppState.m */; };
@@ -797,7 +796,6 @@
 		AC94A991158BA13D00689EFA /* icon_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_help@2x.png"; path = "TabIcons/icon_help@2x.png"; sourceTree = "<group>"; };
 		AC94A994158BA1C000689EFA /* mailicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mailicon@2x.png"; path = "Images/mailicon@2x.png"; sourceTree = "<group>"; };
 		AC94A995158BA1C000689EFA /* twittericon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "twittericon@2x.png"; path = "Images/twittericon@2x.png"; sourceTree = "<group>"; };
-		AC94A998158BA1C800689EFA /* Default@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2X.png"; path = "Images/Default@2X.png"; sourceTree = "<group>"; };
 		AC94A999158BA1C800689EFA /* NoPicture@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "NoPicture@2x.jpg"; path = "Images/NoPicture@2x.jpg"; sourceTree = "<group>"; };
 		AC94A99A158BA1C800689EFA /* Sfondo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Sfondo@2x.png"; path = "Images/Sfondo@2x.png"; sourceTree = "<group>"; };
 		AC97D5C61769CCAE0069F779 /* AppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppState.h; sourceTree = "<group>"; };
@@ -1294,7 +1292,6 @@
 			isa = PBXGroup;
 			children = (
 				ACB8F89414F773C50052B559 /* TabIcons */,
-				AC94A998158BA1C800689EFA /* Default@2X.png */,
 				AC94A999158BA1C800689EFA /* NoPicture@2x.jpg */,
 				AC94A99A158BA1C800689EFA /* Sfondo@2x.png */,
 				AC94A994158BA1C000689EFA /* mailicon@2x.png */,
@@ -2222,7 +2219,6 @@
 				AC94A993158BA13D00689EFA /* icon_help@2x.png in Resources */,
 				AC94A996158BA1C000689EFA /* mailicon@2x.png in Resources */,
 				AC94A997158BA1C000689EFA /* twittericon@2x.png in Resources */,
-				AC94A99B158BA1C800689EFA /* Default@2X.png in Resources */,
 				AC94A99C158BA1C800689EFA /* NoPicture@2x.jpg in Resources */,
 				AC94A99D158BA1C800689EFA /* Sfondo@2x.png in Resources */,
 				ACF7EECA15A34BE2000E7001 /* ABNotifier.bundle in Resources */,

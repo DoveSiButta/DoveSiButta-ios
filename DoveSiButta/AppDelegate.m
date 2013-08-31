@@ -12,6 +12,7 @@
 #import "MapAddViewController.h"
 #import "ChiSiamoViewController.h"
 #import "LoginViewController.h"
+#import "MySHKConfigurator.h"
 
 
 //#import "SHK.h"
@@ -84,6 +85,12 @@
     [defaults synchronize]; // this method is optional
     //DEFAULTS SETUP END
 
+    
+    //Sharekit
+    //    https://github.com/ShareKit/ShareKit/wiki/Configuration
+    DefaultSHKConfigurator *configurator = [[MySHKConfigurator alloc] init];
+    [SHKConfiguration sharedInstanceWithConfigurator:configurator];
+    
     
     // Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
     // method "reachabilityChanged" will be called. 

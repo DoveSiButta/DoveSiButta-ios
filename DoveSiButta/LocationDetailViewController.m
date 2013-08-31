@@ -299,26 +299,59 @@ titleForHeaderInSection:(NSInteger)section
         }
         else if([cell.action isEqualToString:@"findDirection"])
         {
-            NSString *sourceLocation;
-            NSString *queryType;
-            CLLocation *location = [[AppState sharedInstance] currentLocation];
-            
-            queryType = @"daddr";
-            sourceLocation =
-            [NSString stringWithFormat:@"&saddr=%f,+%f",
-            location.coordinate.latitude,
-            location.coordinate.longitude];
-                        
             
             CLLocation* fromLocation = [[AppState sharedInstance] currentLocation];
             
-            // Create a region centered on the starting point with a 10km span
-            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(fromLocation.coordinate, 10000, 10000);
+            // Check for iOS 6
+            Class mapItemClass = [MKMapItem class];
+            if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)])
+            {
+                // Create an MKMapItem to pass to the Maps app
+                CLLocationCoordinate2D coordinate =
+                CLLocationCoordinate2DMake([[selectedBox getLatitude] doubleValue], [[selectedBox getLongitude] doubleValue]);
+                MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate
+                                                               addressDictionary:nil];
+                MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+                [mapItem setName:[selectedBox getTitle]];
+                
+                // Set the directions mode to "Walking"
+                // Can use MKLaunchOptionsDirectionsModeDriving instead
+                NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking};
+                // Get the "Current User Location" MKMapItem
+                MKMapItem *currentLocationMapItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:fromLocation.coordinate addressDictionary:nil]];
+//                MKMapItem *currentLocationMapItem = [MKMapItem mapItemForCurrentLocation];
+                // Pass the current location and destination map items to the Maps app
+                // Set the direction mode in the launchOptions dictionary
+                [MKMapItem openMapsWithItems:@[currentLocationMapItem, mapItem]
+                               launchOptions:launchOptions];
+            }
+            else{
+                NSString *sourceLocation;
+                NSString *queryType;
+                CLLocation *location = [[AppState sharedInstance] currentLocation];
+                
+                queryType = @"daddr";
+                sourceLocation =
+                [NSString stringWithFormat:@"&saddr=%f,+%f",
+                 location.coordinate.latitude,
+                 location.coordinate.longitude];
+                
+                NSString *urlString =
+                [NSString stringWithFormat:
+                 @"http://maps.google.com/maps?%@=%@%@",
+                 queryType,
+                 (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                              nil,
+                                                                              (__bridge CFStringRef)[selectedBox getAddress],
+                                                                              nil,
+                                                                              (__bridge CFStringRef)@"&=",
+                                                                              kCFStringEncodingUTF8)
+                 ,
+                 sourceLocation];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+
+            }
             
-            [MKMapItem openMapsWithItems:[NSArray arrayWithObject:fromLocation]
-                           launchOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                          [NSValue valueWithMKCoordinate:region.center], MKLaunchOptionsMapCenterKey,
-                                          [NSValue valueWithMKCoordinateSpan:region.span], MKLaunchOptionsMapSpanKey, nil]];
             
         }
         else if ([cell.action isEqualToString:@"showRSVP"])

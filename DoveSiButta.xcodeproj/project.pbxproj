@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AC0437711524481500B09A6E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC04376F1524481500B09A6E /* HelpViewController.m */; };
 		AC0437721524481500B09A6E /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0437701524481500B09A6E /* HelpViewController.xib */; };
+		AC11F7B717D380E600E43279 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC11F7B617D380E600E43279 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DB14FD8CAF001A4256 /* Sfondo.png */; };
 		AC1247E214FD8D9D001A4256 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247E014FD8D9D001A4256 /* Logo.png */; };
 		AC2CED4915075DE2001C1280 /* libMSODataLib4.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */; };
@@ -185,7 +186,7 @@
 		ACBC5654176FBE5500C9993B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5653176FBE5500C9993B /* Accelerate.framework */; };
 		ACBC5656176FBE5D00C9993B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5655176FBE5D00C9993B /* AssetsLibrary.framework */; };
 		ACBC5658176FBE6300C9993B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5657176FBE6300C9993B /* ImageIO.framework */; };
-		ACBC565A176FBE6C00C9993B /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5659176FBE6C00C9993B /* CoreImage.framework */; };
+		ACBC565A176FBE6C00C9993B /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5659176FBE6C00C9993B /* CoreImage.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		ACC0195B1769E0DF00E8886D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC0195A1769E0DF00E8886D /* QuartzCore.framework */; };
 		ACC5830C14E462BD005C72D3 /* LocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC5830D14E462BD005C72D3 /* LocationDetailViewController.m */; };
 		ACC5830E14E462CA005C72D3 /* LocationAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC5830F14E462CA005C72D3 /* LocationAddViewController.m */; };
@@ -235,6 +236,7 @@
 		AC04376E1524481500B09A6E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		AC04376F1524481500B09A6E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		AC0437701524481500B09A6E /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		AC11F7B617D380E600E43279 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		AC1247DB14FD8CAF001A4256 /* Sfondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sfondo.png; path = Images/Sfondo.png; sourceTree = "<group>"; };
 		AC1247E014FD8D9D001A4256 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Images/Logo.png; sourceTree = "<group>"; };
 		AC2CED4815075DE2001C1280 /* libMSODataLib4.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMSODataLib4.1.a; path = DoveSiButta/libMSODataLib4.1.a; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC11F7B717D380E600E43279 /* Social.framework in Frameworks */,
 				ACBC565A176FBE6C00C9993B /* CoreImage.framework in Frameworks */,
 				ACBC5658176FBE6300C9993B /* ImageIO.framework in Frameworks */,
 				ACBC5656176FBE5D00C9993B /* AssetsLibrary.framework in Frameworks */,
@@ -840,6 +843,7 @@
 		AC66CEF014C246410098E1F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC11F7B617D380E600E43279 /* Social.framework */,
 				AC303F7A17C4DE5800875910 /* libFlurry_4.2.3.a */,
 				ACC0195A1769E0DF00E8886D /* QuartzCore.framework */,
 				ACBC565C176FBE8600C9993B /* For NYXImageKit */,

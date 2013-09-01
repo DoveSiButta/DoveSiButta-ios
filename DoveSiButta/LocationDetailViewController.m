@@ -12,8 +12,8 @@
 #import "DetailDisclosureCell.h"
 #import "NibLoadedCell.h"
 #import "PictureFileViewController.h"
-
-#import "SHK.h"
+#import <Social/Social.h>
+#import <Twitter/Twitter.h>
 
 @implementation LocationDetailViewController
 @synthesize selectedBox;
@@ -70,13 +70,27 @@
     // Create the item to share (in this example, a url)
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.dovesibutta.com/%@",[self.selectedBox getBoxID]]];
 
-	SHKItem *item = [SHKItem URL:url title:@"Ho appena trovato il cestino della raccolta differenziata che stavo cercando grazie a DoveSiButta!"];
+    NSString *message = NSLocalizedString(@"Ho scoperto dove differenziare la raccolta correttamente grazie a @DoveSiButta! www.dovesibutta.com", nil);
+    // method #1 - weak linking
+    if ([SLRequest class] != Nil) {
+        // Social.framework is available
+    SLComposeViewController*fvc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [fvc setInitialText:message];
+
+    [self presentViewController:fvc animated:YES completion:nil];
+    }
+    else
+    {
+        if ([TWTweetComposeViewController canSendTweet])
+        {
+            TWTweetComposeViewController *tweetSheet =
+            [[TWTweetComposeViewController alloc] init];
+            [tweetSheet setInitialText:message];
+            [self presentModalViewController:tweetSheet animated:YES];
+        }
+    }
+
     
-	// Get the ShareKit action sheet
-	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-    
-	// Display the action sheet
-	[actionSheet showFromToolbar:self.navigationController.toolbar];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

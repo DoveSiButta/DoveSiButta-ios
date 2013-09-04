@@ -13,8 +13,6 @@
     #import <Foundation/Foundation.h>
     #import "CDeviceSupport.h"
     #import "UIDeviceHardware.h"
-    #import <CoreData/CoreData.h>
-    #import "CoreData+MagicalRecord.h"
     #import "Reachability.h"
     #import "Secret.h"
     #import "AppState.h"

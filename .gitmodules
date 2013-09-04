@@ -7,9 +7,6 @@
 [submodule "foursquare-ios-api"]
 	path = foursquare-ios-api
 	url = https://github.com/baztokyo/foursquare-ios-api.git
-[submodule "MagicalRecord"]
-	path = MagicalRecord
-	url = https://github.com/magicalpanda/MagicalRecord.git
 [submodule "asi-http-request"]
 	path = asi-http-request
 	url = https://github.com/pokeb/asi-http-request.git

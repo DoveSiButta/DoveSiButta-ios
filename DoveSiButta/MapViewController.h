@@ -11,7 +11,7 @@
 #import "DoveSiButtaEntities.h"
 
 //HUD
-#import "MBProgressHUD.h"
+#import "SVProgressHUD.h"
 
 //For reverse geocoder to get address string correctly
 #import <AddressBookUI/AddressBookUI.h>
@@ -26,7 +26,7 @@
 //#ifdef __IPHONE_5_0
 //@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate, UIAlertViewDelegate> 
 //#else
-@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate, LocationAddViewControllerDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate, LocationAddViewControllerDelegate>
 //#endif
 
 {

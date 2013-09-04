@@ -135,12 +135,8 @@
         [alert show];
         return;
     }
-            
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    HUD.delegate = self;
-    HUD.labelText = @"Caricamento";
-    [self.navigationController.view addSubview:HUD];
-    [HUD show:YES];
+    
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Caricamento", @"Caricamento") maskType:SVProgressHUDMaskTypeBlack];
     
     NSString *boxType = [[NSString alloc] init];
     for(NSString *s in self.setTypes)
@@ -188,7 +184,7 @@
         
         [proxy saveChanges];
        
-        [HUD hide:YES afterDelay:1];
+        [SVProgressHUD dismiss];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Grazie!", @"") message:NSLocalizedString(@"Caricamento effettuato con successo", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
         [alert setTag:AlertViewOk];
         [alert show];
@@ -196,7 +192,7 @@
 
     }
     @catch (NSException *exception) {
-        [HUD hide:YES];
+        [SVProgressHUD showErrorWithStatus:nil];
         NSLog(@"Errore: %@:%@",exception.name, exception.reason);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento della foto.(%@)", @""),[exception reason]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
         NSLog(@"%@", [exception description]);
@@ -204,7 +200,8 @@
         [alert show];
     }
     @finally {
-        [HUD hide:YES afterDelay:1];
+        [SVProgressHUD dismiss];
+        
     }
         
 

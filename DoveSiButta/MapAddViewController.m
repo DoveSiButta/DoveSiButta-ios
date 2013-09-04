@@ -29,7 +29,6 @@
 
 @interface MapAddViewController ()
 
-@property (nonatomic, strong) MBProgressHUD *HUD;
 @property (nonatomic, strong) MKReverseGeocoder* reverseGeocoder;
 @property (nonatomic, strong) NSMutableArray* results;
 @property (nonatomic, strong) DoveSiButtaModel_Box *selectedResult;
@@ -45,7 +44,6 @@
 @synthesize comuniP2P;
 @synthesize buttonAdd, buttonRefresh;
 
-@synthesize HUD;
 @synthesize reverseGeocoder;
 @synthesize results;
 @synthesize selectedResult;
@@ -252,8 +250,8 @@
     }
     
     
-    self.HUD.labelText = [NSString stringWithFormat: @"Completato"];
-    [self.HUD hide:YES afterDelay:1];
+
+    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Completato", @"Completato")];
     
     [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
     for (DoveSiButtaModel_Box *aResult in results)
@@ -506,12 +504,8 @@
     self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", location.coordinate.longitude];
     
     
-    HUD = [[MBProgressHUD alloc] initWithView:self.mapView];
-    [self.mapView addSubview:HUD];
-    HUD.delegate = self;
-    HUD.labelText = NSLocalizedString(@"Cerco...", @"");
-    HUD.detailsLabelText = NSLocalizedString(@"Mostro sulla mappa i cestini già inseriti", nil);
-    [HUD show:YES];
+
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Caricamento", @"Caricamento") maskType:SVProgressHUDMaskTypeBlack];
     [self retrieveBoxesForType:self.selectedType];
     
     

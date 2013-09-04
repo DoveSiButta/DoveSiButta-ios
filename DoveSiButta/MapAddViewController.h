@@ -11,7 +11,7 @@
 #import "DoveSiButtaEntities.h"
 
 //HUD
-#import "MBProgressHUD.h"
+#import "SVProgressHUD.h"
 
 //For reverse geocoder to get address string correctly
 #import <AddressBookUI/AddressBookUI.h>
@@ -23,7 +23,7 @@
 #import "TileOverlay.h"
 #import "TileOverlayView.h"
 
-@interface MapAddViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MBProgressHUDDelegate,MKReverseGeocoderDelegate, UIAlertViewDelegate, LocationAddViewControllerDelegate>
+@interface MapAddViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate, UIAlertViewDelegate, LocationAddViewControllerDelegate>
 {
 //    NSMutableArray *results;
 //    DoveSiButtaModel_Box *selectedResult;

@@ -34,8 +34,6 @@
 @property(nonatomic, strong) NSMutableArray *results;
 @property(nonatomic, strong) DoveSiButtaModel_Box *selectedResult;
 
-@property(nonatomic, strong)MBProgressHUD *HUD;
-
 //For location
 //@property (nonatomic) CLLocationCoordinate2D gpsLocation;
 
@@ -55,7 +53,6 @@
 @synthesize buttonAdd;
 
 @synthesize results;
-@synthesize HUD;
 @synthesize reverseGeocoder;
 @synthesize selectedResult;
 @synthesize overlay; //OSM
@@ -155,8 +152,7 @@
     }
     
     
-    HUD.labelText = [NSString stringWithFormat: @"Completato"];
-    [HUD hide:YES afterDelay:1];
+    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Completato", @"Completato caricamento")];
 
     [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
     for (DoveSiButtaModel_Box *aResult in results)
@@ -221,8 +217,7 @@
         NSLog(@"exception = %@, %@",[e name],[e reason]);
     }
     
-    HUD.labelText = [NSString stringWithFormat: @"Completato"];
-    [HUD hide:YES afterDelay:1];
+    [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Completato", @"Completato")];
     
     [self.mapView removeAnnotations:self.mapView.annotations];  // remove any annotations that exist
     for (DoveSiButtaModel_Box *aResult in results)
@@ -581,11 +576,7 @@
     self.buttonLat.title = [NSString stringWithFormat:@"Lat %.3f", location.coordinate.latitude];
     self.buttonLon.title = [NSString stringWithFormat:@"Lon %.3f", location.coordinate.longitude];
     
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    HUD.delegate = self;
-    HUD.labelText = @"Caricamento";
-    [HUD show:YES];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Caricamento", @"Caricamento") maskType:SVProgressHUDMaskTypeBlack];
 
     [self retrieveBoxesForType:self.selectedType];
 

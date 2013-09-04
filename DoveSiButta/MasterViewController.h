@@ -11,14 +11,13 @@
 
 
 //ProgressHUD
-#import "MBProgressHUD.h"
 
 //Cells
 #import "ApplicationCell.h"
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate>
+@interface MasterViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 {   
     
     UIBarButtonItem *configButton;
@@ -32,9 +31,6 @@
     NSString		*savedSearchTerm;
     NSInteger		savedScopeButtonIndex;
     BOOL			searchWasActive;
-    
-    //ProgressHUD
-    MBProgressHUD *HUD;
     
     //Cells
   	ApplicationCell * tmpCell;

@@ -25,7 +25,7 @@
 #import "DoveSiButtaEntities.h"
 
 //HUD
-#import "MBProgressHUD.h"
+#import "SVProgressHUD.h"
 
 #import "NSData+Base64.h"
 
@@ -262,7 +262,7 @@
         NSLog(@"%@ %@", exception.name, exception.reason);
     }
     @finally {
-        [HUD hide:YES afterDelay:1];
+        [SVProgressHUD dismiss];
     }
 
 
@@ -275,16 +275,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    HUD.delegate = self;
-    HUD.labelText = @"Caricamento";
-    [self.navigationController.view addSubview:HUD];
-    [HUD show:YES];
+
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Caricamento", @"Caricamento") maskType:SVProgressHUDMaskTypeBlack];
     //        [self retrieveDinnersWithAddress:self.address];
     //        [self retrieveDinners];
     [self getPictureFile];
-    [HUD hide:YES afterDelay:1];
-    
+    [SVProgressHUD dismiss];
 }
 
 - (void)viewDidUnload

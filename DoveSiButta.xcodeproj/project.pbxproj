@@ -180,6 +180,8 @@
 		ACE8853E14CECE880004B9DF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853714CECE880004B9DF /* Icon.png */; };
 		ACE8853F14CECE880004B9DF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853814CECE880004B9DF /* Icon@2x.png */; };
 		ACE8854014CECE880004B9DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853914CECE880004B9DF /* iTunesArtwork */; };
+		ACF6475117D7CB0600EF9806 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ACF6474E17D7CB0600EF9806 /* SVProgressHUD.bundle */; };
+		ACF6475217D7CB0600EF9806 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF6475017D7CB0600EF9806 /* SVProgressHUD.m */; };
 		ACF7EEC315A34BE2000E7001 /* GCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEA915A34BE2000E7001 /* GCAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ACF7EEC415A34BE2000E7001 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEAD15A34BE2000E7001 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ACF7EEC515A34BE2000E7001 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB015A34BE2000E7001 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -495,6 +497,9 @@
 		ACE8853714CECE880004B9DF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		ACE8853814CECE880004B9DF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		ACE8853914CECE880004B9DF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Images/App_Icon/iTunesArtwork; sourceTree = "<group>"; };
+		ACF6474E17D7CB0600EF9806 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		ACF6474F17D7CB0600EF9806 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		ACF6475017D7CB0600EF9806 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		ACF7EEA815A34BE2000E7001 /* GCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAlertView.h; sourceTree = "<group>"; };
 		ACF7EEA915A34BE2000E7001 /* GCAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAlertView.m; sourceTree = "<group>"; };
 		ACF7EEAC15A34BE2000E7001 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
@@ -878,6 +883,7 @@
 				ACBC5621176FBE4800C9993B /* NYXImagesKit.xcodeproj */,
 				AC97D61F1769CF730069F779 /* SSKeychain.h */,
 				AC97D6201769CF730069F779 /* SSKeychain.m */,
+				ACF6474D17D7CB0600EF9806 /* SVProgressHUD */,
 				AC97D5DC1769CDEC0069F779 /* OData */,
 				AC9308B6171FF45400141533 /* OSM */,
 				ACF7EEA615A34BE2000E7001 /* Airbrake */,
@@ -1067,6 +1073,17 @@
 			);
 			name = App_Icon;
 			path = Images/App_Icon;
+			sourceTree = "<group>";
+		};
+		ACF6474D17D7CB0600EF9806 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				ACF6474E17D7CB0600EF9806 /* SVProgressHUD.bundle */,
+				ACF6474F17D7CB0600EF9806 /* SVProgressHUD.h */,
+				ACF6475017D7CB0600EF9806 /* SVProgressHUD.m */,
+			);
+			name = SVProgressHUD;
+			path = SVProgressHUD/SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		ACF7EEA615A34BE2000E7001 /* Airbrake */ = {
@@ -1324,6 +1341,7 @@
 				AC97D5D21769CCDC0069F779 /* Default-568h@2x.png in Resources */,
 				ACB958A517D15C9B007FB821 /* Brescia.gpx in Resources */,
 				ACB958A617D15C9B007FB821 /* Milano.gpx in Resources */,
+				ACF6475117D7CB0600EF9806 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1421,6 +1439,7 @@
 				AC97D61D1769CDEC0069F779 /* NSData+Base64.m in Sources */,
 				AC97D61E1769CDEC0069F779 /* XPathQuery.m in Sources */,
 				AC97D6211769CF730069F779 /* SSKeychain.m in Sources */,
+				ACF6475217D7CB0600EF9806 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

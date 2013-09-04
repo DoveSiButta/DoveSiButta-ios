@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MBProgressHUD.h"
+#import "SVProgressHUD.h"
 
 
-@interface PictureFileViewController : UIViewController <MBProgressHUDDelegate>
+@interface PictureFileViewController : UIViewController
 {
-    MBProgressHUD *HUD;
 }
 @property (strong, nonatomic) NSNumber* selectedItem;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;

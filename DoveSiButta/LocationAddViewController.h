@@ -7,7 +7,7 @@
 //
 
 #import "PageViewController.h"
-#import "MBProgressHUD.h"
+#import "SVProgressHUD.h"
 //Service
 #import "DoveSiButtaEntities.h"
 
@@ -16,9 +16,8 @@
 - (void)addLocationDidFinishWithCode:(int)finishCode;
 @end
 
-@interface LocationAddViewController : PageViewController <MBProgressHUDDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
+@interface LocationAddViewController : PageViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 {
-    MBProgressHUD *HUD;
     id <LocationAddViewControllerDelegate>  delegate;
 }
 

@@ -13,3 +13,6 @@
 [submodule "sskeychain"]
 	path = sskeychain
 	url = https://github.com/samsoffes/sskeychain.git
+[submodule "SVProgressHUD"]
+	path = SVProgressHUD
+	url = https://github.com/samvermette/SVProgressHUD.git

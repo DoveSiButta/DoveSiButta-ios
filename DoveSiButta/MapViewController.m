@@ -256,20 +256,11 @@
 #pragma mark - View lifecycle
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-//    CLLocationCoordinate2D coord = {latitude: 45.53189, longitude: 10.21727};
-//    MKCoordinateSpan span = {latitudeDelta: 1, longitudeDelta: 1};
-//    MKCoordinateRegion region = {coord, span};
-//    [mapView setRegion:region];
-
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self loadBoxes];
+
 }
 
 - (void)viewDidLoad
@@ -343,7 +334,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleLocationServiceFailure:) name:kLocationServicesFailure object:nil];
     
-    [self loadBoxes];
     
 }
 

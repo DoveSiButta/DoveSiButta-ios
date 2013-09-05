@@ -71,11 +71,9 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    
-    //TODO: mettere qui un refresh (ho messo getLocation: andrà bene?)
+    [super viewDidAppear:animated];
     
     [self getLocation];
 }
@@ -163,13 +161,6 @@
 
     
    }
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -494,7 +485,6 @@
 
 - (void)loadBoxes
 {
-    //TODO: ensure we have the best location possible!
     
     CLLocation *location = [[AppState sharedInstance] currentLocation];
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([location coordinate] ,1000,1000);

@@ -42,38 +42,29 @@
     //Imposto l'URL del servizio una volta sola nella app
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 #if TARGET_IPHONE_SIMULATOR
-//    NSString *storedVal = @"http://192.168.138.2/Services/OData.svc/"; 
-//    NSString *key = @"serviceURI"; // the key for the data
-//    [defaults setObject:storedVal forKey:key];
-//    storedVal = @"192.168.138.2";  //@"http://192.168.138.2/Services/OData.svc/"; 
-//    key = @"serviceHost"; // the key for the data
-//    [defaults setObject:storedVal forKey:key];
-//    storedVal = @"http://192.168.138.2";
-//    key = @"appURI"; // the key for the base app uri
-//    [defaults setObject:storedVal forKey:key];
-//    storedVal = @"http://192.168.138.2/Pictures/";
-//    key = @"picturesURI"; // the key for the pictures path
-//    [defaults setObject:storedVal forKey:key];
-    NSString *storedVal = @"http://www.dovesibutta.com/Services/OData.svc/";  //@"http://192.168.138.2/Services/OData.svc/"; 
+    NSString *storedVal = @"http://www.dovesibutta.com/Services/OData.svc/";
+//    NSString *storedVal = @"http://SIG-05X/Services/OData.svc/";
     NSString *key = @"serviceURI"; // the key for the data
     [defaults setObject:storedVal forKey:key];
-    storedVal = @"www.dovesibutta.com";  //@"http://192.168.138.2/Services/OData.svc/"; 
+    storedVal = @"http://www.dovesibutta.com";
+//    storedVal = @"http://SIG-05X";
     key = @"serviceHost"; // the key for the data
     [defaults setObject:storedVal forKey:key];
-    storedVal = @"http://www.dovesibutta.com"; //@"http://192.168.138.2";
+    storedVal = @"http://www.dovesibutta.com";
+//    storedVal = @"SIG-05X";
     key = @"appURI"; // the key for the base app uri
     [defaults setObject:storedVal forKey:key];    
     storedVal = @"http://www.dovesibutta.com/Pictures/";
     key = @"picturesURI"; // the key for the pictures path
     [defaults setObject:storedVal forKey:key];
 #else
-    NSString *storedVal = @"http://www.dovesibutta.com/Services/OData.svc/";  //@"http://192.168.138.2/Services/OData.svc/"; 
+    NSString *storedVal = @"http://www.dovesibutta.com/Services/OData.svc/";
     NSString *key = @"serviceURI"; // the key for the data
     [defaults setObject:storedVal forKey:key];
-    storedVal = @"www.dovesibutta.com";  //@"http://192.168.138.2/Services/OData.svc/"; 
+    storedVal = @"www.dovesibutta.com"; 
     key = @"serviceHost"; // the key for the data
     [defaults setObject:storedVal forKey:key];
-    storedVal = @"http://www.dovesibutta.com"; //@"http://192.168.138.2";
+    storedVal = @"http://www.dovesibutta.com"; 
     key = @"appURI"; // the key for the base app uri
     [defaults setObject:storedVal forKey:key];    
     storedVal = @"http://www.dovesibutta.com/Pictures/";
@@ -86,18 +77,19 @@
 
 
     
-    
+#if !TARGET_IPHONE_SIMULATOR
     // Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
-    // method "reachabilityChanged" will be called. 
+    // method "reachabilityChanged" will be called.
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
     hostReach = [Reachability reachabilityWithHostName: [defaults objectForKey:@"serviceHost"]];
     NSLog(@"serviceHost %@ ",[defaults objectForKey:@"serviceHost"]);
     [hostReach startNotifier];
+#endif
+
     
     
     //Start location services
-    [[AppState sharedInstance] stopLocationServices];
-
+    [[AppState sharedInstance] startLocationServices];
 
     
     self.noConnectionViewController = [[NoConnectionViewController alloc] initWithNibName:@"NoConnectionViewController" bundle:nil];

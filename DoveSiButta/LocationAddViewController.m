@@ -151,7 +151,7 @@
     NSString *serviceURI= [defaults objectForKey:@"serviceURI"];
 
     
-    NSString *udid = [[AppState sharedInstance] uniqueIdentifier]; //[[UIDevice currentDevice] uniqueDeviceIdentifier]; //Already hashed
+    NSString *udid = [[AppState sharedInstance] uniqueIdentifier]; 
     [myNewItem setContactPhone:udid ];
     [myNewItem setBoxType:boxType];
     [myNewItem setDescription:@"Inviata con la App per iPhone DoveSiButta"];
@@ -194,7 +194,7 @@
     @catch (NSException *exception) {
         [SVProgressHUD showErrorWithStatus:nil];
         NSLog(@"Errore: %@:%@",exception.name, exception.reason);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento della foto.(%@)", @""),[exception reason]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento del nuovo elemento.(%@)", @""),[exception reason]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
         NSLog(@"%@", [exception description]);
         [alert setTag:AlertViewGeneralError];
         [alert show];

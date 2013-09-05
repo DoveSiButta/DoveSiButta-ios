@@ -8,6 +8,7 @@
 
 #import "AppState.h"
 #import "SSKeychain.h"
+#import "NSString+MD5.h"
 
 NSString* const kLocationServicesFailure = @"kLocationServicesFailure";
 NSString* const kLocationServicesGotBestAccuracyLocation = @"kLocationServicesGotBestAccuracyLocation";
@@ -36,7 +37,7 @@ NSString* const kLocationServicesGotBestAccuracyLocation = @"kLocationServicesGo
         // this is the one time process
         deviceID = uuid;
     }
-    return deviceID;
+    return [deviceID md5]; //To be safe that it will be < 32 characters
 }
 
 - (NSString *)createNewUUID {

@@ -26,7 +26,6 @@
 @property (strong, nonatomic) NSMutableArray* selectedTypes;
 @property (strong, nonatomic) NSMutableSet* setTypes;
 
-//- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize;
 @property (nonatomic, strong) id <LocationAddViewControllerDelegate> delegate;
 
 @end

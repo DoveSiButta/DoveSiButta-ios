@@ -216,8 +216,6 @@
                 [self.results addObject:p];
 //            }
             
-            //TODO: se non c'è nessun cestino, visualizzare il messaggio "come mai non c'è nessun cestino?" e quindi spiegare come funziona la app
-            
             
         }
     }
@@ -415,7 +413,13 @@
     
     //TODO: se la country != Italy --- > non abilitare il tasto "aggiungi" !!!
     
-    
+    NSString *countryCodeLabel = placemark.countryCode;
+    if(![countryCodeLabel isEqualToString:@"IT"])    {
+        //Non è in Italia!
+        [self.buttonAdd setEnabled:NO];
+        UIAlertView *abroadAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione!", @"Attenzione!") message:NSLocalizedString(@"DoveSiButta funziona solo in Italia! Per ora puoi aggiungere nuovi cestini solo sul territorio nazionale!", @"DoveSiButta funziona solo in Italia! Per ora puoi aggiungere cestini solo sul territorio nazionale! ") delegate:self cancelButtonTitle:NSLocalizedString(@"Peccato!", @"Peccato!") otherButtonTitles: nil];
+    }
+    else{
     //TODO: dove metto la segnalazione del comune raccolta P2P ? E rifare questo codice
 //    for(NSString *entry in self.comuniP2P)
 //    {
@@ -428,39 +432,39 @@
 //    }
     
     
-    LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
-    
-    DoveSiButtaModel_Box *newItem = [[DoveSiButtaModel_Box alloc] init];
-    if( [self.address length] > 50)
-    {
-        NSString *shortTitle = [self.address substringToIndex:49];
-        [newItem setTitle:shortTitle ];
+        LocationAddViewController *addVC = [[LocationAddViewController alloc] init];
+        
+        DoveSiButtaModel_Box *newItem = [[DoveSiButtaModel_Box alloc] init];
+        if( [self.address length] > 50)
+        {
+            NSString *shortTitle = [self.address substringToIndex:49];
+            [newItem setTitle:shortTitle ];
+        }
+        else
+        {
+            [newItem setTitle:self.address ];
+        }
+        
+        
+        [newItem setAddress:self.address];
+        [newItem setCountry:self.country];
+        [newItem setHostedBy:@""];
+        [newItem setEventDate:[NSDate date]];
+        
+        
+        CLLocationCoordinate2D location = [[AppState sharedInstance] currentLocation].coordinate;
+        NSLocale *locale = [NSLocale currentLocale];
+        
+        [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
+        [newItem setLongitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale] ];
+        
+        addVC.myNewItem = newItem;
+        
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
+        
+        [self presentModalViewController:navController animated:YES];
+        [addVC setDelegate:self];
     }
-    else
-    {
-        [newItem setTitle:self.address ];
-    }
-    
-    
-    [newItem setAddress:self.address];
-    [newItem setCountry:self.country];
-    [newItem setHostedBy:@""];
-    [newItem setEventDate:[NSDate date]];
-    
-    
-    CLLocationCoordinate2D location = [[AppState sharedInstance] currentLocation].coordinate;
-    NSLocale *locale = [NSLocale currentLocale];
-    
-    [newItem setLatitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.latitude]  descriptionWithLocale:locale] locale:locale]];
-    [newItem setLongitude:[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithFloat:location.longitude] descriptionWithLocale:locale] locale:locale] ];
-    
-    addVC.myNewItem = newItem;
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addVC];
-    
-    [self presentModalViewController:navController animated:YES];
-    [addVC setDelegate:self];
-    
     
 }
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error

@@ -159,6 +159,7 @@
 		ACBC5656176FBE5D00C9993B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5655176FBE5D00C9993B /* AssetsLibrary.framework */; };
 		ACBC5658176FBE6300C9993B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5657176FBE6300C9993B /* ImageIO.framework */; };
 		ACBC565A176FBE6C00C9993B /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBC5659176FBE6C00C9993B /* CoreImage.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		ACBDD48A180089D800970C0E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACBDD489180089D700970C0E /* Images.xcassets */; };
 		ACC0195B1769E0DF00E8886D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC0195A1769E0DF00E8886D /* QuartzCore.framework */; };
 		ACC5830C14E462BD005C72D3 /* LocationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC5830D14E462BD005C72D3 /* LocationDetailViewController.m */; };
 		ACC5830E14E462CA005C72D3 /* LocationAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC5830F14E462CA005C72D3 /* LocationAddViewController.m */; };
@@ -322,7 +323,6 @@
 		AC66CEF314C246410098E1F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AC66CEF514C246410098E1F1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AC66CEF914C246410098E1F1 /* DoveSiButta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DoveSiButta-Info.plist"; sourceTree = "<group>"; };
-		AC66CEFB14C246410098E1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AC66CEFD14C246410098E1F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC66CEFF14C246410098E1F1 /* DoveSiButta-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoveSiButta-Prefix.pch"; sourceTree = "<group>"; };
 		AC66CF0014C246410098E1F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -336,7 +336,6 @@
 		AC66D00D14C24B6C0098E1F1 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		AC66D00E14C24B6C0098E1F1 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		AC66D00F14C24B6C0098E1F1 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
-		AC66D01614C24BB70098E1F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/RifiutiTypes.plist; sourceTree = "<group>"; };
 		AC66D01914C24BD60098E1F1 /* ApplicationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationCell.h; path = DoveSiButta/CustomTableViewCells/ApplicationCell.h; sourceTree = "<group>"; };
 		AC66D01A14C24BD60098E1F1 /* ApplicationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationCell.m; path = DoveSiButta/CustomTableViewCells/ApplicationCell.m; sourceTree = "<group>"; };
 		AC66D01B14C24BD60098E1F1 /* CompositeSubviewBasedApplicationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompositeSubviewBasedApplicationCell.h; path = DoveSiButta/CustomTableViewCells/CompositeSubviewBasedApplicationCell.h; sourceTree = "<group>"; };
@@ -368,7 +367,6 @@
 		AC94A909158A4FCD00689EFA /* mailicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mailicon.png; path = Images/mailicon.png; sourceTree = "<group>"; };
 		AC94A90B158A4FCD00689EFA /* twittericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twittericon.png; path = Images/twittericon.png; sourceTree = "<group>"; };
 		AC94A918158A547500689EFA /* icon144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon144.png; path = ../../../icon144.png; sourceTree = "<group>"; };
-		AC94A930158AF58D00689EFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AC94A933158AF59900689EFA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AC94A990158BA13D00689EFA /* icon_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_help.png; path = TabIcons/icon_help.png; sourceTree = "<group>"; };
 		AC94A991158BA13D00689EFA /* icon_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_help@2x.png"; path = "TabIcons/icon_help@2x.png"; sourceTree = "<group>"; };
@@ -475,6 +473,7 @@
 		ACBC5655176FBE5D00C9993B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		ACBC5657176FBE6300C9993B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		ACBC5659176FBE6C00C9993B /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		ACBDD489180089D700970C0E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ACC0195A1769E0DF00E8886D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ACC5830D14E462BD005C72D3 /* LocationDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationDetailViewController.m; sourceTree = "<group>"; };
 		ACC5830F14E462CA005C72D3 /* LocationAddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationAddViewController.m; sourceTree = "<group>"; };
@@ -725,6 +724,7 @@
 				ACA1A98B16E50C1800430B47 /* LoginViewController.m */,
 				ACA1A98C16E50C1800430B47 /* LoginViewController.xib */,
 				AC66CFF214C249A80098E1F1 /* Resources */,
+				ACBDD489180089D700970C0E /* Images.xcassets */,
 				AC66CEF814C246410098E1F1 /* Supporting Files */,
 			);
 			path = DoveSiButta;
@@ -1194,6 +1194,11 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Giovanni Maggini";
+				TargetAttributes = {
+					AC66CEEC14C246400098E1F1 = {
+						DevelopmentTeam = ZPTT5KP29C;
+					};
+				};
 			};
 			buildConfigurationList = AC66CEE714C246400098E1F1 /* Build configuration list for PBXProject "DoveSiButta" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1244,6 +1249,7 @@
 				AC66D02E14C24BD60098E1F1 /* LightBackground.png in Resources */,
 				AC66D03014C24BD60098E1F1 /* StarsBackground.png in Resources */,
 				AC66D03114C24BD60098E1F1 /* StarsForeground.png in Resources */,
+				ACBDD48A180089D800970C0E /* Images.xcassets in Resources */,
 				AC66D06514C24E850098E1F1 /* License.rtf in Resources */,
 				AC66D09214C3862E0098E1F1 /* IconForType.plist in Resources */,
 				ACE882B314CC6D910004B9DF /* PictureFileViewController.xib in Resources */,
@@ -1449,7 +1455,6 @@
 		AC66CEFA14C246410098E1F1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AC66CEFB14C246410098E1F1 /* en */,
 				AC5BEDBC174D0C520067F08F /* it */,
 			);
 			name = InfoPlist.strings;
@@ -1458,7 +1463,6 @@
 		AC66D01514C24BB70098E1F1 /* RifiutiTypes.plist */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AC66D01614C24BB70098E1F1 /* en */,
 				AC8780F214E3BBFE004915C6 /* it */,
 			);
 			name = RifiutiTypes.plist;
@@ -1467,7 +1471,6 @@
 		AC94A931158AF58D00689EFA /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AC94A930158AF58D00689EFA /* en */,
 				AC94A933158AF59900689EFA /* it */,
 			);
 			name = Localizable.strings;
@@ -1533,7 +1536,11 @@
 		AC66CF1214C246410098E1F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
@@ -1549,6 +1556,7 @@
 					/Users/giovanni/Workspaces/Xcode/apps/dovesibuttaiphone/DoveSiButta,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -1558,8 +1566,11 @@
 		AC66CF1314C246410098E1F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
@@ -1575,6 +1586,7 @@
 					/Users/giovanni/Workspaces/Xcode/apps/dovesibuttaiphone/DoveSiButta,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;

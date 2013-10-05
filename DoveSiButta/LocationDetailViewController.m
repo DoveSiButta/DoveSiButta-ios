@@ -208,7 +208,7 @@
 */
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              NSLocalizedString(@"Address", @""),
+                              NSLocalizedString(@"Indirizzo", @""),
                               @"label",
                               [NSString stringWithFormat:@"%@",[selectedBox getAddress] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
@@ -219,7 +219,7 @@
                withAnimation:UITableViewRowAnimationNone];
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              NSLocalizedString(@"Country", @""),
+                              NSLocalizedString(@"Nazione", @"Nazione"),
                               @"label",
                               [NSString stringWithFormat:@"%@",[selectedBox getCountry] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
@@ -241,7 +241,7 @@
     [self addSectionAtIndex:2 withAnimation:UITableViewRowAnimationNone];
     [self appendRowToSection:2 cellClass:[DetailDisclosureCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
-                               NSLocalizedString(@"Guarda la foto",@""),
+                               NSLocalizedString(@"Guarda la foto",@" Guarda la foto"),
                                @"label",
                                @"showPicture", 
                                @"action", 
@@ -251,7 +251,7 @@
     [self addSectionAtIndex:3 withAnimation:UITableViewRowAnimationNone];
     [self appendRowToSection:3 cellClass:[DetailDisclosureCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
-                               NSLocalizedString(@"Trova direzione",@""),
+                               NSLocalizedString(@"Trova direzione",@"Trova direzione"),
                                @"label",
                                @"findDirection", 
                                @"action", 
@@ -266,7 +266,7 @@ titleForHeaderInSection:(NSInteger)section
 {
 	if (section == 0)
 	{
-		return NSLocalizedString(@"", nil);
+		return nil;
 	}
 	else if (section == 1)
 	{
@@ -274,11 +274,11 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	else if (section == 2)
 	{
-		return NSLocalizedString(@"", nil);
+		return nil;
 	}
     else if (section == 3)
 	{
-		return NSLocalizedString(@"", nil);
+		return nil;
 	}
     
 	return nil;

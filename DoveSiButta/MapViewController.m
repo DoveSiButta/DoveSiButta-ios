@@ -289,15 +289,15 @@
 
 #endif
 
-    //Openstreetmap
-    overlay = [[TileOverlay alloc] initOverlay];
-    [mapView addOverlay:overlay];
-    MKMapRect visibleRect = [mapView mapRectThatFits:overlay.boundingMapRect];
-    visibleRect.size.width /= 2;
-    visibleRect.size.height /= 2;
-    visibleRect.origin.x += visibleRect.size.width / 2;
-    visibleRect.origin.y += visibleRect.size.height / 2;
-    mapView.visibleMapRect = visibleRect;
+//    //Openstreetmap
+//    overlay = [[TileOverlay alloc] initOverlay];
+//    [mapView addOverlay:overlay];
+//    MKMapRect visibleRect = [mapView mapRectThatFits:overlay.boundingMapRect];
+//    visibleRect.size.width /= 2;
+//    visibleRect.size.height /= 2;
+//    visibleRect.origin.x += visibleRect.size.width / 2;
+//    visibleRect.origin.y += visibleRect.size.height / 2;
+//    mapView.visibleMapRect = visibleRect;
     
     
     //Eccezioni e comuni raccolta p2p

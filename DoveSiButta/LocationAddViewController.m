@@ -291,12 +291,23 @@
     [self appendRowToSection:0 cellClass:[NibLoadedCell class] 
                     cellData:[NSDictionary dictionaryWithObjectsAndKeys:
                               [myNewItem getTitle],@"labelText",
-                               @"indifferenziata_black",@"imageName",                               NSLocalizedString(@"Nuovo Cestino", @"Title Label"),@"titleLabelText", 
+                               @"indifferenziata_black",@"imageName", NSLocalizedString(@"Nuovo Cestino", @"Title Label"),@"titleLabelText",
                               nil] 
                withAnimation:UITableViewRowAnimationNone];
     
     [self addSectionAtIndex:1 withAnimation:UITableViewRowAnimationNone];
-    [self appendRowToSection:1 cellClass:[TextFieldCell class] 
+    [self appendRowToSection:1 cellClass:[TextFieldCell class]
+                    cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                              NSLocalizedString(@"Titolo", @""),
+                              @"label",
+                              [NSString stringWithFormat:@"%@",[myNewItem getTitle] ], @"value",
+                              NSLocalizedString(@"Value goes here", @""),
+                              @"placeholder",
+                              [NSNumber numberWithBool:YES],
+                              @"editable",
+                              nil]
+               withAnimation:UITableViewRowAnimationNone];
+    [self appendRowToSection:1 cellClass:[TextFieldCell class]
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Dove", @""),
                               @"label",
@@ -309,7 +320,7 @@
                withAnimation:UITableViewRowAnimationNone];
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              NSLocalizedString(@"When", @""),
+                              NSLocalizedString(@"Quando", @""),
                               @"label",
                               [NSString stringWithFormat:@"%@",[myNewItem getEventDate] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
@@ -352,17 +363,6 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
-    [self appendRowToSection:1 cellClass:[TextFieldCell class] 
-                    cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              NSLocalizedString(@"Country", @""),
-                              @"label",
-                              [NSString stringWithFormat:@"%@",[myNewItem getCountry] ], @"value",
-                              NSLocalizedString(@"Value goes here", @""),
-                              @"placeholder", 
-                              [NSNumber numberWithBool:NO], 
-                              @"editable",
-                              nil]
-               withAnimation:UITableViewRowAnimationNone];
     
     [self appendRowToSection:1 cellClass:[TextFieldCell class]
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -376,11 +376,21 @@
                               nil]
                withAnimation:UITableViewRowAnimationNone];
  
+    
     [self appendRowToSection:1 cellClass:[DetailDisclosureCell class]
-                    cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+                    cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                NSLocalizedString(@"Modifica Descrizione",@""),
                                @"label",
                                @"editDescription",
+                               @"action",
+                               nil]
+               withAnimation:UITableViewRowAnimationNone];
+    
+    [self appendRowToSection:1 cellClass:[LabelCell class]
+                    cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
+                               NSLocalizedString(@"Scatta una foto!",@""),
+                               @"label",
+                               @"addPicture",
                                @"action", 
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 

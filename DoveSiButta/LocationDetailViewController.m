@@ -120,7 +120,7 @@
     //0
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              NSLocalizedString(@"Where", @""),
+                              NSLocalizedString(@"Dove", @""),
                               @"label",
                               [NSString stringWithFormat:@"%@",[selectedBox getTitle] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
@@ -132,7 +132,7 @@
     //1
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              NSLocalizedString(@"When", @""),
+                              NSLocalizedString(@"Quando", @""),
                               @"label",
                               [NSString stringWithFormat:@"%@",[selectedBox getEventDate] ], @"value",
                               NSLocalizedString(@"Value goes here", @""),
@@ -241,7 +241,7 @@
     /*
     [self appendRowToSection:1 cellClass:[DetailDisclosureCell class] 
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
-                               NSLocalizedString(@"View RSVPs",@""),
+                               NSLocalizedString(@"Vedi RSVP",@""),
                                @"label",
                                @"showRSVP", 
                                @"action", //TODO: Mostra chi l'ha trovata interessante

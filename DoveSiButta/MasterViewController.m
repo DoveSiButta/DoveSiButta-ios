@@ -79,10 +79,18 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     //Buttons
+    UIImage *helpImage =[UIImage imageNamed:@"icon_help"];
+    NSString *version = [[UIDevice currentDevice] systemVersion];
+    if ([version floatValue] >= 7.0) {
+        helpImage = [helpImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    }
+
+    
+    
     UIButton *a1 = [UIButton  buttonWithType:UIButtonTypeCustom];
                         [a1 setFrame:CGRectMake(0.0f, 0.0f, 25.0f, 25.0f)];
                         [a1 addTarget:self action:@selector(showHelp:) forControlEvents:UIControlEventTouchUpInside];
-                        [a1 setImage:[UIImage imageNamed:@"icon_help"] forState:UIControlStateNormal];
+                        [a1 setImage:helpImage forState:UIControlStateNormal];
                         
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:a1];
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_help"] style:UIBarButtonItemStyleBordered target:self action:@selector(showHelp:)];

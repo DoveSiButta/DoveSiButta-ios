@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AC0437711524481500B09A6E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC04376F1524481500B09A6E /* HelpViewController.m */; };
 		AC0437721524481500B09A6E /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC0437701524481500B09A6E /* HelpViewController.xib */; };
-		AC0C642117D7C3D200370F37 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0C642017D7C3D200370F37 /* libFlurry_4.2.3.a */; };
 		AC11F7B717D380E600E43279 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC11F7B617D380E600E43279 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DB14FD8CAF001A4256 /* Sfondo.png */; };
 		AC1247E214FD8D9D001A4256 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247E014FD8D9D001A4256 /* Logo.png */; };
@@ -145,6 +144,9 @@
 		ACA0C23C1580DCAD00237C53 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA0C23B1580DCAD00237C53 /* CoreData.framework */; };
 		ACA1A98D16E50C1800430B47 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA1A98B16E50C1800430B47 /* LoginViewController.m */; };
 		ACA1A98E16E50C1800430B47 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA1A98C16E50C1800430B47 /* LoginViewController.xib */; };
+		ACB6C95A182B9BB90093235A /* TextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB6C958182B9BB90093235A /* TextViewViewController.m */; };
+		ACB6C95B182B9BB90093235A /* TextViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB6C959182B9BB90093235A /* TextViewViewController.xib */; };
+		ACB6C95E182BA0AB0093235A /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB6C95D182BA0AB0093235A /* libFlurry_4.2.4.a */; };
 		ACB8F89214F772A80052B559 /* ChiSiamoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */; };
 		ACB8F89314F772A80052B559 /* ChiSiamoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */; };
 		ACB8F89B14F773CE0052B559 /* 59-info.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89514F773CE0052B559 /* 59-info.png */; };
@@ -213,7 +215,6 @@
 		AC04376F1524481500B09A6E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		AC0437701524481500B09A6E /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
 		AC0C641F17D7C3C600370F37 /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Flurry/Flurry.h; sourceTree = "<group>"; };
-		AC0C642017D7C3D200370F37 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.3.a; path = Flurry/libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		AC11F7B617D380E600E43279 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		AC1247DB14FD8CAF001A4256 /* Sfondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Sfondo.png; path = Images/Sfondo.png; sourceTree = "<group>"; };
 		AC1247E014FD8D9D001A4256 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Images/Logo.png; sourceTree = "<group>"; };
@@ -457,6 +458,10 @@
 		ACA1A98A16E50C1800430B47 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		ACA1A98B16E50C1800430B47 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		ACA1A98C16E50C1800430B47 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		ACB6C957182B9BB90093235A /* TextViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewViewController.h; sourceTree = "<group>"; };
+		ACB6C958182B9BB90093235A /* TextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewViewController.m; sourceTree = "<group>"; };
+		ACB6C959182B9BB90093235A /* TextViewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewViewController.xib; sourceTree = "<group>"; };
+		ACB6C95D182BA0AB0093235A /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
 		ACB8F88F14F772A80052B559 /* ChiSiamoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiSiamoViewController.h; sourceTree = "<group>"; };
 		ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiSiamoViewController.m; sourceTree = "<group>"; };
 		ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiSiamoViewController.xib; sourceTree = "<group>"; };
@@ -534,7 +539,6 @@
 			files = (
 				AC11F7B717D380E600E43279 /* Social.framework in Frameworks */,
 				ACBC565A176FBE6C00C9993B /* CoreImage.framework in Frameworks */,
-				AC0C642117D7C3D200370F37 /* libFlurry_4.2.3.a in Frameworks */,
 				ACBC5658176FBE6300C9993B /* ImageIO.framework in Frameworks */,
 				ACBC5656176FBE5D00C9993B /* AssetsLibrary.framework in Frameworks */,
 				ACBC5654176FBE5500C9993B /* Accelerate.framework in Frameworks */,
@@ -547,6 +551,7 @@
 				ACE882D214CC72CD0004B9DF /* CFNetwork.framework in Frameworks */,
 				ACE882D814CCBA280004B9DF /* MobileCoreServices.framework in Frameworks */,
 				ACE882AE14CC59C80004B9DF /* AddressBookUI.framework in Frameworks */,
+				ACB6C95E182BA0AB0093235A /* libFlurry_4.2.4.a in Frameworks */,
 				AC66CFF114C249980098E1F1 /* CoreLocation.framework in Frameworks */,
 				AC66CFEF14C249920098E1F1 /* MapKit.framework in Frameworks */,
 				AC66CEF214C246410098E1F1 /* UIKit.framework in Frameworks */,
@@ -662,8 +667,8 @@
 		AC66CEF014C246410098E1F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ACB6C95D182BA0AB0093235A /* libFlurry_4.2.4.a */,
 				ACCA0AF417D7C7230071F2DF /* libMSODataLib4.3.a */,
-				AC0C642017D7C3D200370F37 /* libFlurry_4.2.3.a */,
 				AC11F7B617D380E600E43279 /* Social.framework */,
 				ACC0195A1769E0DF00E8886D /* QuartzCore.framework */,
 				ACBC565C176FBE8600C9993B /* For NYXImageKit */,
@@ -695,6 +700,9 @@
 				AC66CF0114C246410098E1F1 /* AppDelegate.m */,
 				AC66D08E14C381B10098E1F1 /* LocationAddViewController.h */,
 				ACC5830F14E462CA005C72D3 /* LocationAddViewController.m */,
+				ACB6C957182B9BB90093235A /* TextViewViewController.h */,
+				ACB6C958182B9BB90093235A /* TextViewViewController.m */,
+				ACB6C959182B9BB90093235A /* TextViewViewController.xib */,
 				AC66D04814C24CFA0098E1F1 /* LocationDetailViewController.h */,
 				ACC5830D14E462BD005C72D3 /* LocationDetailViewController.m */,
 				AC66D00B14C24B6C0098E1F1 /* MapAnnotationDefault.h */,
@@ -1269,6 +1277,7 @@
 				AC69D0B814F2DDF600FE688B /* MapAddViewController.xib in Resources */,
 				ACB8F89314F772A80052B559 /* ChiSiamoViewController.xib in Resources */,
 				ACB8F89B14F773CE0052B559 /* 59-info.png in Resources */,
+				ACB6C95B182B9BB90093235A /* TextViewViewController.xib in Resources */,
 				ACB8F89C14F773CE0052B559 /* 59-info@2x.png in Resources */,
 				ACB8F89D14F773CE0052B559 /* 07-map-marker.png in Resources */,
 				ACB8F89E14F773CE0052B559 /* 07-map-marker@2x.png in Resources */,
@@ -1397,6 +1406,7 @@
 				AC66D02B14C24BD60098E1F1 /* HybridSubviewBasedApplicationCell.m in Sources */,
 				AC66D02C14C24BD60098E1F1 /* IndividualSubviewsBasedApplicationCell.m in Sources */,
 				AC66D02F14C24BD60098E1F1 /* RatingView.m in Sources */,
+				ACB6C95A182B9BB90093235A /* TextViewViewController.m in Sources */,
 				ACC5830C14E462BD005C72D3 /* LocationDetailViewController.m in Sources */,
 				ACC5830E14E462CA005C72D3 /* LocationAddViewController.m in Sources */,
 				ACE882B214CC6D910004B9DF /* PictureFileViewController.m in Sources */,

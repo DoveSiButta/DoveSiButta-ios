@@ -10,13 +10,14 @@
 #import "SVProgressHUD.h"
 //Service
 #import "DoveSiButtaEntities.h"
+#import "TextViewViewController.h"
 
 
 @protocol LocationAddViewControllerDelegate
 - (void)addLocationDidFinishWithCode:(int)finishCode;
 @end
 
-@interface LocationAddViewController : PageViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
+@interface LocationAddViewController : PageViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, TextViewViewControllerDelegate>
 {
     id <LocationAddViewControllerDelegate>  delegate;
 }

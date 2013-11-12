@@ -10,6 +10,7 @@
 //Pageviewcontroller
 #import "TextFieldCell.h"
 #import "DetailDisclosureCell.h"
+#import "TextFieldCell.h"
 #import "NibLoadedCell.h"
 #import "PictureFileViewController.h"
 #import <Social/Social.h>
@@ -116,6 +117,7 @@
    	[self addSectionAtIndex:0 withAnimation:UITableViewRowAnimationNone];
 
     [self addSectionAtIndex:1 withAnimation:UITableViewRowAnimationNone];
+    //0
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Where", @""),
@@ -127,6 +129,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
+    //1
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"When", @""),
@@ -138,6 +141,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
+    //2
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Latitude", @""),
@@ -149,6 +153,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
+    //3
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"Longitude", @""),
@@ -160,6 +165,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
+    //4
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               NSLocalizedString(@"ID", @""),
@@ -171,6 +177,19 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
+    //5
+    [self appendRowToSection:1 cellClass:[TextFieldCell class]
+                    cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                              NSLocalizedString(@"Description", @""),
+                              @"label",
+                              [NSString stringWithFormat:@"%@",[selectedBox getDescription] ], @"value",
+                              NSLocalizedString(@"", @""),
+                              @"placeholder",
+                              NO,
+                              @"editable",
+                              nil]
+                            withAnimation:UITableViewRowAnimationNone];
+    
     /*
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -183,16 +202,7 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
-    [self appendRowToSection:1 cellClass:[TextFieldCell class] 
-                    cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              NSLocalizedString(@"Description", @""),
-                              @"label",
-                              [NSString stringWithFormat:@"%@",[selectedDinner getDescription] ], @"value",
-                              NSLocalizedString(@"Value goes here", @""),
-                              @"placeholder", 
-                              NO, 
-                              @"editable",
-                              nil]
+
                withAnimation:UITableViewRowAnimationNone];
     [self appendRowToSection:1 cellClass:[TextFieldCell class] 
                     cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -259,6 +269,35 @@
                withAnimation:UITableViewRowAnimationNone]; 
 
 
+}
+
+- (CGFloat)tableView:(UITableView *)thisTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell.class == [TextFieldCell class]) {
+        return 200;
+    }
+    else{
+        return [super tableView:thisTableView heightForRowAtIndexPath:indexPath];
+    }
+
+//    switch (indexPath.section) {
+//        case 1:
+//        {
+//            if(indexPath.row == 5)
+//            {
+//                return 200;
+//            }
+//            else
+//                return [super tableView:thisTableView heightForRowAtIndexPath:indexPath];
+//        }
+//            break;
+//            
+//        default:
+//            return [super tableView:thisTableView heightForRowAtIndexPath:indexPath];
+//            break;
+//    }
 }
 
 - (NSString *)tableView:(UITableView *)aTableView

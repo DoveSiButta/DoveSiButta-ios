@@ -7,12 +7,15 @@
 //
 
 #import "LocationAddViewController.h"
+#import "TextViewViewController.h"
 //Pageviewcontroller
 #import "TextFieldCell.h"
 #import "NibLoadedCell.h"
 #import "PictureFileViewController.h"
 #import "LabelCell.h"
 #import "CheckmarkCell.h"
+#import "DetailDisclosureCell.h"
+
 
 //OData
 #import "WindowsCredential.h"
@@ -360,12 +363,24 @@
                               @"editable",
                               nil]
                withAnimation:UITableViewRowAnimationNone];
+    
+    [self appendRowToSection:1 cellClass:[TextFieldCell class]
+                    cellData:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                              NSLocalizedString(@"Country", @""),
+                              @"label",
+                              [NSString stringWithFormat:@"%@",[myNewItem getCountry] ], @"value",
+                              NSLocalizedString(@"Value goes here", @""),
+                              @"placeholder",
+                              [NSNumber numberWithBool:NO],
+                              @"editable",
+                              nil]
+               withAnimation:UITableViewRowAnimationNone];
  
-    [self appendRowToSection:1 cellClass:[LabelCell class] 
+    [self appendRowToSection:1 cellClass:[DetailDisclosureCell class]
                     cellData: [NSMutableDictionary dictionaryWithObjectsAndKeys: 
-                               NSLocalizedString(@"Scatta una foto!",@""),
+                               NSLocalizedString(@"Modifica Descrizione",@""),
                                @"label",
-                               @"addPicture", 
+                               @"editDescription",
                                @"action", 
                                nil] 
                withAnimation:UITableViewRowAnimationNone]; 
@@ -404,7 +419,22 @@
 	{
 		//return;
 	}
-	
+
+
+	if ([[aTableView cellForRowAtIndexPath:anIndexPath] isKindOfClass:[DetailDisclosureCell class]])
+	{
+        DetailDisclosureCell *cell = (DetailDisclosureCell*)[aTableView cellForRowAtIndexPath:anIndexPath];
+        if([cell.action isEqualToString:@"editDescription"])
+        {
+            TextViewViewController *tvvc = [[TextViewViewController alloc] initWithNibName:@"TextViewViewController" bundle:nil];
+            tvvc.delegate = self;
+            tvvc.textViewText = [myNewItem getDescription];
+            [self.navigationController pushViewController:tvvc animated:YES];
+        }
+        
+	}
+
+    
     if ([[aTableView cellForRowAtIndexPath:anIndexPath] isKindOfClass:[LabelCell class]]) 
     {
         LabelCell *cell = (LabelCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
@@ -620,5 +650,12 @@
 }
 */
 
+
+#pragma mark - TextViewViewController Delegate
+
+- (void)textViewVCDidFinishWithText:(NSString*)text
+{
+    [myNewItem setDescription:text];
+}
 
 @end

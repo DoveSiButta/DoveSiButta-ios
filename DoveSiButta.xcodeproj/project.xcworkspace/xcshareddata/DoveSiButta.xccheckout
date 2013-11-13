@@ -12,6 +12,8 @@
 	<dict>
 		<key>15CB1EF6-2B0A-4AAD-8AEC-FC5E0BFCFED0</key>
 		<string>https://github.com/magicalpanda/MagicalRecord.git</string>
+		<key>54F3CF46-094C-4AF5-AC93-E322619D4CBC</key>
+		<string>https://github.com/Nyx0uf/NYXImagesKit.git</string>
 		<key>57666BB5-A9DA-4D09-811A-C3A5B9DF6984</key>
 		<string>ssh://bitbucket.org/maggix/dovesibuttaiphone.git</string>
 		<key>759DDA62-4C5A-46A8-8678-ADE2B4DEB578</key>
@@ -27,6 +29,8 @@
 	<dict>
 		<key>15CB1EF6-2B0A-4AAD-8AEC-FC5E0BFCFED0</key>
 		<string>../../MagicalRecord</string>
+		<key>54F3CF46-094C-4AF5-AC93-E322619D4CBC</key>
+		<string>../../NYXImagesKit</string>
 		<key>57666BB5-A9DA-4D09-811A-C3A5B9DF6984</key>
 		<string>../..</string>
 		<key>759DDA62-4C5A-46A8-8678-ADE2B4DEB578</key>
@@ -82,17 +86,17 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B849DA6A-4557-47B8-B06A-51E07EB08DF9</string>
+			<string>54F3CF46-094C-4AF5-AC93-E322619D4CBC</string>
 			<key>IDESourceControlWCCName</key>
-			<string>sskeychain</string>
+			<string>NYXImagesKit</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>792F5A6F-3C1F-4F41-A050-FACBF2690EE7</string>
+			<string>B849DA6A-4557-47B8-B06A-51E07EB08DF9</string>
 			<key>IDESourceControlWCCName</key>
-			<string>TableDesignRevisited</string>
+			<string>sskeychain</string>
 		</dict>
 	</array>
 </dict>

@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NoConnectionViewController.h"
-#import "ABNotifier.h"
-#import "Flurry.h"
 
 @class Reachability;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,ABNotifierDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 {
     Reachability* hostReach;
 }

@@ -26,8 +26,8 @@
 #import "ODataServiceException.h"
 #import "ODataXMlParser.h"
 
-//UIImage extensions
-#import "UIImage+Extensions.h"
+//UIImage extensions (NYXImageKit)
+#import "UIImage+Resizing.h"
 
 //Xpath
 #import "XPathQuery.h"
@@ -71,29 +71,6 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-//    [self.newItem release];
-//    [self.pictureFile release];
-//    [self.selectedTypes release];
-//    [self.setTypes release];
-//    self.newItem = nil;
-//    self.pictureFile = nil;
-//    self.selectedTypes = nil;
-//    self.setTypes = nil;
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if(DeviceIsPad())
@@ -117,6 +94,8 @@
 {
     
 }
+
+#pragma mark - Item Actions
 
 - (void)saveItem:(id)sender
 {
@@ -173,7 +152,8 @@
         [proxy saveChanges];  
         
         [proxy addToPictures:newPicture];
-        DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];[query top:1];
+        DataServiceQuery *query = [[proxy boxes] orderBy:@"BoxID desc"];
+        [query top:1];
         QueryOperationResponse *queryOperationResponse = [query execute];
         DoveSiButtaModel_Box *aNewBox =[[queryOperationResponse getResult] objectAtIndex:0];
 #if DEBUG
@@ -195,6 +175,11 @@
 
     }
     @catch (NSException *exception) {
+        
+        //Flurry event
+        [Flurry logEvent:@"USER_ENCOUNTERED_EXCEPTION_WHEN_SAVING" withParameters:@{@"boxAddress": [myNewItem getAddress], @"exception": [exception description]}];
+
+        
         [SVProgressHUD showErrorWithStatus:nil];
         NSLog(@"Errore: %@:%@",exception.name, exception.reason);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attenzione", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Errore nel caricamento del nuovo elemento.(%@)", @""),[exception reason]] delegate:self cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles: nil];
@@ -213,6 +198,10 @@
 
 - (void)cancelNewItem:(id)sender
 {
+    //Flurry event
+    [Flurry logEvent:@"USER_CANCELED_LOCATION_ADD" withParameters:@{@"boxAddress": [myNewItem getAddress] }];
+    
+    
     [self dismissModalViewControllerAnimated:YES];
     [self.delegate addLocationDidFinishWithCode:1];
 }
@@ -507,7 +496,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     //Qui devo salvare l'immagine nella cache e resizarla
-    UIImage *scaledImage = [[info objectForKey:UIImagePickerControllerOriginalImage] imageByScalingProportionallyToMinimumSize:CGSizeMake(640.0f, 480.0f)]; // [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
+    UIImage *scaledImage = [[info objectForKey:UIImagePickerControllerOriginalImage] scaleToFitSize:CGSizeMake(640.0f, 480.0f)]; // [self imageWithImage:img scaledToSizeWithSameAspectRatio:CGSizeMake(640.0f, 480.0f)];
     NSData* imageData = UIImageJPEGRepresentation(scaledImage, 0.9f);
     
     // Give a name to the file
@@ -520,7 +509,7 @@
     // or something similar.
     //    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     //    NSString* documentsDirectory = [paths objectAtIndex:0];
-    NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *cachesDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     // Now we get the full path to the file
     NSString* fullPathToFile = [cachesDirectory stringByAppendingPathComponent:imageName];
     
@@ -665,6 +654,9 @@
 
 - (void)textViewVCDidFinishWithText:(NSString*)text
 {
+    //Flurry event
+    [Flurry logEvent:@"USER_ADDED_DESCRIPTION_TO_BOX"];
+
     [myNewItem setDescription:text];
 }
 

@@ -30,13 +30,7 @@
     //    [SHK flushOfflineQueue];
     
     [Flurry startSession:kFLURRY_APIKEY];
-    
-    //AirBrake Notifier
-    [ABNotifier startNotifierWithAPIKey:kABNOTIFIER_APIKEY
-	                    environmentName:ABNotifierAutomaticEnvironment
-	                             useSSL:NO
-	                           delegate:self];
-    
+
     
     //DEFAULTS SETUP START
     //Imposto l'URL del servizio una volta sola nella app
@@ -129,6 +123,13 @@
     
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
+    
+    //Extra Flurry setup
+    //log all page views
+    [Flurry logAllPageViews:self.tabBarController];
+    //log crash reports
+    [Flurry setCrashReportingEnabled:YES];
     
     return YES;
 }

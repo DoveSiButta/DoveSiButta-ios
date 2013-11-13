@@ -13,6 +13,8 @@
 		AC1247DD14FD8CAF001A4256 /* Sfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247DB14FD8CAF001A4256 /* Sfondo.png */; };
 		AC1247E214FD8D9D001A4256 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AC1247E014FD8D9D001A4256 /* Logo.png */; };
 		AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		AC4924381833C2D20042D220 /* libNYXImagesKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC4924371833C2C20042D220 /* libNYXImagesKit.a */; };
+		AC49243E1833C5EB0042D220 /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC49243D1833C5EB0042D220 /* libFlurry_4.3.0.a */; };
 		AC508CAF171E0844009EDADC /* batterie2_black-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = AC508C8F171E0844009EDADC /* batterie2_black-pressed.png */; };
 		AC508CB0171E0844009EDADC /* batterie2_black-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC508C90171E0844009EDADC /* batterie2_black-pressed@2x.png */; };
 		AC508CB1171E0844009EDADC /* batterie2_black.png in Resources */ = {isa = PBXBuildFile; fileRef = AC508C91171E0844009EDADC /* batterie2_black.png */; };
@@ -138,7 +140,6 @@
 		AC97D61E1769CDEC0069F779 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = AC97D61B1769CDEC0069F779 /* XPathQuery.m */; };
 		AC97D6211769CF730069F779 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = AC97D6201769CF730069F779 /* SSKeychain.m */; };
 		AC97D9611769D5320069F779 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC97D9601769D5320069F779 /* Twitter.framework */; };
-		AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC99992414D68AF6006229A8 /* UIImage+Extensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AC99992714D68E83006229A8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AC99992614D68E83006229A8 /* LICENSE */; };
 		ACA0C1FC1580A41A00237C53 /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0C1FB1580A41A00237C53 /* UIDeviceHardware.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ACA0C23C1580DCAD00237C53 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA0C23B1580DCAD00237C53 /* CoreData.framework */; };
@@ -146,7 +147,6 @@
 		ACA1A98E16E50C1800430B47 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA1A98C16E50C1800430B47 /* LoginViewController.xib */; };
 		ACB6C95A182B9BB90093235A /* TextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB6C958182B9BB90093235A /* TextViewViewController.m */; };
 		ACB6C95B182B9BB90093235A /* TextViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB6C959182B9BB90093235A /* TextViewViewController.xib */; };
-		ACB6C95E182BA0AB0093235A /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB6C95D182BA0AB0093235A /* libFlurry_4.2.4.a */; };
 		ACB8F89214F772A80052B559 /* ChiSiamoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */; };
 		ACB8F89314F772A80052B559 /* ChiSiamoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */; };
 		ACB8F89B14F773CE0052B559 /* 59-info.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB8F89514F773CE0052B559 /* 59-info.png */; };
@@ -185,27 +185,24 @@
 		ACE8854014CECE880004B9DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = ACE8853914CECE880004B9DF /* iTunesArtwork */; };
 		ACF6475117D7CB0600EF9806 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ACF6474E17D7CB0600EF9806 /* SVProgressHUD.bundle */; };
 		ACF6475217D7CB0600EF9806 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF6475017D7CB0600EF9806 /* SVProgressHUD.m */; };
-		ACF7EEC315A34BE2000E7001 /* GCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEA915A34BE2000E7001 /* GCAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		ACF7EEC415A34BE2000E7001 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEAD15A34BE2000E7001 /* DDXMLElementAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		ACF7EEC515A34BE2000E7001 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB015A34BE2000E7001 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		ACF7EEC615A34BE2000E7001 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB315A34BE2000E7001 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		ACF7EEC715A34BE2000E7001 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB515A34BE2000E7001 /* DDXMLElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		ACF7EEC815A34BE2000E7001 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEB715A34BE2000E7001 /* DDXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		ACF7EEC915A34BE2000E7001 /* ABNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEBC15A34BE2000E7001 /* ABNotice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		ACF7EECA15A34BE2000E7001 /* ABNotifier.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ACF7EEBD15A34BE2000E7001 /* ABNotifier.bundle */; };
-		ACF7EECB15A34BE2000E7001 /* ABNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEBF15A34BE2000E7001 /* ABNotifier.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		ACF7EECC15A34BE2000E7001 /* ABNotifierFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF7EEC215A34BE2000E7001 /* ABNotifierFunctions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ACFC0D5514D4C7F9000265B8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5314D4C7F9000265B8 /* Default.png */; };
 		ACFC0D5614D4C7F9000265B8 /* Default@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5414D4C7F9000265B8 /* Default@2X.png */; };
 		ACFC0D5A14D57753000265B8 /* ComuniRaccoltaP2P.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACFC0D5914D57753000265B8 /* ComuniRaccoltaP2P.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		ACBC5625176FBE4A00C9993B /* PBXContainerItemProxy */ = {
+		AC4924361833C2C20042D220 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = ACBC5621176FBE4800C9993B /* NYXImagesKit.xcodeproj */;
+			containerPortal = AC4924321833C2C10042D220 /* NYXImagesKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1E0289D7144EF32200B6B6D5;
+			remoteInfo = NYXImagesKit;
+		};
+		AC4924391833C2DD0042D220 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC4924321833C2C10042D220 /* NYXImagesKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E0289D6144EF32200B6B6D5;
 			remoteInfo = NYXImagesKit;
 		};
 /* End PBXContainerItemProxy section */
@@ -220,6 +217,9 @@
 		AC1247E014FD8D9D001A4256 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = Images/Logo.png; sourceTree = "<group>"; };
 		AC3FE1FE14E8044B005CC256 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		AC4924321833C2C10042D220 /* NYXImagesKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NYXImagesKit.xcodeproj; path = NYXImagesKit/NYXImagesKit.xcodeproj; sourceTree = "<group>"; };
+		AC49243D1833C5EB0042D220 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.0.a; path = Flurry/libFlurry_4.3.0.a; sourceTree = "<group>"; };
+		AC49243F1833C5F20042D220 /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Flurry/Flurry.h; sourceTree = "<group>"; };
 		AC508C8F171E0844009EDADC /* batterie2_black-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batterie2_black-pressed.png"; sourceTree = "<group>"; };
 		AC508C90171E0844009EDADC /* batterie2_black-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "batterie2_black-pressed@2x.png"; sourceTree = "<group>"; };
 		AC508C91171E0844009EDADC /* batterie2_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batterie2_black.png; sourceTree = "<group>"; };
@@ -449,8 +449,6 @@
 		AC97D61F1769CF730069F779 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKeychain.h; path = sskeychain/SSKeychain.h; sourceTree = "<group>"; };
 		AC97D6201769CF730069F779 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKeychain.m; path = sskeychain/SSKeychain.m; sourceTree = "<group>"; };
 		AC97D9601769D5320069F779 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		AC99992314D68AF6006229A8 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
-		AC99992414D68AF6006229A8 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
 		AC99992614D68E83006229A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		ACA0C1FA1580A41A00237C53 /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		ACA0C1FB1580A41A00237C53 /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
@@ -461,7 +459,6 @@
 		ACB6C957182B9BB90093235A /* TextViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewViewController.h; sourceTree = "<group>"; };
 		ACB6C958182B9BB90093235A /* TextViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewViewController.m; sourceTree = "<group>"; };
 		ACB6C959182B9BB90093235A /* TextViewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewViewController.xib; sourceTree = "<group>"; };
-		ACB6C95D182BA0AB0093235A /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
 		ACB8F88F14F772A80052B559 /* ChiSiamoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiSiamoViewController.h; sourceTree = "<group>"; };
 		ACB8F89014F772A80052B559 /* ChiSiamoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiSiamoViewController.m; sourceTree = "<group>"; };
 		ACB8F89114F772A80052B559 /* ChiSiamoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiSiamoViewController.xib; sourceTree = "<group>"; };
@@ -473,7 +470,6 @@
 		ACB8F89A14F773CE0052B559 /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map@2x.png"; path = "TabIcons/103-map@2x.png"; sourceTree = "<group>"; };
 		ACB958A317D15C9B007FB821 /* Brescia.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Brescia.gpx; sourceTree = "<group>"; };
 		ACB958A417D15C9B007FB821 /* Milano.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Milano.gpx; sourceTree = "<group>"; };
-		ACBC5621176FBE4800C9993B /* NYXImagesKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NYXImagesKit.xcodeproj; path = "NYXImagesKit-master/NYXImagesKit.xcodeproj"; sourceTree = "<group>"; };
 		ACBC5653176FBE5500C9993B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		ACBC5655176FBE5D00C9993B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		ACBC5657176FBE6300C9993B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -504,28 +500,6 @@
 		ACF6474E17D7CB0600EF9806 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		ACF6474F17D7CB0600EF9806 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		ACF6475017D7CB0600EF9806 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		ACF7EEA815A34BE2000E7001 /* GCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCAlertView.h; sourceTree = "<group>"; };
-		ACF7EEA915A34BE2000E7001 /* GCAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCAlertView.m; sourceTree = "<group>"; };
-		ACF7EEAC15A34BE2000E7001 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
-		ACF7EEAD15A34BE2000E7001 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
-		ACF7EEAF15A34BE2000E7001 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
-		ACF7EEB015A34BE2000E7001 /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
-		ACF7EEB115A34BE2000E7001 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
-		ACF7EEB215A34BE2000E7001 /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
-		ACF7EEB315A34BE2000E7001 /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
-		ACF7EEB415A34BE2000E7001 /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
-		ACF7EEB515A34BE2000E7001 /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
-		ACF7EEB615A34BE2000E7001 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
-		ACF7EEB715A34BE2000E7001 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
-		ACF7EEB915A34BE2000E7001 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
-		ACF7EEBB15A34BE2000E7001 /* ABNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotice.h; sourceTree = "<group>"; };
-		ACF7EEBC15A34BE2000E7001 /* ABNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotice.m; sourceTree = "<group>"; };
-		ACF7EEBD15A34BE2000E7001 /* ABNotifier.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ABNotifier.bundle; sourceTree = "<group>"; };
-		ACF7EEBE15A34BE2000E7001 /* ABNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotifier.h; sourceTree = "<group>"; };
-		ACF7EEBF15A34BE2000E7001 /* ABNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotifier.m; sourceTree = "<group>"; };
-		ACF7EEC015A34BE2000E7001 /* ABNotifierDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotifierDelegate.h; sourceTree = "<group>"; };
-		ACF7EEC115A34BE2000E7001 /* ABNotifierFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABNotifierFunctions.h; sourceTree = "<group>"; };
-		ACF7EEC215A34BE2000E7001 /* ABNotifierFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABNotifierFunctions.m; sourceTree = "<group>"; };
 		ACF80E741766723400D37EB3 /* Secret.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Secret.h; sourceTree = "<group>"; };
 		ACFC0D5314D4C7F9000265B8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = DoveSiButta/Images/Default.png; sourceTree = SOURCE_ROOT; };
 		ACFC0D5414D4C7F9000265B8 /* Default@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2X.png"; path = "DoveSiButta/Images/Default@2X.png"; sourceTree = SOURCE_ROOT; };
@@ -537,6 +511,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC4924381833C2D20042D220 /* libNYXImagesKit.a in Frameworks */,
 				AC11F7B717D380E600E43279 /* Social.framework in Frameworks */,
 				ACBC565A176FBE6C00C9993B /* CoreImage.framework in Frameworks */,
 				ACBC5658176FBE6300C9993B /* ImageIO.framework in Frameworks */,
@@ -551,8 +526,8 @@
 				ACE882D214CC72CD0004B9DF /* CFNetwork.framework in Frameworks */,
 				ACE882D814CCBA280004B9DF /* MobileCoreServices.framework in Frameworks */,
 				ACE882AE14CC59C80004B9DF /* AddressBookUI.framework in Frameworks */,
-				ACB6C95E182BA0AB0093235A /* libFlurry_4.2.4.a in Frameworks */,
 				AC66CFF114C249980098E1F1 /* CoreLocation.framework in Frameworks */,
+				AC49243E1833C5EB0042D220 /* libFlurry_4.3.0.a in Frameworks */,
 				AC66CFEF14C249920098E1F1 /* MapKit.framework in Frameworks */,
 				AC66CEF214C246410098E1F1 /* UIKit.framework in Frameworks */,
 				AC66CEF414C246410098E1F1 /* Foundation.framework in Frameworks */,
@@ -565,6 +540,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC4924331833C2C10042D220 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC4924371833C2C20042D220 /* libNYXImagesKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AC5A23D216811A360072537E /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,7 +650,7 @@
 		AC66CEF014C246410098E1F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ACB6C95D182BA0AB0093235A /* libFlurry_4.2.4.a */,
+				AC49243D1833C5EB0042D220 /* libFlurry_4.3.0.a */,
 				ACCA0AF417D7C7230071F2DF /* libMSODataLib4.3.a */,
 				AC11F7B617D380E600E43279 /* Social.framework */,
 				ACC0195A1769E0DF00E8886D /* QuartzCore.framework */,
@@ -888,13 +871,13 @@
 		AC97D5DB1769CD360069F779 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				ACBC5621176FBE4800C9993B /* NYXImagesKit.xcodeproj */,
+				AC49243F1833C5F20042D220 /* Flurry.h */,
+				AC4924321833C2C10042D220 /* NYXImagesKit.xcodeproj */,
 				AC97D61F1769CF730069F779 /* SSKeychain.h */,
 				AC97D6201769CF730069F779 /* SSKeychain.m */,
 				ACF6474D17D7CB0600EF9806 /* SVProgressHUD */,
 				AC97D5DC1769CDEC0069F779 /* OData */,
 				AC9308B6171FF45400141533 /* OSM */,
-				ACF7EEA615A34BE2000E7001 /* Airbrake */,
 				ACA0C1F51580A3DC00237C53 /* Utility */,
 				ACE882B414CC728C0004B9DF /* ASIHttp */,
 			);
@@ -1003,14 +986,6 @@
 			name = TabIcons;
 			sourceTree = "<group>";
 		};
-		ACBC5622176FBE4800C9993B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ACBC5626176FBE4A00C9993B /* libNYXImagesKit.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		ACBC565C176FBE8600C9993B /* For NYXImageKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1025,8 +1000,6 @@
 		ACCAA9F914EAE24E0067236F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				AC99992314D68AF6006229A8 /* UIImage+Extensions.h */,
-				AC99992414D68AF6006229A8 /* UIImage+Extensions.m */,
 				AC3FE1FE14E8044B005CC256 /* NSString+MD5.h */,
 				AC3FE1FF14E8044B005CC256 /* NSString+MD5.m */,
 			);
@@ -1094,84 +1067,6 @@
 			path = SVProgressHUD/SVProgressHUD;
 			sourceTree = "<group>";
 		};
-		ACF7EEA615A34BE2000E7001 /* Airbrake */ = {
-			isa = PBXGroup;
-			children = (
-				ACF7EEA715A34BE2000E7001 /* gcalertview */,
-				ACF7EEAA15A34BE2000E7001 /* kissxml */,
-				ACF7EEBA15A34BE2000E7001 /* notifier */,
-			);
-			name = Airbrake;
-			path = "hoptoad-ios/Airbrake";
-			sourceTree = "<group>";
-		};
-		ACF7EEA715A34BE2000E7001 /* gcalertview */ = {
-			isa = PBXGroup;
-			children = (
-				ACF7EEA815A34BE2000E7001 /* GCAlertView.h */,
-				ACF7EEA915A34BE2000E7001 /* GCAlertView.m */,
-			);
-			path = gcalertview;
-			sourceTree = "<group>";
-		};
-		ACF7EEAA15A34BE2000E7001 /* kissxml */ = {
-			isa = PBXGroup;
-			children = (
-				ACF7EEAB15A34BE2000E7001 /* Additions */,
-				ACF7EEAE15A34BE2000E7001 /* Categories */,
-				ACF7EEB115A34BE2000E7001 /* DDXML.h */,
-				ACF7EEB215A34BE2000E7001 /* DDXMLDocument.h */,
-				ACF7EEB315A34BE2000E7001 /* DDXMLDocument.m */,
-				ACF7EEB415A34BE2000E7001 /* DDXMLElement.h */,
-				ACF7EEB515A34BE2000E7001 /* DDXMLElement.m */,
-				ACF7EEB615A34BE2000E7001 /* DDXMLNode.h */,
-				ACF7EEB715A34BE2000E7001 /* DDXMLNode.m */,
-				ACF7EEB815A34BE2000E7001 /* Private */,
-			);
-			path = kissxml;
-			sourceTree = "<group>";
-		};
-		ACF7EEAB15A34BE2000E7001 /* Additions */ = {
-			isa = PBXGroup;
-			children = (
-				ACF7EEAC15A34BE2000E7001 /* DDXMLElementAdditions.h */,
-				ACF7EEAD15A34BE2000E7001 /* DDXMLElementAdditions.m */,
-			);
-			path = Additions;
-			sourceTree = "<group>";
-		};
-		ACF7EEAE15A34BE2000E7001 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				ACF7EEAF15A34BE2000E7001 /* NSString+DDXML.h */,
-				ACF7EEB015A34BE2000E7001 /* NSString+DDXML.m */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
-		ACF7EEB815A34BE2000E7001 /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				ACF7EEB915A34BE2000E7001 /* DDXMLPrivate.h */,
-			);
-			path = Private;
-			sourceTree = "<group>";
-		};
-		ACF7EEBA15A34BE2000E7001 /* notifier */ = {
-			isa = PBXGroup;
-			children = (
-				ACF7EEBB15A34BE2000E7001 /* ABNotice.h */,
-				ACF7EEBC15A34BE2000E7001 /* ABNotice.m */,
-				ACF7EEBD15A34BE2000E7001 /* ABNotifier.bundle */,
-				ACF7EEBE15A34BE2000E7001 /* ABNotifier.h */,
-				ACF7EEBF15A34BE2000E7001 /* ABNotifier.m */,
-				ACF7EEC015A34BE2000E7001 /* ABNotifierDelegate.h */,
-				ACF7EEC115A34BE2000E7001 /* ABNotifierFunctions.h */,
-				ACF7EEC215A34BE2000E7001 /* ABNotifierFunctions.m */,
-			);
-			path = notifier;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1188,6 +1083,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				AC49243A1833C2DD0042D220 /* PBXTargetDependency */,
 			);
 			name = DoveSiButta;
 			productName = DoveSiButta;
@@ -1222,8 +1118,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = ACBC5622176FBE4800C9993B /* Products */;
-					ProjectRef = ACBC5621176FBE4800C9993B /* NYXImagesKit.xcodeproj */;
+					ProductGroup = AC4924331833C2C10042D220 /* Products */;
+					ProjectRef = AC4924321833C2C10042D220 /* NYXImagesKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1234,11 +1130,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		ACBC5626176FBE4A00C9993B /* libNYXImagesKit.a */ = {
+		AC4924371833C2C20042D220 /* libNYXImagesKit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libNYXImagesKit.a;
-			remoteRef = ACBC5625176FBE4A00C9993B /* PBXContainerItemProxy */;
+			remoteRef = AC4924361833C2C20042D220 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1296,7 +1192,6 @@
 				AC94A997158BA1C000689EFA /* twittericon@2x.png in Resources */,
 				AC94A99C158BA1C800689EFA /* NoPicture@2x.jpg in Resources */,
 				AC94A99D158BA1C800689EFA /* Sfondo@2x.png in Resources */,
-				ACF7EECA15A34BE2000E7001 /* ABNotifier.bundle in Resources */,
 				AC5A25AB16811B350072537E /* ButtonCell.xib in Resources */,
 				AC5A25AE16811B350072537E /* NibCell.xib in Resources */,
 				AC5A25B016811B350072537E /* TextAreaCell.xib in Resources */,
@@ -1410,22 +1305,12 @@
 				ACC5830C14E462BD005C72D3 /* LocationDetailViewController.m in Sources */,
 				ACC5830E14E462CA005C72D3 /* LocationAddViewController.m in Sources */,
 				ACE882B214CC6D910004B9DF /* PictureFileViewController.m in Sources */,
-				AC99992514D68AF6006229A8 /* UIImage+Extensions.m in Sources */,
 				AC3FE20014E8044B005CC256 /* NSString+MD5.m in Sources */,
 				AC69D0B714F2DDF600FE688B /* MapAddViewController.m in Sources */,
 				ACB8F89214F772A80052B559 /* ChiSiamoViewController.m in Sources */,
 				AC0437711524481500B09A6E /* HelpViewController.m in Sources */,
 				ACA0C1FC1580A41A00237C53 /* UIDeviceHardware.m in Sources */,
 				AC521A301587AF1800CF8CB1 /* NoConnectionViewController.m in Sources */,
-				ACF7EEC315A34BE2000E7001 /* GCAlertView.m in Sources */,
-				ACF7EEC415A34BE2000E7001 /* DDXMLElementAdditions.m in Sources */,
-				ACF7EEC515A34BE2000E7001 /* NSString+DDXML.m in Sources */,
-				ACF7EEC615A34BE2000E7001 /* DDXMLDocument.m in Sources */,
-				ACF7EEC715A34BE2000E7001 /* DDXMLElement.m in Sources */,
-				ACF7EEC815A34BE2000E7001 /* DDXMLNode.m in Sources */,
-				ACF7EEC915A34BE2000E7001 /* ABNotice.m in Sources */,
-				ACF7EECB15A34BE2000E7001 /* ABNotifier.m in Sources */,
-				ACF7EECC15A34BE2000E7001 /* ABNotifierFunctions.m in Sources */,
 				AC5A23D516811A360072537E /* Reachability.m in Sources */,
 				AC5A23EA16811A720072537E /* ASIAuthenticationDialog.m in Sources */,
 				AC5A23EB16811A720072537E /* ASIDataCompressor.m in Sources */,
@@ -1460,6 +1345,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AC49243A1833C2DD0042D220 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NYXImagesKit;
+			targetProxy = AC4924391833C2DD0042D220 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AC66CEFA14C246410098E1F1 /* InfoPlist.strings */ = {
@@ -1556,9 +1449,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(PROJECT_DIR)/NYXImagesKit/**",
+				);
 				INFOPLIST_FILE = "DoveSiButta/DoveSiButta-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\"$(SRCROOT)/DoveSiButta\\\\\\\"",
@@ -1590,9 +1486,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoveSiButta/DoveSiButta-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(PROJECT_DIR)/NYXImagesKit/**",
+				);
 				INFOPLIST_FILE = "DoveSiButta/DoveSiButta-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\\\\\"$(SRCROOT)/DoveSiButta\\\\\\\"",

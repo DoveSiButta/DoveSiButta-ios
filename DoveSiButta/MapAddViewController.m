@@ -334,6 +334,10 @@
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    
+    //Flurry event track
+    [Flurry logEvent:@"USER_OPENED_LOCATION_DETAIL"];
+    
     MapAnnotationDefault *myAnnotation = (MapAnnotationDefault*)view.annotation;
     LocationDetailViewController *ldvc = [[LocationDetailViewController alloc] initWithItem:myAnnotation.item];
     //[myAnnotation loadDetailView];

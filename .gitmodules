@@ -1,9 +1,6 @@
 [submodule "OData4ObjC"]
 	path = OData4ObjC
 	url = https://github.com/maggix/OData4ObjC.git
-[submodule "hoptoad-ios"]
-	path = hoptoad-ios
-	url = https://github.com/guicocoa/hoptoad-ios.git
 [submodule "foursquare-ios-api"]
 	path = foursquare-ios-api
 	url = https://github.com/baztokyo/foursquare-ios-api.git
@@ -16,3 +13,6 @@
 [submodule "SVProgressHUD"]
 	path = SVProgressHUD
 	url = https://github.com/samvermette/SVProgressHUD.git
+[submodule "NYXImagesKit"]
+	path = NYXImagesKit
+	url = https://github.com/Nyx0uf/NYXImagesKit.git
